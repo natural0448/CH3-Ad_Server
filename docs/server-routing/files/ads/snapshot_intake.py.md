@@ -38,4 +38,10 @@
 
 현재 직접 호출은 `_read_snapshot`, `set`, `_check_public_state`, `seen.add`, 반환 분기의 `len`/`sorted`다. `rows`/`checksum`은 읽기 helper 반환값, `seen`은 빈 집합에서 ID를 등록하고 `captured_at`은 첫 입력 값에서 온다. `parse_utc`는 독립 이름 식으로만 등장하며 이 함수에서 호출하지 않는다.
 
-수집 시각의 ISO 문법/시간대 확인은 현재 미적용이다. `_check_public_state`의 updated_at 검사와 captured_at 검사를 혼동하지 않는다. 잘못된 captured_at도 같은 값이면 이 함수의 수집 시각 검사에서 거절되지 않는다. 메타데이터 반환이 2교시 검사 통과나 실제 snapshot 소비 성공을 의미하지 않는다. 이번 문서 작업에서는 2교시 검사 실행이나 실제 snapshot 소비를 수행하지 않았다. 최초 빈칸 저장본은 당시 관찰 증거로 보존하며 현재 설명은 16:44경 저장본을 기준으로 한다.
+수집 시각의 ISO 문법/시간대 확인은 현재 미적용이다. `_check_public_state`의 updated_at 검사와 captured_at 검사를 혼동하지 않는다. 잘못된 captured_at도 같은 값이면 이 함수의 수집 시각 검사에서 거절되지 않는다. 메타데이터 반환이 2교시 검사 통과나 실제 snapshot 소비 성공을 의미하지 않는다. 최초 빈칸 저장본은 당시 관찰 증거로 보존한다.
+
+## 2교시 완료 여부 재검토 · 2026-10-08
+
+현재 저장본을 공식 `tools/check_day24_logic.py --period 2`로 격리 검사한 결과 **20 통과·2 실패**다. [검사 결과](../../verification/day24-period02-review/official-period02-final.json)와 [검토 인수인계](../../../handoffs/2026-10-08-day24-period02-review.md)에 근거를 기록했다.
+
+실패는 `naive captured_at 거절`과 `검사 관리명령`이다. 전자는 inspect의 `parse_utc` 이름 식이 시각 검사를 호출하지 않기 때문이며, 후자는 `ads/management/commands/inspect_player_snapshot.py`가 없기 때문이다. 중복·정확한 필드/출처·bool/정수·updated_at·수집값 일치·빈 파일/빈 행 및 메타데이터 검사는 통과했다. 실제 원본의 관리명령 검사는 수행할 수 없어 2교시 완료로 기록하지 않는다. 검사기는 격리 파일/SQLite 메모리만 사용했고 MongoDB와 실제 입력 파일에 쓰지 않았다. 학생 소스는 변경하지 않았다.

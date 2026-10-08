@@ -10,6 +10,8 @@
 
 24일차 광고에는 공식 검사기 `tools/check_day24_logic.py`와 작성 중인 2교시 `ads/snapshot_intake.py`가 저장돼 있다. 문서 정합화 도중 관찰한 새 사용자 작업 또는 작성자를 확정할 수 없는 작업이다. 최신 inspect에는 필드/공개 상태/중복/수집값 통일 검사가 있으나 `parse_utc` 이름 식만 있어 captured_at 시각 검사는 호출되지 않는다. snapshot 검증/소비 성공으로 기록하지 않으며 3~8교시 후속 소비 구현과 관리명령은 미적용이다. Player snapshot 명령은 `../Game-server/server/game/management/commands/export_player_snapshot.py`에 있고 광고 입력 경로는 `../Game-server/data/exports/player-cdc.ndjson`이다. 게임 ORM을 광고 앱에 import하지 않는다. 기존 부재/빈칸 근거는 관찰 당시 시점자료로 보존하며 최신 소스 상태는 [사용자 저장 중 관찰](verification/day24-routing-sync/concurrent-source-observation.json)을 따른다. `Game-server/data`가 기존 출력 위치다.
 
+2교시 완료 여부의 공식 격리 재검토는 **20 통과·2 실패**다. 수집 시각 검사 미호출과 `inspect_player_snapshot.py` 관리명령 부재가 실패 원인이다. [검사 결과](verification/day24-period02-review/official-period02-final.json), [검토 인수인계](../handoffs/2026-10-08-day24-period02-review.md)를 따른다. 소스를 고치거나 원본 파일을 다시 만들지 않았다.
+
 `config/day23-*.py`와 `tools/basics/*`는 독립 실습/교안 참고 코드다. 서버 runtime 구현과 구분한다. 초기 package/scaffold 문서는 현재 정의가 없음을 명시한다. 검증용 도구의 존재도 최근 기능 테스트 실행을 뜻하지 않는다.
 
 ## Python 파일과 1:1 문서

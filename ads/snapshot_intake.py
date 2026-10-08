@@ -60,7 +60,7 @@ def inspect_snapshot(path):
         if row["id"] in seen:
             raise ValueError("중복 ID")
         seen.add(row["id"])
-        parse_utc
+        parse_utc(row["captured_at"])
 
         if captured_at is None:
             captured_at = row["captured_at"]

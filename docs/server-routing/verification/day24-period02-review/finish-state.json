@@ -1,0 +1,527 @@
+{
+  "head": {
+    "exit_code": 0,
+    "output": "c22dc97 day24 - 1교시",
+    "error": ""
+  },
+  "status": {
+    "exit_code": 0,
+    "output": "M docs/server-routing/current-progress-index.md\n M docs/server-routing/files/ads/snapshot_intake.py.md\n?? docs/handoffs/2026-10-08-day24-period02-review.md\n?? docs/server-routing/verification/day24-period02-review/finish-state.json\n?? docs/server-routing/verification/day24-period02-review/official-period02-adenv-absolute.json\n?? docs/server-routing/verification/day24-period02-review/official-period02-adenv.json\n?? docs/server-routing/verification/day24-period02-review/official-period02-final.json\n?? docs/server-routing/verification/day24-period02-review/official-period02.json\n?? docs/server-routing/verification/day24-period02-review/routing-cli-before.json\n?? docs/server-routing/verification/day24-period02-review/start-state.json",
+    "error": ""
+  },
+  "head_changes": {
+    "exit_code": 0,
+    "output": "M\tdocs/server-routing/current-progress-index.md\nM\tdocs/server-routing/files/ads/snapshot_intake.py.md",
+    "error": "warning: in the working copy of 'docs/server-routing/current-progress-index.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/server-routing/files/ads/snapshot_intake.py.md', LF will be replaced by CRLF the next time Git touches it"
+  },
+  "staged": {
+    "exit_code": 0,
+    "output": "",
+    "error": ""
+  },
+  "unstaged": {
+    "exit_code": 0,
+    "output": "M\tdocs/server-routing/current-progress-index.md\nM\tdocs/server-routing/files/ads/snapshot_intake.py.md",
+    "error": "warning: in the working copy of 'docs/server-routing/current-progress-index.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/server-routing/files/ads/snapshot_intake.py.md', LF will be replaced by CRLF the next time Git touches it"
+  },
+  "untracked": {
+    "exit_code": 0,
+    "output": "docs/handoffs/2026-10-08-day24-period02-review.md\ndocs/server-routing/verification/day24-period02-review/finish-state.json\ndocs/server-routing/verification/day24-period02-review/official-period02-adenv-absolute.json\ndocs/server-routing/verification/day24-period02-review/official-period02-adenv.json\ndocs/server-routing/verification/day24-period02-review/official-period02-final.json\ndocs/server-routing/verification/day24-period02-review/official-period02.json\ndocs/server-routing/verification/day24-period02-review/routing-cli-before.json\ndocs/server-routing/verification/day24-period02-review/start-state.json",
+    "error": ""
+  },
+  "whitespace": {
+    "exit_code": 0,
+    "output": "",
+    "error": "warning: in the working copy of 'docs/server-routing/current-progress-index.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/server-routing/files/ads/snapshot_intake.py.md', LF will be replaced by CRLF the next time Git touches it"
+  },
+  "checks": {
+    "python_file_count": 1,
+    "symbols": [
+      {
+        "kind": "function",
+        "qualified_name": "_read_snapshot",
+        "line": 19,
+        "signature": "_read_snapshot(path)",
+        "signature_core": "_read_snapshot(path)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "_check_public_state",
+        "line": 33,
+        "signature": "_check_public_state(row)",
+        "signature_core": "_check_public_state(row)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "inspect_snapshot",
+        "line": 48,
+        "signature": "inspect_snapshot(path)",
+        "signature_core": "inspect_snapshot(path)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      }
+    ],
+    "missing_signatures": [],
+    "parse_error": null,
+    "index_has_pair": true,
+    "source_hash_count": 69,
+    "source_changed": [],
+    "snapshot_preserved": true,
+    "local_link_count": 86,
+    "broken_links": [],
+    "links": [
+      {
+        "document": "docs/server-routing/files/ads/snapshot_intake.py.md",
+        "target": "../../verification/day24-period02-review/official-period02-final.json",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/files/ads/snapshot_intake.py.md",
+        "target": "../../../handoffs/2026-10-08-day24-period02-review.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "verification/day24-routing-sync/concurrent-source-observation.json",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "verification/day24-period02-review/official-period02-final.json",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "../handoffs/2026-10-08-day24-period02-review.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ad_config/ad_config/__init__.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ad_config/ad_config/asgi.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ad_config/ad_config/settings.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ad_config/ad_config/urls.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ad_config/ad_config/wsgi.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ad_config/ads_manage.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ad_config/manage.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/__init__.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/admin.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/apps.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/auth_views.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/creatives.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/delivery.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/events.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/exporting.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/management/__init__.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/management/commands/__init__.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/management/commands/build_ad_reports.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/management/commands/check_ad_reports.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/management/commands/compare_ad_decisions.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/management/commands/create_ad_indexes.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/management/commands/deliver_ad_events.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/management/commands/ensure_ad_event_indexes.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/management/commands/export_ad_events.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/management/commands/load_ad_reports.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/media_auth.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/migrations/__init__.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/models.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/mongo.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/reporting.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/repository.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/services.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/snapshot_intake.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/test_events.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/tests.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/timestamps.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/urls.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/views.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/config/day23-period-01.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/config/day23-period-02.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/config/day23-period-03.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/config/day23-period-04.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/config/day23-period-05.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/config/day23-period-06.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/config/day23-period-07.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/config/day23-subject.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/tools/basics/day22_credit_model.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/tools/basics/day22_period01.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/tools/basics/day22_period02.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/tools/basics/day23_record_observed.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/tools/check_day24_logic.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/tools/day22_connection.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/tools/day22_crud.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/tools/verify_day22.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/tools/verify_day22_images.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/tools/verify_day23.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/tools/verify_lesson_alignment.py.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/README.md.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/templates/registration/login.html.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/templates/ads/base.html.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/templates/ads/campaigns.html.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/templates/ads/bids.html.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/templates/ads/events.html.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/templates/ads/reports.html.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/static/ads/advertiser.css.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/static/ads/advertiser.js.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/static/ads/creatives/forest-tools.png.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "files/ads/static/ads/creatives/camp-tea.png.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "verification/day24-routing-sync/agent-routing-final.json",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "verification/day24-routing-sync/agent-document-checks.json",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "verification/day24-routing-sync/agent-snapshot-boundary.json",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "../handoffs/2026-10-08-ad-routing-progress-sync.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "day23-period06-index.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "day24-period01-index.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "../handoffs/2026-10-08-day23-period06-report-template.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "../handoffs/2026-10-08-day24-period01-review.md",
+        "exists": true
+      },
+      {
+        "document": "docs/server-routing/current-progress-index.md",
+        "target": "../handoffs/2026-10-08-day24-data-path-correction.md",
+        "exists": true
+      },
+      {
+        "document": "docs/handoffs/2026-10-08-day24-period02-review.md",
+        "target": "../server-routing/verification/day24-period02-review/start-state.json",
+        "exists": true
+      },
+      {
+        "document": "docs/handoffs/2026-10-08-day24-period02-review.md",
+        "target": "../server-routing/verification/day24-period02-review/official-period02-final.json",
+        "exists": true
+      },
+      {
+        "document": "docs/handoffs/2026-10-08-day24-period02-review.md",
+        "target": "../server-routing/verification/day24-period02-review/routing-cli-before.json",
+        "exists": true
+      },
+      {
+        "document": "docs/handoffs/2026-10-08-day24-period02-review.md",
+        "target": "../server-routing/verification/day24-period02-review/finish-state.json",
+        "exists": true
+      }
+    ],
+    "head_preserved": true,
+    "staged_preserved": true,
+    "student_code_edited_by_agent": false,
+    "changed_by_agent": [
+      "docs/server-routing/files/ads/snapshot_intake.py.md",
+      "docs/server-routing/current-progress-index.md",
+      "docs/handoffs/2026-10-08-day24-period02-review.md",
+      "docs/server-routing/verification/day24-period02-review/"
+    ],
+    "summary": {
+      "ok": true
+    }
+  }
+}

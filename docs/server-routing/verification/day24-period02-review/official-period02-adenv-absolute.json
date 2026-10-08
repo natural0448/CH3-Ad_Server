@@ -1,0 +1,23 @@
+{
+  "period": 2,
+  "project": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "passed": 1,
+  "failed": 1,
+  "database": "sqlite-memory-only",
+  "mongo": "not-connected",
+  "student_sources_unchanged": true,
+  "source_sha256": {
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\snapshot_intake.py": "5bfe0f260290025ac882f2f35dffb391101b6f06b01b350787a078b9b8fa7994"
+  },
+  "checks": [
+    {
+      "name": "저장 코드 로드·검사 준비",
+      "passed": false,
+      "error": "PermissionError: [WinError 5] 액세스가 거부되었습니다: 'C:\\\\Users\\\\이해나\\\\AppData\\\\Local\\\\Packages\\\\sandbox.{c37d52fd-1a97-404b-8f68-7d6719b0cdaa}\\\\AC\\\\Temp\\\\day24-check-qbzh9dna'"
+    },
+    {
+      "name": "학생 저장 파일 변경 없음",
+      "passed": true
+    }
+  ]
+}
