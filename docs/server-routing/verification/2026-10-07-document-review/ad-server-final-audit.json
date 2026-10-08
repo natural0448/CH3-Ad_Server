@@ -1,0 +1,17 @@
+{
+  "scope": "registered today Python paired documents only",
+  "python_files": 33,
+  "symbols": 105,
+  "issues": [],
+  "ok": true,
+  "outside_scope_missing_pairs": [
+    "ad_config/ad_config/__init__.py",
+    "ad_config/ad_config/asgi.py",
+    "ad_config/ad_config/wsgi.py",
+    "ads/__init__.py",
+    "ads/admin.py",
+    "ads/apps.py",
+    "ads/migrations/__init__.py",
+    "ads/models.py"
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "ad_server": {
+    "initial_git": "not a repository",
+    "changes": [
+      {
+        "path": "ad_config/ad_config/urls.py",
+        "state": "modified",
+        "sha256": "b9d8383416b202653c97f135ae5a0edb30290d3ed900ecfd150ecf920e67e4c7"
+      },
+      {
+        "path": "ads/creatives.py",
+        "state": "added",
+        "sha256": "57956cb6296450c09b19a38f74bf80d61639acc25a6843f31d2dbe9889f41b3f"
+      },
+      {
+        "path": "ads/repository.py",
+        "state": "modified",
+        "sha256": "8db7892d665b9c9e52543de4487c91bd67103a4a2a5e771d847e7d821c673675"
+      },
+      {
+        "path": "ads/services.py",
+        "state": "modified",
+        "sha256": "6a8b9547ccab8e6e78a68c8282f822c83cadd91896e9fdfa10511f96e41d2063"
+      },
+      {
+        "path": "ads/views.py",
+        "state": "modified",
+        "sha256": "85e30506d18e237468154679a95ad71de0298562495fcc95f98a57413633a9d3"
+      },
+      {
+        "path": "ads/tests.py",
+        "state": "modified",
+        "sha256": "a6d4fd78030132d85d8339e5cb7aefd9cf126d8b54eb60c7da3aa45c97395f1d"
+      },
+      {
+        "path": "ads/templates/ads/base.html",
+        "state": "added",
+        "sha256": "0675b9564822aa5a788b047f60416a7437862cbba92f5e19d4bff2ee339be06b"
+      },
+      {
+        "path": "ads/templates/ads/campaigns.html",
+        "state": "modified",
+        "sha256": "29af874fb9c38ba0bf98980c71712a4712bdabacd05e963e4d9209c0596c4376"
+      },
+      {
+        "path": "ads/templates/ads/bids.html",
+        "state": "modified",
+        "sha256": "2dc1bac49783a8bb6d45ac8bbb72f6a942a7eb47643de7ac8da671c44958efd6"
+      },
+      {
+        "path": "ads/templates/registration/login.html",
+        "state": "modified",
+        "sha256": "1cef6cf801e854b9d1019e921352253755f16c6f11033741f4877f2edd6213f8"
+      },
+      {
+        "path": "ads/static/ads/advertiser.css",
+        "state": "added",
+        "sha256": "8c69197b64aa9d443df26c4a63c2a91e8868971ccdcc5be3f3f6288ee73dbdfe"
+      },
+      {
+        "path": "ads/static/ads/advertiser.js",
+        "state": "added",
+        "sha256": "e845cf4ada2aff58d2aed718f7966bc8e61012063184cf793257d6431a983a70"
+      },
+      {
+        "path": "ads/static/ads/creatives/forest-tools.png",
+        "state": "added",
+        "sha256": "4f75a60e03d46523afba3c52f73c1fcbe06a7566a87eea9fb9b82320718182bf"
+      },
+      {
+        "path": "ads/static/ads/creatives/camp-tea.png",
+        "state": "added",
+        "sha256": "cfb675c1dcc7530a41956004471c8ec27cd5ae19a03d8c424074b855395497e8"
+      },
+      {
+        "path": "data/evidence/asset-sources.md",
+        "state": "added",
+        "sha256": "cf086a3473174fc117c6fb6665ddefb8892da26f521ad0b8c7ca117207513c75"
+      },
+      {
+        "path": "tools/verify_day22_images.py",
+        "state": "added",
+        "sha256": "9a5c57dd65ca15bf9f46a8f0f45680f96a1bec81c68016612e544b919aa29654"
+      },
+      {
+        "path": "README.md",
+        "state": "modified",
+        "sha256": "07c42ce3dad2d94fff78c37ac3a6ede208d4795d5272eed5bc82580d9e6bc03c"
+      }
+    ],
+    "routing_documents": [
+      "docs/server-routing/files/ad_config/ad_config/urls.py.md",
+      "docs/server-routing/files/ads/creatives.py.md",
+      "docs/server-routing/files/ads/repository.py.md",
+      "docs/server-routing/files/ads/services.py.md",
+      "docs/server-routing/files/ads/views.py.md",
+      "docs/server-routing/files/ads/tests.py.md",
+      "docs/server-routing/files/ads/templates/ads/base.html.md",
+      "docs/server-routing/files/ads/templates/ads/campaigns.html.md",
+      "docs/server-routing/files/ads/templates/ads/bids.html.md",
+      "docs/server-routing/files/ads/templates/registration/login.html.md",
+      "docs/server-routing/files/ads/static/ads/advertiser.css.md",
+      "docs/server-routing/files/ads/static/ads/advertiser.js.md",
+      "docs/server-routing/files/ads/static/ads/creatives/forest-tools.png.md",
+      "docs/server-routing/files/ads/static/ads/creatives/camp-tea.png.md",
+      "docs/server-routing/files/data/evidence/asset-sources.md.md",
+      "docs/server-routing/files/tools/verify_day22_images.py.md",
+      "docs/server-routing/files/README.md.md"
+    ]
+  },
+  "Game-server": {
+    "initial_git": "clean; 4f75c2d",
+    "changes": [
+      {
+        "path": "config/settings.py",
+        "state": "modified",
+        "sha256": "de0bcec1b8c0796180914337dee54c5cb4f1b86961e9012148c4f8e60341e992"
+      },
+      {
+        "path": "server/game/urls.py",
+        "state": "modified",
+        "sha256": "15899c05cc485d771cd5c8afed53dc33976281a67e9ff43cee1c319b73da8a7d"
+      },
+      {
+        "path": "server/game/ad_gateway.py",
+        "state": "added",
+        "sha256": "ef20f028494d4b6f493c6beb7677bf7223929a49796b63b5cba85d686f8f64d9"
+      },
+      {
+        "path": "server/game/ad_views.py",
+        "state": "added",
+        "sha256": "707bd2d834fcb86e62f86bd8adf3831d71daf4652dad3243295c07172adc2f49"
+      },
+      {
+        "path": "server/game/static/game/ad_preview.js",
+        "state": "added",
+        "sha256": "94e457e8f1d7d4a2250f357882d05a69565a54d87cd21512d0db6bb30ed4cb18"
+      },
+      {
+        "path": "server/game/templates/game/ad_preview.html",
+        "state": "added",
+        "sha256": "b4d5635d01b04bb1e2e292de589f4b9c54a0f0e3dbeb87d87b593b1867391b6c"
+      },
+      {
+        "path": "server/game/static/ads/creatives/forest-tools.png",
+        "state": "added",
+        "sha256": "4f75a60e03d46523afba3c52f73c1fcbe06a7566a87eea9fb9b82320718182bf"
+      },
+      {
+        "path": "server/game/static/ads/creatives/camp-tea.png",
+        "state": "added",
+        "sha256": "cfb675c1dcc7530a41956004471c8ec27cd5ae19a03d8c424074b855395497e8"
+      },
+      {
+        "path": "server/game/test_ads.py",
+        "state": "added",
+        "sha256": "4928c884a82636445e720ece86e59e4a044555169a58e0f347599a1907efa171"
+      },
+      {
+        "path": "data/evidence/asset-sources.md",
+        "state": "added",
+        "sha256": "cf086a3473174fc117c6fb6665ddefb8892da26f521ad0b8c7ca117207513c75"
+      },
+      {
+        "path": "server/.env",
+        "state": "modified",
+        "sha256": "469b1f097a6dda8a845408a0a9051c0f53053a1bf3176e67b3548a9907cfee65",
+        "reason": "human-approved ADS_MEDIA_KEY only"
+      }
+    ],
+    "routing_documents": [
+      "docs/server-routing/files/config/settings.py.md",
+      "docs/server-routing/files/server/game/urls.py.md",
+      "docs/server-routing/files/server/game/ad_gateway.py.md",
+      "docs/server-routing/files/server/game/ad_views.py.md",
+      "docs/server-routing/files/server/game/static/game/ad_preview.js.md",
+      "docs/server-routing/files/server/game/templates/game/ad_preview.html.md",
+      "docs/server-routing/files/server/game/static/ads/creatives/forest-tools.png.md",
+      "docs/server-routing/files/server/game/static/ads/creatives/camp-tea.png.md",
+      "docs/server-routing/files/server/game/test_ads.py.md",
+      "docs/server-routing/files/data/evidence/asset-sources.md.md",
+      "docs/server-routing/files/server/.env.md"
+    ]
+  },
+  "Game-client": {
+    "initial_git": "clean; 50b2f00",
+    "changes": [
+      {
+        "path": "client/app.py",
+        "state": "modified",
+        "sha256": "8cd2357c56360206ce570467b8c3409b24310308f7223069b6e1821f4696a6f5"
+      },
+      {
+        "path": "client/application/controller.py",
+        "state": "modified",
+        "sha256": "b064d2bd67e94239140ac08642a1989780d10b85ab3dac9488b53e92a463faaa"
+      },
+      {
+        "path": "client/application/state.py",
+        "state": "modified",
+        "sha256": "9e2edf246a3b41358876470dc2362eed843cf22f50c38b525d28f64ff7a2dc8b"
+      },
+      {
+        "path": "client/contracts/messages.py",
+        "state": "modified",
+        "sha256": "a567f5efd579f0ab428db2fe73eae43eda5393f61684eaa441416bc75a6ccba2"
+      },
+      {
+        "path": "client/network/worker.py",
+        "state": "modified",
+        "sha256": "4034ea27d02e07391b91cee71e11b8f117c6434e1e5d40a06599575da1c522ef"
+      },
+      {
+        "path": "client/ui/input.py",
+        "state": "modified",
+        "sha256": "317a747a1c6f59cb0cdbf33a0f0410324506e122d6ee079248e0eaa83ef58a35"
+      },
+      {
+        "path": "client/ui/layout.py",
+        "state": "modified",
+        "sha256": "3f8cf8ee1a68bf5f3c3f75d06825c1f2863c7ca39942c82fff02e46cca5d6799"
+      },
+      {
+        "path": "client/ui/renderer.py",
+        "state": "modified",
+        "sha256": "c4e2a04bf5ec275fa0bbeb65c2356b499873a406e346be149d4fc6ff309e06b1"
+      },
+      {
+        "path": "client/application/ads.py",
+        "state": "added",
+        "sha256": "eed1f17d0729f8a5ae6f4a9ed33deeb765f2997b9a6b90c068f382e5d934b9d3"
+      },
+      {
+        "path": "client/contracts/ads.py",
+        "state": "added",
+        "sha256": "74606cbd8ee6fd8c8ea7577085987c04fef6b7edd08ec05c110e0b6cee2b75a8"
+      },
+      {
+        "path": "client/network/ads.py",
+        "state": "added",
+        "sha256": "aa6148595b583494c85ca1b194f4d9b1d8bd280c07289ea0df133d000cfdbaac"
+      },
+      {
+        "path": "client/ui/ads.py",
+        "state": "added",
+        "sha256": "ab94247b96c8e2cacd326e0d660dd8d9d776bfc4d82c0cb047c10b97e7ccb3b9"
+      },
+      {
+        "path": "tests/test_ads_feature.py",
+        "state": "added",
+        "sha256": "660f7a9cd58b12686b3204ba5415d9b343749c0d3dfff0c89bdf4368aac99744"
+      }
+    ],
+    "routing_documents": [
+      "docs/client-routing/files/client/app.py.md",
+      "docs/client-routing/files/client/application/controller.py.md",
+      "docs/client-routing/files/client/application/state.py.md",
+      "docs/client-routing/files/client/contracts/messages.py.md",
+      "docs/client-routing/files/client/network/worker.py.md",
+      "docs/client-routing/files/client/ui/input.py.md",
+      "docs/client-routing/files/client/ui/layout.py.md",
+      "docs/client-routing/files/client/ui/renderer.py.md",
+      "docs/client-routing/files/client/application/ads.py.md",
+      "docs/client-routing/files/client/contracts/ads.py.md",
+      "docs/client-routing/files/client/network/ads.py.md",
+      "docs/client-routing/files/client/ui/ads.py.md",
+      "docs/client-routing/files/tests/test_ads_feature.py.md"
+    ]
+  },
+  "preserved": {
+    "ad_server/ads.env": true,
+    "ad_server/ads/events.py": true,
+    "Game-server/server/.env": false
+  },
+  "approved_private_env_change": {
+    "other_settings_preserved": true,
+    "source_ads_env_unchanged": true
+  }
+}

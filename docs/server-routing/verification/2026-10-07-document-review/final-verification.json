@@ -1,0 +1,51 @@
+{
+  "registered_documents": 106,
+  "evidence_count": 72,
+  "registry_missing_entries": [],
+  "link_errors": [],
+  "ad_server_registered_scope": {
+    "python_files": 33,
+    "symbols": 105,
+    "ok": true
+  },
+  "git_routing_audits": {
+    "Game-server": {
+      "changed_path_count": 41,
+      "python_file_count": 4,
+      "symbol_count": 21,
+      "issue_count": 0,
+      "ok": true
+    },
+    "Game-client": {
+      "changed_path_count": 40,
+      "python_file_count": 14,
+      "symbol_count": 117,
+      "issue_count": 0,
+      "ok": true
+    }
+  },
+  "client_file_pair_check": "PASS: 77 files, 77 pairs",
+  "git_diff_check": {
+    "Game-server": 0,
+    "Game-client": 0
+  },
+  "source_config_preserved": true,
+  "source_config_count": 235,
+  "code_changed_this_request": false,
+  "functional_tests_this_request": "not_run: documentation only",
+  "official_lesson_checker": "not_run: authenticated download unavailable",
+  "known_out_of_scope_missing_pairs": [
+    "ad_config/ad_config/__init__.py",
+    "ad_config/ad_config/asgi.py",
+    "ad_config/ad_config/wsgi.py",
+    "ads/__init__.py",
+    "ads/admin.py",
+    "ads/apps.py",
+    "ads/migrations/__init__.py",
+    "ads/models.py"
+  ],
+  "ok": true,
+  "historical_handoff_bodies_preserved": 16,
+  "changed_document_count": 29,
+  "final_document_links_ok": true
+}

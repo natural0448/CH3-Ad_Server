@@ -1,0 +1,15 @@
+{
+  "lesson": "day23 v2.3 period3",
+  "client_tests": 57,
+  "passed": true,
+  "guide_basic_code28_exact": true,
+  "basic_output": [
+    false,
+    true
+  ],
+  "dependency_check": "PASS",
+  "http_fixture": "integration.json",
+  "actual_student_game_observation": "not_run",
+  "private_env_unchanged": true,
+  "classroom_db_not_used": true
+}

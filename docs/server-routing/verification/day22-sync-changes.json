@@ -1,0 +1,53 @@
+{
+  "comparison": "file inventory and SHA256 baseline; Git unavailable",
+  "modified_development_files": [
+    ".gitignore",
+    "ads/auth_views.py",
+    "ads/tests.py",
+    "ads/views.py",
+    "ad_config/manage.py",
+    "ad_config/ad_config/settings.py",
+    "ad_config/ad_config/urls.py"
+  ],
+  "added_development_files": [
+    ".env.example",
+    "ads/mongo.py",
+    "ads/repository.py",
+    "ads/services.py",
+    "ads/urls.py",
+    "config/mongo-node1.yml",
+    "config/mongo-node2.yml",
+    "config/mongo-node3.yml",
+    "tools/verify_day22.py",
+    "tools/basics/day22_credit_model.py",
+    "tools/basics/day22_period01.py",
+    "tools/basics/day22_period02.py",
+    "ads/management/__init__.py",
+    "ads/templates/ads/bids.html",
+    "ads/templates/ads/campaigns.html",
+    "ads/templates/registration/login.html",
+    "ads/management/commands/compare_ad_decisions.py",
+    "ads/management/commands/__init__.py"
+  ],
+  "moved": [],
+  "deleted": [],
+  "preserved_existing_files": [
+    "ads.env",
+    "requirements.txt",
+    "ads/admin.py",
+    "ads/apps.py",
+    "ads/models.py",
+    "ads/__init__.py",
+    "ad_config/ads_manage.py",
+    "docs/handoffs/2026-10-02-ad-server-startup-fix.md",
+    "docs/handoffs/2026-10-02-day22-period01-03-review.md",
+    "docs/server-routing/verification/startup-fix-audit.json",
+    "docs/server-routing/files/ad_config/ads_manage.py.md",
+    "ad_config/ad_config/asgi.py",
+    "ad_config/ad_config/wsgi.py",
+    "ad_config/ad_config/__init__.py",
+    "ads/migrations/__init__.py"
+  ],
+  "secret_values_recorded": false,
+  "env_unchanged": true
+}

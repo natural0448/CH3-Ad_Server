@@ -1,0 +1,23 @@
+{
+  "git": "Git 상태 확인 불가: 저장소 아님",
+  "development_scope": [
+    "ads.env"
+  ],
+  "original_environment_present": true,
+  "original_has_mongo_uri": true,
+  "other_keys_preserved_pending_verification": true,
+  "secret_values_recorded": false,
+  "only_mongo_uri_line_changed": true,
+  "other_environment_keys_preserved": true,
+  "django_loaded_target": true,
+  "member_count": 1,
+  "replica_set_option_present": true,
+  "database_connection_ok": false,
+  "error_type": "ServerSelectionTimeoutError",
+  "routing_document_exists": true,
+  "indexed": true,
+  "system_check_errors": 0,
+  "service_transition_completed": false,
+  "service_stop_error": "Windows denied service control; administrator privileges required",
+  "server_initialization_by_agent": false
+}

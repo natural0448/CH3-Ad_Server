@@ -1,0 +1,3 @@
+# config/day23-period-03.py
+
+수정교안3교시 CODE28 그대로인 DB 없는 and 실습. displayed=True, impression_ok=False에서 print(False), impression_ok=True로 변경 후 print(True). 이 파일이 두 지역 값을 소유하며 함수/HTTP/DB 호출 없음. print의 반환은None이다.

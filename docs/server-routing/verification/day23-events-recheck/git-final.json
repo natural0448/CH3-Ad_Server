@@ -1,0 +1,52 @@
+{
+  "Game-server": {
+    "head": "6aa5329 22일차 - 진행사항 반영",
+    "staged": [],
+    "status": [
+      " M docs/server-routing/README.md",
+      " M docs/server-routing/files/server/game/ad_gateway.py.md",
+      " M docs/server-routing/files/server/game/ad_views.py.md",
+      " M docs/server-routing/files/server/game/test_ads.py.md",
+      " M docs/server-routing/files/server/game/urls.py.md",
+      " M server/game/ad_gateway.py",
+      " M server/game/ad_views.py",
+      " M server/game/test_ads.py",
+      " M server/game/urls.py",
+      "?? docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "?? docs/server-routing/verification/day23-final-audit.json",
+      "?? docs/server-routing/verification/day23-start-audit.json"
+    ]
+  },
+  "Game-client": {
+    "head": "2dd8d97 22일차 내용 반영",
+    "staged": [],
+    "status": [
+      " M client/app.py",
+      " M client/application/ads.py",
+      " M client/application/controller.py",
+      " M client/contracts/ads.py",
+      " M client/contracts/messages.py",
+      " M client/network/ads.py",
+      " M client/network/worker.py",
+      " M client/ui/ads.py",
+      " M client/ui/input.py",
+      " M client/ui/renderer.py",
+      " M docs/client-routing/README.md",
+      " M docs/client-routing/files/client/app.py.md",
+      " M docs/client-routing/files/client/application/ads.py.md",
+      " M docs/client-routing/files/client/application/controller.py.md",
+      " M docs/client-routing/files/client/contracts/ads.py.md",
+      " M docs/client-routing/files/client/contracts/messages.py.md",
+      " M docs/client-routing/files/client/network/ads.py.md",
+      " M docs/client-routing/files/client/network/worker.py.md",
+      " M docs/client-routing/files/client/ui/ads.py.md",
+      " M docs/client-routing/files/client/ui/input.py.md",
+      " M docs/client-routing/files/client/ui/renderer.py.md",
+      "?? docs/client-routing/files/tests/test_ads_events.py.md",
+      "?? docs/client-routing/verification/day23-final-audit.json",
+      "?? docs/client-routing/verification/day23-start-audit.json",
+      "?? docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "?? tests/test_ads_events.py"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "git": "Git 상태 확인 불가: 저장소 아님",
+  "files": [
+    {
+      "path": "README.md",
+      "has_pair": true,
+      "indexed": true
+    },
+    {
+      "path": "tools/verify_day23.py",
+      "has_pair": true,
+      "indexed": true,
+      "parse_error": null,
+      "missing_signatures": [],
+      "symbols": [
+        {
+          "kind": "async_function",
+          "qualified_name": "render_flow",
+          "line": 18,
+          "signature": "render_flow(owned)",
+          "signature_core": "render_flow(owned)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "main",
+          "line": 121,
+          "signature": "main()",
+          "signature_core": "main()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ]
+    },
+    {
+      "path": "config/day23-period-03.py",
+      "has_pair": true,
+      "indexed": true,
+      "parse_error": null,
+      "missing_signatures": [],
+      "symbols": []
+    }
+  ],
+  "summary": {
+    "ok": true,
+    "development_files": 3
+  }
+}

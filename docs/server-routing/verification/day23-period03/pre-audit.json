@@ -1,0 +1,62 @@
+[
+  {
+    "file": "ad_server/tools/verify_day23.py",
+    "error": null,
+    "missing_signatures": []
+  },
+  {
+    "file": "Game-client/client/app.py",
+    "error": null,
+    "missing_signatures": []
+  },
+  {
+    "file": "Game-client/client/application/ads.py",
+    "error": null,
+    "missing_signatures": []
+  },
+  {
+    "file": "Game-client/client/application/controller.py",
+    "error": null,
+    "missing_signatures": []
+  },
+  {
+    "file": "Game-client/client/network/ads.py",
+    "error": null,
+    "missing_signatures": []
+  },
+  {
+    "file": "Game-client/client/network/session.py",
+    "error": null,
+    "missing_signatures": []
+  },
+  {
+    "file": "Game-client/client/network/http.py",
+    "error": null,
+    "missing_signatures": []
+  },
+  {
+    "file": "Game-client/client/contracts/messages.py",
+    "error": null,
+    "missing_signatures": []
+  },
+  {
+    "file": "Game-client/client/ui/ads.py",
+    "error": null,
+    "missing_signatures": []
+  },
+  {
+    "file": "Game-client/client/ui/renderer.py",
+    "error": null,
+    "missing_signatures": []
+  },
+  {
+    "file": "Game-client/tests/test_ads_events.py",
+    "error": null,
+    "missing_signatures": []
+  },
+  {
+    "file": "Game-client/tests/test_ads_feature.py",
+    "error": null,
+    "missing_signatures": []
+  }
+]

@@ -1,0 +1,822 @@
+{
+  "client_date": "2026-10-07",
+  "root_git": {
+    "exit": 128,
+    "output": "",
+    "error": "fatal: not a git repository (or any of the parent directories): .git"
+  },
+  "projects": {
+    "ad_server": {
+      "boundary": {
+        "exit": 128,
+        "output": "",
+        "error": "fatal: not a git repository (or any of the parent directories): .git"
+      },
+      "head": {
+        "exit": 128,
+        "output": "",
+        "error": "fatal: not a git repository (or any of the parent directories): .git"
+      },
+      "status": {
+        "exit": 128,
+        "output": "",
+        "error": "fatal: not a git repository (or any of the parent directories): .git"
+      },
+      "staged": {
+        "exit": 129,
+        "output": "",
+        "error": "error: unknown option `cached'\nusage: git diff --no-index [<options>] <path> <path> [<pathspec>...]\n\nDiff output format options\n    -p, --patch           generate patch\n    -s, --no-patch        suppress diff output\n    -u                    generate patch\n    -U, --unified[=<n>]   generate diffs with <n> lines context\n    -W, --[no-]function-context\n                          generate diffs with <n> lines context\n    --raw                 generate the diff in raw format\n    --patch-with-raw      synonym for '-p --raw'\n    --patch-with-stat     synonym for '-p --stat'\n    --numstat             machine friendly --stat\n    --shortstat           output only the last line of --stat\n    -X, --dirstat[=<param1>,<param2>...]\n                          output the distribution of relative amount of changes for each sub-directory\n    --cumulative          synonym for --dirstat=cumulative\n    --dirstat-by-file[=<param1>,<param2>...]\n                          synonym for --dirstat=files,<param1>,<param2>...\n    --check               warn if changes introduce conflict markers or whitespace errors\n    --summary             condensed summary such as creations, renames and mode changes\n    --name-only           show only names of changed files\n    --name-status         show only names and status of changed files\n    --stat[=<width>[,<name-width>[,<count>]]]\n                          generate diffstat\n    --stat-width <width>  generate diffstat with a given width\n    --stat-name-width <width>\n                          generate diffstat with a given name width\n    --stat-graph-width <width>\n                          generate diffstat with a given graph width\n    --stat-count <count>  generate diffstat with limited lines\n    --[no-]compact-summary\n                          generate compact summary in diffstat\n    --binary              output a binary diff that can be applied\n    --[no-]full-index     show full pre- and post-image object names on the \"index\" lines\n    --[no-]color[=<when>] show colored diff\n    --ws-error-highlight <kind>\n                          highlight whitespace errors in the 'context', 'old' or 'new' lines in the diff\n    -z                    do not munge pathnames and use NULs as output field terminators in --raw or --numstat\n    --[no-]abbrev[=<n>]   use <n> digits to display object names\n    --src-prefix <prefix> show the given source prefix instead of \"a/\"\n    --dst-prefix <prefix> show the given destination prefix instead of \"b/\"\n    --line-prefix <prefix>\n                          prepend an additional prefix to every line of output\n    --no-prefix           do not show any source or destination prefix\n    --default-prefix      use default prefixes a/ and b/\n    --inter-hunk-context <n>\n                          show context between diff hunks up to the specified number of lines\n    --output-indicator-new <char>\n                          specify the character to indicate a new line instead of '+'\n    --output-indicator-old <char>\n                          specify the character to indicate an old line instead of '-'\n    --output-indicator-context <char>\n                          specify the character to indicate a context instead of ' '\n\nDiff rename options\n    -B, --break-rewrites[=<n>[/<m>]]\n                          break complete rewrite changes into pairs of delete and create\n    -M, --find-renames[=<n>]\n                          detect renames\n    -D, --irreversible-delete\n                          omit the preimage for deletes\n    -C, --find-copies[=<n>]\n                          detect copies\n    --[no-]find-copies-harder\n                          use unmodified files as source to find copies\n    --no-renames          disable rename detection\n    --[no-]rename-empty   use empty blobs as rename source\n    --[no-]follow         continue listing the history of a file beyond renames\n    -l <n>                prevent rename/copy detection if the number of rename/copy targets exceeds given limit\n\nDiff algorithm options\n    --minimal             produce the smallest possible diff\n    -w, --ignore-all-space\n                          ignore whitespace when comparing lines\n    -b, --ignore-space-change\n                          ignore changes in amount of whitespace\n    --ignore-space-at-eol ignore changes in whitespace at EOL\n    --ignore-cr-at-eol    ignore carrier-return at the end of line\n    --ignore-blank-lines  ignore changes whose lines are all blank\n    -I, --[no-]ignore-matching-lines <regex>\n                          ignore changes whose all lines match <regex>\n    --[no-]indent-heuristic\n                          heuristic to shift diff hunk boundaries for easy reading\n    --patience            generate diff using the \"patience diff\" algorithm\n    --histogram           generate diff using the \"histogram diff\" algorithm\n    --diff-algorithm <algorithm>\n                          choose a diff algorithm\n    --anchored <text>     generate diff using the \"anchored diff\" algorithm\n    --word-diff[=<mode>]  show word diff, using <mode> to delimit changed words\n    --word-diff-regex <regex>\n                          use <regex> to decide what a word is\n    --color-words[=<regex>]\n                          equivalent to --word-diff=color --word-diff-regex=<regex>\n    --[no-]color-moved[=<mode>]\n                          moved lines of code are colored differently\n    --[no-]color-moved-ws <mode>\n                          how white spaces are ignored in --color-moved\n\nOther diff options\n    --[no-]relative[=<prefix>]\n                          when run from subdir, exclude changes outside and show relative paths\n    -a, --[no-]text       treat all files as text\n    -R                    swap two inputs, reverse the diff\n    --[no-]exit-code      exit with 1 if there were differences, 0 otherwise\n    --[no-]quiet          disable all output of the program\n    --[no-]ext-diff       allow an external diff helper to be executed\n    --[no-]textconv       run external text conversion filters when comparing binary files\n    --ignore-submodules[=<when>]\n                          ignore changes to submodules in the diff generation\n    --submodule[=<format>]\n                          specify how differences in submodules are shown\n    --ita-invisible-in-index\n                          hide 'git add -N' entries from the index\n    --ita-visible-in-index\n                          treat 'git add -N' entries as real in the index\n    -S <string>           look for differences that change the number of occurrences of the specified string\n    -G <regex>            look for differences that change the number of occurrences of the specified regex\n    --pickaxe-all         show all changes in the changeset with -S or -G\n    --pickaxe-regex       treat <string> in -S as extended POSIX regular expression\n    -O <file>             control the order in which files appear in the output\n    --rotate-to <path>    show the change in the specified path first\n    --skip-to <path>      skip the output to the specified path\n    --find-object <object-id>\n                          look for differences that change the number of occurrences of the specified object\n    --diff-filter [(A|C|D|M|R|T|U|X|B)...[*]]\n                          select files by diff type\n    --max-depth <depth>   maximum tree depth to recurse\n    --output <file>       output to a specific file"
+      },
+      "unstaged": {
+        "exit": 129,
+        "output": "",
+        "error": "warning: Not a git repository. Use --no-index to compare two paths outside a working tree\nusage: git diff --no-index [<options>] <path> <path> [<pathspec>...]\n\nDiff output format options\n    -p, --patch           generate patch\n    -s, --no-patch        suppress diff output\n    -u                    generate patch\n    -U, --unified[=<n>]   generate diffs with <n> lines context\n    -W, --[no-]function-context\n                          generate diffs with <n> lines context\n    --raw                 generate the diff in raw format\n    --patch-with-raw      synonym for '-p --raw'\n    --patch-with-stat     synonym for '-p --stat'\n    --numstat             machine friendly --stat\n    --shortstat           output only the last line of --stat\n    -X, --dirstat[=<param1>,<param2>...]\n                          output the distribution of relative amount of changes for each sub-directory\n    --cumulative          synonym for --dirstat=cumulative\n    --dirstat-by-file[=<param1>,<param2>...]\n                          synonym for --dirstat=files,<param1>,<param2>...\n    --check               warn if changes introduce conflict markers or whitespace errors\n    --summary             condensed summary such as creations, renames and mode changes\n    --name-only           show only names of changed files\n    --name-status         show only names and status of changed files\n    --stat[=<width>[,<name-width>[,<count>]]]\n                          generate diffstat\n    --stat-width <width>  generate diffstat with a given width\n    --stat-name-width <width>\n                          generate diffstat with a given name width\n    --stat-graph-width <width>\n                          generate diffstat with a given graph width\n    --stat-count <count>  generate diffstat with limited lines\n    --[no-]compact-summary\n                          generate compact summary in diffstat\n    --binary              output a binary diff that can be applied\n    --[no-]full-index     show full pre- and post-image object names on the \"index\" lines\n    --[no-]color[=<when>] show colored diff\n    --ws-error-highlight <kind>\n                          highlight whitespace errors in the 'context', 'old' or 'new' lines in the diff\n    -z                    do not munge pathnames and use NULs as output field terminators in --raw or --numstat\n    --[no-]abbrev[=<n>]   use <n> digits to display object names\n    --src-prefix <prefix> show the given source prefix instead of \"a/\"\n    --dst-prefix <prefix> show the given destination prefix instead of \"b/\"\n    --line-prefix <prefix>\n                          prepend an additional prefix to every line of output\n    --no-prefix           do not show any source or destination prefix\n    --default-prefix      use default prefixes a/ and b/\n    --inter-hunk-context <n>\n                          show context between diff hunks up to the specified number of lines\n    --output-indicator-new <char>\n                          specify the character to indicate a new line instead of '+'\n    --output-indicator-old <char>\n                          specify the character to indicate an old line instead of '-'\n    --output-indicator-context <char>\n                          specify the character to indicate a context instead of ' '\n\nDiff rename options\n    -B, --break-rewrites[=<n>[/<m>]]\n                          break complete rewrite changes into pairs of delete and create\n    -M, --find-renames[=<n>]\n                          detect renames\n    -D, --irreversible-delete\n                          omit the preimage for deletes\n    -C, --find-copies[=<n>]\n                          detect copies\n    --[no-]find-copies-harder\n                          use unmodified files as source to find copies\n    --no-renames          disable rename detection\n    --[no-]rename-empty   use empty blobs as rename source\n    --[no-]follow         continue listing the history of a file beyond renames\n    -l <n>                prevent rename/copy detection if the number of rename/copy targets exceeds given limit\n\nDiff algorithm options\n    --minimal             produce the smallest possible diff\n    -w, --ignore-all-space\n                          ignore whitespace when comparing lines\n    -b, --ignore-space-change\n                          ignore changes in amount of whitespace\n    --ignore-space-at-eol ignore changes in whitespace at EOL\n    --ignore-cr-at-eol    ignore carrier-return at the end of line\n    --ignore-blank-lines  ignore changes whose lines are all blank\n    -I, --[no-]ignore-matching-lines <regex>\n                          ignore changes whose all lines match <regex>\n    --[no-]indent-heuristic\n                          heuristic to shift diff hunk boundaries for easy reading\n    --patience            generate diff using the \"patience diff\" algorithm\n    --histogram           generate diff using the \"histogram diff\" algorithm\n    --diff-algorithm <algorithm>\n                          choose a diff algorithm\n    --anchored <text>     generate diff using the \"anchored diff\" algorithm\n    --word-diff[=<mode>]  show word diff, using <mode> to delimit changed words\n    --word-diff-regex <regex>\n                          use <regex> to decide what a word is\n    --color-words[=<regex>]\n                          equivalent to --word-diff=color --word-diff-regex=<regex>\n    --[no-]color-moved[=<mode>]\n                          moved lines of code are colored differently\n    --[no-]color-moved-ws <mode>\n                          how white spaces are ignored in --color-moved\n\nOther diff options\n    --[no-]relative[=<prefix>]\n                          when run from subdir, exclude changes outside and show relative paths\n    -a, --[no-]text       treat all files as text\n    -R                    swap two inputs, reverse the diff\n    --[no-]exit-code      exit with 1 if there were differences, 0 otherwise\n    --[no-]quiet          disable all output of the program\n    --[no-]ext-diff       allow an external diff helper to be executed\n    --[no-]textconv       run external text conversion filters when comparing binary files\n    --ignore-submodules[=<when>]\n                          ignore changes to submodules in the diff generation\n    --submodule[=<format>]\n                          specify how differences in submodules are shown\n    --ita-invisible-in-index\n                          hide 'git add -N' entries from the index\n    --ita-visible-in-index\n                          treat 'git add -N' entries as real in the index\n    -S <string>           look for differences that change the number of occurrences of the specified string\n    -G <regex>            look for differences that change the number of occurrences of the specified regex\n    --pickaxe-all         show all changes in the changeset with -S or -G\n    --pickaxe-regex       treat <string> in -S as extended POSIX regular expression\n    -O <file>             control the order in which files appear in the output\n    --rotate-to <path>    show the change in the specified path first\n    --skip-to <path>      skip the output to the specified path\n    --find-object <object-id>\n                          look for differences that change the number of occurrences of the specified object\n    --diff-filter [(A|C|D|M|R|T|U|X|B)...[*]]\n                          select files by diff type\n    --max-depth <depth>   maximum tree depth to recurse\n    --output <file>       output to a specific file"
+      },
+      "untracked": {
+        "exit": 128,
+        "output": "",
+        "error": "fatal: not a git repository (or any of the parent directories): .git"
+      }
+    },
+    "Game-server": {
+      "boundary": {
+        "exit": 0,
+        "output": "C:/MLO01-01/Chapter3/Game-server",
+        "error": ""
+      },
+      "head": {
+        "exit": 0,
+        "output": "6aa5329 22일차 - 진행사항 반영",
+        "error": ""
+      },
+      "status": {
+        "exit": 0,
+        "output": "M README.md\n M docs/server-routing/README.md\n M docs/server-routing/files/server/game/ad_gateway.py.md\n M docs/server-routing/files/server/game/ad_views.py.md\n M docs/server-routing/files/server/game/test_ads.py.md\n M docs/server-routing/files/server/game/urls.py.md\n M server/game/ad_gateway.py\n M server/game/ad_views.py\n M server/game/test_ads.py\n M server/game/urls.py\n?? docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md\n?? docs/handoffs/2026-10-07-day23-period01-02-sync.md\n?? docs/handoffs/2026-10-07-day23-request-ad-event-lesson.md\n?? docs/server-routing/verification/day23-final-audit.json\n?? docs/server-routing/verification/day23-game-file-start-audit.json\n?? docs/server-routing/verification/day23-game-file/\n?? docs/server-routing/verification/day23-request-ad-event/\n?? docs/server-routing/verification/day23-start-audit.json\n?? docs/server-routing/verification/lesson-align-final-audit.json\n?? docs/server-routing/verification/lesson-align-start-audit.json",
+        "error": ""
+      },
+      "staged": {
+        "exit": 0,
+        "output": "",
+        "error": ""
+      },
+      "unstaged": {
+        "exit": 0,
+        "output": "M\tREADME.md\nM\tdocs/server-routing/README.md\nM\tdocs/server-routing/files/server/game/ad_gateway.py.md\nM\tdocs/server-routing/files/server/game/ad_views.py.md\nM\tdocs/server-routing/files/server/game/test_ads.py.md\nM\tdocs/server-routing/files/server/game/urls.py.md\nM\tserver/game/ad_gateway.py\nM\tserver/game/ad_views.py\nM\tserver/game/test_ads.py\nM\tserver/game/urls.py",
+        "error": "warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/server-routing/README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/server-routing/files/server/game/ad_gateway.py.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/server-routing/files/server/game/test_ads.py.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'server/game/ad_gateway.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'server/game/test_ads.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'server/game/urls.py', LF will be replaced by CRLF the next time Git touches it"
+      },
+      "untracked": {
+        "exit": 0,
+        "output": "docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md\ndocs/handoffs/2026-10-07-day23-period01-02-sync.md\ndocs/handoffs/2026-10-07-day23-request-ad-event-lesson.md\ndocs/server-routing/verification/day23-final-audit.json\ndocs/server-routing/verification/day23-game-file-start-audit.json\ndocs/server-routing/verification/day23-game-file/before/Game-client/README.md.txt\ndocs/server-routing/verification/day23-game-file/before/Game-server/README.md.txt\ndocs/server-routing/verification/day23-game-file/start.json\ndocs/server-routing/verification/day23-request-ad-event/before/Game-client-README.md.txt\ndocs/server-routing/verification/day23-request-ad-event/before/README.md.txt\ndocs/server-routing/verification/day23-request-ad-event/before/docs/server-routing/README.md\ndocs/server-routing/verification/day23-request-ad-event/before/docs/server-routing/files/server/game/ad_gateway.py.md\ndocs/server-routing/verification/day23-request-ad-event/before/docs/server-routing/files/server/game/test_ads.py.md.txt\ndocs/server-routing/verification/day23-request-ad-event/before/server/game/ad_gateway.py.txt\ndocs/server-routing/verification/day23-request-ad-event/before/server/game/test_ads.py.txt\ndocs/server-routing/verification/day23-request-ad-event/changes.json\ndocs/server-routing/verification/day23-request-ad-event/contract-checks.json\ndocs/server-routing/verification/day23-request-ad-event/final-audit.json\ndocs/server-routing/verification/day23-request-ad-event/git-final.json\ndocs/server-routing/verification/day23-request-ad-event/pre-audit.json\ndocs/server-routing/verification/day23-request-ad-event/reference/ad_gateway.response.html\ndocs/server-routing/verification/day23-request-ad-event/reference/check-ad-event-logic.response.html\ndocs/server-routing/verification/day23-request-ad-event/reference/request-ad-event-answer.txt\ndocs/server-routing/verification/day23-request-ad-event/reference/request-ad-event-starter.response.html\ndocs/server-routing/verification/day23-request-ad-event/source-comparison.json\ndocs/server-routing/verification/day23-request-ad-event/start.json\ndocs/server-routing/verification/day23-start-audit.json\ndocs/server-routing/verification/lesson-align-final-audit.json\ndocs/server-routing/verification/lesson-align-start-audit.json",
+        "error": ""
+      }
+    },
+    "Game-client": {
+      "boundary": {
+        "exit": 0,
+        "output": "C:/MLO01-01/Chapter3/Game-client",
+        "error": ""
+      },
+      "head": {
+        "exit": 0,
+        "output": "2dd8d97 22일차 내용 반영",
+        "error": ""
+      },
+      "status": {
+        "exit": 0,
+        "output": "M README.md\n M client/app.py\n M client/application/ads.py\n M client/application/controller.py\n M client/contracts/ads.py\n M client/contracts/messages.py\n M client/network/ads.py\n M client/network/http.py\n M client/network/session.py\n M client/network/worker.py\n M client/ui/ads.py\n M client/ui/input.py\n M client/ui/renderer.py\n M docs/client-routing/README.md\n M docs/client-routing/files/README.md.md\n M docs/client-routing/files/client/app.py.md\n M docs/client-routing/files/client/application/ads.py.md\n M docs/client-routing/files/client/application/controller.py.md\n M docs/client-routing/files/client/contracts/ads.py.md\n M docs/client-routing/files/client/contracts/messages.py.md\n M docs/client-routing/files/client/network/ads.py.md\n M docs/client-routing/files/client/network/http.py.md\n M docs/client-routing/files/client/network/session.py.md\n M docs/client-routing/files/client/network/worker.py.md\n M docs/client-routing/files/client/ui/ads.py.md\n M docs/client-routing/files/client/ui/input.py.md\n M docs/client-routing/files/client/ui/renderer.py.md\n M docs/client-routing/files/tests/test_ads_feature.py.md\n M tests/test_ads_feature.py\n?? docs/client-routing/files/tests/test_ads_events.py.md\n?? docs/client-routing/verification/day23-final-audit.json\n?? docs/client-routing/verification/day23-period03-final-audit.json\n?? docs/client-routing/verification/day23-start-audit.json\n?? docs/client-routing/verification/lesson-align-final-audit.json\n?? docs/client-routing/verification/lesson-align-start-audit.json\n?? docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md\n?? docs/handoffs/2026-10-07-day23-period01-02-sync.md\n?? docs/handoffs/2026-10-07-day23-period03-current-structure.md\n?? tests/test_ads_events.py",
+        "error": ""
+      },
+      "staged": {
+        "exit": 0,
+        "output": "",
+        "error": ""
+      },
+      "unstaged": {
+        "exit": 0,
+        "output": "M\tREADME.md\nM\tclient/app.py\nM\tclient/application/ads.py\nM\tclient/application/controller.py\nM\tclient/contracts/ads.py\nM\tclient/contracts/messages.py\nM\tclient/network/ads.py\nM\tclient/network/http.py\nM\tclient/network/session.py\nM\tclient/network/worker.py\nM\tclient/ui/ads.py\nM\tclient/ui/input.py\nM\tclient/ui/renderer.py\nM\tdocs/client-routing/README.md\nM\tdocs/client-routing/files/README.md.md\nM\tdocs/client-routing/files/client/app.py.md\nM\tdocs/client-routing/files/client/application/ads.py.md\nM\tdocs/client-routing/files/client/application/controller.py.md\nM\tdocs/client-routing/files/client/contracts/ads.py.md\nM\tdocs/client-routing/files/client/contracts/messages.py.md\nM\tdocs/client-routing/files/client/network/ads.py.md\nM\tdocs/client-routing/files/client/network/http.py.md\nM\tdocs/client-routing/files/client/network/session.py.md\nM\tdocs/client-routing/files/client/network/worker.py.md\nM\tdocs/client-routing/files/client/ui/ads.py.md\nM\tdocs/client-routing/files/client/ui/input.py.md\nM\tdocs/client-routing/files/client/ui/renderer.py.md\nM\tdocs/client-routing/files/tests/test_ads_feature.py.md\nM\ttests/test_ads_feature.py",
+        "error": "warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'client/app.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'client/application/ads.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'client/application/controller.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'client/contracts/ads.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'client/contracts/messages.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'client/network/ads.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'client/network/http.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'client/network/session.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'client/network/worker.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'client/ui/ads.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'client/ui/input.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'client/ui/renderer.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tests/test_ads_feature.py', LF will be replaced by CRLF the next time Git touches it"
+      },
+      "untracked": {
+        "exit": 0,
+        "output": "docs/client-routing/files/tests/test_ads_events.py.md\ndocs/client-routing/verification/day23-final-audit.json\ndocs/client-routing/verification/day23-period03-final-audit.json\ndocs/client-routing/verification/day23-start-audit.json\ndocs/client-routing/verification/lesson-align-final-audit.json\ndocs/client-routing/verification/lesson-align-start-audit.json\ndocs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md\ndocs/handoffs/2026-10-07-day23-period01-02-sync.md\ndocs/handoffs/2026-10-07-day23-period03-current-structure.md\ntests/test_ads_events.py",
+        "error": ""
+      }
+    }
+  },
+  "documents": [
+    {
+      "path": "ad_server/data/evidence/asset-sources.md",
+      "created_kst": "2026-10-07T10:32:10+09:00",
+      "modified_kst": "2026-10-07T10:48:34+09:00",
+      "sha256": "cf086a3473174fc117c6fb6665ddefb8892da26f521ad0b8c7ca117207513c75",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day22-ad-server-sync.md",
+      "created_kst": "2026-10-07T09:43:50+09:00",
+      "modified_kst": "2026-10-07T09:45:08+09:00",
+      "sha256": "456963eb2281e12fe2f70ceae6d021eb65f028ff8cf771494bb2734f15037c94",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md",
+      "created_kst": "2026-10-07T14:48:55+09:00",
+      "modified_kst": "2026-10-07T14:48:55+09:00",
+      "sha256": "213ba9dec307c98453988aa99f60fd37587afb4ef3d8921e868b39f3d55a1342",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day22-image-serving-completion.md",
+      "created_kst": "2026-10-07T10:57:22+09:00",
+      "modified_kst": "2026-10-07T11:29:06+09:00",
+      "sha256": "d55672806f23ddf95ed72ebd1eca911935160df53f1829caa167ae58572e5af1",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day23-events-recheck.md",
+      "created_kst": "2026-10-07T14:17:54+09:00",
+      "modified_kst": "2026-10-07T14:17:54+09:00",
+      "sha256": "b8970c495d4ac053d64471c5242bfa1d6371445d9586888ad011634318d794b6",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "created_kst": "2026-10-07T11:47:55+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "d0ac3ec5d25d9b8149e60414c00803cbcbd9cf2c9baa58c0384c3f2240af1f7f",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day23-period01-preflight.md",
+      "created_kst": "2026-10-07T09:45:08+09:00",
+      "modified_kst": "2026-10-07T09:45:08+09:00",
+      "sha256": "54a859427bd9ee515b1adaa2dbe268d54ddaa6cef760659a249e40106a8c675b",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day23-period03-current-structure.md",
+      "created_kst": "2026-10-07T15:51:00+09:00",
+      "modified_kst": "2026-10-07T15:51:00+09:00",
+      "sha256": "cc7e517f8c0f6ff3aa8fbfebe6f5054da135cba6b8456853aca97a8e99f612d7",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-mongo-uri-single-node-fix.md",
+      "created_kst": "2026-10-07T10:11:14+09:00",
+      "modified_kst": "2026-10-07T10:11:14+09:00",
+      "sha256": "51445bec67656c2784cf1e84c0930e0be3b3f7fd02926fe0ac991bf59b919e86",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/.env.example.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "4094e4a7f04a4d0f1b03c01abc18e80e8f1215768bbb4c74a5e31742e2cd4364",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/.gitignore.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "e9cb6f0d4b2342dc5f1861e8832dfae7994eec639410caad5b7156f996a4a2f8",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ad_config/ad_config/settings.py.md",
+      "created_kst": "2026-10-02T17:51:55+09:00",
+      "modified_kst": "2026-10-07T09:42:35+09:00",
+      "sha256": "384f75763055579577fd1f2c9af7f8aba0e0302b17bb1d35603745f7bbf28b85",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ad_config/ad_config/urls.py.md",
+      "created_kst": "2026-10-02T17:51:56+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "9b553dac1494e83b78d77e998af5266bf714c3f73845540b36fb9bd8096f32cd",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ad_config/manage.py.md",
+      "created_kst": "2026-10-07T09:26:40+09:00",
+      "modified_kst": "2026-10-07T09:42:35+09:00",
+      "sha256": "69a81c22d8c984ff2937c7c21f615a535b3797783ea9cbf1748a07aa79468a63",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/auth_views.py.md",
+      "created_kst": "2026-10-02T17:58:52+09:00",
+      "modified_kst": "2026-10-07T09:42:35+09:00",
+      "sha256": "4fe3f1186ee39e2aa5aa27c2ca5a3189615f9fcf9dd6df6423a46c49984f648a",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/creatives.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "33393bb73c6e80cfc635c5499575a53db3a513ce7c79a0b0a4798d4f9980476b",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/events.py.md",
+      "created_kst": "2026-10-07T10:29:39+09:00",
+      "modified_kst": "2026-10-07T14:45:20+09:00",
+      "sha256": "a1e20290920c085a85f762e2cb456881111ad3c6082fd84fb5c9a3ec8113d3a0",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/management/__init__.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "f47402c5390b0669d20f7bec3df614ab7f97071284deff40cc6ba03cdbfa5daa",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/management/commands/__init__.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "d0b91fe0a7db0309c3efae79052dcd6d8bbae1baf01e7eed3a9b601e1badf8ee",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/management/commands/compare_ad_decisions.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:42:35+09:00",
+      "sha256": "8cc9b362e93cbdf8d6fc9074310cb30a6ac563bcf715656de4774b7a9ffdb9f2",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/management/commands/create_ad_indexes.py.md",
+      "created_kst": "2026-10-07T14:45:21+09:00",
+      "modified_kst": "2026-10-07T14:45:21+09:00",
+      "sha256": "234aa6892974548404a6733cab39c0aace36564b5ea9e75a5d975f71a66494e6",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/management/commands/ensure_ad_event_indexes.py.md",
+      "created_kst": "2026-10-07T11:46:28+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "c828014726687f2e862a6efe66969adcbf7a84e597bdab1d84dd6104c1d8ca3f",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/media_auth.py.md",
+      "created_kst": "2026-10-07T11:46:28+09:00",
+      "modified_kst": "2026-10-07T14:45:20+09:00",
+      "sha256": "4c2aecfba131c196ef8bc9161d3a1e4fc8868db07e314ac0e7dc58dffb73277b",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/mongo.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:42:35+09:00",
+      "sha256": "960f6fbb9658c52ddc044cea69699b6c7729dfb2800337c1bc9993187ab67378",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/repository.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T14:45:20+09:00",
+      "sha256": "7c098821a2350ea94030d17afafefcfd26678fe025d8ff388596f77a15ee54b2",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/services.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T14:45:20+09:00",
+      "sha256": "d234aff47e9aacb1bfd6f94f86beb3b921c1d6bba9ee53d0b19f14237266c0a7",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/static/ads/advertiser.css.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "c3b861ddc659f5ce42bd5e26b1685ac226a0a4d15e65da4a3f7a040cec962929",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/static/ads/advertiser.js.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "2b06485fb73e2113a49f14aa66eda2061280caeb829a44f57d703251dced6e99",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/static/ads/creatives/camp-tea.png.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "3fb985363a9bf7d6d6f60f13e821d7c48524cb179824dbb1a6a683378d6b24d0",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/static/ads/creatives/forest-tools.png.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "cf2b5c1d8d7e55ea12e8e6a2e6f589c28eda0b16b9d763480ada697972b10d3f",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/templates/ads/base.html.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T14:46:14+09:00",
+      "sha256": "028bce216ff7a254c13bdf572c288727c5e475cd65516e691cd83864480a9c35",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/templates/ads/bids.html.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "44b5c3bf50de080cd1ac5746cd13ba40cbe56e1002108e5933c8d6ece6648b12",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/templates/ads/campaigns.html.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "9e1180af215d06a5bbb5df65ca90cbc1aa5877775aa16969e5e04a3751061b75",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/templates/ads/events.html.md",
+      "created_kst": "2026-10-07T14:46:14+09:00",
+      "modified_kst": "2026-10-07T14:46:14+09:00",
+      "sha256": "3f4f274284cb9cdb6b4ec573c1c2af6fd4472f96a1d9e82678428f32ed9ec037",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/templates/registration/login.html.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "085c74d62bb037a326fafe2c6326fc6c581bbc199a9ae1ef08d0264d4a62d70a",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/test_events.py.md",
+      "created_kst": "2026-10-07T11:46:28+09:00",
+      "modified_kst": "2026-10-07T14:45:21+09:00",
+      "sha256": "07e672e551e3111fb9536d7a02dc587e203279cbee62f48b3ed4c1be6a7b29c9",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/tests.py.md",
+      "created_kst": "2026-10-02T17:51:59+09:00",
+      "modified_kst": "2026-10-07T14:45:21+09:00",
+      "sha256": "39ed128e5ec3f2d489c9ea1024e72a028c70d06792aade79bb3345ca525f5e57",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/urls.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T14:46:14+09:00",
+      "sha256": "2c6fadff713b85210bd54add2b95a1148f5705ef781c3ef3b26e2a848e1e115a",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/views.py.md",
+      "created_kst": "2026-10-07T09:26:41+09:00",
+      "modified_kst": "2026-10-07T14:45:20+09:00",
+      "sha256": "01a4fe6c4326f944ed6a48dca950fb2f88c94d41d1d3fb9650e71120f47f6f67",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads.env.md",
+      "created_kst": "2026-10-07T10:06:50+09:00",
+      "modified_kst": "2026-10-07T10:10:51+09:00",
+      "sha256": "f0bbddfb8a51617d472f80b55edd469b75d06960958e8d7cbc00aed465a7ed31",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/day23-period-01.py.md",
+      "created_kst": "2026-10-07T14:46:14+09:00",
+      "modified_kst": "2026-10-07T14:46:14+09:00",
+      "sha256": "f611ddd4ae5ca9f36fdf3579b0fcbfeed21cc1923f442e48992a850ad1e17d5f",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/day23-period-02.py.md",
+      "created_kst": "2026-10-07T14:46:14+09:00",
+      "modified_kst": "2026-10-07T14:46:14+09:00",
+      "sha256": "13c2278d1c2bd748c49d7930a2bb8d1ac0f35fb76b57392235483afb99e45db1",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/day23-period-03.py.md",
+      "created_kst": "2026-10-07T15:47:28+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "3191ec79cb38a0ba7b7369b2c52707c181ee51e8012aa696cc44edb3d7589f82",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/day23-subject.py.md",
+      "created_kst": "2026-10-07T14:46:14+09:00",
+      "modified_kst": "2026-10-07T14:46:14+09:00",
+      "sha256": "10f9f12c1a53d16b233ec57d2a3e86712425b917aad0a96289ee96368ed2ccd5",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/mongo-node1.yml.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "afe24def10872e5d0e44e23338e0e9b8e4995450807f7058262f8722d6fec313",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/mongo-node2.yml.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "9fd802b605b2fd578b7335a9846c07202a2d542ee7d8879a9a54e4380d3257bc",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/mongo-node3.yml.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "78bb7e5e5343f0d1b7a64f10f0d5978933af0bab3f1ce3861f84cea22686ffea",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/data/evidence/asset-sources.md.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "c1ec8061ebf60d64bb075deb435ba030104c2586ca1b12017b0ecb2fb45656bd",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/README.md.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "0a562cd0875c06b0eac6df417ecf6c775a601ab840091dfe83f1fd95159fe492",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/basics/day22_credit_model.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T14:31:08+09:00",
+      "sha256": "c4b82b6d5778dee4a875a208998e23e88c1722e8622804e5d71f94bd37e97599",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/basics/day22_period01.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T14:31:08+09:00",
+      "sha256": "cdd08c011282e41f76b869b71faea8eb12be11811ef2f683a02dca48677b5ad2",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/basics/day22_period02.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T14:31:08+09:00",
+      "sha256": "8466b534171a78431a67042207c1f4ed9a65f16f065ea9e5553926b2673e8a79",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/basics/day23_record_observed.py.md",
+      "created_kst": "2026-10-07T11:46:28+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "cacdd9b6dfcc628cae822748cda1e64e1779a8388f8d39bb73cc78d38f6d2ed8",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/day22_connection.py.md",
+      "created_kst": "2026-10-07T14:31:07+09:00",
+      "modified_kst": "2026-10-07T14:31:07+09:00",
+      "sha256": "98ac92dba9018a3192f549f2d2cce07d0690b826540ba4451c26484db3d204e2",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/day22_crud.py.md",
+      "created_kst": "2026-10-07T14:31:08+09:00",
+      "modified_kst": "2026-10-07T14:31:08+09:00",
+      "sha256": "e8fd35ccadf4845b1cb37caa5b2c77a6abde8351a33e9ea218078fcd8b9709aa",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/verify_day22.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:42:35+09:00",
+      "sha256": "726c7d50623f5f80e9671a8e9128466dd2a6709eb5788c8ef5f48b67e5a04140",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/verify_day22_images.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "ae223ac8ae5bc0febd05340fbdfbaeb07aa1dec90378999019fe79bb00aca8d7",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/verify_day23.py.md",
+      "created_kst": "2026-10-07T11:46:28+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "235fadaee71702ac01af37e95247cb04b2c23edadbfb9158c8ef5c4a377ef9de",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/verify_lesson_alignment.py.md",
+      "created_kst": "2026-10-07T14:31:08+09:00",
+      "modified_kst": "2026-10-07T14:45:20+09:00",
+      "sha256": "8c03351c2161f33dbf974b1f47866b7dc841e12a48dad714446a14cbba5b05b5",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/docs/server-routing/README.md",
+      "created_kst": "2026-10-02T17:51:50+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "4af60c9a4545d56fce512500f0fd523c70d1d34f66ecc8c3ef84fea23f557043",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "ad_server/README.md",
+      "created_kst": "2026-10-07T09:34:17+09:00",
+      "modified_kst": "2026-10-07T15:44:34+09:00",
+      "sha256": "e6136a3ec0352582335c78091be902d42c900e21a1dc0ff78f7b45dee3cfb45a",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/data/evidence/asset-sources.md",
+      "created_kst": "2026-10-07T10:32:10+09:00",
+      "modified_kst": "2026-10-07T10:48:34+09:00",
+      "sha256": "cf086a3473174fc117c6fb6665ddefb8892da26f521ad0b8c7ca117207513c75",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md",
+      "created_kst": "2026-10-07T14:48:55+09:00",
+      "modified_kst": "2026-10-07T14:48:55+09:00",
+      "sha256": "0dc98dbd8647966273a9e7188407e2de02ce3c208841a8e6328398381d8f602d",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "Game-server/docs/handoffs/2026-10-07-day22-image-serving-completion.md",
+      "created_kst": "2026-10-07T10:57:22+09:00",
+      "modified_kst": "2026-10-07T11:27:52+09:00",
+      "sha256": "6afe73eb393ca84be56d7769d4266dae35d3e079516be102a4abe304c6940c29",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "Game-server/docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "created_kst": "2026-10-07T11:47:55+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "576ed0c7193de9f7bf6255d466edebf97ea0615d74c5a3a2f8cfdf2ddca4dfb1",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "Game-server/docs/handoffs/2026-10-07-day23-request-ad-event-lesson.md",
+      "created_kst": "2026-10-07T16:28:02+09:00",
+      "modified_kst": "2026-10-07T16:28:04+09:00",
+      "sha256": "be05f7136a2040f8ccb4e9e52b66a83bafe1c69185f59acecb50dbda3381a26e",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/config/settings.py.md",
+      "created_kst": "2026-09-28T09:25:31+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "68f39db98fdc5f0881239e428c8b956535c94fcb41fe2e98d0fdf7d7c57bfaa9",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/data/evidence/asset-sources.md.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "c1ec8061ebf60d64bb075deb435ba030104c2586ca1b12017b0ecb2fb45656bd",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/.env.md",
+      "created_kst": "2026-10-07T11:23:06+09:00",
+      "modified_kst": "2026-10-07T11:27:52+09:00",
+      "sha256": "1173c95cbbe23ad2d3f8a3eadb1ab9705e043d4262d2f79381fd63e43827bd7d",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/ad_gateway.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T16:25:27+09:00",
+      "sha256": "596cda499f8d89314bedffdf2e768e98996c54b36fd1e3bd67e95a8cf3bc186b",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/ad_views.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T14:45:21+09:00",
+      "sha256": "1a55c36fd7b0e264add5a9010c451f4389ffac34695d17ff3782878004ff504a",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/static/ads/creatives/camp-tea.png.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "29d7f7c8eb4659f62826ac4ee47c7955ee0c7819d8beee8fddf3e536fc47ce32",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/static/ads/creatives/forest-tools.png.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "d456ae66be9615df77c03e523ae164d4289a23111577400b9428c9b7ff3841a6",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/static/game/ad_preview.js.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "4c28bd053a1429a6b424e21c2818a3b2898a72b1aa6e4f702435b241a8388b8a",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/templates/game/ad_preview.html.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "16b8829344229e418d102f4dab8610dbe094541109d21fc4e2d77c2036ad3638",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/test_ads.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T16:25:27+09:00",
+      "sha256": "8e53417951f7c721670f958c8566bb0e1ffaba743821fd1712df722082f98201",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/urls.py.md",
+      "created_kst": "2026-09-28T14:54:58+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "6159f9c82ed1c54677e9be2807294e6528b85c8fb163e27d0e1d3c8406103dc9",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/docs/server-routing/README.md",
+      "created_kst": "2026-09-18T15:27:15+09:00",
+      "modified_kst": "2026-10-07T16:25:27+09:00",
+      "sha256": "7633bb7574086c84895ec918a9abd364c62305ad00431bf1cde90f4cd8ca9661",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-server/README.md",
+      "created_kst": "2026-09-15T09:45:16+09:00",
+      "modified_kst": "2026-10-07T16:24:22+09:00",
+      "sha256": "133422330282fb1c1a24a190c1541b2c4e28cf860965b804847c134a192d6587",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/app.py.md",
+      "created_kst": "2026-09-18T10:20:15+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "9da11e55b44ad3f9f98adb52a35575c19df7715f0c5983bd14e890558b067872",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/application/ads.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "d95659e08b0ff45d88d63395f55a31d243235514e616276b2a9d560b114e4e3b",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/application/controller.py.md",
+      "created_kst": "2026-09-18T10:20:41+09:00",
+      "modified_kst": "2026-10-07T15:48:20+09:00",
+      "sha256": "799f62da3dc33ed2e6bbc9a2bd4caca62af14a231c16c432208fed3b83b8298c",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/application/state.py.md",
+      "created_kst": "2026-09-18T10:20:30+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "c9023ae7bb1d95e20278f6be387c81101e8b257b62d613d8a165f5b5e0039280",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/contracts/ads.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "f045472a0889934dd0d253ddcde3281d4d884ab22581a9c27a76832861ffcd6f",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/contracts/messages.py.md",
+      "created_kst": "2026-09-18T10:22:24+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "0c3b49afb0d752433ef00c5abbef0a125d8de69bccf9268ef7333c70155890a2",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/network/ads.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T15:48:20+09:00",
+      "sha256": "d556fbdd2968e71b54b89307a53f64003ecd6833524888275b3779ea6abf7284",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/network/http.py.md",
+      "created_kst": "2026-09-18T10:23:09+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "89b150a2afd58b1491f6700644da023bef46510ef66604b3df531ce7e3847676",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/network/session.py.md",
+      "created_kst": "2026-09-18T10:23:18+09:00",
+      "modified_kst": "2026-10-07T15:48:20+09:00",
+      "sha256": "5721ec707293aabb29058d0605f31e9a0119de45271f5a8e98281f0f7df2d2dd",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/network/worker.py.md",
+      "created_kst": "2026-09-18T10:23:34+09:00",
+      "modified_kst": "2026-10-07T14:31:08+09:00",
+      "sha256": "5c60fa064f5df38c1e1b4adfdaeb274615d58edd1a34db75d0607c0984924371",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/ui/ads.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "b08a106e022fc9f72cfb9f97673072f108fcd85da890126e6ee8828bb0ad3707",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/ui/input.py.md",
+      "created_kst": "2026-09-18T10:25:04+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "a9fbc699866e227199f14ed4ae7130f5ccd72e77dbde20245d7b0e59ac3e78ed",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/ui/layout.py.md",
+      "created_kst": "2026-09-18T10:24:48+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "15a91796780c65bb3d2789f5ffff047b93ca4ee445ab5f43da99b53ff2cae9a4",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/ui/renderer.py.md",
+      "created_kst": "2026-09-18T10:25:24+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "b9b2ef1cf63b44fe549c1dd1df9c3936ce910bec0acc2dd523130392721221a9",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/README.md.md",
+      "created_kst": "2026-09-18T10:19:44+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "0a562cd0875c06b0eac6df417ecf6c775a601ab840091dfe83f1fd95159fe492",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/tests/test_ads_events.py.md",
+      "created_kst": "2026-10-07T11:46:29+09:00",
+      "modified_kst": "2026-10-07T15:48:20+09:00",
+      "sha256": "a5363c7305cda62c3f1af54fb6fff2bfe8e914abc9107497f257855892f083e8",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/tests/test_ads_feature.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T15:48:20+09:00",
+      "sha256": "5a5481c129b647b802d908afc2c28f9d2d0d8aeac8c30fe1259385e1da44c1bc",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/client-routing/README.md",
+      "created_kst": "2026-09-18T10:29:57+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "f8b1197dac914d36f628b93b8e37464f8144e3e66fd8e07533a7a9cf751fcc74",
+      "selection_reason": "filesystem_date"
+    },
+    {
+      "path": "Game-client/docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md",
+      "created_kst": "2026-10-07T14:48:55+09:00",
+      "modified_kst": "2026-10-07T14:48:55+09:00",
+      "sha256": "d0b7da63adf2b10f2089514153a32608097f2483bbb790592e3696941136e7d0",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "Game-client/docs/handoffs/2026-10-07-day22-image-serving-completion.md",
+      "created_kst": "2026-10-07T10:57:22+09:00",
+      "modified_kst": "2026-10-07T11:27:52+09:00",
+      "sha256": "63381b2e0fcbb60593cb9e8ca5eb501cab072f241f9ed7979b5a9ca820ff8b47",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "Game-client/docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "created_kst": "2026-10-07T11:47:55+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "4de496d217a309909bed753ab11d483508f34d3f29cf619451a1c45696e1155c",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "Game-client/docs/handoffs/2026-10-07-day23-period03-current-structure.md",
+      "created_kst": "2026-10-07T15:51:00+09:00",
+      "modified_kst": "2026-10-07T15:51:00+09:00",
+      "sha256": "173dade9a35d7b673cdc2bd690d954bf32b1914c7340171462ea32d9f4720f13",
+      "selection_reason": "filename_date"
+    },
+    {
+      "path": "Game-client/README.md",
+      "created_kst": "2026-09-18T10:14:52+09:00",
+      "modified_kst": "2026-10-07T16:24:22+09:00",
+      "sha256": "73b95b64b5cdc78d6cddda2f71b7871d33d3270649f27e9d5818af95b9751b79",
+      "selection_reason": "filesystem_date"
+    }
+  ]
+}

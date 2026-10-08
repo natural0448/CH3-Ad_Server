@@ -1,0 +1,49 @@
+{
+  "scope": "isolated Mongo27115 and temporary fixture DB; dotenv mocked only in test to avoid classroom settings",
+  "classroom_data_modified": false,
+  "checks": {
+    "five_entrypoints": true,
+    "neighbor_document_preserved": true,
+    "practice_document_removed": true,
+    "model_charge_22_balance_78": true
+  },
+  "outputs": {
+    "tools/day22_connection.py": [
+      "database lesson_script_fixture",
+      "collection practice_campaigns",
+      "server 1.0",
+      "closed"
+    ],
+    "tools/day22_crud.py": [
+      "collection practice_campaigns",
+      "inserted practice-campaign",
+      "whole {'_id': 'practice-campaign', 'priority': 1, 'creative': {'headline': '연습용 지도 안내', 'body': '숲 지도를 살펴보세요.'}}",
+      "selected {'priority': 1, 'creative': {'headline': '연습용 지도 안내'}}",
+      "matched 1 modified 1",
+      "changed {'creative': {'headline': '연습용 지도 안내', 'body': '지도를 펼쳐 숲 입구를 찾아보세요.'}}",
+      "priority 3",
+      "deleted 1 remaining 0"
+    ],
+    "tools/basics/day22_period01.py": [
+      "database lesson_script_fixture",
+      "collection practice_campaigns",
+      "server 1.0",
+      "closed"
+    ],
+    "tools/basics/day22_period02.py": [
+      "collection practice_campaigns",
+      "inserted practice-campaign",
+      "whole {'_id': 'practice-campaign', 'priority': 1, 'creative': {'headline': '연습용 지도 안내', 'body': '숲 지도를 살펴보세요.'}}",
+      "selected {'priority': 1, 'creative': {'headline': '연습용 지도 안내'}}",
+      "matched 1 modified 1",
+      "changed {'creative': {'headline': '연습용 지도 안내', 'body': '지도를 펼쳐 숲 입구를 찾아보세요.'}}",
+      "priority 3",
+      "deleted 1 remaining 0"
+    ],
+    "tools/basics/day22_credit_model.py": [
+      "통계 {'impression': 1, 'click': 1, 'conversion': 1}",
+      "차감 22",
+      "잔액 78"
+    ]
+  }
+}

@@ -1,0 +1,328 @@
+{
+  "git_status": "Git 상태 확인 불가: 저장소 아님",
+  "scope": "explicit current task manifest",
+  "python_files": [
+    {
+      "path": "ads/events.py",
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "record_ad_event",
+          "line": 7,
+          "signature": "record_ad_event(subject, decision_id, event_type)",
+          "signature_core": "record_ad_event(subject, decision_id, event_type)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/views.py",
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "campaign_view",
+          "line": 21,
+          "signature": "campaign_view(request)",
+          "signature_core": "campaign_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "login_required",
+            "require_http_methods(['GET', 'POST'])"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "bid_view",
+          "line": 44,
+          "signature": "bid_view(request)",
+          "signature_core": "bid_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "login_required",
+            "require_http_methods(['GET', 'POST'])"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "decision_view",
+          "line": 61,
+          "signature": "decision_view(request)",
+          "signature_core": "decision_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "csrf_exempt",
+            "require_http_methods(['POST'])"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "event_view",
+          "line": 99,
+          "signature": "event_view(request)",
+          "signature_core": "event_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "csrf_exempt",
+            "require_POST"
+          ],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/urls.py",
+      "symbols": [],
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/media_auth.py",
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "read_media_body",
+          "line": 7,
+          "signature": "read_media_body(request)",
+          "signature_core": "read_media_body(request)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/test_events.py",
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "EventAuthTests",
+          "line": 19,
+          "signature": "class EventAuthTests(SimpleTestCase)",
+          "signature_core": "EventAuthTests",
+          "return_annotation": null,
+          "decorators": [
+            "override_settings(MEDIA_KEYS={'village-game': 'test-event-key'})"
+          ],
+          "bases": [
+            "SimpleTestCase"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventAuthTests.test_media_key_json_subject_and_post_are_required",
+          "line": 20,
+          "signature": "EventAuthTests.test_media_key_json_subject_and_post_are_required(self)",
+          "signature_core": "EventAuthTests.test_media_key_json_subject_and_post_are_required(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed",
+          "line": 35,
+          "signature": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed(self)",
+          "signature_core": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "class",
+          "qualified_name": "EventIntegrationTests",
+          "line": 45,
+          "signature": "class EventIntegrationTests(TestCase)",
+          "signature_core": "EventIntegrationTests",
+          "return_annotation": null,
+          "decorators": [
+            "skipUnless(os.environ.get('ADS_TEST_MONGO_URI'), 'Requires isolated ADS_TEST_MONGO_URI')"
+          ],
+          "bases": [
+            "TestCase"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.setUpClass",
+          "line": 47,
+          "signature": "EventIntegrationTests.setUpClass(cls)",
+          "signature_core": "EventIntegrationTests.setUpClass(cls)",
+          "return_annotation": null,
+          "decorators": [
+            "classmethod"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.tearDownClass",
+          "line": 53,
+          "signature": "EventIntegrationTests.tearDownClass(cls)",
+          "signature_core": "EventIntegrationTests.tearDownClass(cls)",
+          "return_annotation": null,
+          "decorators": [
+            "classmethod"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.setUp",
+          "line": 58,
+          "signature": "EventIntegrationTests.setUp(self)",
+          "signature_core": "EventIntegrationTests.setUp(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount",
+          "line": 73,
+          "signature": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount(self)",
+          "signature_core": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision",
+          "line": 93,
+          "signature": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision(self)",
+          "signature_core": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write",
+          "line": 104,
+          "signature": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write(self)",
+          "signature_core": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors",
+          "line": 112,
+          "signature": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors(self)",
+          "signature_core": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type",
+          "line": 122,
+          "signature": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type(self)",
+          "signature_core": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type(self)",
+          "return_annotation": null,
+          "decorators": [
+            "override_settings(MEDIA_KEYS={'village-game': 'test-event-key'})"
+          ],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/management/commands/ensure_ad_event_indexes.py",
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 7,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 10,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": []
+    },
+    {
+      "path": "tools/basics/day23_record_observed.py",
+      "symbols": [],
+      "missing_signatures": []
+    },
+    {
+      "path": "tools/verify_day23.py",
+      "symbols": [
+        {
+          "kind": "async_function",
+          "qualified_name": "render_flow",
+          "line": 18,
+          "signature": "render_flow(owned)",
+          "signature_core": "render_flow(owned)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "main",
+          "line": 111,
+          "signature": "main()",
+          "signature_core": "main()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": []
+    }
+  ],
+  "issues": [],
+  "summary": {
+    "ok": true,
+    "python_file_count": 8,
+    "development_file_count": 9
+  }
+}

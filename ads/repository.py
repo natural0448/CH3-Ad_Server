@@ -1,0 +1,84 @@
+"""Advertiser-owned campaigns and one current bid per campaign."""
+import re
+from datetime import datetime, timezone
+
+from pymongo.errors import DuplicateKeyError
+
+from .mongo import get_db
+from .creatives import validate_creative
+
+VALID_SLOTS = {"village-board", "lobby-banner"}
+
+
+def validate_id(value, label="ID"):
+    if not isinstance(value, str) or not re.fullmatch(r"[a-z0-9_-]{1,40}", value):
+        raise ValueError(f"{label}: 영문 소문자·숫자·-·_ 1~40자를 사용하세요.")
+    return value
+
+
+def get_campaign(campaign_id):
+    return get_db()["campaigns"].find_one({"_id": campaign_id})
+
+
+def list_campaigns(owner_user_id):
+    return list(get_db()["campaigns"].find(
+        {"owner_user_id": owner_user_id}).sort("campaign_id", 1))
+
+
+def save_campaign(owner_user_id, data):
+    campaign_id = validate_id(data.get("campaign_id", ""), "캠페인 ID")
+    title, body = data.get("title", ""), data.get("body", "")
+    if not isinstance(title, str) or not isinstance(body, str):
+        raise ValueError("제목과 본문은 문자열로 입력하세요.")
+    title, body = title.strip(), body.strip()
+    creative_path = validate_creative(data.get("creative_path", ""))
+    slot_id = data.get("slot_id", "")
+    if not 1 <= len(title) <= 80 or len(body) > 300 or (not creative_path and not body):
+        raise ValueError("제목은 1~80자, 본문은 300자 이내로 입력하세요. 문구 광고에는 본문이 필요합니다.")
+    if not isinstance(slot_id, str) or slot_id not in VALID_SLOTS:
+        raise ValueError("게시 위치를 선택하세요.")
+    fields = {
+        "campaign_id": campaign_id, "title": title, "body": body,
+        "slot_id": slot_id, "active": data.get("active") == "on",
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+    }
+    if "creative_path" in data:
+        fields["creative_path"] = creative_path
+    try:
+        get_db()["campaigns"].update_one(
+            {"_id": campaign_id, "owner_user_id": owner_user_id},
+            {"$set": fields, "$setOnInsert": {"owner_user_id": owner_user_id}},
+            upsert=True,
+        )
+    except DuplicateKeyError as exc:
+        raise ValueError("다른 광고주가 사용 중인 캠페인 ID입니다.") from exc
+
+
+def list_bids(owner_user_id):
+    return list(get_db()["bids"].find(
+        {"owner_user_id": owner_user_id}).sort("campaign_id", 1))
+
+
+def save_bid(owner_user_id, campaign_id, bid_amount):
+    validate_id(campaign_id, "캠페인 ID")
+    if not re.fullmatch(r"[0-9]{1,5}", str(bid_amount)):
+        raise ValueError("입찰은 정수 1~10000으로 입력하세요.")
+    amount = int(bid_amount)
+    if not 1 <= amount <= 10000:
+        raise ValueError("입찰은 정수 1~10000으로 입력하세요.")
+    campaign = get_campaign(campaign_id)
+    if not campaign or campaign["owner_user_id"] != owner_user_id:
+        raise ValueError("내 캠페인 ID를 입력하세요.")
+    if not campaign["active"]:
+        raise ValueError("캠페인을 먼저 활성으로 바꾸세요.")
+    try:
+        get_db()["bids"].update_one(
+            {"_id": campaign_id, "owner_user_id": owner_user_id},
+            {"$set": {"campaign_id": campaign_id, "bid_amount": amount,
+                      "updated_at": datetime.now(timezone.utc).isoformat()},
+             "$setOnInsert": {"owner_user_id": owner_user_id}},
+            upsert=True,
+        )
+    except DuplicateKeyError as exc:
+        raise ValueError("입찰 소유자가 캠페인 소유자와 다릅니다.") from exc
+    return get_db()["bids"].find_one({"_id": campaign_id, "owner_user_id": owner_user_id})

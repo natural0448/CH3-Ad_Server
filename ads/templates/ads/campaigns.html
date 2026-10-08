@@ -1,0 +1,20 @@
+{% extends 'ads/base.html' %}
+{% block title %}캠페인 관리 · 마을 광고 스튜디오{% endblock %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">CAMPAIGNS</p><h1>마을에 전할 소식</h1><p class="lead">소재를 고르고, 광고가 머무를 위치를 정하세요.</p></div><a class="pill-link" href="{% url 'ads:bids' %}">입찰 관리 →</a></section>
+{% if message %}<p class="notice" role="status">{{ message }}</p>{% endif %}
+<div class="workspace"><section class="card"><p class="eyebrow">{% if form_campaign %}EDIT CAMPAIGN{% else %}NEW CAMPAIGN{% endif %}</p><h2>{% if form_campaign %}캠페인 수정{% else %}새 캠페인{% endif %}</h2>
+<form method="post" data-campaign-form>{% csrf_token %}
+<label>캠페인 ID<input name="campaign_id" required pattern="[a-z0-9_-]{1,40}" maxlength="40" placeholder="forest-tools" value="{{ form_campaign.campaign_id|default:'' }}"><small>영문 소문자, 숫자, - 또는 _</small></label>
+<label>광고 제목<input name="title" required maxlength="80" placeholder="숲 도구점" value="{{ form_campaign.title|default:'' }}"></label>
+<label>광고 문구<textarea name="body" maxlength="300" rows="3" placeholder="마을을 가꾸는 작은 도구">{{ form_campaign.body|default:'' }}</textarea><small>이미지 광고는 문구 없이도 저장할 수 있습니다.</small></label>
+<label>광고 이미지<select name="creative_path">{% for creative in creatives %}<option value="{{ creative.path }}" data-theme="{{ creative.theme }}" {% if form_campaign.creative_path == creative.path %}selected{% endif %}>{{ creative.label }}</option>{% endfor %}<option value="" {% if form_campaign and not form_campaign.creative_path %}selected{% endif %}>이미지 없이 문구만</option></select></label>
+<label>게시 위치<select name="slot_id"><option value="village-board" {% if form_campaign.slot_id == 'village-board' %}selected{% endif %}>마을 게시판</option><option value="lobby-banner" {% if form_campaign.slot_id == 'lobby-banner' %}selected{% endif %}>로비 배너</option></select></label>
+<label class="check"><input type="checkbox" name="active" {% if not form_campaign or form_campaign.active %}checked{% endif %}>이 캠페인을 활성화합니다</label><button class="primary full">캠페인 저장</button></form></section>
+<section class="preview-column"><p class="eyebrow">CREATIVE PREVIEW</p><h2>내 광고 미리보기</h2><div class="creative-card forest" data-preview><span class="ad-label">마을 소식 · AD</span><img data-preview-image src="/static/ads/creatives/forest-tools.png" alt="선택한 광고 소재"><h3 data-preview-title>숲 도구점</h3><p data-preview-body>마을을 가꾸는 작은 도구</p><span class="creative-footer">작은 마을에서 만나요 ↗</span></div><p class="muted">미리보기는 저장 전 모습입니다. 저장한 캠페인의 다음 선택부터 반영됩니다.</p><div class="help-card"><strong>다음은 입찰을 정할 차례</strong><p>활성 캠페인에 포인트를 입찰하면 같은 위치의 광고와 함께 선택 후보가 됩니다.</p></div></section></div>
+<section class="collection"><div class="section-heading"><h2>내 캠페인</h2><span>{{ campaigns|length }}개</span></div><div class="campaign-grid">
+{% for campaign in campaigns %}<article class="card campaign-card"><span class="status {% if campaign.active %}active{% endif %}">{% if campaign.active %}활성{% else %}비활성{% endif %}</span>
+{% if campaign.creative_path %}<img class="campaign-image" src="{{ campaign.creative_path }}" alt="{{ campaign.title }}">{% endif %}
+<h3>{{ campaign.title }}</h3><p>{{ campaign.body }}</p><p class="muted">{{ campaign.campaign_id }} · {{ campaign.slot_id }}</p><a href="?edit={{ campaign.campaign_id|urlencode }}">캠페인 편집 →</a></article>
+{% empty %}<div class="empty-state"><h3>첫 소식을 준비해 보세요.</h3><p>왼쪽에서 캠페인을 저장하면 이곳에 나타납니다.</p></div>{% endfor %}</div></section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{
+  "checks": {
+    "ad-event-post-only": {
+      "status": 405
+    },
+    "game-event-post-only": {
+      "status": 405
+    },
+    "advertiser-event-login": {
+      "status": 200,
+      "login_redirect": true
+    },
+    "media-two-headers": {
+      "status": 401,
+      "body": {
+        "error": "media_auth_required"
+      }
+    }
+  },
+  "classroom_events_created": false
+}

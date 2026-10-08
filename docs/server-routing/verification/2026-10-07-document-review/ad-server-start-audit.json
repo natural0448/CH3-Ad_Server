@@ -1,0 +1,72 @@
+{
+  "git": "Git 상태 확인 불가: 저장소 아님",
+  "python_files": 42,
+  "symbols": 106,
+  "issues": [
+    {
+      "file": "ads/admin.py",
+      "error": "missing_document"
+    },
+    {
+      "file": "ads/admin.py",
+      "error": "missing_index"
+    },
+    {
+      "file": "ads/apps.py",
+      "error": "missing_document"
+    },
+    {
+      "file": "ads/apps.py",
+      "error": "missing_index"
+    },
+    {
+      "file": "ads/models.py",
+      "error": "missing_document"
+    },
+    {
+      "file": "ads/models.py",
+      "error": "missing_index"
+    },
+    {
+      "file": "ads/__init__.py",
+      "error": "missing_document"
+    },
+    {
+      "file": "ads/__init__.py",
+      "error": "missing_index"
+    },
+    {
+      "file": "ads/migrations/__init__.py",
+      "error": "missing_document"
+    },
+    {
+      "file": "ads/migrations/__init__.py",
+      "error": "missing_index"
+    },
+    {
+      "file": "ad_config/ad_config/asgi.py",
+      "error": "missing_document"
+    },
+    {
+      "file": "ad_config/ad_config/asgi.py",
+      "error": "missing_index"
+    },
+    {
+      "file": "ad_config/ad_config/wsgi.py",
+      "error": "missing_document"
+    },
+    {
+      "file": "ad_config/ad_config/wsgi.py",
+      "error": "missing_index"
+    },
+    {
+      "file": "ad_config/ad_config/__init__.py",
+      "error": "missing_document"
+    },
+    {
+      "file": "ad_config/ad_config/__init__.py",
+      "error": "missing_index"
+    }
+  ],
+  "ok": false
+}

@@ -1,0 +1,28 @@
+{
+  "scope": "isolated MongoDB/SQLite, real authenticated HTTP, SDL dummy and simulated clicks",
+  "classroom_databases_modified": false,
+  "actual_student_game_observation": "not_run",
+  "checks": {
+    "two_slots_displayed_village_events_only": true,
+    "first_and_duplicate": true,
+    "snapshot_bid_before_current_change": true,
+    "two_village_events_only": true,
+    "advertiser_event_page": true,
+    "confirmed_click_not_resent": true,
+    "click_uses_impression_time": true,
+    "session_player_subject": true
+  },
+  "result": {
+    "player_id": 12,
+    "decisions": {
+      "lobby-banner": "70df16eb-fd6b-4136-803d-8347b7f2cdc0",
+      "village-board": "e736bb49-90cc-401f-a820-796a50573a0e"
+    },
+    "duplicate_receipts": [
+      "e736bb49-90cc-401f-a820-796a50573a0e:impression",
+      "e736bb49-90cc-401f-a820-796a50573a0e:click"
+    ],
+    "simulated_clicks": true
+  },
+  "event_count": 2
+}

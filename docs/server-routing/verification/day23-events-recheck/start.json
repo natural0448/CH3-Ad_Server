@@ -1,0 +1,20 @@
+{
+  "git_status": "Git 상태 확인 불가: 저장소 아님",
+  "path": "ads/events.py",
+  "source_sha256": "ebf373daf69c9e535dd13dc7d01cd649ed122440ec668da16ef0645a51401f1e",
+  "symbols": [
+    {
+      "kind": "function",
+      "qualified_name": "record_ad_event",
+      "line": 8,
+      "signature": "record_ad_event(subject, decision_id, event_type)",
+      "signature_core": "record_ad_event(subject, decision_id, event_type)",
+      "return_annotation": null,
+      "decorators": [],
+      "bases": [],
+      "documented": false
+    }
+  ],
+  "signature_missing": [],
+  "runtime_check": "ImportError: clean_subject absent in ads.services"
+}

@@ -1,0 +1,63 @@
+{
+  "Game-server": {
+    "status": [
+      " M config/settings.py",
+      " M docs/server-routing/README.md",
+      " M docs/server-routing/files/config/settings.py.md",
+      " M docs/server-routing/files/server/game/urls.py.md",
+      " M server/game/urls.py",
+      "?? docs/handoffs/2026-10-07-day22-image-serving-completion.md",
+      "?? docs/server-routing/files/server/game/ad_gateway.py.md",
+      "?? docs/server-routing/files/server/game/ad_views.py.md",
+      "?? docs/server-routing/files/server/game/static/",
+      "?? docs/server-routing/files/server/game/templates/",
+      "?? docs/server-routing/files/server/game/test_ads.py.md",
+      "?? docs/server-routing/verification/day22-image-audit.json",
+      "?? server/game/ad_gateway.py",
+      "?? server/game/ad_views.py",
+      "?? server/game/static/ads/",
+      "?? server/game/static/game/ad_preview.js",
+      "?? server/game/templates/game/ad_preview.html",
+      "?? server/game/test_ads.py"
+    ],
+    "staged": [],
+    "diff_check_exit": 0
+  },
+  "Game-client": {
+    "status": [
+      " M client/app.py",
+      " M client/application/controller.py",
+      " M client/application/state.py",
+      " M client/contracts/messages.py",
+      " M client/network/worker.py",
+      " M client/ui/input.py",
+      " M client/ui/layout.py",
+      " M client/ui/renderer.py",
+      " M docs/client-routing/README.md",
+      " M docs/client-routing/files/client/app.py.md",
+      " M docs/client-routing/files/client/application/controller.py.md",
+      " M docs/client-routing/files/client/application/state.py.md",
+      " M docs/client-routing/files/client/contracts/messages.py.md",
+      " M docs/client-routing/files/client/network/worker.py.md",
+      " M docs/client-routing/files/client/ui/input.py.md",
+      " M docs/client-routing/files/client/ui/layout.py.md",
+      " M docs/client-routing/files/client/ui/renderer.py.md",
+      "?? client/application/ads.py",
+      "?? client/contracts/ads.py",
+      "?? client/network/ads.py",
+      "?? client/ui/ads.py",
+      "?? docs/client-routing/files/client/application/ads.py.md",
+      "?? docs/client-routing/files/client/contracts/ads.py.md",
+      "?? docs/client-routing/files/client/network/ads.py.md",
+      "?? docs/client-routing/files/client/ui/ads.py.md",
+      "?? docs/client-routing/files/tests/test_ads_feature.py.md",
+      "?? docs/client-routing/verification/day22-image-audit.json",
+      "?? docs/handoffs/2026-10-07-day22-image-serving-completion.md",
+      "?? tests/test_ads_feature.py"
+    ],
+    "staged": [],
+    "diff_check_exit": 0
+  },
+  "ad_server": "Git 상태 확인 불가: 저장소 아님; scoped hashes checked",
+  "private_env_and_user_event_preserved": true
+}

@@ -1,0 +1,23 @@
+"""Authenticate server-only media requests and normalize their public subject."""
+import json
+import secrets
+from django.conf import settings
+
+
+def read_media_body(request):
+    if request.content_type != "application/json":
+        raise ValueError("application/json 본문을 보내세요.")
+    data = json.loads(request.body)
+    if not isinstance(data, dict):
+        raise ValueError("JSON 객체가 필요합니다.")
+    media_id = data.get("media_id")
+    expected = settings.MEDIA_KEYS.get(media_id, "") if isinstance(media_id, str) else ""
+    supplied = request.headers.get("X-Media-Key", "")
+    if not expected or not secrets.compare_digest(expected.encode("utf-8"), supplied.encode("utf-8")):
+        raise PermissionError("매체 인증 실패")
+    subject = data.get("subject")
+    if not isinstance(subject, dict) or subject.get("media_id") != media_id:
+        raise ValueError("인증한 매체의 subject를 보내세요.")
+    if not isinstance(subject.get("subject_id"), str) or not subject["subject_id"]:
+        raise ValueError("공개 subject_id 문자열이 필요합니다.")
+    return data, {"media_id": media_id, "subject_id": subject["subject_id"]}

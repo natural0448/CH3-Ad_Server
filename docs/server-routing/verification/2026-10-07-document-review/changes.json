@@ -1,0 +1,153 @@
+{
+  "scope": "documentation and evidence only",
+  "documents": [
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day22-ad-server-sync.md",
+      "state": "modified",
+      "sha256": "ae26e55b660e986e92201c9d3cfbc887f8233a30482b25049e043bdbc715fbe2"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md",
+      "state": "modified",
+      "sha256": "24a2656ed90e999eea3222285a265f1a9d1729e1bd210d3e74aea8841673f93e"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day22-image-serving-completion.md",
+      "state": "modified",
+      "sha256": "37ec60fff5ef33de4fe61351da065d907112182bf1f77b9c7bb2c9282271c68a"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day23-events-recheck.md",
+      "state": "modified",
+      "sha256": "a5383a65b5fb2f17f37feb5a51fcfb947f79991af56913d51d0acf9e2dce21ba"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "state": "modified",
+      "sha256": "35cf9a924cb110a0fa57c0cbe652e136c02981b7df4b8bb238742153c2b17744"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day23-period01-preflight.md",
+      "state": "modified",
+      "sha256": "575608ba99d4414b848e0259eae69233461a5e0436290fb087cdf5581bfb313c"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day23-period03-current-structure.md",
+      "state": "modified",
+      "sha256": "c5f30b88dd66dd32b771022bd158497acb72e19627a9534a0e90cf665db653af"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-mongo-uri-single-node-fix.md",
+      "state": "modified",
+      "sha256": "c34df1b9095ef476316d8f7aac89c2b1694fddc21c7218ed5b3670b8a251c70a"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/day23-period-03.py.md",
+      "state": "modified",
+      "sha256": "e206d978dcd0b46e4158cef2fcd73a7c5a06b08b37183100f586e2147a1468b2"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/README.md.md",
+      "state": "modified",
+      "sha256": "3f16f2a4c542c817929c2e98e0bb885aac61ce007e7c14660d3cfe3300e9fb00"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/verify_day23.py.md",
+      "state": "modified",
+      "sha256": "a902bc2551a9bee9c8586a078ff8fabd5969686b8132572b9f7149290e349b96"
+    },
+    {
+      "path": "ad_server/docs/server-routing/README.md",
+      "state": "modified",
+      "sha256": "6c885b12bcc36501a459a488d055c4d9fe6de449566d313022c39b549b234dd1"
+    },
+    {
+      "path": "ad_server/README.md",
+      "state": "modified",
+      "sha256": "751d3670a61b296a33f74ee657494e93f32df2b1f1a10f0d6f5ddbf2e3692731"
+    },
+    {
+      "path": "Game-server/docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md",
+      "state": "modified",
+      "sha256": "f8307e7c5c631d720959b1f8436ba6db889b90f750fa4bede20a64762d9f7ef7"
+    },
+    {
+      "path": "Game-server/docs/handoffs/2026-10-07-day22-image-serving-completion.md",
+      "state": "modified",
+      "sha256": "bca03002119ffbf7fc1ee1be2e939092e6ebd3d3f5889a540eb2c6d3cda34c97"
+    },
+    {
+      "path": "Game-server/docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "state": "modified",
+      "sha256": "c56dfe9fca4fa4c2488bf2aec28b4a18600332d0746863528c74e9f94a22d366"
+    },
+    {
+      "path": "Game-server/docs/handoffs/2026-10-07-day23-request-ad-event-lesson.md",
+      "state": "modified",
+      "sha256": "8583edbd528802bbd21b4434c1232603bf5bc030b884db963e376d52b850aa15"
+    },
+    {
+      "path": "Game-server/docs/server-routing/README.md",
+      "state": "modified",
+      "sha256": "03c7583323fa532920746b03c85de29047fc118ffcffa8c8ebfb896646b7daa7"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/application/ads.py.md",
+      "state": "modified",
+      "sha256": "357fdb3b400a27625956ed5397b3511b01fda5418a6826cf0c808df47702be99"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/README.md.md",
+      "state": "modified",
+      "sha256": "3b696d6004f8d25e72cfaf5d45da5d0b91182200ad192afd73fc7e80ef490b7b"
+    },
+    {
+      "path": "Game-client/docs/client-routing/README.md",
+      "state": "modified",
+      "sha256": "dd218b3be2a9c9c5be757986702cb583d6e789aa3b938094f70bcf25fddedd2d"
+    },
+    {
+      "path": "Game-client/docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md",
+      "state": "modified",
+      "sha256": "9130593026a9219d50a61ddb7dae182af3d5710bfe0e21fbb90f64588a61a448"
+    },
+    {
+      "path": "Game-client/docs/handoffs/2026-10-07-day22-image-serving-completion.md",
+      "state": "modified",
+      "sha256": "441c5f1b858075f07acdacd4fade3307ccc00388f42e383067e75ecb28d09e72"
+    },
+    {
+      "path": "Game-client/docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "state": "modified",
+      "sha256": "4f5a9fba049a4059dfc737314593e80bc231ec4b83bd1daf657ed644844b8cea"
+    },
+    {
+      "path": "Game-client/docs/handoffs/2026-10-07-day23-period03-current-structure.md",
+      "state": "modified",
+      "sha256": "54776f5d159f6b4e498792efb4549a7c811d7f0dc3587409de0a71e9b84858d5"
+    },
+    {
+      "path": "ad_server/docs/server-routing/reviews/2026-10-07-document-registry.md",
+      "state": "added",
+      "sha256": "8da3e6a43399be8633eb47d233c52a560ed763169e55ac574517f4059f56b81d"
+    },
+    {
+      "path": "ad_server/docs/server-routing/reviews/2026-10-07-lesson-deviations.md",
+      "state": "added",
+      "sha256": "fe2ad77a385a9014ead7ee869861d99a4450f45229ea7e0ca032ad498b01a253"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-document-registration-and-lesson-review.md",
+      "state": "added",
+      "sha256": "05bb94050d57d7c24d3e60ad8a6bbd345a35ff58cc5e96dc05be3cb209991380"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/README.md.md",
+      "state": "added",
+      "sha256": "8b315af89d820ef6b983a465535b12274e72baffe7ad40291a0719ee563c9a89"
+    }
+  ],
+  "source_config_count": 235,
+  "source_config_changes": [],
+  "source_config_preserved": true
+}

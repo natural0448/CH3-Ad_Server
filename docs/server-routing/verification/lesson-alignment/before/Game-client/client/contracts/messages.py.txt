@@ -1,0 +1,9 @@
+"""Public queues: ad selections, bounded PNG bytes and correlated event receipts.
+
+ad_event carries slot/player/request/decision/type and a validated id/type/created
+receipt. Credentials, cookies, CSRF tokens and media keys never enter results.
+"""
+from typing import Any, TypeAlias
+
+NetworkRequest: TypeAlias = dict[str, Any]
+NetworkEvent: TypeAlias = dict[str, Any]

@@ -1,0 +1,9 @@
+{
+  "checks": {
+    "8000_event_route_post_only": true,
+    "8001_event_route_post_only": true,
+    "unique_event_index": true
+  },
+  "actual_student_game_observation": "not_run",
+  "real_ad_events_inserted_by_verification": 0
+}

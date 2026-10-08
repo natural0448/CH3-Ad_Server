@@ -1,0 +1,923 @@
+{
+  "date": "2026-10-07",
+  "timezone": "Asia/Seoul",
+  "initial_documents": 102,
+  "registered_documents": 106,
+  "project_counts": {
+    "ad_server": 64,
+    "Game-server": 19,
+    "Game-client": 23
+  },
+  "documents": [
+    {
+      "path": "ad_server/data/evidence/asset-sources.md",
+      "created_kst": "2026-10-07T10:32:10+09:00",
+      "modified_kst": "2026-10-07T10:48:34+09:00",
+      "sha256": "cf086a3473174fc117c6fb6665ddefb8892da26f521ad0b8c7ca117207513c75",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "cf086a3473174fc117c6fb6665ddefb8892da26f521ad0b8c7ca117207513c75"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day22-ad-server-sync.md",
+      "created_kst": "2026-10-07T09:43:50+09:00",
+      "modified_kst": "2026-10-07T09:45:08+09:00",
+      "sha256": "ae26e55b660e986e92201c9d3cfbc887f8233a30482b25049e043bdbc715fbe2",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "456963eb2281e12fe2f70ceae6d021eb65f028ff8cf771494bb2734f15037c94"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md",
+      "created_kst": "2026-10-07T14:48:55+09:00",
+      "modified_kst": "2026-10-07T14:48:55+09:00",
+      "sha256": "24a2656ed90e999eea3222285a265f1a9d1729e1bd210d3e74aea8841673f93e",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "213ba9dec307c98453988aa99f60fd37587afb4ef3d8921e868b39f3d55a1342"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day22-image-serving-completion.md",
+      "created_kst": "2026-10-07T10:57:22+09:00",
+      "modified_kst": "2026-10-07T11:29:06+09:00",
+      "sha256": "37ec60fff5ef33de4fe61351da065d907112182bf1f77b9c7bb2c9282271c68a",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "d55672806f23ddf95ed72ebd1eca911935160df53f1829caa167ae58572e5af1"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day23-events-recheck.md",
+      "created_kst": "2026-10-07T14:17:54+09:00",
+      "modified_kst": "2026-10-07T14:17:54+09:00",
+      "sha256": "a5383a65b5fb2f17f37feb5a51fcfb947f79991af56913d51d0acf9e2dce21ba",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "b8970c495d4ac053d64471c5242bfa1d6371445d9586888ad011634318d794b6"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "created_kst": "2026-10-07T11:47:55+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "35cf9a924cb110a0fa57c0cbe652e136c02981b7df4b8bb238742153c2b17744",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "d0ac3ec5d25d9b8149e60414c00803cbcbd9cf2c9baa58c0384c3f2240af1f7f"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day23-period01-preflight.md",
+      "created_kst": "2026-10-07T09:45:08+09:00",
+      "modified_kst": "2026-10-07T09:45:08+09:00",
+      "sha256": "575608ba99d4414b848e0259eae69233461a5e0436290fb087cdf5581bfb313c",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "54a859427bd9ee515b1adaa2dbe268d54ddaa6cef760659a249e40106a8c675b"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-day23-period03-current-structure.md",
+      "created_kst": "2026-10-07T15:51:00+09:00",
+      "modified_kst": "2026-10-07T15:51:00+09:00",
+      "sha256": "c5f30b88dd66dd32b771022bd158497acb72e19627a9534a0e90cf665db653af",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "cc7e517f8c0f6ff3aa8fbfebe6f5054da135cba6b8456853aca97a8e99f612d7"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-mongo-uri-single-node-fix.md",
+      "created_kst": "2026-10-07T10:11:14+09:00",
+      "modified_kst": "2026-10-07T10:11:14+09:00",
+      "sha256": "c34df1b9095ef476316d8f7aac89c2b1694fddc21c7218ed5b3670b8a251c70a",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "51445bec67656c2784cf1e84c0930e0be3b3f7fd02926fe0ac991bf59b919e86"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/.env.example.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "4094e4a7f04a4d0f1b03c01abc18e80e8f1215768bbb4c74a5e31742e2cd4364",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "4094e4a7f04a4d0f1b03c01abc18e80e8f1215768bbb4c74a5e31742e2cd4364"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/.gitignore.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "e9cb6f0d4b2342dc5f1861e8832dfae7994eec639410caad5b7156f996a4a2f8",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "e9cb6f0d4b2342dc5f1861e8832dfae7994eec639410caad5b7156f996a4a2f8"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ad_config/ad_config/settings.py.md",
+      "created_kst": "2026-10-02T17:51:55+09:00",
+      "modified_kst": "2026-10-07T09:42:35+09:00",
+      "sha256": "384f75763055579577fd1f2c9af7f8aba0e0302b17bb1d35603745f7bbf28b85",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "384f75763055579577fd1f2c9af7f8aba0e0302b17bb1d35603745f7bbf28b85"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ad_config/ad_config/urls.py.md",
+      "created_kst": "2026-10-02T17:51:56+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "9b553dac1494e83b78d77e998af5266bf714c3f73845540b36fb9bd8096f32cd",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "9b553dac1494e83b78d77e998af5266bf714c3f73845540b36fb9bd8096f32cd"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ad_config/manage.py.md",
+      "created_kst": "2026-10-07T09:26:40+09:00",
+      "modified_kst": "2026-10-07T09:42:35+09:00",
+      "sha256": "69a81c22d8c984ff2937c7c21f615a535b3797783ea9cbf1748a07aa79468a63",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "69a81c22d8c984ff2937c7c21f615a535b3797783ea9cbf1748a07aa79468a63"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/auth_views.py.md",
+      "created_kst": "2026-10-02T17:58:52+09:00",
+      "modified_kst": "2026-10-07T09:42:35+09:00",
+      "sha256": "4fe3f1186ee39e2aa5aa27c2ca5a3189615f9fcf9dd6df6423a46c49984f648a",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "4fe3f1186ee39e2aa5aa27c2ca5a3189615f9fcf9dd6df6423a46c49984f648a"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/creatives.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "33393bb73c6e80cfc635c5499575a53db3a513ce7c79a0b0a4798d4f9980476b",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "33393bb73c6e80cfc635c5499575a53db3a513ce7c79a0b0a4798d4f9980476b"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/events.py.md",
+      "created_kst": "2026-10-07T10:29:39+09:00",
+      "modified_kst": "2026-10-07T14:45:20+09:00",
+      "sha256": "a1e20290920c085a85f762e2cb456881111ad3c6082fd84fb5c9a3ec8113d3a0",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "a1e20290920c085a85f762e2cb456881111ad3c6082fd84fb5c9a3ec8113d3a0"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/management/__init__.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "f47402c5390b0669d20f7bec3df614ab7f97071284deff40cc6ba03cdbfa5daa",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "f47402c5390b0669d20f7bec3df614ab7f97071284deff40cc6ba03cdbfa5daa"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/management/commands/__init__.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "d0b91fe0a7db0309c3efae79052dcd6d8bbae1baf01e7eed3a9b601e1badf8ee",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "d0b91fe0a7db0309c3efae79052dcd6d8bbae1baf01e7eed3a9b601e1badf8ee"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/management/commands/compare_ad_decisions.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:42:35+09:00",
+      "sha256": "8cc9b362e93cbdf8d6fc9074310cb30a6ac563bcf715656de4774b7a9ffdb9f2",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "8cc9b362e93cbdf8d6fc9074310cb30a6ac563bcf715656de4774b7a9ffdb9f2"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/management/commands/create_ad_indexes.py.md",
+      "created_kst": "2026-10-07T14:45:21+09:00",
+      "modified_kst": "2026-10-07T14:45:21+09:00",
+      "sha256": "234aa6892974548404a6733cab39c0aace36564b5ea9e75a5d975f71a66494e6",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "234aa6892974548404a6733cab39c0aace36564b5ea9e75a5d975f71a66494e6"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/management/commands/ensure_ad_event_indexes.py.md",
+      "created_kst": "2026-10-07T11:46:28+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "c828014726687f2e862a6efe66969adcbf7a84e597bdab1d84dd6104c1d8ca3f",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "c828014726687f2e862a6efe66969adcbf7a84e597bdab1d84dd6104c1d8ca3f"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/media_auth.py.md",
+      "created_kst": "2026-10-07T11:46:28+09:00",
+      "modified_kst": "2026-10-07T14:45:20+09:00",
+      "sha256": "4c2aecfba131c196ef8bc9161d3a1e4fc8868db07e314ac0e7dc58dffb73277b",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "4c2aecfba131c196ef8bc9161d3a1e4fc8868db07e314ac0e7dc58dffb73277b"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/mongo.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:42:35+09:00",
+      "sha256": "960f6fbb9658c52ddc044cea69699b6c7729dfb2800337c1bc9993187ab67378",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "960f6fbb9658c52ddc044cea69699b6c7729dfb2800337c1bc9993187ab67378"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/repository.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T14:45:20+09:00",
+      "sha256": "7c098821a2350ea94030d17afafefcfd26678fe025d8ff388596f77a15ee54b2",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "7c098821a2350ea94030d17afafefcfd26678fe025d8ff388596f77a15ee54b2"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/services.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T14:45:20+09:00",
+      "sha256": "d234aff47e9aacb1bfd6f94f86beb3b921c1d6bba9ee53d0b19f14237266c0a7",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "d234aff47e9aacb1bfd6f94f86beb3b921c1d6bba9ee53d0b19f14237266c0a7"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/static/ads/advertiser.css.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "c3b861ddc659f5ce42bd5e26b1685ac226a0a4d15e65da4a3f7a040cec962929",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "c3b861ddc659f5ce42bd5e26b1685ac226a0a4d15e65da4a3f7a040cec962929"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/static/ads/advertiser.js.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "2b06485fb73e2113a49f14aa66eda2061280caeb829a44f57d703251dced6e99",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "2b06485fb73e2113a49f14aa66eda2061280caeb829a44f57d703251dced6e99"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/static/ads/creatives/camp-tea.png.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "3fb985363a9bf7d6d6f60f13e821d7c48524cb179824dbb1a6a683378d6b24d0",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "3fb985363a9bf7d6d6f60f13e821d7c48524cb179824dbb1a6a683378d6b24d0"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/static/ads/creatives/forest-tools.png.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "cf2b5c1d8d7e55ea12e8e6a2e6f589c28eda0b16b9d763480ada697972b10d3f",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "cf2b5c1d8d7e55ea12e8e6a2e6f589c28eda0b16b9d763480ada697972b10d3f"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/templates/ads/base.html.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T14:46:14+09:00",
+      "sha256": "028bce216ff7a254c13bdf572c288727c5e475cd65516e691cd83864480a9c35",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "028bce216ff7a254c13bdf572c288727c5e475cd65516e691cd83864480a9c35"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/templates/ads/bids.html.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "44b5c3bf50de080cd1ac5746cd13ba40cbe56e1002108e5933c8d6ece6648b12",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "44b5c3bf50de080cd1ac5746cd13ba40cbe56e1002108e5933c8d6ece6648b12"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/templates/ads/campaigns.html.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "9e1180af215d06a5bbb5df65ca90cbc1aa5877775aa16969e5e04a3751061b75",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "9e1180af215d06a5bbb5df65ca90cbc1aa5877775aa16969e5e04a3751061b75"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/templates/ads/events.html.md",
+      "created_kst": "2026-10-07T14:46:14+09:00",
+      "modified_kst": "2026-10-07T14:46:14+09:00",
+      "sha256": "3f4f274284cb9cdb6b4ec573c1c2af6fd4472f96a1d9e82678428f32ed9ec037",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "3f4f274284cb9cdb6b4ec573c1c2af6fd4472f96a1d9e82678428f32ed9ec037"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/templates/registration/login.html.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "085c74d62bb037a326fafe2c6326fc6c581bbc199a9ae1ef08d0264d4a62d70a",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "085c74d62bb037a326fafe2c6326fc6c581bbc199a9ae1ef08d0264d4a62d70a"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/test_events.py.md",
+      "created_kst": "2026-10-07T11:46:28+09:00",
+      "modified_kst": "2026-10-07T14:45:21+09:00",
+      "sha256": "07e672e551e3111fb9536d7a02dc587e203279cbee62f48b3ed4c1be6a7b29c9",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "07e672e551e3111fb9536d7a02dc587e203279cbee62f48b3ed4c1be6a7b29c9"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/tests.py.md",
+      "created_kst": "2026-10-02T17:51:59+09:00",
+      "modified_kst": "2026-10-07T14:45:21+09:00",
+      "sha256": "39ed128e5ec3f2d489c9ea1024e72a028c70d06792aade79bb3345ca525f5e57",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "39ed128e5ec3f2d489c9ea1024e72a028c70d06792aade79bb3345ca525f5e57"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/urls.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T14:46:14+09:00",
+      "sha256": "2c6fadff713b85210bd54add2b95a1148f5705ef781c3ef3b26e2a848e1e115a",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "2c6fadff713b85210bd54add2b95a1148f5705ef781c3ef3b26e2a848e1e115a"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads/views.py.md",
+      "created_kst": "2026-10-07T09:26:41+09:00",
+      "modified_kst": "2026-10-07T14:45:20+09:00",
+      "sha256": "01a4fe6c4326f944ed6a48dca950fb2f88c94d41d1d3fb9650e71120f47f6f67",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "01a4fe6c4326f944ed6a48dca950fb2f88c94d41d1d3fb9650e71120f47f6f67"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/ads.env.md",
+      "created_kst": "2026-10-07T10:06:50+09:00",
+      "modified_kst": "2026-10-07T10:10:51+09:00",
+      "sha256": "f0bbddfb8a51617d472f80b55edd469b75d06960958e8d7cbc00aed465a7ed31",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "f0bbddfb8a51617d472f80b55edd469b75d06960958e8d7cbc00aed465a7ed31"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/day23-period-01.py.md",
+      "created_kst": "2026-10-07T14:46:14+09:00",
+      "modified_kst": "2026-10-07T14:46:14+09:00",
+      "sha256": "f611ddd4ae5ca9f36fdf3579b0fcbfeed21cc1923f442e48992a850ad1e17d5f",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "f611ddd4ae5ca9f36fdf3579b0fcbfeed21cc1923f442e48992a850ad1e17d5f"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/day23-period-02.py.md",
+      "created_kst": "2026-10-07T14:46:14+09:00",
+      "modified_kst": "2026-10-07T14:46:14+09:00",
+      "sha256": "13c2278d1c2bd748c49d7930a2bb8d1ac0f35fb76b57392235483afb99e45db1",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "13c2278d1c2bd748c49d7930a2bb8d1ac0f35fb76b57392235483afb99e45db1"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/day23-period-03.py.md",
+      "created_kst": "2026-10-07T15:47:28+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "e206d978dcd0b46e4158cef2fcd73a7c5a06b08b37183100f586e2147a1468b2",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "3191ec79cb38a0ba7b7369b2c52707c181ee51e8012aa696cc44edb3d7589f82"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/day23-subject.py.md",
+      "created_kst": "2026-10-07T14:46:14+09:00",
+      "modified_kst": "2026-10-07T14:46:14+09:00",
+      "sha256": "10f9f12c1a53d16b233ec57d2a3e86712425b917aad0a96289ee96368ed2ccd5",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "10f9f12c1a53d16b233ec57d2a3e86712425b917aad0a96289ee96368ed2ccd5"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/mongo-node1.yml.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "afe24def10872e5d0e44e23338e0e9b8e4995450807f7058262f8722d6fec313",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "afe24def10872e5d0e44e23338e0e9b8e4995450807f7058262f8722d6fec313"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/mongo-node2.yml.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "9fd802b605b2fd578b7335a9846c07202a2d542ee7d8879a9a54e4380d3257bc",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "9fd802b605b2fd578b7335a9846c07202a2d542ee7d8879a9a54e4380d3257bc"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/config/mongo-node3.yml.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:37:44+09:00",
+      "sha256": "78bb7e5e5343f0d1b7a64f10f0d5978933af0bab3f1ce3861f84cea22686ffea",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "78bb7e5e5343f0d1b7a64f10f0d5978933af0bab3f1ce3861f84cea22686ffea"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/data/evidence/asset-sources.md.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "c1ec8061ebf60d64bb075deb435ba030104c2586ca1b12017b0ecb2fb45656bd",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "c1ec8061ebf60d64bb075deb435ba030104c2586ca1b12017b0ecb2fb45656bd"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/README.md.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "3f16f2a4c542c817929c2e98e0bb885aac61ce007e7c14660d3cfe3300e9fb00",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "0a562cd0875c06b0eac6df417ecf6c775a601ab840091dfe83f1fd95159fe492"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/basics/day22_credit_model.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T14:31:08+09:00",
+      "sha256": "c4b82b6d5778dee4a875a208998e23e88c1722e8622804e5d71f94bd37e97599",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "c4b82b6d5778dee4a875a208998e23e88c1722e8622804e5d71f94bd37e97599"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/basics/day22_period01.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T14:31:08+09:00",
+      "sha256": "cdd08c011282e41f76b869b71faea8eb12be11811ef2f683a02dca48677b5ad2",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "cdd08c011282e41f76b869b71faea8eb12be11811ef2f683a02dca48677b5ad2"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/basics/day22_period02.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T14:31:08+09:00",
+      "sha256": "8466b534171a78431a67042207c1f4ed9a65f16f065ea9e5553926b2673e8a79",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "8466b534171a78431a67042207c1f4ed9a65f16f065ea9e5553926b2673e8a79"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/basics/day23_record_observed.py.md",
+      "created_kst": "2026-10-07T11:46:28+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "cacdd9b6dfcc628cae822748cda1e64e1779a8388f8d39bb73cc78d38f6d2ed8",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "cacdd9b6dfcc628cae822748cda1e64e1779a8388f8d39bb73cc78d38f6d2ed8"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/day22_connection.py.md",
+      "created_kst": "2026-10-07T14:31:07+09:00",
+      "modified_kst": "2026-10-07T14:31:07+09:00",
+      "sha256": "98ac92dba9018a3192f549f2d2cce07d0690b826540ba4451c26484db3d204e2",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "98ac92dba9018a3192f549f2d2cce07d0690b826540ba4451c26484db3d204e2"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/day22_crud.py.md",
+      "created_kst": "2026-10-07T14:31:08+09:00",
+      "modified_kst": "2026-10-07T14:31:08+09:00",
+      "sha256": "e8fd35ccadf4845b1cb37caa5b2c77a6abde8351a33e9ea218078fcd8b9709aa",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "e8fd35ccadf4845b1cb37caa5b2c77a6abde8351a33e9ea218078fcd8b9709aa"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/verify_day22.py.md",
+      "created_kst": "2026-10-07T09:37:44+09:00",
+      "modified_kst": "2026-10-07T09:42:35+09:00",
+      "sha256": "726c7d50623f5f80e9671a8e9128466dd2a6709eb5788c8ef5f48b67e5a04140",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "726c7d50623f5f80e9671a8e9128466dd2a6709eb5788c8ef5f48b67e5a04140"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/verify_day22_images.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "ae223ac8ae5bc0febd05340fbdfbaeb07aa1dec90378999019fe79bb00aca8d7",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "ae223ac8ae5bc0febd05340fbdfbaeb07aa1dec90378999019fe79bb00aca8d7"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/verify_day23.py.md",
+      "created_kst": "2026-10-07T11:46:28+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "a902bc2551a9bee9c8586a078ff8fabd5969686b8132572b9f7149290e349b96",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "235fadaee71702ac01af37e95247cb04b2c23edadbfb9158c8ef5c4a377ef9de"
+    },
+    {
+      "path": "ad_server/docs/server-routing/files/tools/verify_lesson_alignment.py.md",
+      "created_kst": "2026-10-07T14:31:08+09:00",
+      "modified_kst": "2026-10-07T14:45:20+09:00",
+      "sha256": "8c03351c2161f33dbf974b1f47866b7dc841e12a48dad714446a14cbba5b05b5",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "8c03351c2161f33dbf974b1f47866b7dc841e12a48dad714446a14cbba5b05b5"
+    },
+    {
+      "path": "ad_server/docs/server-routing/README.md",
+      "created_kst": "2026-10-02T17:51:50+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "6c885b12bcc36501a459a488d055c4d9fe6de449566d313022c39b549b234dd1",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "4af60c9a4545d56fce512500f0fd523c70d1d34f66ecc8c3ef84fea23f557043"
+    },
+    {
+      "path": "ad_server/README.md",
+      "created_kst": "2026-10-07T09:34:17+09:00",
+      "modified_kst": "2026-10-07T15:44:34+09:00",
+      "sha256": "751d3670a61b296a33f74ee657494e93f32df2b1f1a10f0d6f5ddbf2e3692731",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "e6136a3ec0352582335c78091be902d42c900e21a1dc0ff78f7b45dee3cfb45a"
+    },
+    {
+      "path": "Game-server/data/evidence/asset-sources.md",
+      "created_kst": "2026-10-07T10:32:10+09:00",
+      "modified_kst": "2026-10-07T10:48:34+09:00",
+      "sha256": "cf086a3473174fc117c6fb6665ddefb8892da26f521ad0b8c7ca117207513c75",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "cf086a3473174fc117c6fb6665ddefb8892da26f521ad0b8c7ca117207513c75"
+    },
+    {
+      "path": "Game-server/docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md",
+      "created_kst": "2026-10-07T14:48:55+09:00",
+      "modified_kst": "2026-10-07T14:48:55+09:00",
+      "sha256": "f8307e7c5c631d720959b1f8436ba6db889b90f750fa4bede20a64762d9f7ef7",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "0dc98dbd8647966273a9e7188407e2de02ce3c208841a8e6328398381d8f602d"
+    },
+    {
+      "path": "Game-server/docs/handoffs/2026-10-07-day22-image-serving-completion.md",
+      "created_kst": "2026-10-07T10:57:22+09:00",
+      "modified_kst": "2026-10-07T11:27:52+09:00",
+      "sha256": "bca03002119ffbf7fc1ee1be2e939092e6ebd3d3f5889a540eb2c6d3cda34c97",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "6afe73eb393ca84be56d7769d4266dae35d3e079516be102a4abe304c6940c29"
+    },
+    {
+      "path": "Game-server/docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "created_kst": "2026-10-07T11:47:55+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "c56dfe9fca4fa4c2488bf2aec28b4a18600332d0746863528c74e9f94a22d366",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "576ed0c7193de9f7bf6255d466edebf97ea0615d74c5a3a2f8cfdf2ddca4dfb1"
+    },
+    {
+      "path": "Game-server/docs/handoffs/2026-10-07-day23-request-ad-event-lesson.md",
+      "created_kst": "2026-10-07T16:28:02+09:00",
+      "modified_kst": "2026-10-07T16:28:04+09:00",
+      "sha256": "8583edbd528802bbd21b4434c1232603bf5bc030b884db963e376d52b850aa15",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "be05f7136a2040f8ccb4e9e52b66a83bafe1c69185f59acecb50dbda3381a26e"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/config/settings.py.md",
+      "created_kst": "2026-09-28T09:25:31+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "68f39db98fdc5f0881239e428c8b956535c94fcb41fe2e98d0fdf7d7c57bfaa9",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "68f39db98fdc5f0881239e428c8b956535c94fcb41fe2e98d0fdf7d7c57bfaa9"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/data/evidence/asset-sources.md.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "c1ec8061ebf60d64bb075deb435ba030104c2586ca1b12017b0ecb2fb45656bd",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "c1ec8061ebf60d64bb075deb435ba030104c2586ca1b12017b0ecb2fb45656bd"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/.env.md",
+      "created_kst": "2026-10-07T11:23:06+09:00",
+      "modified_kst": "2026-10-07T11:27:52+09:00",
+      "sha256": "1173c95cbbe23ad2d3f8a3eadb1ab9705e043d4262d2f79381fd63e43827bd7d",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "1173c95cbbe23ad2d3f8a3eadb1ab9705e043d4262d2f79381fd63e43827bd7d"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/ad_gateway.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T16:25:27+09:00",
+      "sha256": "596cda499f8d89314bedffdf2e768e98996c54b36fd1e3bd67e95a8cf3bc186b",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "596cda499f8d89314bedffdf2e768e98996c54b36fd1e3bd67e95a8cf3bc186b"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/ad_views.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T14:45:21+09:00",
+      "sha256": "1a55c36fd7b0e264add5a9010c451f4389ffac34695d17ff3782878004ff504a",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "1a55c36fd7b0e264add5a9010c451f4389ffac34695d17ff3782878004ff504a"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/static/ads/creatives/camp-tea.png.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "29d7f7c8eb4659f62826ac4ee47c7955ee0c7819d8beee8fddf3e536fc47ce32",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "29d7f7c8eb4659f62826ac4ee47c7955ee0c7819d8beee8fddf3e536fc47ce32"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/static/ads/creatives/forest-tools.png.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "d456ae66be9615df77c03e523ae164d4289a23111577400b9428c9b7ff3841a6",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "d456ae66be9615df77c03e523ae164d4289a23111577400b9428c9b7ff3841a6"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/static/game/ad_preview.js.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "4c28bd053a1429a6b424e21c2818a3b2898a72b1aa6e4f702435b241a8388b8a",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "4c28bd053a1429a6b424e21c2818a3b2898a72b1aa6e4f702435b241a8388b8a"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/templates/game/ad_preview.html.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "16b8829344229e418d102f4dab8610dbe094541109d21fc4e2d77c2036ad3638",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "16b8829344229e418d102f4dab8610dbe094541109d21fc4e2d77c2036ad3638"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/test_ads.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T16:25:27+09:00",
+      "sha256": "8e53417951f7c721670f958c8566bb0e1ffaba743821fd1712df722082f98201",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "8e53417951f7c721670f958c8566bb0e1ffaba743821fd1712df722082f98201"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/server/game/urls.py.md",
+      "created_kst": "2026-09-28T14:54:58+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "6159f9c82ed1c54677e9be2807294e6528b85c8fb163e27d0e1d3c8406103dc9",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "6159f9c82ed1c54677e9be2807294e6528b85c8fb163e27d0e1d3c8406103dc9"
+    },
+    {
+      "path": "Game-server/docs/server-routing/README.md",
+      "created_kst": "2026-09-18T15:27:15+09:00",
+      "modified_kst": "2026-10-07T16:25:27+09:00",
+      "sha256": "03c7583323fa532920746b03c85de29047fc118ffcffa8c8ebfb896646b7daa7",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "7633bb7574086c84895ec918a9abd364c62305ad00431bf1cde90f4cd8ca9661"
+    },
+    {
+      "path": "Game-server/README.md",
+      "created_kst": "2026-09-15T09:45:16+09:00",
+      "modified_kst": "2026-10-07T16:24:22+09:00",
+      "sha256": "133422330282fb1c1a24a190c1541b2c4e28cf860965b804847c134a192d6587",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "133422330282fb1c1a24a190c1541b2c4e28cf860965b804847c134a192d6587"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/app.py.md",
+      "created_kst": "2026-09-18T10:20:15+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "9da11e55b44ad3f9f98adb52a35575c19df7715f0c5983bd14e890558b067872",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "9da11e55b44ad3f9f98adb52a35575c19df7715f0c5983bd14e890558b067872"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/application/ads.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "357fdb3b400a27625956ed5397b3511b01fda5418a6826cf0c808df47702be99",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "d95659e08b0ff45d88d63395f55a31d243235514e616276b2a9d560b114e4e3b"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/application/controller.py.md",
+      "created_kst": "2026-09-18T10:20:41+09:00",
+      "modified_kst": "2026-10-07T15:48:20+09:00",
+      "sha256": "799f62da3dc33ed2e6bbc9a2bd4caca62af14a231c16c432208fed3b83b8298c",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "799f62da3dc33ed2e6bbc9a2bd4caca62af14a231c16c432208fed3b83b8298c"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/application/state.py.md",
+      "created_kst": "2026-09-18T10:20:30+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "c9023ae7bb1d95e20278f6be387c81101e8b257b62d613d8a165f5b5e0039280",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "c9023ae7bb1d95e20278f6be387c81101e8b257b62d613d8a165f5b5e0039280"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/contracts/ads.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "f045472a0889934dd0d253ddcde3281d4d884ab22581a9c27a76832861ffcd6f",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "f045472a0889934dd0d253ddcde3281d4d884ab22581a9c27a76832861ffcd6f"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/contracts/messages.py.md",
+      "created_kst": "2026-09-18T10:22:24+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "0c3b49afb0d752433ef00c5abbef0a125d8de69bccf9268ef7333c70155890a2",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "0c3b49afb0d752433ef00c5abbef0a125d8de69bccf9268ef7333c70155890a2"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/network/ads.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T15:48:20+09:00",
+      "sha256": "d556fbdd2968e71b54b89307a53f64003ecd6833524888275b3779ea6abf7284",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "d556fbdd2968e71b54b89307a53f64003ecd6833524888275b3779ea6abf7284"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/network/http.py.md",
+      "created_kst": "2026-09-18T10:23:09+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "89b150a2afd58b1491f6700644da023bef46510ef66604b3df531ce7e3847676",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "89b150a2afd58b1491f6700644da023bef46510ef66604b3df531ce7e3847676"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/network/session.py.md",
+      "created_kst": "2026-09-18T10:23:18+09:00",
+      "modified_kst": "2026-10-07T15:48:20+09:00",
+      "sha256": "5721ec707293aabb29058d0605f31e9a0119de45271f5a8e98281f0f7df2d2dd",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "5721ec707293aabb29058d0605f31e9a0119de45271f5a8e98281f0f7df2d2dd"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/network/worker.py.md",
+      "created_kst": "2026-09-18T10:23:34+09:00",
+      "modified_kst": "2026-10-07T14:31:08+09:00",
+      "sha256": "5c60fa064f5df38c1e1b4adfdaeb274615d58edd1a34db75d0607c0984924371",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "5c60fa064f5df38c1e1b4adfdaeb274615d58edd1a34db75d0607c0984924371"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/ui/ads.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "b08a106e022fc9f72cfb9f97673072f108fcd85da890126e6ee8828bb0ad3707",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "b08a106e022fc9f72cfb9f97673072f108fcd85da890126e6ee8828bb0ad3707"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/ui/input.py.md",
+      "created_kst": "2026-09-18T10:25:04+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "a9fbc699866e227199f14ed4ae7130f5ccd72e77dbde20245d7b0e59ac3e78ed",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "a9fbc699866e227199f14ed4ae7130f5ccd72e77dbde20245d7b0e59ac3e78ed"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/ui/layout.py.md",
+      "created_kst": "2026-09-18T10:24:48+09:00",
+      "modified_kst": "2026-10-07T10:55:19+09:00",
+      "sha256": "15a91796780c65bb3d2789f5ffff047b93ca4ee445ab5f43da99b53ff2cae9a4",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "15a91796780c65bb3d2789f5ffff047b93ca4ee445ab5f43da99b53ff2cae9a4"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/client/ui/renderer.py.md",
+      "created_kst": "2026-09-18T10:25:24+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "b9b2ef1cf63b44fe549c1dd1df9c3936ce910bec0acc2dd523130392721221a9",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "b9b2ef1cf63b44fe549c1dd1df9c3936ce910bec0acc2dd523130392721221a9"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/README.md.md",
+      "created_kst": "2026-09-18T10:19:44+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "3b696d6004f8d25e72cfaf5d45da5d0b91182200ad192afd73fc7e80ef490b7b",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "0a562cd0875c06b0eac6df417ecf6c775a601ab840091dfe83f1fd95159fe492"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/tests/test_ads_events.py.md",
+      "created_kst": "2026-10-07T11:46:29+09:00",
+      "modified_kst": "2026-10-07T15:48:20+09:00",
+      "sha256": "a5363c7305cda62c3f1af54fb6fff2bfe8e914abc9107497f257855892f083e8",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "a5363c7305cda62c3f1af54fb6fff2bfe8e914abc9107497f257855892f083e8"
+    },
+    {
+      "path": "Game-client/docs/client-routing/files/tests/test_ads_feature.py.md",
+      "created_kst": "2026-10-07T10:54:17+09:00",
+      "modified_kst": "2026-10-07T15:48:20+09:00",
+      "sha256": "5a5481c129b647b802d908afc2c28f9d2d0d8aeac8c30fe1259385e1da44c1bc",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "5a5481c129b647b802d908afc2c28f9d2d0d8aeac8c30fe1259385e1da44c1bc"
+    },
+    {
+      "path": "Game-client/docs/client-routing/README.md",
+      "created_kst": "2026-09-18T10:29:57+09:00",
+      "modified_kst": "2026-10-07T15:47:28+09:00",
+      "sha256": "dd218b3be2a9c9c5be757986702cb583d6e789aa3b938094f70bcf25fddedd2d",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "f8b1197dac914d36f628b93b8e37464f8144e3e66fd8e07533a7a9cf751fcc74"
+    },
+    {
+      "path": "Game-client/docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md",
+      "created_kst": "2026-10-07T14:48:55+09:00",
+      "modified_kst": "2026-10-07T14:48:55+09:00",
+      "sha256": "9130593026a9219d50a61ddb7dae182af3d5710bfe0e21fbb90f64588a61a448",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "d0b7da63adf2b10f2089514153a32608097f2483bbb790592e3696941136e7d0"
+    },
+    {
+      "path": "Game-client/docs/handoffs/2026-10-07-day22-image-serving-completion.md",
+      "created_kst": "2026-10-07T10:57:22+09:00",
+      "modified_kst": "2026-10-07T11:27:52+09:00",
+      "sha256": "441c5f1b858075f07acdacd4fade3307ccc00388f42e383067e75ecb28d09e72",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "63381b2e0fcbb60593cb9e8ca5eb501cab072f241f9ed7979b5a9ca820ff8b47"
+    },
+    {
+      "path": "Game-client/docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "created_kst": "2026-10-07T11:47:55+09:00",
+      "modified_kst": "2026-10-07T11:47:55+09:00",
+      "sha256": "4f5a9fba049a4059dfc737314593e80bc231ec4b83bd1daf657ed644844b8cea",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "4de496d217a309909bed753ab11d483508f34d3f29cf619451a1c45696e1155c"
+    },
+    {
+      "path": "Game-client/docs/handoffs/2026-10-07-day23-period03-current-structure.md",
+      "created_kst": "2026-10-07T15:51:00+09:00",
+      "modified_kst": "2026-10-07T15:51:00+09:00",
+      "sha256": "54776f5d159f6b4e498792efb4549a7c811d7f0dc3587409de0a71e9b84858d5",
+      "selection_reason": "filename_date",
+      "sha256_at_start": "173dade9a35d7b673cdc2bd690d954bf32b1914c7340171462ea32d9f4720f13"
+    },
+    {
+      "path": "Game-client/README.md",
+      "created_kst": "2026-09-18T10:14:52+09:00",
+      "modified_kst": "2026-10-07T16:24:22+09:00",
+      "sha256": "73b95b64b5cdc78d6cddda2f71b7871d33d3270649f27e9d5818af95b9751b79",
+      "selection_reason": "filesystem_date",
+      "sha256_at_start": "73b95b64b5cdc78d6cddda2f71b7871d33d3270649f27e9d5818af95b9751b79"
+    },
+    {
+      "path": "ad_server/docs/server-routing/reviews/2026-10-07-document-registry.md",
+      "selection_reason": "created_by_this_request",
+      "sha256": "8da3e6a43399be8633eb47d233c52a560ed763169e55ac574517f4059f56b81d"
+    },
+    {
+      "path": "ad_server/docs/server-routing/reviews/2026-10-07-lesson-deviations.md",
+      "selection_reason": "created_by_this_request",
+      "sha256": "fe2ad77a385a9014ead7ee869861d99a4450f45229ea7e0ca032ad498b01a253"
+    },
+    {
+      "path": "ad_server/docs/handoffs/2026-10-07-document-registration-and-lesson-review.md",
+      "selection_reason": "created_by_this_request",
+      "sha256": "05bb94050d57d7c24d3e60ad8a6bbd345a35ff58cc5e96dc05be3cb209991380"
+    },
+    {
+      "path": "Game-server/docs/server-routing/files/README.md.md",
+      "selection_reason": "created_by_this_request",
+      "sha256": "8b315af89d820ef6b983a465535b12274e72baffe7ad40291a0719ee563c9a89"
+    }
+  ],
+  "evidence": [
+    "Game-client/docs/client-routing/verification/day22-image-audit.json",
+    "Game-client/docs/client-routing/verification/day23-final-audit.json",
+    "Game-client/docs/client-routing/verification/day23-period03-final-audit.json",
+    "Game-client/docs/client-routing/verification/day23-start-audit.json",
+    "Game-client/docs/client-routing/verification/lesson-align-final-audit.json",
+    "Game-client/docs/client-routing/verification/lesson-align-start-audit.json",
+    "Game-server/docs/server-routing/verification/day22-image-audit.json",
+    "Game-server/docs/server-routing/verification/day22-media-key-apply.json",
+    "Game-server/docs/server-routing/verification/day23-final-audit.json",
+    "Game-server/docs/server-routing/verification/day23-game-file-start-audit.json",
+    "Game-server/docs/server-routing/verification/day23-game-file/start.json",
+    "Game-server/docs/server-routing/verification/day23-request-ad-event/changes.json",
+    "Game-server/docs/server-routing/verification/day23-request-ad-event/contract-checks.json",
+    "Game-server/docs/server-routing/verification/day23-request-ad-event/final-audit.json",
+    "Game-server/docs/server-routing/verification/day23-request-ad-event/git-final.json",
+    "Game-server/docs/server-routing/verification/day23-request-ad-event/pre-audit.json",
+    "Game-server/docs/server-routing/verification/day23-request-ad-event/source-comparison.json",
+    "Game-server/docs/server-routing/verification/day23-request-ad-event/start.json",
+    "Game-server/docs/server-routing/verification/day23-start-audit.json",
+    "Game-server/docs/server-routing/verification/lesson-align-final-audit.json",
+    "Game-server/docs/server-routing/verification/lesson-align-start-audit.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/ad-server-final-audit.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/ad-server-start-audit.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/changes.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/current-source-comparison.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/document-registry.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/final-verification.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/game-client-final-audit.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/game-client-start-audit.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/game-server-final-audit.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/game-server-start-audit.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/git-final.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/raw-source-comparison.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/source-baseline.json",
+    "ad_server/docs/server-routing/verification/2026-10-07-document-review/start.json",
+    "ad_server/docs/server-routing/verification/day22-image-ast.json",
+    "ad_server/docs/server-routing/verification/day22-image-audit.json",
+    "ad_server/docs/server-routing/verification/day22-image-changes.json",
+    "ad_server/docs/server-routing/verification/day22-image-final-state.json",
+    "ad_server/docs/server-routing/verification/day22-image-start.json",
+    "ad_server/docs/server-routing/verification/day22-images/integration.json",
+    "ad_server/docs/server-routing/verification/day22-sync-audit.json",
+    "ad_server/docs/server-routing/verification/day22-sync-changes.json",
+    "ad_server/docs/server-routing/verification/day23-changes.json",
+    "ad_server/docs/server-routing/verification/day23-events-recheck/final.json",
+    "ad_server/docs/server-routing/verification/day23-events-recheck/git-final.json",
+    "ad_server/docs/server-routing/verification/day23-events-recheck/integration.json",
+    "ad_server/docs/server-routing/verification/day23-events-recheck/start.json",
+    "ad_server/docs/server-routing/verification/day23-final-audit.json",
+    "ad_server/docs/server-routing/verification/day23-period02/classroom-readiness.json",
+    "ad_server/docs/server-routing/verification/day23-period02/integration.json",
+    "ad_server/docs/server-routing/verification/day23-period03/changes.json",
+    "ad_server/docs/server-routing/verification/day23-period03/final-audit.json",
+    "ad_server/docs/server-routing/verification/day23-period03/final-symbols.json",
+    "ad_server/docs/server-routing/verification/day23-period03/git-final.json",
+    "ad_server/docs/server-routing/verification/day23-period03/integration.json",
+    "ad_server/docs/server-routing/verification/day23-period03/pre-audit.json",
+    "ad_server/docs/server-routing/verification/day23-period03/start.json",
+    "ad_server/docs/server-routing/verification/day23-period03/test-results.json",
+    "ad_server/docs/server-routing/verification/day23-start.json",
+    "ad_server/docs/server-routing/verification/lesson-alignment/changes.json",
+    "ad_server/docs/server-routing/verification/lesson-alignment/final-audit.json",
+    "ad_server/docs/server-routing/verification/lesson-alignment/git-final.json",
+    "ad_server/docs/server-routing/verification/lesson-alignment/live-readiness.json",
+    "ad_server/docs/server-routing/verification/lesson-alignment/pre-audit.json",
+    "ad_server/docs/server-routing/verification/lesson-alignment/revised-final-symbols.json",
+    "ad_server/docs/server-routing/verification/lesson-alignment/revised-pre-audit.json",
+    "ad_server/docs/server-routing/verification/lesson-alignment/scripts.json",
+    "ad_server/docs/server-routing/verification/lesson-alignment/source-comparison.json",
+    "ad_server/docs/server-routing/verification/lesson-alignment/start.json",
+    "ad_server/docs/server-routing/verification/lesson-alignment/test-results.json",
+    "ad_server/docs/server-routing/verification/mongo-single-node-fix.json"
+  ]
+}

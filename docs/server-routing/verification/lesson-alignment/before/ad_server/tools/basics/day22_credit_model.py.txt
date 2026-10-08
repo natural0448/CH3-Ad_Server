@@ -1,0 +1,34 @@
+"""Local teaching model; does not settle any MongoDB wallet."""
+
+
+def main():
+    wallet = {"advertiser_id": "advertiser-a", "balance_credits": 100}
+    prices = {"impression": 2, "click": 0, "conversion": 20}
+    events = [{"event_id": "view-1", "event_type": "impression"},
+              {"event_id": "click-1", "event_type": "click"},
+              {"event_id": "sale-1", "event_type": "conversion"},
+              {"event_id": "sale-1", "event_type": "conversion"}]
+    counts = {"impression": 0, "click": 0, "conversion": 0}
+    seen, ledger = set(), []
+    for event in events:
+        event_id = event["event_id"]
+        if event_id in seen:
+            continue
+        seen.add(event_id)
+        kind = event["event_type"]
+        counts[kind] += 1
+        amount = prices[kind]
+        if not amount:
+            continue
+        if wallet["balance_credits"] < amount:
+            print("차감 미승인", event_id)
+            continue
+        wallet["balance_credits"] -= amount
+        ledger.append({"charge_key": "charge:" + event_id, "amount_credits": amount})
+    print("통계", counts)
+    print("차감", sum(row["amount_credits"] for row in ledger))
+    print("잔액", wallet["balance_credits"])
+
+
+if __name__ == "__main__":
+    main()

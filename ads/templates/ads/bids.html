@@ -1,0 +1,9 @@
+{% extends 'ads/base.html' %}
+{% block title %}입찰 관리 · 마을 광고 스튜디오{% endblock %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">BIDDING</p><h1>광고의 순서를 정하는 입찰</h1><p class="lead">포인트를 바꾸면 다음 광고 선택에 반영됩니다.</p></div><a class="pill-link" href="{% url 'ads:campaigns' %}">캠페인 관리 →</a></section>
+{% if message %}<p class="notice" role="status">{{ message }}</p>{% endif %}
+<div class="workspace"><section class="card"><h2>현재 입찰 변경</h2><form method="post">{% csrf_token %}<label>내 캠페인 ID<input name="campaign_id" required pattern="[a-z0-9_-]{1,40}" placeholder="forest-tools"></label><label>입찰 포인트<input name="bid_amount" type="number" min="1" max="10000" step="1" placeholder="10" required><small>1~10000의 정수 · 수업용 모의 점수</small></label><button class="primary full">입찰 저장</button></form></section>
+<section><div class="help-card"><p class="eyebrow">HOW IT WORKS</p><h2>같은 위치에서 가장 높은 입찰</h2><p>활성 캠페인만 후보가 됩니다. 같은 포인트라면 캠페인 ID 순서로 선택합니다.</p><p>입찰을 수정해도 이전 결정의 후보·금액·소재는 그대로 보존됩니다.</p></div></section></div>
+<section class="collection"><div class="section-heading"><h2>내 현재 입찰</h2><span>{{ bids|length }}개</span></div><div class="campaign-grid">{% for bid in bids %}<article class="card"><p class="eyebrow">{{ bid.campaign_id }}</p><h3 class="bid-number">{{ bid.bid_amount }} 포인트</h3><p class="muted">{{ bid.updated_at }}</p></article>{% empty %}<div class="empty-state"><h3>아직 입찰이 없습니다.</h3><p>활성 캠페인의 ID로 첫 입찰을 저장하세요.</p></div>{% endfor %}</div></section>
+{% endblock %}

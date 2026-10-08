@@ -1,0 +1,58 @@
+"""Authenticated game relay and a browser check of the same public advertisement."""
+import json
+
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views.decorators.http import require_GET, require_POST
+
+from .ad_gateway import AdsUnavailable, request_ad_event, request_decision
+from .models import Player
+
+
+@login_required
+@require_GET
+def ad_preview(request):
+    return render(request, "game/ad_preview.html")
+
+
+@require_POST
+def ad_decision(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "login_required"}, status=401)
+    try:
+        payload = json.loads(request.body)
+    except (ValueError, UnicodeDecodeError):
+        return JsonResponse({"error": "invalid_json"}, status=400)
+    if not isinstance(payload, dict) or payload.get("slot_id") not in ("village-board", "lobby-banner"):
+        return JsonResponse({"error": "invalid_slot"}, status=400)
+    player = Player.objects.filter(user=request.user).first()
+    if player is None:
+        return JsonResponse({"error": "player_missing"}, status=404)
+    try:
+        return JsonResponse(request_decision(player, payload["slot_id"]))
+    except AdsUnavailable:
+        return JsonResponse({"error": "ads_unavailable"}, status=503)
+
+
+@require_POST
+def ad_event(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "login_required"}, status=401)
+    try:
+        body = json.loads(request.body)
+        if not isinstance(body, dict):
+            raise ValueError("invalid_event")
+        decision_id, event_type = body.get("decision_id"), body.get("event_type")
+        if (not isinstance(decision_id, str) or not decision_id
+                or not isinstance(event_type, str) or event_type not in {"impression", "click"}):
+            raise ValueError("invalid_event")
+    except (ValueError, UnicodeDecodeError):
+        return JsonResponse({"error": "invalid_event"}, status=400)
+    player = Player.objects.filter(user=request.user).first()
+    if player is None:
+        return JsonResponse({"error": "player_missing"}, status=404)
+    try:
+        return JsonResponse(request_ad_event(player, decision_id, event_type))
+    except AdsUnavailable:
+        return JsonResponse({"error": "ads_unavailable"}, status=503)

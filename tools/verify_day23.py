@@ -1,0 +1,227 @@
+"""Verify revised period 3 village-board events with isolated HTTP/Pygame fixtures."""
+import argparse
+import asyncio
+import json
+import os
+import socket
+import subprocess
+import sys
+import time
+import uuid
+from pathlib import Path
+
+from verify_day22_images import ROOT, WORKSPACE, Web, child, wait_http
+
+REPORT = ROOT / "docs/server-routing/verification/day23-period03"
+
+
+async def render_flow(owned):
+    os.environ["SDL_VIDEODRIVER"] = "dummy"
+    os.environ["SDL_AUDIODRIVER"] = "dummy"
+    os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
+    sys.path.insert(0, str(WORKSPACE / "Game-client"))
+    import pygame
+    from client.application.controller import Controller
+    from client.configuration import load_config
+    from client.network.ads import AdGateway
+    from client.network.session import AuthSession
+    from client.ui.input import InputRouter
+    from client.ui.layout import build_layout
+    from client.ui.renderer import ScreenRenderer
+
+    class Network:
+        def __init__(self):
+            self.requests = []
+
+        def submit(self, request):
+            self.requests.append(dict(request))
+            return True
+
+    network = Network()
+    controller = Controller(network)
+    auth = AuthSession({"server_base_url": "http://127.0.0.1:18000"})
+    gateway = AdGateway(auth, lambda kind, **data: controller.handle_network_event({"kind": kind, **data}))
+    pygame.display.init()
+    pygame.font.init()
+    pygame.display.set_mode((1100, 880))
+    try:
+        identity = await auth.login("game-validation", os.environ["DAY22_IMAGE_TEST_PASSWORD"])
+        controller.game.apply_identity(identity.state)
+        controller.game.apply_status("connected", controller.game.epoch)
+        controller.game.apply_state(identity.state, controller.game.epoch, first=True)
+        controller.app.phase = "connected"
+        gateway.set_identity(identity)
+        layout = build_layout((1100, 880))
+        renderer = ScreenRenderer(pygame.display.get_surface(), load_config())
+
+        async def pump():
+            while network.requests:
+                request = network.requests.pop(0)
+                if request["kind"] == "ad":
+                    await gateway.fetch(request)
+                elif request["kind"] == "ad_event":
+                    await gateway.fetch_event(request)
+                else:
+                    raise AssertionError("Unexpected fixture request")
+
+        for slot in controller.ads.slots:
+            controller.request_ad(slot, now=0)
+        await pump()
+        assert all(slot.status == "ready" for slot in controller.ads.slots.values())
+        assert not any(slot.displayed or slot.impression_ok for slot in controller.ads.slots.values())
+        # Change the current bid before an impression; its event must retain 20.
+        advertiser = Web("http://127.0.0.1:18001", "ads_csrftoken")
+        advertiser.get("/accounts/login/")
+        advertiser.post("/accounts/login/", {"username": "ad-validation", "password": os.environ["DAY22_IMAGE_TEST_PASSWORD"]})
+        advertiser.post("/advertiser/bids/", {"campaign_id": "forest-tools", "bid_amount": 30})
+        before_page = advertiser.get("/advertiser/events/").decode("utf-8")
+        assert "미기록" in before_page
+        assert all(slot.decision["decision_id"] in before_page for slot in controller.ads.slots.values())
+        # No event POST occurred before this real rendering step.
+        receipts = renderer.render(controller.screen_model(), layout, 60)
+        assert set(receipts) == set(controller.ads.slots)
+        controller.confirm_ad_display(receipts)
+        await pump()
+        village = controller.ads.slots["village-board"]
+        lobby = controller.ads.slots["lobby-banner"]
+        assert village.impression_ok and not village.click_ok
+        assert not lobby.impression_ok and not lobby.click_ok
+        renderer.render(controller.screen_model(), layout, 60)
+        pygame.image.save(renderer.canvas, str(REPORT / "impression-confirmed.png"))
+        for slot_id in ("village-board",):
+            event = pygame.event.Event(pygame.MOUSEBUTTONDOWN, button=1, pos=layout.ad_cards[slot_id].center)
+            intent = InputRouter().route(event, layout, controller.app, controller.queries)
+            assert intent == {"kind": "ad_click", "slot_id": slot_id}
+            controller.handle_intent(intent)
+        await pump()
+        assert village.click_ok and not lobby.click_ok
+        controller.handle_intent({"kind": "ad_click", "slot_id": "village-board"})
+        assert not network.requests
+        page = advertiser.get("/advertiser/events/").decode("utf-8")
+        assert village.decision["decision_id"] in page and "forest-tools" in page
+        duplicates = []
+        for slot in (village,):
+            for event_type in ("impression", "click"):
+                await auth.refresh_csrf()
+                result = await auth.request_json("POST", "/api/ads/events/", csrf=True,
+                    payload={"decision_id": slot.decision["decision_id"], "event_type": event_type})
+                assert result["created"] is False
+                duplicates.append(result["event_id"])
+        renderer.render(controller.screen_model(), layout, 60)
+        pygame.image.save(renderer.canvas, str(REPORT / "click-confirmed.png"))
+        output = {"player_id": identity.player_id, "decisions": receipts,
+                  "duplicate_receipts": duplicates, "simulated_clicks": True}
+        (owned / "render-result.json").write_text(json.dumps(output, indent=2), encoding="utf-8")
+    finally:
+        await gateway.close()
+        await auth.close()
+        pygame.quit()
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--mongod")
+    parser.add_argument("--component", choices=["ad", "game", "render"])
+    parser.add_argument("--owned", type=Path)
+    args = parser.parse_args()
+    if args.component:
+        if args.component == "render":
+            asyncio.run(render_flow(args.owned))
+        else:
+            child(args.component, args.owned)
+        return 0
+    if not args.mongod:
+        parser.error("--mongod is required")
+    from pymongo import MongoClient
+    from pymongo.errors import PyMongoError
+    for port in (27109, 18000, 18001):
+        with socket.socket() as sock:
+            sock.bind(("127.0.0.1", port))
+    owned = ROOT / "infra/runtime" / ("day23-events-" + uuid.uuid4().hex)
+    owned.mkdir(parents=True)
+    REPORT.mkdir(parents=True, exist_ok=True)
+    processes, logs = [], []
+    env = dict(os.environ, DAY22_IMAGE_TEST_PASSWORD=uuid.uuid4().hex, PYTHONUTF8="1")
+    flags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
+
+    def start(command, name, cwd):
+        log = (owned / (name + ".log")).open("w", encoding="utf-8")
+        logs.append(log)
+        process = subprocess.Popen(command, cwd=cwd, env=env, stdout=log,
+                                   stderr=subprocess.STDOUT, creationflags=flags)
+        processes.append(process)
+        return process
+
+    direct = MongoClient("mongodb://127.0.0.1:27109/?directConnection=true", serverSelectionTimeoutMS=400)
+    try:
+        mongo = start([args.mongod, "--replSet", "ads-image-validation", "--port", "27109",
+                       "--bind_ip", "127.0.0.1", "--dbpath", str(owned)], "mongo", ROOT)
+        for _ in range(100):
+            try:
+                direct.admin.command("ping")
+                break
+            except PyMongoError:
+                if mongo.poll() is not None:
+                    raise RuntimeError("Fixture MongoDB exited")
+                time.sleep(.15)
+        else:
+            raise RuntimeError("Fixture MongoDB did not start")
+        direct.admin.command("replSetInitiate", {"_id": "ads-image-validation", "members": [{"_id": 0, "host": "127.0.0.1:27109"}]})
+        for _ in range(100):
+            if direct.admin.command("hello").get("isWritablePrimary"):
+                break
+            time.sleep(.15)
+        else:
+            raise RuntimeError("Fixture primary did not start")
+        db = direct.image_validation
+        db.ad_events.create_index([("decision_id", 1), ("event_type", 1)], unique=True, name="decision_event_once")
+        ad = start([sys.executable, "-B", __file__, "--component", "ad", "--owned", str(owned)], "ad", ROOT)
+        game_root = WORKSPACE / "Game-server"
+        game = start([str(game_root / "server/.venv/Scripts/python.exe"), "-B", __file__,
+                      "--component", "game", "--owned", str(owned)], "game", game_root)
+        wait_http("http://127.0.0.1:18001/accounts/login/", ad)
+        wait_http("http://127.0.0.1:18000/api/auth/csrf/", game)
+        advertiser = Web("http://127.0.0.1:18001", "ads_csrftoken")
+        advertiser.get("/accounts/login/")
+        advertiser.post("/accounts/login/", {"username": "ad-validation", "password": env["DAY22_IMAGE_TEST_PASSWORD"]})
+        for cid, title, slot, amount, image in (
+                ("forest-tools", "숲 도구점", "village-board", 20, "forest-tools"),
+                ("lobby-tea", "모닥불 찻집", "lobby-banner", 18, "camp-tea")):
+            advertiser.post("/advertiser/campaigns/", {"campaign_id": cid, "title": title,
+                "body": "마을에서 만나요", "creative_path": f"/static/ads/creatives/{image}.png", "slot_id": slot, "active": "on"})
+            advertiser.post("/advertiser/bids/", {"campaign_id": cid, "bid_amount": amount})
+        assert db.ad_events.count_documents({}) == 0
+        subprocess.run([str(WORKSPACE / "Game-client/.venv/Scripts/python.exe"), "-B", __file__,
+                        "--component", "render", "--owned", str(owned)], cwd=WORKSPACE / "Game-client",
+                       env=env, creationflags=flags, check=True, timeout=30)
+        result = json.loads((owned / "render-result.json").read_text(encoding="utf-8"))
+        events = list(db.ad_events.find())
+        assert len(events) == 2
+        assert all(row["subject"]["subject_id"] == "12" and row["owner_user_id"] == 101 for row in events)
+        assert all(row["bid_amount"] == (20 if row["campaign_id"] == "forest-tools" else 18) for row in events)
+        for decision_id in (result["decisions"]["village-board"],):
+            impression = db.ad_events.find_one({"_id": decision_id + ":impression"})
+            click = db.ad_events.find_one({"_id": decision_id + ":click"})
+            assert click["impression_time"] == impression["event_time"]
+        report = {"scope": "isolated MongoDB/SQLite, real authenticated HTTP, SDL dummy and simulated clicks",
+                  "classroom_databases_modified": False, "actual_student_game_observation": "not_run",
+                  "checks": {"two_slots_displayed_village_events_only": True, "first_and_duplicate": True,
+                             "snapshot_bid_before_current_change": True, "two_village_events_only": True, "advertiser_event_page": True, "confirmed_click_not_resent": True,
+                             "click_uses_impression_time": True, "session_player_subject": True},
+                  "result": result, "event_count": len(events)}
+        (REPORT / "integration.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+        print("PASS: PNG frame -> impression -> simulated rectangle click -> HTTP relay -> two immutable village events")
+        return 0
+    finally:
+        for process in reversed(processes):
+            if process.poll() is None:
+                process.terminate()
+                process.wait(timeout=10)
+        direct.close()
+        for log in logs:
+            log.close()
+        print("Fixture processes stopped; classroom data unchanged")
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

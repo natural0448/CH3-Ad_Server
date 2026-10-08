@@ -1,0 +1,34 @@
+{
+  "summary": {
+    "ok": true,
+    "python_file_count": 1
+  },
+  "git_status": "Git 상태 확인 불가: 저장소 아님",
+  "path": "ads/events.py",
+  "source_sha256": "a3de0848f1baa85ec9fdec9a56cc3f5345c0341db554e17987fb583c85cd0a78",
+  "symbols": [
+    {
+      "kind": "function",
+      "qualified_name": "record_ad_event",
+      "line": 7,
+      "signature": "record_ad_event(subject, decision_id, event_type)",
+      "signature_core": "record_ad_event(subject, decision_id, event_type)",
+      "return_annotation": null,
+      "decorators": [],
+      "bases": [],
+      "documented": true
+    }
+  ],
+  "missing_signatures": [],
+  "tests": {
+    "django_check": "passed",
+    "ad_tests": 31,
+    "isolated_http_pygame": "passed",
+    "live_events_GET_405": [
+      8000,
+      8001
+    ]
+  },
+  "prior_contents_preserved": "before-fix.txt",
+  "actual_student_game_observation": "not_run"
+}

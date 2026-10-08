@@ -1,0 +1,73 @@
+{
+  "scope": "isolated fixture MongoDB, SQLite, HTTP servers and SDL dummy frames",
+  "classroom_databases_modified": false,
+  "actual_student_game_observation": "not_run",
+  "media_key": "synthetic fixture only; no transfer of classroom secret",
+  "checks": {
+    "image_campaign_form": true,
+    "session_player_not_payload": true,
+    "bid_change_switches_image": true,
+    "earlier_snapshot_unchanged": true,
+    "game_origin_png": true,
+    "two_slots_pygame_present": true,
+    "web_browser_render": true
+  },
+  "decisions": [
+    {
+      "village-board": {
+        "decision_id": "8a4eb707-04bd-4d9f-affb-e5d49493c7b2",
+        "campaign_id": "camp-tea",
+        "title": "모닥불 찻집",
+        "slot_id": "village-board",
+        "policy_version": "highest-bid/v1",
+        "body": "마을에서 만나요",
+        "creative_path": "/static/ads/creatives/camp-tea.png",
+        "bid_amount": 20,
+        "bid_units": 20,
+        "empty": false
+      },
+      "lobby-banner": {
+        "decision_id": "8888ac1f-c378-452e-8f34-b1cade6fc2fe",
+        "campaign_id": "lobby-tea",
+        "title": "모닥불 찻집",
+        "slot_id": "lobby-banner",
+        "policy_version": "highest-bid/v1",
+        "body": "마을에서 만나요",
+        "creative_path": "/static/ads/creatives/camp-tea.png",
+        "bid_amount": 18,
+        "bid_units": 18,
+        "empty": false
+      }
+    },
+    {
+      "village-board": {
+        "decision_id": "4a08edab-bd73-4783-877e-8d7cda23cc29",
+        "campaign_id": "forest-tools",
+        "title": "숲 도구점",
+        "slot_id": "village-board",
+        "policy_version": "highest-bid/v1",
+        "body": "마을에서 만나요",
+        "creative_path": "/static/ads/creatives/forest-tools.png",
+        "bid_amount": 30,
+        "bid_units": 30,
+        "empty": false
+      },
+      "lobby-banner": {
+        "decision_id": "40d1ec52-c569-4bf5-a7c8-dd0a4b4483a4",
+        "campaign_id": "lobby-tea",
+        "title": "모닥불 찻집",
+        "slot_id": "lobby-banner",
+        "policy_version": "highest-bid/v1",
+        "body": "마을에서 만나요",
+        "creative_path": "/static/ads/creatives/camp-tea.png",
+        "bid_amount": 18,
+        "bid_units": 18,
+        "empty": false
+      }
+    }
+  ],
+  "assets": {
+    "forest-tools.png": "4f75a60e03d46523afba3c52f73c1fcbe06a7566a87eea9fb9b82320718182bf",
+    "camp-tea.png": "cfb675c1dcc7530a41956004471c8ec27cd5ae19a03d8c424074b855395497e8"
+  }
+}

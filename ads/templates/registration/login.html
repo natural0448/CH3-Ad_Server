@@ -1,0 +1,12 @@
+{% extends 'ads/base.html' %}
+{% block title %}광고주 로그인 · 마을 광고 스튜디오{% endblock %}
+{% block content %}
+<section class="login-layout"><div><p class="eyebrow">VILLAGE AD STUDIO</p><h1>당신의 소식을<br>마을에 전하세요.</h1><p class="lead">이미지와 문구로 캠페인을 만들고,<br>게시할 위치와 입찰 포인트를 정해 보세요.</p>
+<div class="mini-ad"><span>✦</span><div><strong>광고주를 위한 작은 작업실</strong><p>캠페인 제작 → 입찰 → 게임 광고 선택</p></div></div></div>
+<section class="card login-card"><p class="eyebrow">WELCOME BACK</p><h2>광고주 로그인</h2><p class="muted">광고 서버에 생성한 계정으로 로그인하세요.</p>
+{% if form.errors %}<p class="notice error">아이디와 비밀번호를 확인해 주세요.</p>{% endif %}
+<form method="post">{% csrf_token %}
+<label>아이디<input name="username" autocomplete="username" required autofocus value="{{ form.username.value|default:'' }}"></label>
+<label>비밀번호<input type="password" name="password" autocomplete="current-password" required></label>
+<input type="hidden" name="next" value="{{ next }}"><button class="primary full">작업실 들어가기</button></form></section></section>
+{% endblock %}

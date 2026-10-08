@@ -1,0 +1,47 @@
+{
+  "ad_server": {
+    "git_start": "Git 상태 확인 불가: 저장소 아님",
+    "hashes": {
+      "ads/events.py": "32e21f6b38ba0a1a6b51edd45a3e9a9aceb0f159ff2f792d16141b5ac8380627",
+      "ads/views.py": "85e30506d18e237468154679a95ad71de0298562495fcc95f98a57413633a9d3",
+      "ads/urls.py": "3df08aaf4875f3b1dd6338e4efe8993dd543b50521d989b17900502e33cf6e0f",
+      "README.md": "07c42ce3dad2d94fff78c37ac3a6ede208d4795d5272eed5bc82580d9e6bc03c",
+      "ads/media_auth.py": null,
+      "ads/test_events.py": null,
+      "ads/management/commands/ensure_ad_event_indexes.py": null,
+      "tools/basics/day23_record_observed.py": null,
+      "tools/verify_day23.py": null,
+      "ads.env": "680129196e3080ce3a151e80fe423509c1366ec0e39789b0aebc814ec220b442"
+    }
+  },
+  "Game-server": {
+    "git_start": [
+      "?? docs/server-routing/verification/day23-start-audit.json"
+    ],
+    "hashes": {
+      "server/game/ad_gateway.py": "ef20f028494d4b6f493c6beb7677bf7223929a49796b63b5cba85d686f8f64d9",
+      "server/game/ad_views.py": "707bd2d834fcb86e62f86bd8adf3831d71daf4652dad3243295c07172adc2f49",
+      "server/game/urls.py": "15899c05cc485d771cd5c8afed53dc33976281a67e9ff43cee1c319b73da8a7d",
+      "server/game/test_ads.py": "4928c884a82636445e720ece86e59e4a044555169a58e0f347599a1907efa171",
+      "server/.env": "469b1f097a6dda8a845408a0a9051c0f53053a1bf3176e67b3548a9907cfee65"
+    }
+  },
+  "Game-client": {
+    "git_start": [
+      "?? docs/client-routing/verification/day23-start-audit.json"
+    ],
+    "hashes": {
+      "client/application/ads.py": "eed1f17d0729f8a5ae6f4a9ed33deeb765f2997b9a6b90c068f382e5d934b9d3",
+      "client/application/controller.py": "b064d2bd67e94239140ac08642a1989780d10b85ab3dac9488b53e92a463faaa",
+      "client/network/ads.py": "aa6148595b583494c85ca1b194f4d9b1d8bd280c07289ea0df133d000cfdbaac",
+      "client/network/worker.py": "4034ea27d02e07391b91cee71e11b8f117c6434e1e5d40a06599575da1c522ef",
+      "client/contracts/ads.py": "74606cbd8ee6fd8c8ea7577085987c04fef6b7edd08ec05c110e0b6cee2b75a8",
+      "client/contracts/messages.py": "a567f5efd579f0ab428db2fe73eae43eda5393f61684eaa441416bc75a6ccba2",
+      "client/ui/input.py": "317a747a1c6f59cb0cdbf33a0f0410324506e122d6ee079248e0eaa83ef58a35",
+      "client/ui/ads.py": "ab94247b96c8e2cacd326e0d660dd8d9d776bfc4d82c0cb047c10b97e7ccb3b9",
+      "client/ui/renderer.py": "c4e2a04bf5ec275fa0bbeb65c2356b499873a406e346be149d4fc6ff309e06b1",
+      "client/app.py": "8cd2357c56360206ce570467b8c3409b24310308f7223069b6e1821f4696a6f5",
+      "tests/test_ads_events.py": null
+    }
+  }
+}

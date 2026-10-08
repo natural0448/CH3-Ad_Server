@@ -1,0 +1,50 @@
+{
+  "lesson_version": "revised day23 v2.3 through period2",
+  "source_comparison": {
+    "passed": 23,
+    "report": "source-comparison.json"
+  },
+  "ad": {
+    "tests": 37,
+    "passed": true,
+    "skip": 0,
+    "fixture": "isolated Mongo27107 / SQLite"
+  },
+  "game": {
+    "tests": 13,
+    "passed": true,
+    "fixture": "memory SQLite / mocked HTTP"
+  },
+  "client": {
+    "tests": 50,
+    "passed": true,
+    "fixture": "SDL dummy"
+  },
+  "existing_automatic_client_http_regression": {
+    "passed": true,
+    "fixture": "Mongo27109 / SQLite / HTTP18000-18001 / SDL dummy / simulated clicks",
+    "classroom_events_created": false,
+    "revised_lesson_period": 3
+  },
+  "practice_outputs": {
+    "subject": [
+      "dict",
+      "7"
+    ],
+    "period01": [
+      "40 30"
+    ],
+    "period02": [
+      "sample-decision:impression",
+      "sample-decision:click"
+    ],
+    "indexes": [
+      "decision_event_once",
+      "decision_event_once"
+    ]
+  },
+  "django_check": "no issues",
+  "classroom_web_readiness": "live-readiness.json",
+  "private_env_unchanged": true,
+  "actual_student_game_observation": "not_run"
+}

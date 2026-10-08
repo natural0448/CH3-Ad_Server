@@ -1,0 +1,108 @@
+{
+  "git": "not a repository",
+  "ok": true,
+  "files": [
+    {
+      "path": "ad_config/ad_config/urls.py",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/creatives.py",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/repository.py",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/services.py",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/views.py",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/tests.py",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/templates/ads/base.html",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/templates/ads/campaigns.html",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/templates/ads/bids.html",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/templates/registration/login.html",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/static/ads/advertiser.css",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/static/ads/advertiser.js",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/static/ads/creatives/forest-tools.png",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/static/ads/creatives/camp-tea.png",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "data/evidence/asset-sources.md",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "tools/verify_day22_images.py",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    },
+    {
+      "path": "README.md",
+      "document": true,
+      "indexed": true,
+      "missing_signatures": []
+    }
+  ]
+}

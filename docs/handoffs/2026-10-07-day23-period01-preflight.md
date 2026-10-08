@@ -1,0 +1,100 @@
+# 2026-10-07 · 오늘 교안 1교시 전 준비 점검
+
+> 2026-10-07 검토 주석: 아래는 해당 작업 시점의 결과를 보존한 이력입니다. 교안 버전·적용 범위·검사 수는 최신 상태와 다를 수 있습니다. [차이와 현재 상태](../server-routing/reviews/2026-10-07-lesson-deviations.md).
+
+검사 대상: 「23일차 · 기존 접속기 노출·클릭에서 광고주 웹 보고서까지」의 실행 준비 및 1교시 전제.
+결론: 기본 코드·가상환경은 준비됐지만 **실제 데이터 조회와 실제 표시 기반 노출 실습은 아직 바로 진행할 수 없다.**
+
+## 실제 확인 결과
+
+| 항목 | 결과 | 조치 |
+|---|---|---|
+| 기존 광고 .venv | Django 5.2.17 / PyMongo 4.18.2 / python-dotenv 1.2.4 확인 | 새 환경·패키지 설치 불필요 |
+| 광고 설정 로딩 | MONGO_URI 잘못 대입을 수정. 환경 주소 파싱 및 Django 모듈 유지 검증 통과 | settings.py 한 줄 수정 반영됨 |
+| config 및 mongod | node1~3 yml·데이터 폴더 존재, 설치 실행 파일 존재 | 아래 절대 경로로 실행 |
+| mongod PATH | Get-Command mongod 결과 없음 | 교안의 짧은 mongod 대신 설치 경로 사용 |
+| 현재 MongoDB | Windows MongoDB 서비스 Running, 27017 ping 성공, 복제 세트 없음 | 선택한 복제 세트 구성으로 실행 |
+| 광고 환경 연결 | 세 멤버 복제 세트 설정, 실제 ping은 ServerSelectionTimeoutError | 단일/세 멤버 구성과 환경 연결을 일치시킬 것 |
+| 광고 계정 DB | 기존 ads-auth.sqlite3 사용, 계정 0건, 미적용 migration 0 | createsuperuser로 계정 생성 |
+| 기존 단독 MongoDB 광고 자료 | 캠페인 0, forest-tools 없음, 결정 0 | 정상 연결 후 웹에서 저장 |
+| Django/광고 서버 포트 | 8000·8001 미실행 | 수업 시작 시 실행 |
+| 선택 스냅샷 계약 | 4인수 choose_ad, candidates의 owner_user_id/bid_amount, subject, chosen_campaign_id, event_time 구현됨 | 오늘 교안의 3인수 이미지용 호환 패치 불필요 |
+| Pygame 광고 표시 코드 | network_ads.py / render_ads.py / ads_panel.py / 게임 ad_gateway.py / day22-serving.json 미발견 | 실제 광고 표시 연동이 선행돼야 함 |
+| 기존 게임 접속기 기본 환경 | Python 3.12, pygame-ce 2.5.8, aiohttp 3.14.3, --check 통과 | 기본 게임 환경은 준비됨; 광고 표시 기능과 구분 |
+| ads/events.py / 고유 인덱스 | 아직 수업 구현 전 | 1교시에 작성·등록할 항목이며 사전 누락으로 보지 않음 |
+| Kafka·Spark·Connect | 공통 준비에 새로 설치하지 않음 | 오늘 교안의 범위 유지 |
+
+코드 검사: Django system check 오류 0. 실제 격리 MongoDB에서 광고 테스트 21개 통과, skip 0. 선택 당시 데이터 보존·동률·소유자 충돌·CSRF·매체 인증·빈 후보·DB 장애 응답을 확인했다. 테스트의 임시 결정은 실제 게임 표시 증거로 사용하지 않는다.
+
+## 오늘 교안의 단일 멤버 방식으로 준비하는 순서
+
+다음은 **사용자가 실행할 준비 절차**이며 아직 서비스 변경/계정 생성/실데이터 저장은 적용하지 않았다. 비밀번호는 본인이 입력한다. 새 .env나 새 프로젝트를 만들 필요가 없다.
+
+1. 현재 27017을 사용하는 기존 MongoDB 서비스를 관리자 PowerShell에서 중지한다.
+
+~~~powershell
+Stop-Service MongoDB
+~~~
+
+2. 기존 ad_server/ads.env의 MONGO_URI 항목만 오늘 단일 멤버 구성에 맞게 변경한다. 연결 목표는 localhost:27017, replicaSet=ads-rs다. 현재 비밀 파일 내용은 이 문서에 복사하지 않았다. 서비스 데이터 폴더는 수업용 데이터 폴더로 복사하거나 삭제하지 않는다.
+
+3. 일반 PowerShell 터미널 A에서 MongoDB를 실행하고 터미널을 유지한다.
+
+~~~powershell
+Set-Location C:\MLO01-01\Chapter3\ad_server
+& "C:\Program Files\MongoDB\Server\8.3\bin\mongod.exe" --config config/mongo-node1.yml
+~~~
+
+4. 터미널 B에서 기존 가상환경을 활성화한다. 수업용 node1 데이터 폴더를 처음 초기화하는 경우에만 단일 멤버를 등록한다.
+
+~~~powershell
+Set-Location C:\MLO01-01\Chapter3\ad_server
+.\.venv\Scripts\Activate.ps1
+python -c "from pymongo import MongoClient; print(MongoClient('mongodb://localhost:27017/?directConnection=true',serverSelectionTimeoutMS=3000).admin.command('replSetInitiate', {'_id':'ads-rs','members':[{'_id':0,'host':'localhost:27017'}]}))"
+python tools/basics/day22_period01.py
+~~~
+
+마지막 명령의 ping이 성공한 뒤 진행한다. 이미 초기화한 데이터에는 replSetInitiate를 반복하지 않는다. 세 멤버 구성을 계속 사용할 경우 환경 파일을 바꾸지 않고 README.md의 node1~3 실행/초기화 순서를 사용한다.
+
+5. 계정을 생성한 뒤 광고 서버를 8001에서 실행한다.
+
+~~~powershell
+python ad_config/manage.py check
+python ad_config/manage.py createsuperuser
+python ad_config/manage.py runserver 127.0.0.1:8001
+~~~
+
+6. http://127.0.0.1:8001/accounts/login/ 에 로그인한다. 캠페인 화면에서 forest-tools를 등록하고 활성화한다. title/body 및 슬롯을 입력하며, 입찰 화면에서 같은 캠페인 ID에 금액을 저장한다. 자동 시딩하지 않아 실제 광고주 입력으로 소유자가 정해진다.
+
+7. 터미널 C에서 아래 조회로 1교시 초급 준비를 확인한다.
+
+~~~powershell
+Set-Location C:\MLO01-01\Chapter3\ad_server
+.\.venv\Scripts\Activate.ps1
+python ad_config/manage.py shell
+~~~
+
+~~~python
+from ads.mongo import get_db
+campaign = get_db().campaigns.find_one({"_id": "forest-tools"})
+print("캠페인 없음" if campaign is None else campaign["title"])
+~~~
+
+이 조회는 노출 사건을 만들지 않는다.
+
+## 1교시 실습 중 구분할 것
+
+- 새 ads/events.py 작성과 decision_event_once 고유 인덱스 등록은 1교시 과제다. 이번 사전 점검에서 앞서 구현하지 않았다.
+- 노출은 Pygame 실제 표시 이후, 클릭은 실제 클릭 이후에 기록한다. 선택 API의 성공만으로 impression을 제출하지 않는다.
+- 현재 ad_server의 텍스트 응답은 campaign_id/title/body/bid_amount다. 오늘 교안이 언급한 이미지 접속기의 empty/creative_path/bid_units 코드와 그대로 교체할 수 없다.
+- 현재 Game-client는 client/application·network·ui 등으로 분리된 구조이며 오늘 교안의 client/controller.py·render.py에 그대로 붙일 수 없다. 실제 파일 위치와 책임을 맞추는 별도 게임 광고 연동이 필요하다.
+- 현 폴더에서 실제 광고 표시 증거·새 subject/decision ID가 없으므로 1교시의 “실제 표시된 결정” 검증은 아직 미확인이다.
+
+## Git 경계와 변경 보존
+
+- Chapter3/ad_server 및 상위 C:/MLO01-01: 최종 Git 조회는 저장소 아님. 최초 상위 조회의 권한 오류는 별도 기록했고 최종 재조회에서 확인했다. Git으로 사용자/에이전트 변경을 비교할 수 없어 시작 파일 해시 목록과 이번 변경 목록으로 구분했다.
+- Game-server: 직전 커밋 2ae4712 day21 - finish. 사전부터 day19~21의 평면 실습 파일 24개 삭제 상태, day19/day20/day21/day22 폴더 untracked. staged 변경 없음. 게임 코드는 읽기만 했고 이 상태를 변경하지 않았다.
+- Game-client: 직전 커밋 50b2f00 day20-finish. staged/unstaged/untracked 없음. 읽기와 --check만 실행했다.
+- 기존 ads.env 값, 실제 키·비밀번호·쿠키·세션·CSRF 토큰은 기록하지 않았다.
+- 광고 설정 수정은 동기화 파일의 짝 문서에 최종 반영했다. docs/server-routing/verification/day22-sync-audit.json 검사 통과.
+

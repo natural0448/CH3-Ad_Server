@@ -1,0 +1,263 @@
+{
+  "ad_server": {
+    "initial_git": "Git 상태 확인 불가: 저장소 아님",
+    "changes": [
+      {
+        "path": "ads/events.py",
+        "state": "modified",
+        "sha256": "86ede6909adfa8db7316502e633c97fe18b232ace44e0181c699c6ece3309db1"
+      },
+      {
+        "path": "ads/views.py",
+        "state": "modified",
+        "sha256": "3a44168ccc8941eb9b2ba30fc09517cce4f31a7b93e83642e981bfc2137b8c5d"
+      },
+      {
+        "path": "ads/urls.py",
+        "state": "modified",
+        "sha256": "f48e6cc886449fc6184d3fbd5a4f85e2b894d5deee1608ac5df90cdf93968b07"
+      },
+      {
+        "path": "README.md",
+        "state": "modified",
+        "sha256": "3ec70bb43e2de4cc40297bd825895557909647bfd0c39c037c9907d7edb4efc2"
+      },
+      {
+        "path": "ads/media_auth.py",
+        "state": "added",
+        "sha256": "f16d2f6cab2d6d512159e75cca856066f61930ba84575d94e848343c9d5512ef"
+      },
+      {
+        "path": "ads/test_events.py",
+        "state": "added",
+        "sha256": "87f060e540c7d8b609bc3328de459f23f46f3a1f39ee3408be32de1f3809a992"
+      },
+      {
+        "path": "ads/management/commands/ensure_ad_event_indexes.py",
+        "state": "added",
+        "sha256": "382ff323bf2aa2a375ff4a01d6e752db301ec47af06fe9c694189155775bb26a"
+      },
+      {
+        "path": "tools/basics/day23_record_observed.py",
+        "state": "added",
+        "sha256": "32e21f6b38ba0a1a6b51edd45a3e9a9aceb0f159ff2f792d16141b5ac8380627"
+      },
+      {
+        "path": "tools/verify_day23.py",
+        "state": "added",
+        "sha256": "39468e22c83e861a34f1b06cd0813b63af04ed036e0a2700a0d46ccb820a4a09"
+      }
+    ],
+    "routing_documents": [
+      "docs/server-routing/files/ads/events.py.md",
+      "docs/server-routing/files/ads/views.py.md",
+      "docs/server-routing/files/ads/urls.py.md",
+      "docs/server-routing/files/README.md.md",
+      "docs/server-routing/files/ads/media_auth.py.md",
+      "docs/server-routing/files/ads/test_events.py.md",
+      "docs/server-routing/files/ads/management/commands/ensure_ad_event_indexes.py.md",
+      "docs/server-routing/files/tools/basics/day23_record_observed.py.md",
+      "docs/server-routing/files/tools/verify_day23.py.md"
+    ],
+    "final_git_status": "Git 상태 확인 불가: 저장소 아님",
+    "final_audit_ok": true
+  },
+  "Game-server": {
+    "initial_git": {
+      "schema_version": 1,
+      "repository": "C:\\MLO01-01\\Chapter3\\Game-server",
+      "git_head": "6aa5329 22일차 - 진행사항 반영",
+      "git_status": [],
+      "routing_dir": "docs/server-routing",
+      "scope": "working_tree",
+      "changed_paths": [],
+      "python_files": [],
+      "issues": [],
+      "summary": {
+        "changed_path_count": 0,
+        "python_file_count": 0,
+        "symbol_count": 0,
+        "issue_count": 0,
+        "ok": true
+      }
+    },
+    "changes": [
+      {
+        "path": "server/game/ad_gateway.py",
+        "state": "modified",
+        "sha256": "846c338940695e5e1af630e081383a714d4fa281fa6dec6068938a8b5a9043ae"
+      },
+      {
+        "path": "server/game/ad_views.py",
+        "state": "modified",
+        "sha256": "973eff1c974209db94836e8460a2cd524dad8485efb9892efcba612a76600486"
+      },
+      {
+        "path": "server/game/urls.py",
+        "state": "modified",
+        "sha256": "da56c29a95480b9c08af082017ac2db4828488a82f0b73485e9299f94dfe45e8"
+      },
+      {
+        "path": "server/game/test_ads.py",
+        "state": "modified",
+        "sha256": "2a5b71a05fbb712ca6832d07a891f762cd8a5be95c544f1ad5ae6bcab5066bc2"
+      }
+    ],
+    "routing_documents": [
+      "docs/server-routing/files/server/game/ad_gateway.py.md",
+      "docs/server-routing/files/server/game/ad_views.py.md",
+      "docs/server-routing/files/server/game/urls.py.md",
+      "docs/server-routing/files/server/game/test_ads.py.md"
+    ],
+    "final_git_status": [
+      " M docs/server-routing/README.md",
+      " M docs/server-routing/files/server/game/ad_gateway.py.md",
+      " M docs/server-routing/files/server/game/ad_views.py.md",
+      " M docs/server-routing/files/server/game/test_ads.py.md",
+      " M docs/server-routing/files/server/game/urls.py.md",
+      " M server/game/ad_gateway.py",
+      " M server/game/ad_views.py",
+      " M server/game/test_ads.py",
+      " M server/game/urls.py",
+      "?? docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "?? docs/server-routing/verification/day23-final-audit.json",
+      "?? docs/server-routing/verification/day23-start-audit.json"
+    ],
+    "final_audit_ok": true
+  },
+  "Game-client": {
+    "initial_git": {
+      "schema_version": 1,
+      "repository": "C:\\MLO01-01\\Chapter3\\Game-client",
+      "git_head": "2dd8d97 22일차 내용 반영",
+      "git_status": [],
+      "routing_dir": "docs/client-routing",
+      "scope": "working_tree",
+      "changed_paths": [],
+      "python_files": [],
+      "issues": [],
+      "summary": {
+        "changed_path_count": 0,
+        "python_file_count": 0,
+        "symbol_count": 0,
+        "issue_count": 0,
+        "ok": true
+      }
+    },
+    "changes": [
+      {
+        "path": "client/application/ads.py",
+        "state": "modified",
+        "sha256": "e720cee45f524a815e944995db6ea668ee325c7b2925fee1b8cc3fdc4081093c"
+      },
+      {
+        "path": "client/application/controller.py",
+        "state": "modified",
+        "sha256": "c0c62f65620ee72cb12ec87eaf46724f5d5de9e0e3e2fbe0d62be0b236b7269c"
+      },
+      {
+        "path": "client/network/ads.py",
+        "state": "modified",
+        "sha256": "3b13bc7f787fff7ec8a0254dec50575652577a366c8dd44068934e8fc07de034"
+      },
+      {
+        "path": "client/network/worker.py",
+        "state": "modified",
+        "sha256": "590c09acb1f5ee91cf688ab976d79cba405045fc3407024517610bdccf6a3e88"
+      },
+      {
+        "path": "client/contracts/ads.py",
+        "state": "modified",
+        "sha256": "2c3bd86692e21ad5f1099a1af06bd770dca408d9a16675b42b38da61dee92418"
+      },
+      {
+        "path": "client/contracts/messages.py",
+        "state": "modified",
+        "sha256": "d6a249565b8ead2d25eb63ef88877cda5533f2402af93d62cb88f8683386cf81"
+      },
+      {
+        "path": "client/ui/input.py",
+        "state": "modified",
+        "sha256": "58b1b35d5151ce087aec3bb3d388f83aea2b800eab671e35795a0753cb9f6ad6"
+      },
+      {
+        "path": "client/ui/ads.py",
+        "state": "modified",
+        "sha256": "859a5c008b754c3f8c7fca6baa2453b0db87beafed06f04698b3fc82424eec8f"
+      },
+      {
+        "path": "client/ui/renderer.py",
+        "state": "modified",
+        "sha256": "27a02114c680126771003676e3857b7367412a5eb82355f3789128dd168d6869"
+      },
+      {
+        "path": "client/app.py",
+        "state": "modified",
+        "sha256": "08e73b9bda0fee0d50f12aba3702320a90b549a31264f7fd7eccc907e6972e8d"
+      },
+      {
+        "path": "tests/test_ads_events.py",
+        "state": "added",
+        "sha256": "7ed5c8c6262f6fd5477ed674d3015b17c6862ee755a9f75aaabab3833f151e29"
+      }
+    ],
+    "routing_documents": [
+      "docs/client-routing/files/client/application/ads.py.md",
+      "docs/client-routing/files/client/application/controller.py.md",
+      "docs/client-routing/files/client/network/ads.py.md",
+      "docs/client-routing/files/client/network/worker.py.md",
+      "docs/client-routing/files/client/contracts/ads.py.md",
+      "docs/client-routing/files/client/contracts/messages.py.md",
+      "docs/client-routing/files/client/ui/input.py.md",
+      "docs/client-routing/files/client/ui/ads.py.md",
+      "docs/client-routing/files/client/ui/renderer.py.md",
+      "docs/client-routing/files/client/app.py.md",
+      "docs/client-routing/files/tests/test_ads_events.py.md"
+    ],
+    "final_git_status": [
+      " M client/app.py",
+      " M client/application/ads.py",
+      " M client/application/controller.py",
+      " M client/contracts/ads.py",
+      " M client/contracts/messages.py",
+      " M client/network/ads.py",
+      " M client/network/worker.py",
+      " M client/ui/ads.py",
+      " M client/ui/input.py",
+      " M client/ui/renderer.py",
+      " M docs/client-routing/README.md",
+      " M docs/client-routing/files/client/app.py.md",
+      " M docs/client-routing/files/client/application/ads.py.md",
+      " M docs/client-routing/files/client/application/controller.py.md",
+      " M docs/client-routing/files/client/contracts/ads.py.md",
+      " M docs/client-routing/files/client/contracts/messages.py.md",
+      " M docs/client-routing/files/client/network/ads.py.md",
+      " M docs/client-routing/files/client/network/worker.py.md",
+      " M docs/client-routing/files/client/ui/ads.py.md",
+      " M docs/client-routing/files/client/ui/input.py.md",
+      " M docs/client-routing/files/client/ui/renderer.py.md",
+      "?? docs/client-routing/files/tests/test_ads_events.py.md",
+      "?? docs/client-routing/verification/day23-final-audit.json",
+      "?? docs/client-routing/verification/day23-start-audit.json",
+      "?? docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+      "?? tests/test_ads_events.py"
+    ],
+    "final_audit_ok": true
+  },
+  "preserved": {
+    "original_exercise_bytes": true,
+    "ad_env_unchanged": true,
+    "game_env_unchanged": true
+  },
+  "validation": {
+    "ad_tests": 31,
+    "game_server_tests": 11,
+    "client_tests": 48,
+    "test_skips": 0,
+    "client_paired_documents": 77,
+    "isolated_http_pygame_integration": "passed",
+    "real_event_routes": "POST-only verified",
+    "classroom_unique_index": "verified",
+    "real_student_observation": "not_run"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "ad_server": {
+    "changes": [
+      {
+        "path": "README.md",
+        "state": "modified",
+        "sha256": "e6136a3ec0352582335c78091be902d42c900e21a1dc0ff78f7b45dee3cfb45a"
+      },
+      {
+        "path": "tools/verify_day23.py",
+        "state": "modified",
+        "sha256": "d7289a7a55aa37ba746713133217f36be895b5cf3e366ec4524416c8d9aba7bf"
+      },
+      {
+        "path": "config/day23-period-03.py",
+        "state": "added",
+        "sha256": "554114975c1078658c4445243559fd4651ad00b235834ff8404bf67ac6d81a79"
+      }
+    ],
+    "routing_documents": [
+      "docs/server-routing/files/README.md.md",
+      "docs/server-routing/files/tools/verify_day23.py.md",
+      "docs/server-routing/files/config/day23-period-03.py.md"
+    ]
+  },
+  "Game-client": {
+    "changes": [
+      {
+        "path": "README.md",
+        "state": "modified",
+        "sha256": "62947638bad6651364fa171787244b9bfa5d1ff4fca79c151aa7e5851a79b3b0"
+      },
+      {
+        "path": "client/app.py",
+        "state": "modified",
+        "sha256": "3aa539fbe508572d67306073bd323fd4ffdb328d84b128d2135f4492caf76d7e"
+      },
+      {
+        "path": "client/application/ads.py",
+        "state": "modified",
+        "sha256": "d8830212ca3e2915df55bacf45d012a01aa80123f21090d12386fec0df1ce8e8"
+      },
+      {
+        "path": "client/application/controller.py",
+        "state": "modified",
+        "sha256": "3df34aa4ef7c92bc68622128c893cf4d0f8cb90bf0223de0fb6aad30731203fd"
+      },
+      {
+        "path": "client/network/ads.py",
+        "state": "modified",
+        "sha256": "5998d60a1c890299c2935e8ada82b543af1e8101c7c55dbdee95d1a9a3fafb0b"
+      },
+      {
+        "path": "client/network/session.py",
+        "state": "modified",
+        "sha256": "1e1d7ebca9dd6cba6043ff12d51759386c74c662493ba8d04cc3bd16e8deece2"
+      },
+      {
+        "path": "client/network/http.py",
+        "state": "modified",
+        "sha256": "89149a93291bf0feb5846cf2cb8d5babebdc54149129cfb15256b946dca5fba8"
+      },
+      {
+        "path": "client/contracts/messages.py",
+        "state": "modified",
+        "sha256": "cfec9f20dcfda8d509d6a3b40463cf21ff6a7f1fb76779703ad9ebf5d2ab7cb2"
+      },
+      {
+        "path": "client/ui/ads.py",
+        "state": "modified",
+        "sha256": "156a07e947b101d91535eb93e6276f94650cba9dba7a382e92dc9610b9e6f1fe"
+      },
+      {
+        "path": "tests/test_ads_events.py",
+        "state": "modified",
+        "sha256": "bad561ea03a6ac9212d6f9af309b2ad5d4b50090e522ae4dc930c593d3ebbfc0"
+      },
+      {
+        "path": "tests/test_ads_feature.py",
+        "state": "modified",
+        "sha256": "7a2f7949589fbdac0f89cbf272c4f3adfa292ec6466e44d139ed44d2efd00505"
+      }
+    ],
+    "routing_documents": [
+      "docs/client-routing/files/README.md.md",
+      "docs/client-routing/files/client/app.py.md",
+      "docs/client-routing/files/client/application/ads.py.md",
+      "docs/client-routing/files/client/application/controller.py.md",
+      "docs/client-routing/files/client/network/ads.py.md",
+      "docs/client-routing/files/client/network/session.py.md",
+      "docs/client-routing/files/client/network/http.py.md",
+      "docs/client-routing/files/client/contracts/messages.py.md",
+      "docs/client-routing/files/client/ui/ads.py.md",
+      "docs/client-routing/files/tests/test_ads_events.py.md",
+      "docs/client-routing/files/tests/test_ads_feature.py.md"
+    ]
+  }
+}

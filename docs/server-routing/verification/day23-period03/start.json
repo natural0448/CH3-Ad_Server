@@ -1,0 +1,106 @@
+{
+  "ad_server": {
+    "hashes": {
+      "README.md": "e42568305e11e2ae6f21e56b3f24635c6f9e4d4872dfaf078914abdb811a5a64",
+      "tools/verify_day23.py": "39468e22c83e861a34f1b06cd0813b63af04ed036e0a2700a0d46ccb820a4a09",
+      "config/day23-period-03.py": null
+    },
+    "git_start": {
+      "status": "Git 상태 확인 불가: 저장소 아님"
+    }
+  },
+  "Game-client": {
+    "hashes": {
+      "README.md": "ae0c64039a6988e92e22c59fe2fcc6cbd159f504d133f0aa36b833477a2df704",
+      "client/app.py": "08e73b9bda0fee0d50f12aba3702320a90b549a31264f7fd7eccc907e6972e8d",
+      "client/application/ads.py": "02ff7fa90597bdc4f5f54c26522aeb7af5823be6b20a610ef5f5acde34553aed",
+      "client/application/controller.py": "9c98bd6957cf1d895179d90396ab2ffa4b6e6afd3ba7404f6e3e411724088a19",
+      "client/network/ads.py": "1102c6f7179df449da1145279b758e05b64258113938e862e03989fbcf97a041",
+      "client/network/session.py": "8e1a84235365d08e486e245d959b3eb201b8cbc7ab5652b55168e10939fb8d07",
+      "client/network/http.py": "2e66a4f31198b897a1f2808f321c646912b4b8521e27c9c0b381d5f11a8c70f9",
+      "client/contracts/messages.py": "a3f9e3cc6d78338430c9d745061a1f7150f9eef1c75e007b1d2da2d1531fb3a1",
+      "client/ui/ads.py": "859a5c008b754c3f8c7fca6baa2453b0db87beafed06f04698b3fc82424eec8f",
+      "client/ui/renderer.py": "27a02114c680126771003676e3857b7367412a5eb82355f3789128dd168d6869",
+      "tests/test_ads_events.py": "e54b7cd697b8af2cda414c679e05a779297cb765e2e7e548adc71fd621f29799",
+      "tests/test_ads_feature.py": "660f7a9cd58b12686b3204ba5415d9b343749c0d3dfff0c89bdf4368aac99744"
+    },
+    "git_start": {
+      "head": [
+        "2dd8d97 22일차 내용 반영"
+      ],
+      "status": [
+        " M client/app.py",
+        " M client/application/ads.py",
+        " M client/application/controller.py",
+        " M client/contracts/ads.py",
+        " M client/contracts/messages.py",
+        " M client/network/ads.py",
+        " M client/network/session.py",
+        " M client/network/worker.py",
+        " M client/ui/ads.py",
+        " M client/ui/input.py",
+        " M client/ui/renderer.py",
+        " M docs/client-routing/README.md",
+        " M docs/client-routing/files/client/app.py.md",
+        " M docs/client-routing/files/client/application/ads.py.md",
+        " M docs/client-routing/files/client/application/controller.py.md",
+        " M docs/client-routing/files/client/contracts/ads.py.md",
+        " M docs/client-routing/files/client/contracts/messages.py.md",
+        " M docs/client-routing/files/client/network/ads.py.md",
+        " M docs/client-routing/files/client/network/session.py.md",
+        " M docs/client-routing/files/client/network/worker.py.md",
+        " M docs/client-routing/files/client/ui/ads.py.md",
+        " M docs/client-routing/files/client/ui/input.py.md",
+        " M docs/client-routing/files/client/ui/renderer.py.md",
+        "?? docs/client-routing/files/tests/test_ads_events.py.md",
+        "?? docs/client-routing/verification/day23-final-audit.json",
+        "?? docs/client-routing/verification/day23-start-audit.json",
+        "?? docs/client-routing/verification/lesson-align-final-audit.json",
+        "?? docs/client-routing/verification/lesson-align-start-audit.json",
+        "?? docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md",
+        "?? docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+        "?? tests/test_ads_events.py"
+      ],
+      "staged": [],
+      "unstaged": [
+        "M\tclient/app.py",
+        "M\tclient/application/ads.py",
+        "M\tclient/application/controller.py",
+        "M\tclient/contracts/ads.py",
+        "M\tclient/contracts/messages.py",
+        "M\tclient/network/ads.py",
+        "M\tclient/network/session.py",
+        "M\tclient/network/worker.py",
+        "M\tclient/ui/ads.py",
+        "M\tclient/ui/input.py",
+        "M\tclient/ui/renderer.py",
+        "M\tdocs/client-routing/README.md",
+        "M\tdocs/client-routing/files/client/app.py.md",
+        "M\tdocs/client-routing/files/client/application/ads.py.md",
+        "M\tdocs/client-routing/files/client/application/controller.py.md",
+        "M\tdocs/client-routing/files/client/contracts/ads.py.md",
+        "M\tdocs/client-routing/files/client/contracts/messages.py.md",
+        "M\tdocs/client-routing/files/client/network/ads.py.md",
+        "M\tdocs/client-routing/files/client/network/session.py.md",
+        "M\tdocs/client-routing/files/client/network/worker.py.md",
+        "M\tdocs/client-routing/files/client/ui/ads.py.md",
+        "M\tdocs/client-routing/files/client/ui/input.py.md",
+        "M\tdocs/client-routing/files/client/ui/renderer.py.md"
+      ],
+      "untracked": [
+        "docs/client-routing/files/tests/test_ads_events.py.md",
+        "docs/client-routing/verification/day23-final-audit.json",
+        "docs/client-routing/verification/day23-start-audit.json",
+        "docs/client-routing/verification/lesson-align-final-audit.json",
+        "docs/client-routing/verification/lesson-align-start-audit.json",
+        "docs/handoffs/2026-10-07-day22-day23-revised-lesson-alignment.md",
+        "docs/handoffs/2026-10-07-day23-period01-02-sync.md",
+        "tests/test_ads_events.py"
+      ]
+    }
+  },
+  "private_env_hashes": {
+    "ad_server/ads.env": "680129196e3080ce3a151e80fe423509c1366ec0e39789b0aebc814ec220b442",
+    "Game-server/server/.env": "469b1f097a6dda8a845408a0a9051c0f53053a1bf3176e67b3548a9907cfee65"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "summary": {
+    "normalized_check_count": 23,
+    "normalized_pass": true,
+    "raw_ast_same": 14,
+    "raw_ast_different": 8,
+    "not_ast_comparable": 1,
+    "day23_period3_request_ad_event_raw_ast_equal": true,
+    "day23_period3_legacy_basic_matches_current": false
+  },
+  "sources": {
+    "C:\\Users\\이해나\\Desktop\\22일차 · 광고 플랫폼이 광고주의 광고를 게임 유저에게 집행한다.html": "f0b7376bb7fc121aed7e3147ed1470cc8ffc90c9e8ce1c550b4847210ca13a67",
+    "C:\\Users\\이해나\\Desktop\\현재 ad_server에서 노출·클릭과 광고주 보고서 완성하기.html": "e71c2dac0b38748b171c5691de46b64fe361dd8682a8d5303ad13176aa004e0f"
+  },
+  "checks": [
+    {
+      "day": 22,
+      "code_block": 50,
+      "file": "ad_server/ads/repository.py",
+      "function": "validate_id",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 22,
+      "code_block": 50,
+      "file": "ad_server/ads/repository.py",
+      "function": "get_campaign",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 22,
+      "code_block": 50,
+      "file": "ad_server/ads/repository.py",
+      "function": "list_campaigns",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 22,
+      "code_block": 59,
+      "file": "ad_server/ads/repository.py",
+      "function": "list_bids",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 22,
+      "code_block": 59,
+      "file": "ad_server/ads/repository.py",
+      "function": "save_bid",
+      "adaptation": "revised day23 period1 returns the saved bids document using the existing owner filter",
+      "ok": true,
+      "raw_reference_ast_equal": false
+    },
+    {
+      "day": 22,
+      "code_block": 38,
+      "file": "ad_server/ads/auth_views.py",
+      "function": "csrf_token",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 22,
+      "code_block": 38,
+      "file": "ad_server/ads/auth_views.py",
+      "function": "logout_view",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 22,
+      "code_block": 37,
+      "file": "ad_server/ads/mongo.py",
+      "function": "get_db",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 22,
+      "code_block": 60,
+      "file": "ad_server/ads/views.py",
+      "function": "bid_view",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 22,
+      "code_block": 80,
+      "file": "Game-server/server/game/ad_views.py",
+      "function": "ad_decision",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 23,
+      "code_block": 15,
+      "file": "ad_server/ads/events.py",
+      "function": "record_ad_event",
+      "adaptation": "reject non-string JSON type without a 500; all other function statements match v2.3",
+      "ok": true,
+      "raw_reference_ast_equal": false
+    },
+    {
+      "day": 23,
+      "code_block": 16,
+      "file": "ad_server/ads/views.py",
+      "function": "event_view",
+      "adaptation": "retain the current media handler name and combined views.py",
+      "ok": true,
+      "raw_reference_ast_equal": false
+    },
+    {
+      "day": 23,
+      "code_block": 21,
+      "file": "ad_server/ads/views.py",
+      "function": "advertiser_event_view",
+      "adaptation": "combined views.py uses a distinct name for the advertiser GET handler",
+      "ok": true,
+      "raw_reference_ast_equal": false
+    },
+    {
+      "day": 22,
+      "code_block": 67,
+      "file": "ad_server/ads/services.py",
+      "function": "choose_ad",
+      "adaptation": "revised day23 snapshot owner/time; preserve four arguments, image fields and bid_amount schema",
+      "ok": true,
+      "raw_reference_ast_equal": false
+    },
+    {
+      "day": 23,
+      "code_block": 19,
+      "file": "Game-server/server/game/ad_views.py",
+      "function": "ad_event",
+      "adaptation": "retain the current ad_views.py handler and existing game/urls.py route",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 23,
+      "code_block": 2,
+      "file": "ad_server/config/day23-subject.py",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 23,
+      "code_block": 3,
+      "file": "ad_server/config/day23-period-01.py",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 23,
+      "code_block": 13,
+      "file": "ad_server/config/day23-period-02.py",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 23,
+      "code_block": 8,
+      "file": "ad_server/ads/management/commands/create_ad_indexes.py",
+      "adaptation": "none",
+      "ok": true,
+      "raw_reference_ast_equal": true
+    },
+    {
+      "day": 23,
+      "code_block": 22,
+      "file": "ad_server/ads/templates/ads/events.html",
+      "adaptation": "existing base template/navigation; future reports link omitted until implemented",
+      "ok": true,
+      "raw_reference_ast_equal": "not_applicable: template or non-Python comparison"
+    },
+    {
+      "day": 22,
+      "code_block": 23,
+      "file": "ad_server/tools/day22_connection.py",
+      "adaptation": "existing ads.env/root .env and existing default village_ads",
+      "ok": true,
+      "raw_reference_ast_equal": false
+    },
+    {
+      "day": 22,
+      "code_block": 29,
+      "file": "ad_server/tools/day22_crud.py",
+      "adaptation": "existing ads.env/root .env and existing default village_ads",
+      "ok": true,
+      "raw_reference_ast_equal": false
+    },
+    {
+      "day": 22,
+      "code_block": 95,
+      "file": "ad_server/tools/basics/day22_credit_model.py",
+      "adaptation": "existing main entrypoint",
+      "ok": true,
+      "raw_reference_ast_equal": false
+    }
+  ],
+  "current_period3_basic": "def reply():\n    return 200, {\"ok\": True}\n\nstatus, data = reply()\nprint(status == 200 and data.get(\"ok\") is True)\nprint(data.get(\"missing\"))\n"
+}

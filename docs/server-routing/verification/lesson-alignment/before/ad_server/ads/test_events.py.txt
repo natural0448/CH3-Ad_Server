@@ -1,0 +1,130 @@
+"""Real isolated MongoDB event uniqueness, snapshot and media-auth tests."""
+import json
+import os
+import uuid
+from concurrent.futures import ThreadPoolExecutor
+from unittest import skipUnless
+from unittest.mock import patch
+
+from django.core.management import call_command
+from django.test import Client, SimpleTestCase, TestCase, override_settings
+from pymongo import MongoClient
+from pymongo.errors import PyMongoError
+
+from ads.events import record_ad_event
+from ads.services import choose_ad
+
+
+@override_settings(MEDIA_KEYS={"village-game": "test-event-key"})
+class EventAuthTests(SimpleTestCase):
+    def test_media_key_json_subject_and_post_are_required(self):
+        client = Client(enforce_csrf_checks=True)
+        self.assertEqual(client.get("/api/media/events/").status_code, 405)
+        body = {"media_id": "village-game", "subject": {"media_id": "village-game", "subject_id": "7"},
+                "decision_id": "d1", "event_type": "impression"}
+        self.assertEqual(client.post("/api/media/events/", data=json.dumps(body), content_type="application/json").status_code, 403)
+        for bad, content_type in [("{", "application/json"), ("[]", "application/json"),
+                                 (json.dumps(body), "text/plain"),
+                                 (json.dumps({**body, "subject": {"media_id": "other", "subject_id": "7"}}), "application/json")]:
+            with self.subTest(bad=bad), patch("ads.views.record_ad_event") as record:
+                response = client.post("/api/media/events/", data=bad, content_type=content_type,
+                                       HTTP_X_MEDIA_KEY="test-event-key")
+                self.assertEqual(response.status_code, 400)
+                record.assert_not_called()
+
+    def test_store_outage_is_503_and_no_private_exception_is_exposed(self):
+        with patch("ads.views.record_ad_event", side_effect=PyMongoError("internal fixture")):
+            response = self.client.post("/api/media/events/", content_type="application/json",
+                data=json.dumps({"media_id": "village-game", "subject": {"media_id": "village-game", "subject_id": "7"},
+                                 "decision_id": "d1", "event_type": "impression"}), HTTP_X_MEDIA_KEY="test-event-key")
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.json(), {"error": "ads_unavailable"})
+
+
+@skipUnless(os.environ.get("ADS_TEST_MONGO_URI"), "Requires isolated ADS_TEST_MONGO_URI")
+class EventIntegrationTests(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.connection = MongoClient(os.environ["ADS_TEST_MONGO_URI"], serverSelectionTimeoutMS=3000)
+        cls.database = cls.connection["ads_events_test_" + uuid.uuid4().hex]
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.connection.drop_database(cls.database.name)
+        cls.connection.close()
+        super().tearDownClass()
+
+    def setUp(self):
+        for name in ("campaigns", "bids", "decisions", "ad_events"):
+            self.database[name].delete_many({})
+        for target in ("ads.events.get_db", "ads.services.get_db", "ads.management.commands.ensure_ad_event_indexes.get_db"):
+            fixture = patch(target, return_value=self.database)
+            fixture.start()
+            self.addCleanup(fixture.stop)
+        call_command("ensure_ad_event_indexes", verbosity=0)
+        self.database.campaigns.insert_one({"_id": "forest-tools", "campaign_id": "forest-tools",
+            "owner_user_id": 101, "slot_id": "village-board", "title": "숲 도구점", "body": "도구",
+            "active": True, "creative_path": "/static/ads/creatives/forest-tools.png"})
+        self.database.bids.insert_one({"_id": "forest-tools", "owner_user_id": 101, "bid_amount": 20})
+        self.subject = {"media_id": "village-game", "subject_id": "7"}
+        self.decision = choose_ad("village-game", "7", "village-board", {})
+
+    def test_first_duplicate_click_and_snapshot_amount(self):
+        did = self.decision["decision_id"]
+        self.database.bids.update_one({"_id": "forest-tools"}, {"$set": {"bid_amount": 30}})
+        self.assertEqual(self.database.ad_events.count_documents({}), 0)
+        first = record_ad_event(self.subject, did, "impression")
+        saved = self.database.ad_events.find_one({"_id": first["event_id"]})
+        duplicate = record_ad_event(self.subject, did, "impression")
+        self.assertTrue(first["created"]);self.assertFalse(duplicate["created"])
+        self.assertEqual(first["event_id"], duplicate["event_id"])
+        self.assertEqual(saved, self.database.ad_events.find_one({"_id": first["event_id"]}))
+        click = record_ad_event(self.subject, did, "click")
+        self.assertTrue(click["created"])
+        self.assertFalse(record_ad_event(self.subject, did, "click")["created"])
+        row = self.database.ad_events.find_one({"_id": click["event_id"]})
+        self.assertEqual(row["impression_time"], saved["event_time"])
+        self.assertEqual(row["bid_amount"], 20)
+        self.assertEqual(row["owner_user_id"], 101)
+        self.assertEqual(row["schema_version"], "ad-event/v1")
+        self.assertEqual(self.database.ad_events.count_documents({"decision_id": did}), 2)
+
+    def test_click_before_impression_wrong_subject_and_empty_decision(self):
+        did = self.decision["decision_id"]
+        for subject, decision_id, kind in [(self.subject, did, "click"),
+                ({**self.subject, "subject_id": "other"}, did, "impression"),
+                (self.subject, "not-found", "impression")]:
+            with self.subTest(kind=kind, decision_id=decision_id), self.assertRaises(ValueError):
+                record_ad_event(subject, decision_id, kind)
+        empty = choose_ad("village-game", "7", "lobby-banner", {})
+        with self.assertRaises(ValueError):record_ad_event(self.subject, empty["decision_id"], "impression")
+        self.assertEqual(self.database.ad_events.count_documents({}), 0)
+
+    def test_concurrent_duplicates_have_one_first_write(self):
+        did = self.decision["decision_id"]
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            results = list(pool.map(lambda _: record_ad_event(self.subject, did, "impression"), range(12)))
+        self.assertEqual(sum(row["created"] for row in results), 1)
+        self.assertEqual(self.database.ad_events.count_documents({"decision_id": did}), 1)
+        self.assertTrue(self.database.ad_events.index_information()["decision_event_once"]["unique"])
+
+    def test_invalid_types_and_missing_candidate_are_input_errors(self):
+        did = self.decision["decision_id"]
+        for subject, decision_id, kind in [(None, did, "impression"), ({**self.subject, "extra": True}, did, "impression"),
+                ({**self.subject, "subject_id": 7}, did, "impression"), (self.subject, None, "impression"),
+                (self.subject, did, []), (self.subject, did, "conversion")]:
+            with self.subTest(kind=kind), self.assertRaises(ValueError):record_ad_event(subject, decision_id, kind)
+        self.database.decisions.update_one({"_id": did}, {"$set": {"candidates": []}})
+        with self.assertRaises(ValueError):record_ad_event(self.subject, did, "impression")
+
+    @override_settings(MEDIA_KEYS={"village-game": "test-event-key"})
+    def test_real_media_event_endpoint_duplicate_and_nonhashable_type(self):
+        body = {"media_id": "village-game", "subject": self.subject,
+                "decision_id": self.decision["decision_id"], "event_type": "impression"}
+        client = Client(enforce_csrf_checks=True)
+        first = client.post("/api/media/events/", data=json.dumps(body), content_type="application/json", HTTP_X_MEDIA_KEY="test-event-key")
+        duplicate = client.post("/api/media/events/", data=json.dumps(body), content_type="application/json", HTTP_X_MEDIA_KEY="test-event-key")
+        self.assertTrue(first.json()["created"]);self.assertFalse(duplicate.json()["created"])
+        invalid = client.post("/api/media/events/", data=json.dumps({**body, "event_type": []}), content_type="application/json", HTTP_X_MEDIA_KEY="test-event-key")
+        self.assertEqual(invalid.status_code, 400)

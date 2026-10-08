@@ -1,0 +1,67 @@
+{
+  "scope": "startup-fix",
+  "git_collection_available": false,
+  "git_reason": "not a Git repository",
+  "python_files": [
+    {
+      "path": "ad_config/ads_manage.py",
+      "parse_error": null,
+      "document_exists": true,
+      "indexed": true,
+      "signatures": [],
+      "missing_signatures": []
+    },
+    {
+      "path": "ad_config/ad_config/settings.py",
+      "parse_error": null,
+      "document_exists": true,
+      "indexed": true,
+      "signatures": [],
+      "missing_signatures": []
+    },
+    {
+      "path": "ad_config/ad_config/urls.py",
+      "parse_error": null,
+      "document_exists": true,
+      "indexed": true,
+      "signatures": [],
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/auth_views.py",
+      "parse_error": null,
+      "document_exists": true,
+      "indexed": true,
+      "signatures": [
+        "csrf_token(request)",
+        "read_credentials(request)",
+        "login_view(request)",
+        "logout_view(request)"
+      ],
+      "missing_signatures": []
+    },
+    {
+      "path": "ads/tests.py",
+      "parse_error": null,
+      "document_exists": true,
+      "indexed": true,
+      "signatures": [
+        "class AuthenticationTests(TestCase)",
+        "AuthenticationTests.setUpTestData(cls)",
+        "AuthenticationTests.setUp(self)",
+        "AuthenticationTests.csrf_headers(self)",
+        "AuthenticationTests.test_csrf_cookie_and_get_only_endpoint(self)",
+        "AuthenticationTests.test_login_requires_csrf(self)",
+        "AuthenticationTests.test_invalid_login_bodies_are_rejected(self)",
+        "AuthenticationTests.test_incorrect_password_is_rejected(self)",
+        "AuthenticationTests.test_login_and_logout_use_advertiser_session(self)",
+        "AuthenticationTests.test_admin_route_is_available(self)"
+      ],
+      "missing_signatures": []
+    }
+  ],
+  "summary": {
+    "ok": true,
+    "checked_files": 5
+  }
+}

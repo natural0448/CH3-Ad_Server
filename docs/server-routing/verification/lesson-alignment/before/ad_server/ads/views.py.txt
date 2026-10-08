@@ -1,0 +1,108 @@
+import json
+import secrets
+
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods, require_POST
+from pymongo.errors import PyMongoError
+
+from .repository import list_bids, list_campaigns, save_bid, save_campaign
+from .services import choose_ad
+from .creatives import CREATIVES
+from .events import record_ad_event
+from .media_auth import read_media_body
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def campaign_view(request):
+    message, status, campaigns = "", 200, []
+    try:
+        if request.method == "POST":
+            save_campaign(request.user.id, request.POST)
+            message = "캠페인을 저장했습니다."
+        campaigns = list_campaigns(request.user.id)
+    except ValueError as exc:
+        message, status = str(exc), 400
+    except PyMongoError:
+        message, status = "MongoDB에 연결할 수 없습니다.", 503
+    form_campaign = next((row for row in campaigns if row["campaign_id"] == request.GET.get("edit")), None)
+    if request.method == "POST" and status != 200:
+        form_campaign = {name: request.POST.get(name, "") for name in
+                         ("campaign_id", "title", "body", "slot_id", "creative_path")}
+        form_campaign["active"] = request.POST.get("active") == "on"
+    return render(request, "ads/campaigns.html",
+                  {"campaigns": campaigns, "message": message,
+                   "form_campaign": form_campaign, "creatives": CREATIVES}, status=status)
+
+
+@login_required
+@require_http_methods(["GET", "POST"])
+def bid_view(request):
+    message, status, bids = "", 200, []
+    try:
+        if request.method == "POST":
+            save_bid(request.user.id, request.POST.get("campaign_id", ""),
+                     request.POST.get("bid_amount", ""))
+            message = "입찰을 저장했습니다."
+        bids = list_bids(request.user.id)
+    except ValueError as exc:
+        message, status = str(exc), 400
+    except PyMongoError:
+        message, status = "MongoDB에 연결할 수 없습니다.", 503
+    return render(request, "ads/bids.html", {"bids": bids, "message": message}, status=status)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def decision_view(request):
+    try:
+        payload = json.loads(request.body)
+        if not isinstance(payload, dict):
+            raise ValueError("JSON 객체를 보내세요.")
+        media_id = payload.get("media_id")
+        if not isinstance(media_id, str):
+            raise ValueError("매체 ID를 확인하세요.")
+        expected_key = settings.MEDIA_KEYS.get(media_id, "")
+        supplied_key = request.headers.get("X-Media-Key", "")
+        if not expected_key or not secrets.compare_digest(
+                expected_key.encode("utf-8"), supplied_key.encode("utf-8")):
+            return JsonResponse({"error": "매체 인증이 필요합니다."}, status=403)
+        subject = payload.get("subject")
+        if not isinstance(subject, dict) or subject.get("media_id") != media_id:
+            raise ValueError("대상의 매체 ID를 확인하세요.")
+        decision = choose_ad(media_id, subject.get("subject_id"),
+                             payload.get("slot_id"), payload.get("context", {}))
+        if decision["chosen_campaign_id"] is None:
+            return JsonResponse({"ad": None})
+        return JsonResponse({
+            "empty": False,
+            "decision_id": decision["decision_id"],
+            "campaign_id": decision["chosen_campaign_id"],
+            "title": decision["creative"]["title"], "body": decision["creative"]["body"],
+            "slot_id": decision["slot_id"], "bid_amount": decision["chosen_bid_amount"],
+            "bid_units": decision["chosen_bid_amount"],
+            "creative_path": decision["creative"].get("creative_path", ""),
+            "policy_version": decision["policy_version"],
+        })
+    except (ValueError, UnicodeDecodeError):
+        return JsonResponse({"error": "JSON 입력과 필드 값을 확인하세요."}, status=400)
+    except PyMongoError:
+        return JsonResponse({"error": "MongoDB에 연결할 수 없습니다."}, status=503)
+
+
+@csrf_exempt
+@require_POST
+def event_view(request):
+    try:
+        body, subject = read_media_body(request)
+        return JsonResponse(record_ad_event(subject, body.get("decision_id"), body.get("event_type")))
+    except PermissionError:
+        return JsonResponse({"error": "media_auth_required"}, status=403)
+    except (ValueError, UnicodeDecodeError):
+        return JsonResponse({"error": "invalid_event"}, status=400)
+    except PyMongoError:
+        return JsonResponse({"error": "ads_unavailable"}, status=503)

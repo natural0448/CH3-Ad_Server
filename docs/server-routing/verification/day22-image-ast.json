@@ -1,0 +1,636 @@
+[
+  {
+    "path": "ads/creatives.py",
+    "errors": null,
+    "symbols": [
+      {
+        "kind": "function",
+        "qualified_name": "validate_creative",
+        "line": 11,
+        "signature": "validate_creative(value)",
+        "signature_core": "validate_creative(value)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "path": "ads/repository.py",
+    "errors": null,
+    "symbols": [
+      {
+        "kind": "function",
+        "qualified_name": "validate_id",
+        "line": 13,
+        "signature": "validate_id(value, label='ID')",
+        "signature_core": "validate_id(value, label='ID')",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "get_campaign",
+        "line": 19,
+        "signature": "get_campaign(campaign_id)",
+        "signature_core": "get_campaign(campaign_id)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "list_campaigns",
+        "line": 23,
+        "signature": "list_campaigns(owner_user_id)",
+        "signature_core": "list_campaigns(owner_user_id)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "save_campaign",
+        "line": 28,
+        "signature": "save_campaign(owner_user_id, data)",
+        "signature_core": "save_campaign(owner_user_id, data)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "list_bids",
+        "line": 57,
+        "signature": "list_bids(owner_user_id)",
+        "signature_core": "list_bids(owner_user_id)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "save_bid",
+        "line": 62,
+        "signature": "save_bid(owner_user_id, campaign_id, bid_amount)",
+        "signature_core": "save_bid(owner_user_id, campaign_id, bid_amount)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "path": "ads/services.py",
+    "errors": null,
+    "symbols": [
+      {
+        "kind": "function",
+        "qualified_name": "choose_ad",
+        "line": 10,
+        "signature": "choose_ad(media_id, subject_id, slot_id, context)",
+        "signature_core": "choose_ad(media_id, subject_id, slot_id, context)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "path": "ads/views.py",
+    "errors": null,
+    "symbols": [
+      {
+        "kind": "function",
+        "qualified_name": "campaign_view",
+        "line": 19,
+        "signature": "campaign_view(request)",
+        "signature_core": "campaign_view(request)",
+        "return_annotation": null,
+        "decorators": [
+          "login_required",
+          "require_http_methods(['GET', 'POST'])"
+        ],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "bid_view",
+        "line": 42,
+        "signature": "bid_view(request)",
+        "signature_core": "bid_view(request)",
+        "return_annotation": null,
+        "decorators": [
+          "login_required",
+          "require_http_methods(['GET', 'POST'])"
+        ],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "decision_view",
+        "line": 59,
+        "signature": "decision_view(request)",
+        "signature_core": "decision_view(request)",
+        "return_annotation": null,
+        "decorators": [
+          "csrf_exempt",
+          "require_http_methods(['POST'])"
+        ],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "path": "ads/tests.py",
+    "errors": null,
+    "symbols": [
+      {
+        "kind": "class",
+        "qualified_name": "AuthenticationTests",
+        "line": 15,
+        "signature": "class AuthenticationTests(TestCase)",
+        "signature_core": "AuthenticationTests",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [
+          "TestCase"
+        ],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "AuthenticationTests.setUpTestData",
+        "line": 17,
+        "signature": "AuthenticationTests.setUpTestData(cls)",
+        "signature_core": "AuthenticationTests.setUpTestData(cls)",
+        "return_annotation": null,
+        "decorators": [
+          "classmethod"
+        ],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "AuthenticationTests.setUp",
+        "line": 24,
+        "signature": "AuthenticationTests.setUp(self)",
+        "signature_core": "AuthenticationTests.setUp(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "AuthenticationTests.csrf_headers",
+        "line": 27,
+        "signature": "AuthenticationTests.csrf_headers(self)",
+        "signature_core": "AuthenticationTests.csrf_headers(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "AuthenticationTests.test_csrf_cookie_and_get_only_endpoint",
+        "line": 32,
+        "signature": "AuthenticationTests.test_csrf_cookie_and_get_only_endpoint(self)",
+        "signature_core": "AuthenticationTests.test_csrf_cookie_and_get_only_endpoint(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "AuthenticationTests.test_login_requires_csrf",
+        "line": 38,
+        "signature": "AuthenticationTests.test_login_requires_csrf(self)",
+        "signature_core": "AuthenticationTests.test_login_requires_csrf(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "AuthenticationTests.test_invalid_login_bodies_are_rejected",
+        "line": 46,
+        "signature": "AuthenticationTests.test_invalid_login_bodies_are_rejected(self)",
+        "signature_core": "AuthenticationTests.test_invalid_login_bodies_are_rejected(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "AuthenticationTests.test_incorrect_password_is_rejected",
+        "line": 59,
+        "signature": "AuthenticationTests.test_incorrect_password_is_rejected(self)",
+        "signature_core": "AuthenticationTests.test_incorrect_password_is_rejected(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "AuthenticationTests.test_login_and_logout_use_advertiser_session",
+        "line": 68,
+        "signature": "AuthenticationTests.test_login_and_logout_use_advertiser_session(self)",
+        "signature_core": "AuthenticationTests.test_login_and_logout_use_advertiser_session(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "AuthenticationTests.test_admin_route_is_available",
+        "line": 83,
+        "signature": "AuthenticationTests.test_admin_route_is_available(self)",
+        "signature_core": "AuthenticationTests.test_admin_route_is_available(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "AuthenticationTests.test_browser_login_and_protected_pages",
+        "line": 87,
+        "signature": "AuthenticationTests.test_browser_login_and_protected_pages(self)",
+        "signature_core": "AuthenticationTests.test_browser_login_and_protected_pages(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "AuthenticationTests.test_database_outage_is_a_rendered_503",
+        "line": 99,
+        "signature": "AuthenticationTests.test_database_outage_is_a_rendered_503(self)",
+        "signature_core": "AuthenticationTests.test_database_outage_is_a_rendered_503(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "AuthenticationTests.test_media_authentication_precedes_selection",
+        "line": 106,
+        "signature": "AuthenticationTests.test_media_authentication_precedes_selection(self)",
+        "signature_core": "AuthenticationTests.test_media_authentication_precedes_selection(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "class",
+        "qualified_name": "ServingIntegrationTests",
+        "line": 118,
+        "signature": "class ServingIntegrationTests(TestCase)",
+        "signature_core": "ServingIntegrationTests",
+        "return_annotation": null,
+        "decorators": [
+          "skipUnless(os.environ.get('ADS_TEST_MONGO_URI'), 'Set ADS_TEST_MONGO_URI for isolated MongoDB integration tests')"
+        ],
+        "bases": [
+          "TestCase"
+        ],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.setUpClass",
+        "line": 120,
+        "signature": "ServingIntegrationTests.setUpClass(cls)",
+        "signature_core": "ServingIntegrationTests.setUpClass(cls)",
+        "return_annotation": null,
+        "decorators": [
+          "classmethod"
+        ],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.tearDownClass",
+        "line": 127,
+        "signature": "ServingIntegrationTests.tearDownClass(cls)",
+        "signature_core": "ServingIntegrationTests.tearDownClass(cls)",
+        "return_annotation": null,
+        "decorators": [
+          "classmethod"
+        ],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.setUp",
+        "line": 134,
+        "signature": "ServingIntegrationTests.setUp(self)",
+        "signature_core": "ServingIntegrationTests.setUp(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.campaign",
+        "line": 145,
+        "signature": "ServingIntegrationTests.campaign(self, campaign_id, slot_id='village-board', active='on')",
+        "signature_core": "ServingIntegrationTests.campaign(self, campaign_id, slot_id='village-board', active='on')",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_owner_collision_keeps_original_document",
+        "line": 151,
+        "signature": "ServingIntegrationTests.test_owner_collision_keeps_original_document(self)",
+        "signature_core": "ServingIntegrationTests.test_owner_collision_keeps_original_document(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_invalid_campaign_fields_do_not_write",
+        "line": 161,
+        "signature": "ServingIntegrationTests.test_invalid_campaign_fields_do_not_write(self)",
+        "signature_core": "ServingIntegrationTests.test_invalid_campaign_fields_do_not_write(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_bid_updates_one_document_and_rejects_bad_values",
+        "line": 170,
+        "signature": "ServingIntegrationTests.test_bid_updates_one_document_and_rejects_bad_values(self)",
+        "signature_core": "ServingIntegrationTests.test_bid_updates_one_document_and_rejects_bad_values(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_bid_checks_owner_existence_and_active_status",
+        "line": 180,
+        "signature": "ServingIntegrationTests.test_bid_checks_owner_existence_and_active_status(self)",
+        "signature_core": "ServingIntegrationTests.test_bid_checks_owner_existence_and_active_status(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_bid_owner_collision_is_not_overwritten",
+        "line": 189,
+        "signature": "ServingIntegrationTests.test_bid_owner_collision_is_not_overwritten(self)",
+        "signature_core": "ServingIntegrationTests.test_bid_owner_collision_is_not_overwritten(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_changed_bid_does_not_change_past_decision",
+        "line": 196,
+        "signature": "ServingIntegrationTests.test_changed_bid_does_not_change_past_decision(self)",
+        "signature_core": "ServingIntegrationTests.test_changed_bid_does_not_change_past_decision(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_tie_slot_and_invalid_candidate_filtering",
+        "line": 208,
+        "signature": "ServingIntegrationTests.test_tie_slot_and_invalid_candidate_filtering(self)",
+        "signature_core": "ServingIntegrationTests.test_tie_slot_and_invalid_candidate_filtering(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_empty_selection_and_nested_context_snapshot",
+        "line": 221,
+        "signature": "ServingIntegrationTests.test_empty_selection_and_nested_context_snapshot(self)",
+        "signature_core": "ServingIntegrationTests.test_empty_selection_and_nested_context_snapshot(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_web_forms_render_and_save_with_csrf",
+        "line": 233,
+        "signature": "ServingIntegrationTests.test_web_forms_render_and_save_with_csrf(self)",
+        "signature_core": "ServingIntegrationTests.test_web_forms_render_and_save_with_csrf(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_media_api_subject_validation_and_response",
+        "line": 247,
+        "signature": "ServingIntegrationTests.test_media_api_subject_validation_and_response(self)",
+        "signature_core": "ServingIntegrationTests.test_media_api_subject_validation_and_response(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_media_api_empty_candidate_response",
+        "line": 264,
+        "signature": "ServingIntegrationTests.test_media_api_empty_candidate_response(self)",
+        "signature_core": "ServingIntegrationTests.test_media_api_empty_candidate_response(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_shared_mongo_client_connects_and_closes",
+        "line": 273,
+        "signature": "ServingIntegrationTests.test_shared_mongo_client_connects_and_closes(self)",
+        "signature_core": "ServingIntegrationTests.test_shared_mongo_client_connects_and_closes(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_image_campaign_and_decision_keep_original_creative",
+        "line": 281,
+        "signature": "ServingIntegrationTests.test_image_campaign_and_decision_keep_original_creative(self)",
+        "signature_core": "ServingIntegrationTests.test_image_campaign_and_decision_keep_original_creative(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_image_paths_reject_remote_traversal_and_missing_files",
+        "line": 305,
+        "signature": "ServingIntegrationTests.test_image_paths_reject_remote_traversal_and_missing_files(self)",
+        "signature_core": "ServingIntegrationTests.test_image_paths_reject_remote_traversal_and_missing_files(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ServingIntegrationTests.test_campaign_edit_form_is_owner_scoped_and_contains_preview",
+        "line": 315,
+        "signature": "ServingIntegrationTests.test_campaign_edit_form_is_owner_scoped_and_contains_preview(self)",
+        "signature_core": "ServingIntegrationTests.test_campaign_edit_form_is_owner_scoped_and_contains_preview(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "path": "ad_config/ad_config/urls.py",
+    "errors": null,
+    "symbols": []
+  },
+  {
+    "path": "tools/verify_day22_images.py",
+    "errors": null,
+    "symbols": [
+      {
+        "kind": "function",
+        "qualified_name": "child",
+        "line": 21,
+        "signature": "child(component, owned)",
+        "signature_core": "child(component, owned)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "class",
+        "qualified_name": "Web",
+        "line": 93,
+        "signature": "class Web",
+        "signature_core": "Web",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Web.__init__",
+        "line": 94,
+        "signature": "Web.__init__(self, base, csrf_name='csrftoken')",
+        "signature_core": "Web.__init__(self, base, csrf_name='csrftoken')",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Web.get",
+        "line": 100,
+        "signature": "Web.get(self, path)",
+        "signature_core": "Web.get(self, path)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Web.csrf",
+        "line": 104,
+        "signature": "Web.csrf(self)",
+        "signature_core": "Web.csrf(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Web.post",
+        "line": 107,
+        "signature": "Web.post(self, path, fields, json_body=False)",
+        "signature_core": "Web.post(self, path, fields, json_body=False)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "wait_http",
+        "line": 116,
+        "signature": "wait_http(url, process)",
+        "signature_core": "wait_http(url, process)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "main",
+        "line": 129,
+        "signature": "main()",
+        "signature_core": "main()",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  }
+]
