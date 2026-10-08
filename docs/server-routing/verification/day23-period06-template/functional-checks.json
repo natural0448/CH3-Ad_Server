@@ -1,0 +1,29 @@
+{
+  "checks": {
+    "existing_report_view_matches_lesson": true,
+    "existing_load_command_matches_lesson": true,
+    "initial_report_template_matched_lesson": true,
+    "nine_report_bindings_preserved": true,
+    "logged_in_owner_pk_forwarded": true,
+    "ctr_zero_to_one_3_decimal": true,
+    "original_iso_timestamps_preserved": true,
+    "reports_navigation_current": true,
+    "nine_headers_preserved": true,
+    "nine_cells_per_fixture_row": true,
+    "empty_state": true,
+    "database_failure_503": true,
+    "anonymous_redirect": true,
+    "authenticated_post_405": true,
+    "report_fields_autoescaped": true
+  },
+  "source_file_changes": [
+    "ads/templates/ads/reports.html",
+    "ads/templates/ads/base.html",
+    "ads/static/ads/advertiser.css"
+  ],
+  "django_system_check": "passed",
+  "fixture_data_only": true,
+  "server_start_or_stop_performed": false,
+  "mongodb_publish_performed": false,
+  "initial_fixture_host_error": "RequestFactory testserver was rejected by existing ALLOWED_HOSTS; corrected fixture host to 127.0.0.1 without changing settings."
+}

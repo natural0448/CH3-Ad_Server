@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "repository": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "git_head": "9b0aaa1 day23-ad_sever 준비",
+  "git_status": [
+    "?? ads/management/commands/build_ad_reports.py",
+    "?? ads/reporting.py",
+    "?? docs/server-routing/verification/day23-period05-location-fix/"
+  ],
+  "routing_dir": "docs/server-routing",
+  "scope": "working_tree",
+  "changed_paths": [
+    "ads/management/commands/build_ad_reports.py",
+    "ads/reporting.py",
+    "docs/server-routing/verification/day23-period05-location-fix/before/ads/management/commands/build_ad_reports.py.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/before/ads/reporting.py.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/before/docs/server-routing/README.md.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/reference-reporting.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/start.json"
+  ],
+  "python_files": [
+    {
+      "path": "ads/management/commands/build_ad_reports.py",
+      "state": "present",
+      "document": "docs/server-routing/files/ads/management/commands/build_ad_reports.py.md",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 9,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 12,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 16,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "function",
+          "qualified_name": "build_daily_reports",
+          "line": 22,
+          "signature": "build_daily_reports(events, generated_at=None)",
+          "signature_core": "build_daily_reports(events, generated_at=None)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/reporting.py",
+      "state": "present",
+      "document": "docs/server-routing/files/ads/reporting.py.md",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "publish_reports",
+          "line": 8,
+          "signature": "publish_reports(rows)",
+          "signature_core": "publish_reports(rows)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "function",
+          "qualified_name": "list_reports",
+          "line": 22,
+          "signature": "list_reports(owner_user_id)",
+          "signature_core": "list_reports(owner_user_id)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    }
+  ],
+  "issues": [
+    {
+      "code": "missing_document",
+      "path": "ads/management/commands/build_ad_reports.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/management/commands/build_ad_reports.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ads/reporting.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/reporting.py"
+    }
+  ],
+  "summary": {
+    "changed_path_count": 7,
+    "python_file_count": 2,
+    "symbol_count": 6,
+    "issue_count": 4,
+    "ok": false
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "stopped_owned_background_pid": 32736,
+  "replica_set_before": "ads-rs",
+  "forced_shutdown": false,
+  "shutdown_connection_closed": true,
+  "port_27017_free": true,
+  "lesson_lock_pid_after": "",
+  "background_restarted": false
+}

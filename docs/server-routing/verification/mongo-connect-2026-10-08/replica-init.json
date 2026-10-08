@@ -1,0 +1,9 @@
+{
+  "expected_database_path_verified": true,
+  "expected_replica_startup_verified": true,
+  "initialized_now": false,
+  "existing_replica_set": "ads-rs",
+  "existing_members": [
+    "localhost:27017"
+  ]
+}

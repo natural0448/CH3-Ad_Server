@@ -1,0 +1,28 @@
+{
+  "method": "Existing authenticated HTTP page via in-app browser; no agent server startup or login performed",
+  "url": "http://127.0.0.1:8001/advertiser/reports/",
+  "observed_live_report_rows": 3,
+  "desktop": {
+    "viewport_width": 1280,
+    "viewport_height": 720,
+    "page_client_width": 1265,
+    "page_scroll_width": 1265,
+    "table_client_width": 1040,
+    "table_scroll_width": 1040,
+    "header_count": 9
+  },
+  "mobile": {
+    "viewport_width": 390,
+    "viewport_height": 844,
+    "page_client_width": 375,
+    "page_scroll_width": 375,
+    "table_client_width": 295,
+    "table_scroll_width": 1000,
+    "all_menu_links_fit": true
+  },
+  "screenshots_visually_inspected": true,
+  "viewport_reset": true,
+  "browser_tab_marked_deliverable": true,
+  "local_file_preview_browser_rejected": true,
+  "local_file_preview_browser_rejection_reason": "file: protocol not allowed; did not bypass. Used existing application HTTP page for live verification."
+}

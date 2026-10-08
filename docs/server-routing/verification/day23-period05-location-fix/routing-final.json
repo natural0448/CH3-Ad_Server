@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "repository": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "git_head": "9b0aaa1 day23-ad_sever 준비",
+  "git_status": [
+    " M docs/server-routing/README.md",
+    "?? ads/management/commands/build_ad_reports.py",
+    "?? ads/reporting.py",
+    "?? docs/handoffs/2026-10-08-day23-period05-function-location-fix.md",
+    "?? docs/server-routing/files/ads/management/commands/build_ad_reports.py.md",
+    "?? docs/server-routing/files/ads/reporting.py.md",
+    "?? docs/server-routing/verification/day23-period05-location-fix/"
+  ],
+  "routing_dir": "docs/server-routing",
+  "scope": "working_tree",
+  "changed_paths": [
+    "ads/management/commands/build_ad_reports.py",
+    "ads/reporting.py",
+    "docs/handoffs/2026-10-08-day23-period05-function-location-fix.md",
+    "docs/server-routing/README.md",
+    "docs/server-routing/files/ads/management/commands/build_ad_reports.py.md",
+    "docs/server-routing/files/ads/reporting.py.md",
+    "docs/server-routing/verification/day23-period05-location-fix/before-docs/ads/management/commands/build_ad_reports.py.md.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/before-docs/ads/reporting.py.md.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/before/ads/management/commands/build_ad_reports.py.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/before/ads/reporting.py.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/before/docs/server-routing/README.md.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/build-command.stderr.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/build-command.stdout.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/git-after-code-verification.json",
+    "docs/server-routing/verification/day23-period05-location-fix/reference-command.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/reference-reporting.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/routing-before.json",
+    "docs/server-routing/verification/day23-period05-location-fix/routing-user-code-documented.json",
+    "docs/server-routing/verification/day23-period05-location-fix/start.json",
+    "docs/server-routing/verification/day23-period05-location-fix/verification.json"
+  ],
+  "python_files": [
+    {
+      "path": "ads/management/commands/build_ad_reports.py",
+      "state": "present",
+      "document": "docs/server-routing/files/ads/management/commands/build_ad_reports.py.md",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 7,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 10,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 14,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/reporting.py",
+      "state": "present",
+      "document": "docs/server-routing/files/ads/reporting.py.md",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "build_daily_reports",
+          "line": 8,
+          "signature": "build_daily_reports(events, generated_at=None)",
+          "signature_core": "build_daily_reports(events, generated_at=None)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "publish_reports",
+          "line": 62,
+          "signature": "publish_reports(rows)",
+          "signature_core": "publish_reports(rows)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "list_reports",
+          "line": 76,
+          "signature": "list_reports(owner_user_id)",
+          "signature_core": "list_reports(owner_user_id)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    }
+  ],
+  "issues": [],
+  "summary": {
+    "changed_path_count": 20,
+    "python_file_count": 2,
+    "symbol_count": 6,
+    "issue_count": 0,
+    "ok": true
+  }
+}

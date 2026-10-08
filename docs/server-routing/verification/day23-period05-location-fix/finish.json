@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-08",
+  "git": {
+    "head": [
+      "9b0aaa1 day23-ad_sever 준비"
+    ],
+    "status": [
+      " M docs/server-routing/README.md",
+      "?? ads/management/commands/build_ad_reports.py",
+      "?? ads/reporting.py",
+      "?? docs/handoffs/2026-10-08-day23-period05-function-location-fix.md",
+      "?? docs/server-routing/files/ads/management/commands/build_ad_reports.py.md",
+      "?? docs/server-routing/files/ads/reporting.py.md",
+      "?? docs/server-routing/verification/day23-period05-location-fix/"
+    ],
+    "staged": [],
+    "unstaged": [
+      "M\tdocs/server-routing/README.md"
+    ],
+    "untracked": [
+      "ads/management/commands/build_ad_reports.py",
+      "ads/reporting.py",
+      "docs/handoffs/2026-10-08-day23-period05-function-location-fix.md",
+      "docs/server-routing/files/ads/management/commands/build_ad_reports.py.md",
+      "docs/server-routing/files/ads/reporting.py.md",
+      "docs/server-routing/verification/day23-period05-location-fix/before-docs/ads/management/commands/build_ad_reports.py.md.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/before-docs/ads/reporting.py.md.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/before/ads/management/commands/build_ad_reports.py.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/before/ads/reporting.py.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/before/docs/server-routing/README.md.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/build-command.stderr.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/build-command.stdout.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/finish.json",
+      "docs/server-routing/verification/day23-period05-location-fix/git-after-code-verification.json",
+      "docs/server-routing/verification/day23-period05-location-fix/reference-command.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/reference-reporting.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/routing-before.json",
+      "docs/server-routing/verification/day23-period05-location-fix/routing-final.json",
+      "docs/server-routing/verification/day23-period05-location-fix/routing-user-code-documented.json",
+      "docs/server-routing/verification/day23-period05-location-fix/start.json",
+      "docs/server-routing/verification/day23-period05-location-fix/verification.json"
+    ]
+  },
+  "existing_user_source_files_modified_by_this_task": [
+    "ads/reporting.py",
+    "ads/management/commands/build_ad_reports.py"
+  ],
+  "new_development_files": [],
+  "source_files_moved_or_deleted": [],
+  "environment_preserved": {
+    "ads.env": true
+  },
+  "input_ndjson_preserved": true,
+  "generated_output_is_git_ignored": true,
+  "other_project_status": {
+    "Game-server": [],
+    "Game-client": []
+  },
+  "routing_summary": {
+    "changed_path_count": 20,
+    "python_file_count": 2,
+    "symbol_count": 6,
+    "issue_count": 0,
+    "ok": true
+  },
+  "final_source_hashes": {
+    "ads/reporting.py": "ed6e63f9a255ea775d5290921726f376250ed8679b50a532c1d9a1977a4249e0",
+    "ads/management/commands/build_ad_reports.py": "6fd188afb6cfa6338ae10edc7411f465eb7970c9f7f1505393ea8107118d2f21"
+  }
+}

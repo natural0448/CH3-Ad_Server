@@ -1,0 +1,36 @@
+{
+  "status": [
+    " M docs/server-routing/README.md",
+    "?? ads/management/commands/build_ad_reports.py",
+    "?? ads/reporting.py",
+    "?? docs/server-routing/files/ads/management/commands/build_ad_reports.py.md",
+    "?? docs/server-routing/files/ads/reporting.py.md",
+    "?? docs/server-routing/verification/day23-period05-location-fix/"
+  ],
+  "staged": [],
+  "unstaged": [
+    "M\tdocs/server-routing/README.md"
+  ],
+  "untracked": [
+    "ads/management/commands/build_ad_reports.py",
+    "ads/reporting.py",
+    "docs/server-routing/files/ads/management/commands/build_ad_reports.py.md",
+    "docs/server-routing/files/ads/reporting.py.md",
+    "docs/server-routing/verification/day23-period05-location-fix/before-docs/ads/management/commands/build_ad_reports.py.md.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/before-docs/ads/reporting.py.md.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/before/ads/management/commands/build_ad_reports.py.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/before/ads/reporting.py.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/before/docs/server-routing/README.md.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/build-command.stderr.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/build-command.stdout.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/reference-command.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/reference-reporting.txt",
+    "docs/server-routing/verification/day23-period05-location-fix/routing-before.json",
+    "docs/server-routing/verification/day23-period05-location-fix/routing-user-code-documented.json",
+    "docs/server-routing/verification/day23-period05-location-fix/start.json",
+    "docs/server-routing/verification/day23-period05-location-fix/verification.json"
+  ],
+  "head": [
+    "9b0aaa1 day23-ad_sever 준비"
+  ]
+}

@@ -1,0 +1,9 @@
+# ads/reporting.py
+
+작업 시작 시점의 구현을 먼저 등록했다. 2026-10-08 현재 집계 함수는 이 모듈에 없어서 관리 명령의 import가 실패한다. 아래 두 함수는 기존 사용자 코드다.
+
+- `SEOUL = timezone(timedelta(hours=9), name="Asia/Seoul")`: 서울 날짜 변환에 사용할 고정 UTC+9 시간대. 모듈이 정의한다.
+- `publish_reports(rows)`: `ad-report/v1` 보고서 사전 iterable을 받는다. 각 행의 광고주·캠페인·슬롯·날짜 튜플을 JSON ID로 만들고 `_id`와 비교한다. 일치하면 `get_db().ad_daily_reports.replace_one(..., upsert=True)`를 직접 호출한다. 처리한 행 수 정수를 반환한다. 스키마나 ID 불일치는 `ValueError`, 필드 누락은 `KeyError`; 순차 저장이므로 중간 실패 전의 저장은 남을 수 있다.
+- `list_reports(owner_user_id)`: 광고주 ID를 받아 `get_db().ad_daily_reports.find`에서 해당 소유자만 찾고 `_id`를 제외한다. 날짜 내림차순·캠페인/슬롯 오름차순으로 정렬된 사전 목록을 반환한다. 현재 코드 자체에는 ID 타입 검증이 없다.
+
+직접 호출: `.mongo.get_db()`는 MongoDB DB 객체, `.timestamps.parse_utc`는 import만 되어 있다. 보고서 게시와 목록 조회 함수가 존재한다는 사실은 5교시 명령에서 게시·조회가 실행된다는 의미는 아니다.

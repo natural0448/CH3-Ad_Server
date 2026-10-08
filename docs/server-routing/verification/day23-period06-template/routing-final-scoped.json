@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "method": "routing-doc-auditor extract_symbols/mark_documented API plus paired document/index/link checks",
+  "index": "docs/server-routing/day23-period06-index.md",
+  "standard_cli_limitation": "The standard CLI requires the user-deleted docs/server-routing/README.md; its initial failure is preserved. No README restoration or claimed CLI pass.",
+  "files": [
+    {
+      "path": "ads/views.py",
+      "document": "docs/server-routing/files/ads/views.py.md",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "campaign_view",
+          "line": 17,
+          "signature": "campaign_view(request)",
+          "signature_core": "campaign_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "login_required",
+            "require_http_methods(['GET', 'POST'])"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "bid_view",
+          "line": 40,
+          "signature": "bid_view(request)",
+          "signature_core": "bid_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "login_required",
+            "require_http_methods(['GET', 'POST'])"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "decision_view",
+          "line": 57,
+          "signature": "decision_view(request)",
+          "signature_core": "decision_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "media_api_methods('POST')"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "event_view",
+          "line": 83,
+          "signature": "event_view(request)",
+          "signature_core": "event_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "media_api_methods('POST')"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "advertiser_event_view",
+          "line": 96,
+          "signature": "advertiser_event_view(request)",
+          "signature_core": "advertiser_event_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "login_required(login_url='/accounts/login/')",
+            "require_http_methods(['GET'])"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "report_view",
+          "line": 121,
+          "signature": "report_view(request)",
+          "signature_core": "report_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "login_required(login_url='/accounts/login/')",
+            "require_http_methods(['GET'])"
+          ],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/urls.py",
+      "document": "docs/server-routing/files/ads/urls.py.md",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/reporting.py",
+      "document": "docs/server-routing/files/ads/reporting.py.md",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "build_daily_reports",
+          "line": 8,
+          "signature": "build_daily_reports(events, generated_at=None)",
+          "signature_core": "build_daily_reports(events, generated_at=None)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "publish_reports",
+          "line": 62,
+          "signature": "publish_reports(rows)",
+          "signature_core": "publish_reports(rows)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "list_reports",
+          "line": 76,
+          "signature": "list_reports(owner_user_id)",
+          "signature_core": "list_reports(owner_user_id)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/management/commands/build_ad_reports.py",
+      "document": "docs/server-routing/files/ads/management/commands/build_ad_reports.py.md",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 7,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 10,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 14,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/management/commands/load_ad_reports.py",
+      "document": "docs/server-routing/files/ads/management/commands/load_ad_reports.py.md",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 6,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 9,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 12,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "config/day23-period-06.py",
+      "document": "docs/server-routing/files/config/day23-period-06.py.md",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/templates/ads/reports.html",
+      "document": "docs/server-routing/files/ads/templates/ads/reports.html.md",
+      "document_exists": true,
+      "indexed": true
+    },
+    {
+      "path": "ads/templates/ads/base.html",
+      "document": "docs/server-routing/files/ads/templates/ads/base.html.md",
+      "document_exists": true,
+      "indexed": true
+    },
+    {
+      "path": "ads/static/ads/advertiser.css",
+      "document": "docs/server-routing/files/ads/static/ads/advertiser.css.md",
+      "document_exists": true,
+      "indexed": true
+    }
+  ],
+  "issues": [],
+  "summary": {
+    "ok": true,
+    "paired_file_count": 9,
+    "python_file_count": 6,
+    "symbol_count": 15,
+    "issue_count": 0
+  }
+}

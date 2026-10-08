@@ -1,0 +1,29 @@
+{
+  "ping_ok": true,
+  "database": "village_ads",
+  "replica_set": "ads-rs",
+  "writable_primary": true,
+  "replica_state": 1,
+  "members": [
+    {
+      "name": "localhost:27017",
+      "stateStr": "PRIMARY",
+      "health": 1.0,
+      "self": true
+    }
+  ],
+  "collections": [
+    "ad_events",
+    "bids",
+    "campaigns",
+    "decisions"
+  ],
+  "collection_counts": {
+    "campaigns": 2,
+    "bids": 2,
+    "decisions": 13,
+    "ad_events": 4,
+    "ad_daily_reports": 0
+  },
+  "connection_attempts": 1
+}

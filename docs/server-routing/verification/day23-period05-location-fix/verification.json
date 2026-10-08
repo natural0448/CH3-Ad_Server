@@ -1,0 +1,27 @@
+{
+  "checks": {
+    "reporting_ast_matches_lesson": true,
+    "command_ast_matches_lesson": true,
+    "moved_function_body_preserved": true,
+    "command_class_preserved": true,
+    "publish_reports_preserved": true,
+    "list_reports_preserved": true,
+    "same_id_same_content_deduplicated": true,
+    "same_id_different_content_rejected": true,
+    "orphan_click_rejected": true
+  },
+  "command_exit_code": 0,
+  "django_check": "System check identified no issues (0 silenced).",
+  "command_help_exit_code": 0,
+  "input_path": "data/exports/ad-events-day23-seoul-day.ndjson",
+  "input_event_count": 4,
+  "output_path": "data/exports/ad-reports-day23.ndjson",
+  "report_count": 1,
+  "impressions": 2,
+  "clicks": 2,
+  "dates": [
+    "2026-10-07"
+  ],
+  "output_sha256": "f3f0196f873e7f3046e012457d54ba7cb61afdc37777a2586a2cc80b3255ffa4",
+  "mongodb_publish_executed": false
+}

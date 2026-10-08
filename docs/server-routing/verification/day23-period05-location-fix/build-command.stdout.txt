@@ -1,0 +1,1 @@
+{"rows": 1, "sha256": "f3f0196f873e7f3046e012457d54ba7cb61afdc37777a2586a2cc80b3255ffa4", "path": "data\\exports\\ad-reports-day23.ndjson"}

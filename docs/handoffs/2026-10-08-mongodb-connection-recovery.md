@@ -1,0 +1,83 @@
+# MongoDB 연결 복구
+
+작업일: 2026-10-08. 요청은 "MongoDB에 연결할 수 없습니다." 오류의 해결이다. 설치 기본 standalone 서버와 수업용 서버의 동시 실행을 확인했고 기존 데이터와 설정을 유지한 채 수업용 서버를 재시작했다. 광고 서버 설정을 사용하는 `get_db().command("ping")`, PRIMARY 확인 및 실제 컬렉션 조회가 성공했다.
+
+후속 현재 상태: 사용자가 PowerShell에서 직접 실행하려고 하므로, 아래 복구 당시 켰던 백그라운드 PID 32736을 정상 종료했다. 수동 전환 검사 시 27017 포트가 비고 데이터 폴더 잠금이 해제됐음을 확인했다. 사용자의 직접 실행은 아직 관찰하지 않았다. 아래 "백그라운드 실행 중" 설명은 앞선 복구 시점의 이력이며 현재 상태는 문서 마지막 후속 항목을 따른다.
+
+## 시작 Git 상태와 기존 변경
+
+`C:/MLO01-01/Chapter3`는 Git 상태 확인 불가: 저장소 아님. 대상 `ad_server`는 Git 저장소이며 직전 커밋은 `9b0aaa1 day23-ad_sever 준비`다. 시작 시 staged는 없었다. 기존 unstaged는 `docs/server-routing/README.md`였다. 기존 untracked는 아래와 같고 앞선 5교시 작업에서 존재하던 변경으로 보존했다.
+
+- `ads/management/commands/build_ad_reports.py`
+- `ads/reporting.py`
+- `docs/handoffs/2026-10-08-day23-period05-function-location-fix.md`
+- `docs/server-routing/files/ads/management/commands/build_ad_reports.py.md`
+- `docs/server-routing/files/ads/reporting.py.md`
+- `docs/server-routing/verification/day23-period05-location-fix/`
+
+시작 Git 결과와 개발 파일 66개의 SHA-256은 `../server-routing/verification/mongo-connect-2026-10-08/start.json`에 있다. 환경 값과 비밀값은 복사하지 않았다. 라우팅 색인의 이번 작업 전 내용은 `routing-index-before.txt`에 보존했다.
+
+## 원인과 실행 상태 변경
+
+처음 광고 서버는 `localhost:27017`의 `ads-rs`를 기대했으나 실제 연결되는 서버는 설치 기본 `mongod.cfg`와 `C:/Program Files/MongoDB/Server/8.3/data`를 사용했다. `hello`에 복제 세트 이름이 없었고 `replSetGetStatus`가 코드 76 `NoReplicationEnabled`를 반환했다. 이 서버에는 `village_ads`가 없었다.
+
+Windows에는 설치 기본 MongoDB 서비스 PID 5824와 `--config config/mongo-node1.yml`로 실행한 수업용 PID 26892가 동시에 있었다. 중지 직전 포트 소유자 검사 결과가 달라져 `Stop-Service`를 실행하는 경로는 자체 검증에서 중단했다. 자동 승인 심사 거절은 없었다. 대신 직접 연결한 MongoDB의 데이터 경로와 standalone 상태를 다시 확인하고 `shutdown` 명령으로 기본 서버를 정상 종료했다. 그 결과 기본 서비스는 Stopped가 됐다.
+
+수업 서버에는 기존 단일 멤버 `ads-rs` 설정이 있었다. 이를 새로 초기화하거나 강제 재구성하지 않았다. 수업 서버의 `replSetGetStatus`는 코드 93 `InvalidReplicaSetConfig`, 연결 topology는 `RSGhost` 상태였다. 두 서버의 동시 실행과 관련된 시작 시 멤버 확인 문제로 판단했고, 기존 수업 데이터 경로·복제 옵션을 확인한 뒤 정상 종료/재시작했다. 시작 로그 전체가 남아 있지 않아 이 단계의 더 세부적인 내부 원인을 확정하지 않는다.
+
+새 수업 서버는 PID 32736이며 `C:/Program Files/MongoDB/Server/8.3/bin/mongod.exe`에 기존 `config/mongo-node1.yml`의 절대 경로를 전달했다. 작업 폴더는 `ad_server`, 창은 숨김이고 프로세스는 백그라운드 실행 중이다. 데이터 경로는 기존 `infra/mongo/data/node1`이다. 시작 기록과 로그 위치는 `restart.json`에 있다. 데이터 삭제·복사, 서비스 설정 수정, 복제 설정 재작성, 업무 레코드 생성/수정/삭제는 수행하지 않았다.
+
+## 이번 파일 변경과 책임 경계
+
+개발 파일 추가·수정·이동·삭제는 없다. 기존 소스, `ads.env`, MongoDB yml 설정을 포함한 시작 해시 66개가 그대로임을 확인했다.
+
+이번 문서 작업은 본 인수인계, `docs/server-routing/verification/mongo-connect-2026-10-08/` 검사 근거 추가와 라우팅 색인 복구 기록 등록이다. 기존 색인 내용은 보존했다. 런타임 생성물은 `infra/runtime/mongo-recovery-3f386d266c034b428b0e5f06998ddeee/`의 stdout/stderr 로그다. 런타임 MongoDB 자체는 기존 데이터 경로에서 정상 체크포인트를 갱신할 수 있으므로 물리 DB 파일이 바이트 단위로 불변이라고 주장하지 않는다.
+
+## 검증과 문서 정합화
+
+- 광고 서버 설정으로 `get_db().command("ping")`: 성공.
+- `hello` 및 `replSetGetStatus`: `ads-rs`, `localhost:27017`, PRIMARY, health 1.0.
+- `village_ads`의 실제 조회: 캠페인 2건, 입찰 2건, 선택 13건, 사건 4건. 기존 일별 보고서 컬렉션은 없으며 이 작업에서 보고서를 게시하지 않았다.
+- 개발/환경 파일 SHA-256: 검사한 66개 모두 시작 값과 일치.
+- 라우팅 문서 검사: 기존 변경 Python 파일 2개/심볼 6개, 종료 코드 0, `summary.ok=true`, 불일치 0개. 이번 실행 복구로 소스가 바뀌지 않아 짝 문서 재작성은 필요하지 않았다. 검증 후 색인에 현재 실행 상태와 이 기록을 연결했다.
+- 초기 CIM/서비스 조회는 sandbox에서 접근할 수 없었고, 이후 권한 범위를 확장한 읽기 조회로 확인했다. 중지 guard가 한 번 취소한 것과 자동 승인 심사 거절은 구별한다.
+
+검사기는 다음 명령으로 실행했다. 실제 Python은 `.venv/Scripts/python.exe -X utf8 -B`를 사용했다.
+
+```powershell
+python C:/Users/이해나/.codex/skills/routing-doc-auditor/scripts/audit_routing.py --repo C:/MLO01-01/Chapter3/ad_server --routing-dir docs/server-routing --format json --output docs/server-routing/verification/mongo-connect-2026-10-08/routing-existing-code.json
+```
+
+접속/조회 결과는 `connection-after.json`, 최종 Git 상태와 파일 보존 확인은 `finish.json`을 따른다. staging·commit은 수행하지 않았다. 관련 없는 테스트를 반복하거나 새 테스트 코드를 만들지 않았다.
+
+## 다음 확인 순서와 남은 범위
+
+현재 서버가 실행 중이므로 광고주 화면과 Compass를 새로고침한다. Compass는 기존 27017의 `ads-rs` 연결에서 `village_ads`를 확인한다. 보고서 게시와 광고주 웹 보고서 완성은 6교시 범위이며 이번 연결 복구에는 포함하지 않는다.
+
+재부팅 뒤 설치 기본 서비스가 다시 실행되면 이번과 같은 충돌이 재발할 수 있다. 자동 시작 설정을 바꾸지 않았다. 그 경우 먼저 관리자 PowerShell에서 기본 서비스를 정상 중지한다. 그 다음 별도 터미널에서 수업용 서버만 실행한다. 현재 서버가 이미 실행 중이면 이 시작 명령을 중복 실행하지 않는다.
+
+```powershell
+Stop-Service -Name MongoDB
+```
+
+```powershell
+cd C:\MLO01-01\Chapter3\ad_server
+& "C:\Program Files\MongoDB\Server\8.3\bin\mongod.exe" --config config/mongo-node1.yml
+```
+
+위 수동 실행 터미널은 유지한다. 기존 `ads-rs` 초기화를 반복하지 않는다. 백그라운드 실행의 현재 PID와 상태는 이 작업 시점의 기록이며 이후 직접 상태를 확인해야 한다.
+
+## 후속: 사용자 PowerShell 직접 실행으로 전환
+
+사용자가 실행 명령이 유지되지 않는다고 알렸다. 확인 시 에이전트가 시작한 PID 32736이 여전히 같은 데이터 폴더와 27017을 사용하고 있었고 `ads-rs` PRIMARY였다. 따라서 같은 데이터 폴더를 다시 여는 중복 실행이 종료 원인일 가능성이 높다. 사용자의 종료 로그 자체는 전달받지 않아 실제 exit code/오류 문구를 재현한 것으로 기록하지 않는다.
+
+종료 직전 `mongod.lock`의 PID가 에이전트 소유 32736임을 확인했고, 직접 연결한 서버의 기존 데이터 경로와 `ads-rs` 이름을 검증했다. `shutdown`을 `force=False`로 호출해 정상 종료했다. 다른 새 사용자 프로세스를 종료하지 않았고 서버를 다시 백그라운드로 켜지 않았다. 종료 후 TCP 확인으로 27017이 비었고 lock PID가 빈 문자열임을 확인했다.
+
+이 후속 작업도 개발 파일 추가·수정·이동·삭제가 없다. 실행 상태와 이 인수인계/라우팅 색인만 갱신했으며 시작 시 존재한 Git 변경은 보존했다. 시작 Git 상태와 개발 파일 해시, 문서 원본은 `../server-routing/verification/mongo-manual-transfer-2026-10-08/start.json`과 `before/`에 있다. 소스가 불변이므로 짝 문서 재작성과 동일 코드 테스트 반복은 필요하지 않았다. 네트워크/잠금 검사는 `shutdown-result.json`, 최종 Git/개발 파일 보존 검사는 `finish.json`에 있다.
+
+사용자는 PowerShell에서 아래 전체 명령을 실행하고 창을 유지한다. 작업 폴더를 먼저 지정하는 것은 yml의 상대 데이터 경로를 유지하기 위해서다. 이 단계에서 아직 접속/실행 성공을 사용자의 화면에서 관찰하지 않았으며, 직접 실행 이후 광고 서버와 Compass를 사용할 수 있다.
+
+```powershell
+cd C:\MLO01-01\Chapter3\ad_server
+& "C:\Program Files\MongoDB\Server\8.3\bin\mongod.exe" --config config/mongo-node1.yml
+```

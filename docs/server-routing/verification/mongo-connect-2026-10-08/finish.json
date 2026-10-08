@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-08",
+  "git": {
+    "head": [
+      "9b0aaa1 day23-ad_sever 준비"
+    ],
+    "status": [
+      " M docs/server-routing/README.md",
+      "?? ads/management/commands/build_ad_reports.py",
+      "?? ads/reporting.py",
+      "?? docs/handoffs/2026-10-08-day23-period05-function-location-fix.md",
+      "?? docs/handoffs/2026-10-08-mongodb-connection-recovery.md",
+      "?? docs/server-routing/files/ads/management/commands/build_ad_reports.py.md",
+      "?? docs/server-routing/files/ads/reporting.py.md",
+      "?? docs/server-routing/verification/day23-period05-location-fix/",
+      "?? docs/server-routing/verification/mongo-connect-2026-10-08/"
+    ],
+    "staged": [],
+    "unstaged": [
+      "M\tdocs/server-routing/README.md"
+    ],
+    "untracked": [
+      "ads/management/commands/build_ad_reports.py",
+      "ads/reporting.py",
+      "docs/handoffs/2026-10-08-day23-period05-function-location-fix.md",
+      "docs/handoffs/2026-10-08-mongodb-connection-recovery.md",
+      "docs/server-routing/files/ads/management/commands/build_ad_reports.py.md",
+      "docs/server-routing/files/ads/reporting.py.md",
+      "docs/server-routing/verification/day23-period05-location-fix/before-docs/ads/management/commands/build_ad_reports.py.md.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/before-docs/ads/reporting.py.md.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/before/ads/management/commands/build_ad_reports.py.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/before/ads/reporting.py.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/before/docs/server-routing/README.md.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/build-command.stderr.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/build-command.stdout.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/finish.json",
+      "docs/server-routing/verification/day23-period05-location-fix/git-after-code-verification.json",
+      "docs/server-routing/verification/day23-period05-location-fix/reference-command.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/reference-reporting.txt",
+      "docs/server-routing/verification/day23-period05-location-fix/routing-before.json",
+      "docs/server-routing/verification/day23-period05-location-fix/routing-final.json",
+      "docs/server-routing/verification/day23-period05-location-fix/routing-user-code-documented.json",
+      "docs/server-routing/verification/day23-period05-location-fix/start.json",
+      "docs/server-routing/verification/day23-period05-location-fix/verification.json",
+      "docs/server-routing/verification/mongo-connect-2026-10-08/connection-after.json",
+      "docs/server-routing/verification/mongo-connect-2026-10-08/replica-init.json",
+      "docs/server-routing/verification/mongo-connect-2026-10-08/replica-startup-diagnostics.json",
+      "docs/server-routing/verification/mongo-connect-2026-10-08/restart.json",
+      "docs/server-routing/verification/mongo-connect-2026-10-08/routing-existing-code.json",
+      "docs/server-routing/verification/mongo-connect-2026-10-08/routing-index-before.txt",
+      "docs/server-routing/verification/mongo-connect-2026-10-08/start.json"
+    ]
+  },
+  "development_files_changed": [],
+  "preserved_development_file_count": 66,
+  "preexisting_index_content_preserved": true,
+  "new_documents": [
+    "docs/handoffs/2026-10-08-mongodb-connection-recovery.md",
+    "docs/server-routing/verification/mongo-connect-2026-10-08/"
+  ],
+  "modified_documents": [
+    "docs/server-routing/README.md"
+  ],
+  "ping_ok": true,
+  "replica_set": "ads-rs",
+  "writable_primary": true,
+  "staging_or_commit_performed": false,
+  "routing_ok": true
+}

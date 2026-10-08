@@ -1,0 +1,6 @@
+{
+  "process_id": 32736,
+  "config": "config/mongo-node1.yml",
+  "runtime_log_dir": "C:\\MLO01-01\\Chapter3\\ad_server\\infra\\runtime\\mongo-recovery-3f386d266c034b428b0e5f06998ddeee",
+  "background": true
+}

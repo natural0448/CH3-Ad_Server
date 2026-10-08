@@ -1,0 +1,9 @@
+# ads/templates/ads/reports.html
+
+개발 변경 전 사용자 구현을 먼저 기록했다. 현재 이 시점의 템플릿은 교안 6교시의 독립 HTML이다. 제목은 "내 광고 일별 보고서"이고 캠페인·입찰·선택과 실적 링크를 제공한다. 외부 CSS나 base template 상속은 아직 없다.
+
+입력 context는 `report_view(request)`의 `rows` 사전 목록과 선택적 `message` 문자열이다. 소유자 필터링은 view/list_reports의 책임이다. 템플릿은 DB를 읽거나 사건/보고서를 생성하지 않는다.
+
+표는 9개 열이다: 서울 날짜=`row.date`, 캠페인=`row.campaign_id`, 슬롯=`row.slot_id`, 노출=`row.impressions`, 클릭=`row.clicks`, CTR 0~1=`row.ctr|floatformat:3`, 모의 포인트 합=`row.bid_units_sum`, 원본 마지막 시각=`row.source_max_event_time`, 보고서 생성 시각=`row.generated_at`. 원본 ISO 시각 문자열을 그대로 표시하며 CTR을 백분율로 변환하지 않는다. 빈 rows는 colspan 9의 "게시된 내 보고서가 없습니다." 행을 표시한다. Django autoescape가 출력 필드에 적용된다.
+
+고정 설명은 "노출일 기준 · 고정 입력 파일까지 관찰한 클릭입니다. 모의 포인트 합은 실제 청구액이 아닙니다."다. 이 계약을 유지하면서 현재 공통 화면 디자인에 연결하는 작업을 진행한다.

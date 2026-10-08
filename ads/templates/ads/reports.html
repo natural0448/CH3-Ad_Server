@@ -1,0 +1,59 @@
+{% extends "ads/base.html" %}
+{% block title %}광고주 일별 보고서 · 마을 광고 스튜디오{% endblock %}
+{% block content %}
+<section class="page-heading report-heading">
+  <div>
+    <p class="eyebrow">DAILY REPORTS</p>
+    <h1>내 광고 일별 보고서</h1>
+    <p class="lead">서울 노출일을 기준으로 내 광고의 실적을 확인하세요.</p>
+  </div>
+  <a class="pill-link" href="{% url 'ads:web-events' %}">선택·실적 보기 →</a>
+</section>
+
+{% if message %}<p class="notice error" role="alert">{{ message }}</p>{% endif %}
+<div class="help-card report-note">
+  <p>노출일 기준 · 고정 입력 파일까지 관찰한 클릭입니다. 모의 포인트 합은 실제 청구액이 아닙니다.</p>
+</div>
+
+<section class="card report-card" aria-labelledby="report-table-heading">
+  <div class="section-heading">
+    <h2 id="report-table-heading">노출일별 집계</h2>
+    <span>{{ rows|length }}건</span>
+  </div>
+  <div class="report-table-scroll" role="region" aria-label="일별 보고서 표" tabindex="0">
+    <table class="report-table">
+      <thead>
+        <tr>
+          <th scope="col">서울 날짜</th>
+          <th scope="col">캠페인</th>
+          <th scope="col">슬롯</th>
+          <th scope="col" class="report-number">노출</th>
+          <th scope="col" class="report-number">클릭</th>
+          <th scope="col" class="report-number">CTR 0~1</th>
+          <th scope="col" class="report-number">모의 포인트 합</th>
+          <th scope="col">원본 마지막 시각</th>
+          <th scope="col">보고서 생성 시각</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for row in rows %}
+        <tr>
+          <td class="report-date">{{ row.date }}</td>
+          <td class="report-id">{{ row.campaign_id }}</td>
+          <td class="report-id">{{ row.slot_id }}</td>
+          <td class="report-number">{{ row.impressions }}</td>
+          <td class="report-number">{{ row.clicks }}</td>
+          <td class="report-number">{{ row.ctr|floatformat:3 }}</td>
+          <td class="report-number">{{ row.bid_units_sum }}</td>
+          <td class="report-time">{{ row.source_max_event_time }}</td>
+          <td class="report-time">{{ row.generated_at }}</td>
+        </tr>
+      {% empty %}
+        <tr><td class="report-empty" colspan="9">게시된 내 보고서가 없습니다.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p class="muted report-scroll-hint">표를 좌우로 움직여 모든 항목을 확인하세요.</p>
+</section>
+{% endblock %}

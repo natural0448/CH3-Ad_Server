@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-08",
+  "head": {
+    "exit": 0,
+    "output": "9b0aaa1 day23-ad_sever 준비",
+    "error": ""
+  },
+  "status": {
+    "exit": 0,
+    "output": "?? ads/management/commands/build_ad_reports.py\n?? ads/reporting.py",
+    "error": ""
+  },
+  "staged": {
+    "exit": 0,
+    "output": "",
+    "error": ""
+  },
+  "unstaged": {
+    "exit": 0,
+    "output": "",
+    "error": ""
+  },
+  "untracked": {
+    "exit": 0,
+    "output": "ads/management/commands/build_ad_reports.py\nads/reporting.py",
+    "error": ""
+  },
+  "files": {
+    "ads/reporting.py": "4bdc652a06cab6bb666b0263234abd92f647112d674156cd6b2aaa3e80e990ae",
+    "ads/management/commands/build_ad_reports.py": "345d7c426afea92d94c9f626d5cec14fdf0d40c3baec24441799f7a71965364c",
+    "docs/server-routing/README.md": "6c885b12bcc36501a459a488d055c4d9fe6de449566d313022c39b549b234dd1"
+  },
+  "private_environment_hashes": {
+    "ads.env": "680129196e3080ce3a151e80fe423509c1366ec0e39789b0aebc814ec220b442"
+  },
+  "input_hash": "081ade09bd21dadd71ea8f655797ddf8a9366fc8f4a4b828e1c508449b5e58ad",
+  "lesson_hash": "e71c2dac0b38748b171c5691de46b64fe361dd8682a8d5303ad13176aa004e0f",
+  "existing_function_body_matches_lesson": true
+}

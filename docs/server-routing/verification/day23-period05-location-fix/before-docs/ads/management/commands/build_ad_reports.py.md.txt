@@ -1,0 +1,10 @@
+# ads/management/commands/build_ad_reports.py
+
+작업 시작 시점의 구현을 먼저 등록했다. 관리 명령 아래에 집계 함수가 정의되어 있지만, 먼저 실행되는 `from ads.reporting import SEOUL, build_daily_reports`에서 `ImportError`가 발생한다. 아래 시그니처는 오류 수정 전 사용자 코드에 실제로 존재한다.
+
+- `class Command(BaseCommand)`: Django `build_ad_reports` 관리 명령. `help`는 "고정 광고 NDJSON에서 일별 보고서 후보를 계산합니다."이다.
+- `Command.add_arguments(self, parser)`: Django의 argparse parser에 필수 문자열 경로 `--source`, `--output`을 등록한다. 반환값은 `None`이다.
+- `Command.handle(self, *args, **options)`: 추가 위치 인수는 사용하지 않는다. `options["source"]`를 `read_ndjson`으로 읽어 `build_daily_reports`에 전달하고 `write_ndjson(options["output"], rows)`로 저장한다. 반환값은 `None`이며 표준 출력에는 `rows`, `sha256`, `path` JSON을 쓴다. 입력·집계·쓰기 오류는 전파한다. 출력 파일은 덮어쓰기 계약이다.
+- `build_daily_reports(events, generated_at=None)`: `ad-event/v1` 사건 사전 iterable과 선택적 시간대 포함 ISO 시각 문자열/`datetime`을 받는다. 기본 생성 시각은 UTC 현재 시각이다. 동일 사건 ID를 중복 제거하고 내용 충돌을 거절한다. 결정·종류·사건 ID, 노출 기준 시각, 클릭의 선행 노출과 업무 값 일치를 검증한다. 서울 노출일과 광고주·캠페인·슬롯으로 묶어 노출/클릭 수, 노출 입찰액 합계, CTR, 최대 사건 시각을 계산한다. JSON ID순 `ad-report/v1` 사전 목록을 반환한다. 잘못된 계약은 `ValueError`, 필드 누락은 `KeyError`로 전파한다.
+
+함수 내부 값: `unique`와 `groups`의 초기값은 빈 사전이며 해당 함수가 쓴다. `generated`는 인수 또는 UTC 현재 시각, `key`는 사건의 광고주·캠페인·슬롯·서울 노출일, `row`는 해당 집계 행이다. 직접 호출은 `ads.timestamps.parse_utc`, Python `datetime.now`, `json.dumps`이며 집계는 DB를 호출하지 않는다. 명령 계층은 `ads.exporting.read_ndjson/write_ndjson`과 Django stdout을 직접 호출한다.
