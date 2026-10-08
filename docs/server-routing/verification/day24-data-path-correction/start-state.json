@@ -1,0 +1,41 @@
+{
+  "root": {
+    "exit_code": 0,
+    "output": "C:/MLO01-01/Chapter3/ad_server",
+    "error": ""
+  },
+  "head": {
+    "exit_code": 0,
+    "output": "8f541e4 day23 - finish",
+    "error": ""
+  },
+  "status": {
+    "exit_code": 0,
+    "output": "?? docs/handoffs/2026-10-08-day24-period01-review.md\n?? docs/server-routing/day24-period01-index.md\n?? docs/server-routing/files/ads/management/commands/export_player_snapshot.py.md\n?? docs/server-routing/files/tools/check_day24_logic.py.md\n?? docs/server-routing/verification/day24-period01-review/checker-origin-local.json\n?? docs/server-routing/verification/day24-period01-review/checker-symbols.json\n?? docs/server-routing/verification/day24-period01-review/export_player_snapshot-start.txt\n?? docs/server-routing/verification/day24-period01-review/finish-state.json\n?? docs/server-routing/verification/day24-period01-review/lesson-comparison.json\n?? docs/server-routing/verification/day24-period01-review/pre-development-document-check.json\n?? docs/server-routing/verification/day24-period01-review/routing-before.json\n?? docs/server-routing/verification/day24-period01-review/routing-final-scoped.json\n?? docs/server-routing/verification/day24-period01-review/start-state.json\n?? docs/server-routing/verification/day24-period01-review/user-source-symbols.json\n?? tools/check_day24_logic.py",
+    "error": ""
+  },
+  "head_changes": {
+    "exit_code": 0,
+    "output": "",
+    "error": ""
+  },
+  "staged": {
+    "exit_code": 0,
+    "output": "",
+    "error": ""
+  },
+  "unstaged": {
+    "exit_code": 0,
+    "output": "",
+    "error": ""
+  },
+  "untracked": {
+    "exit_code": 0,
+    "output": "docs/handoffs/2026-10-08-day24-period01-review.md\ndocs/server-routing/day24-period01-index.md\ndocs/server-routing/files/ads/management/commands/export_player_snapshot.py.md\ndocs/server-routing/files/tools/check_day24_logic.py.md\ndocs/server-routing/verification/day24-period01-review/checker-origin-local.json\ndocs/server-routing/verification/day24-period01-review/checker-symbols.json\ndocs/server-routing/verification/day24-period01-review/export_player_snapshot-start.txt\ndocs/server-routing/verification/day24-period01-review/finish-state.json\ndocs/server-routing/verification/day24-period01-review/lesson-comparison.json\ndocs/server-routing/verification/day24-period01-review/pre-development-document-check.json\ndocs/server-routing/verification/day24-period01-review/routing-before.json\ndocs/server-routing/verification/day24-period01-review/routing-final-scoped.json\ndocs/server-routing/verification/day24-period01-review/start-state.json\ndocs/server-routing/verification/day24-period01-review/user-source-symbols.json\ntools/check_day24_logic.py",
+    "error": ""
+  },
+  "environment_hashes": {
+    "ads.env": "680129196e3080ce3a151e80fe423509c1366ec0e39789b0aebc814ec220b442"
+  },
+  "boundary_note": "Chapter3: Git 상태 확인 불가: 저장소 아님. Existing changes are preserved; source relocation predates this request."
+}

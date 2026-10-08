@@ -26,7 +26,13 @@
 
 의사코드: 허용 HTTP 메서드를 closure로 저장 → decorator 반환.
 
-직접 호출: .
+직접 호출: 이 최상위 함수는 decorate를 정의해 반환한다. 실제 인증과 HTTP 제한은 아래 closure가 호출한다.
+
+`decorate(view)`의 필수 인수 view는 Django view callable이며 반환값은 wrapped callable이다. 의사코드: csrf_exempt/require_http_methods(methods)/wraps(view)로 wrapped 구성 → wrapped 반환. 직접 호출은 위 세 decorator이며 메서드 제한과 view 메타데이터 보존을 기대한다.
+
+`wrapped(request, *args, **kwargs)`는 Django HttpRequest와 원래 view에 전달할 인수를 받는다. 의사코드: read_media_body로 검증한 본문/subject를 request에 부착 → 원래 view 호출 → 권한401/입력400/DB503 JSON으로 오류 변환. 정상 반환값은 view의 HttpResponse다. 직접 호출은 read_media_body, view, JsonResponse이며 메서드405는 require_http_methods가 처리한다.
+
+`methods`와 `view`는 closure 인수에서 오고 본문/subject는 검증 함수 반환값이다. 공개 입력 오류 허용 집합은 decision_snapshot_missing, decision_not_found_for_subject, impression_required, decision_id_required, event_type_invalid다. 그 외 입력 오류는 invalid_event로 노출한다. 실제 매체 키는 settings.MEDIA_KEYS와 request 헤더에서 읽지만 문서에 값을 기록하지 않는다.
 
 ## 상태·값 출처
 

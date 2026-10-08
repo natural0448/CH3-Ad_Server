@@ -2,6 +2,10 @@
 
 22일차 수정 교안과 원본 교안의 PNG 소재 흐름을 현재 폴더 구조에 반영했다. 광고주가 숲 도구점·모닥불 찻집 소재를 골라 미리보고 저장하며, 입찰 결과의 이미지·문구·금액·결정 ID가 게임 서버와 기존 Pygame 접속기로 전달된다. 기존 문구 광고와 계정·캠페인 데이터는 유지한다.
 
+2026-10-08 현재 광고 사건 NDJSON 내보내기, 고정 파일의 일별 보고서 후보 생성, 업무 키별 게시, 광고주 일별 보고서 화면, 한 writer 파일 전달과 게시 보고서 대조 명령까지 코드가 저장돼 있다. 실제 호출 경로와 전체 1:1 문서는 [현재 진행 라우팅 색인](docs/server-routing/current-progress-index.md)을 따른다. 이 문서 갱신에서는 파일 생성·전달·DB 게시를 재실행하지 않았다.
+
+24일차는 공식 `tools/check_day24_logic.py` 검사기와 2교시 `ads/snapshot_intake.py`가 저장돼 있다. 최신 관찰의 inspect 함수에는 필드·공개 상태·중복·수집값 통일 검사가 작성돼 있으나 `parse_utc`가 이름만 있는 식이라 captured_at 시각 검사는 호출되지 않는다. 2교시는 작성 중이며 snapshot 검사/소비 성공 상태가 아니다. 3~8교시 후속 소비 구현과 관리명령은 아직 없다. Player snapshot 명령은 게임 서버의 `server/game/management/commands/export_player_snapshot.py`에 있으며 광고 입력 경로는 `../Game-server/data/exports/player-cdc.ndjson`이다. 게임 ORM을 광고 앱에 import하지 않는다.
+
 ## 광고 서버
 
 ```powershell
@@ -16,6 +20,8 @@ python ad_config/manage.py runserver 127.0.0.1:8001
 - [광고주 로그인](http://127.0.0.1:8001/accounts/login/)
 - [캠페인 디자인·저장](http://127.0.0.1:8001/advertiser/campaigns/)
 - [입찰 관리](http://127.0.0.1:8001/advertiser/bids/)
+- [선택·실적](http://127.0.0.1:8001/advertiser/events/)
+- [일별 보고서](http://127.0.0.1:8001/advertiser/reports/)
 - 매체 API: POST `/api/media/decision/`
 
 `ads.env`를 먼저, 루트 `.env`가 있으면 그 값으로 덮어 읽는다. 필수 설정은 ADS_SECRET_KEY, ADS_MEDIA_KEY, MONGO_URI이며 MONGO_DB 기본은 village_ads다. 실제 키 값은 문서에 없다. 현재 수업 환경은 27017 단일 멤버 ads-rs다. 이미 PRIMARY인 서버에 replSetInitiate를 반복하거나 기존 서비스를 중복 실행하지 않는다. 중지 상태일 때만 별도 터미널에서 실행한다.
@@ -68,13 +74,13 @@ python tools/verify_day22_images.py --mongod "C:\Program Files\MongoDB\Server\8.
 
 첫 검사는 임시 Mongo27107의31개 테스트, 둘째는 Mongo27109·SQLite·웹18000/18001·무작위 임시 계정·synthetic 매체 키로 실제 HTTP 흐름과 Pygame 두 프레임/Chrome 화면을 검증한다. 둘째는 옆 폴더 두 프로젝트의 기존 가상환경과 Codex 번들 Playwright/설치된 Chrome을 사용한다. 테스트 프로세스만 종료하고 수업용27017·MySQL을 변경하지 않는다. 접속기 전체50개, 게임 서버 관련11개 테스트도 통과했다.
 
-`docs/server-routing/verification/day22-images/integration.json`과 PNG 캡처는 분리 fixture의 증거다. 실제 학생 게임 창 관찰은 not_run이며 이 캡처를 실제 수업 노출 증거로 기록하지 않는다. 수정된 23일차 1·2교시의 결정 보완·실적 API·확인 화면은 아래에 반영했다. 광고주 보고서·파일 전달·집계는 다음 교시 범위다. 작업 시작 전 `ads/events.py`의 실습 코드는 `tools/basics/day23_record_observed.py`에 원본 바이트로 보존했다.
+`docs/server-routing/verification/day22-images/integration.json`과 PNG 캡처는 분리 fixture의 증거다. 실제 학생 게임 창 관찰은 not_run이며 이 캡처를 실제 수업 노출 증거로 기록하지 않는다. 수정된 23일차 1·2교시의 결정 보완·실적 API·확인 화면은 아래에 반영했다. 후속 광고주 보고서·파일 전달·집계의 현재 코드와 이전 검증 기록은 현재 진행 색인에서 구분한다. 작업 시작 전 `ads/events.py`의 실습 코드는 `tools/basics/day23_record_observed.py`에 원본 바이트로 보존했다.
 
 기존 기초 명령은 `python tools/basics/day22_period01.py`, `python tools/basics/day22_period02.py`, `python tools/basics/day22_credit_model.py`다. 크레딧 예제는 로컬 모형이며 실정산이 아니다. 저장 결정은 chosen_campaign_id/chosen_bid_amount, 응답은 campaign_id/bid_amount이고 이미지 호환 응답에는 bid_units도 같은 금액으로 포함한다.
 
 ## 수정 23일차 v2.3 · 1·2교시
 
-정본은 데스크톱의 「현재 ad_server에서 노출·클릭과 광고주 보고서 완성하기.html」이다. 이전 「기존 접속기 노출·클릭에서 광고주 웹 보고서까지」와 교시 구성이 다르다. 1교시는 입찰 반환·결정 스냅샷·색인, 2교시는 기존 인증을 이용한 사건 API와 광고주 선택·실적 목록이다. 자동 Pygame 전송은 수정 교안의 3교시이며 기존에 작성된 구현을 보존했다. NDJSON·집계·일별 보고서·전달은 미적용 후속 교시다.
+정본은 데스크톱의 「현재 ad_server에서 노출·클릭과 광고주 보고서 완성하기.html」이다. 이전 「기존 접속기 노출·클릭에서 광고주 웹 보고서까지」와 교시 구성이 다르다. 1교시는 입찰 반환·결정 스냅샷·색인, 2교시는 기존 인증을 이용한 사건 API와 광고주 선택·실적 목록이다. 자동 Pygame 전송은 수정 교안의 3교시이며 기존에 작성된 구현을 보존했다. 현재 4교시 NDJSON, 5교시 집계, 6교시 게시·일별 보고서, 7교시 파일 전달, 8교시 게시 보고서 대조의 코드도 저장돼 있으며 실행/검증 상태는 해당 문서와 인수인계에서 확인한다.
 
 1교시에서 `save_bid`는 저장한 `bids` 문서를 반환한다. 새 결정에는 `owner_user_id`, UTC BSON datetime `selected_at`, `chosen_campaign_id`, `chosen_bid_amount`, 후보의 `owner_user_id`·`bid_amount`가 저장된다. 기존 4인수 `choose_ad(media_id, subject_id, slot_id, context)`·`bid_amount` 저장 형식·이미지·슬롯을 유지한다. 이미지 응답의 `bid_units`는 같은 금액의 호환 이름이며 `policy_version`은 선택·빈 응답에 같은 이름으로 들어간다. 현재 입찰 변경은 과거 결정이나 사건의 금액을 수정하지 않는다.
 
@@ -93,7 +99,7 @@ python ad_config/manage.py create_ad_indexes
 
 매체 POST `/api/media/events/`와 기존 decision 경로는 `X-Media-ID`·`X-Media-Key` 두 헤더를 기존 서버 설정으로 인증한다. 헤더 누락·불일치는401, 결정·수신자 불일치나 스냅샷 누락은 구체적 공개 오류 코드와400, 저장소 장애는503이다. 게임 POST `/api/ads/events/`는 기존 로그인·CSRF를 사용하고 로그인한 Player에서 subject를 만든다. 본문은 `decision_id`·`event_type` 두 필드만 허용한다. 사건 응답에는 `Cache-Control: no-store`가 설정된다.
 
-광고주 웹 [선택·실적](http://127.0.0.1:8001/advertiser/events/)에서 기존 광고 계정으로 로그인한다. 자기 소유 결정만 `selected_at` 내림차순으로 최대30개 조회하여 캠페인·선택 당시 포인트·결정 ID·선택 시각·스냅샷·노출/클릭 시각을 표시한다. 선택만 있어도 행이 보이며 사건이 없으면 **미기록**이다. 웹 조회는 사건을 저장하지 않는다. 기존 캠페인/입찰 디자인에 선택·실적 메뉴를 추가했다. 아직 구현하지 않은 일별 보고서 링크는 연결하지 않았다.
+광고주 웹 [선택·실적](http://127.0.0.1:8001/advertiser/events/)에서 기존 광고 계정으로 로그인한다. 자기 소유 결정만 `selected_at` 내림차순으로 최대30개 조회하여 캠페인·선택 당시 포인트·결정 ID·선택 시각·스냅샷·노출/클릭 시각을 표시한다. 선택만 있어도 행이 보이며 사건이 없으면 **미기록**이다. 웹 조회는 사건을 저장하지 않는다. 현재 공통 상단 메뉴에는 캠페인·입찰 관리·선택·실적·일별 보고서가 연결돼 있다.
 
 표가 비어 있으면 기존 결정에 `owner_user_id`가 없는지, 현재 광고주의 캠페인이 승자인지 확인하고 게임에서 새 광고를 요청한다. 기존 과거 문서는 수정하지 않는다. Compass는 기존27017의 `village_ads` → `decisions`에서 Sort `{"selected_at": -1}`로 새 문서를 확인한다. UUID `_id`의 역순은 시간순이 아니다. 광고주 계정 ID와 게임 Player ID는 같을 필요가 없다. Django shell에서 subject·결정 ID를 직접 만들어 사건을 기록하는 과거 실습 파일은 보존 자료이며 수정 교안의 실행 과정으로 사용하지 않는다.
 
@@ -125,4 +131,4 @@ python tools/verify_day23.py --mongod "C:\Program Files\MongoDB\Server\8.3\bin\m
 
 `config/day23-period-03.py`는 이전 교안의 False/True 실습을 보존한 파일이다. 최신 초급 예제의 True/None 출력과 다르며 현재 3교시 정본으로 실행하지 않는다. 상세한 차이는 [교안 검토 기록](docs/server-routing/reviews/2026-10-07-lesson-deviations.md)을 따른다.
 
-접속기의 표시·클릭·재시도·표시 유지 기능은 [별도 연결 안내](../Game-client/README.md)에 남아 있다. `tools/verify_day23.py`와 `docs/server-routing/verification/day23-period03/`는 HTTP/PNG/Pygame 보조 검증 기록이다. 과거 접속기 테스트 57개와 fixture 결과를 공식 3교시 검증이나 실제 학생 창 관찰 결과로 취급하지 않는다. 4교시 이후 NDJSON·집계·보고서·전달은 미적용이다.
+접속기의 표시·클릭·재시도·표시 유지 기능은 [별도 연결 안내](../Game-client/README.md)에 남아 있다. `tools/verify_day23.py`와 `docs/server-routing/verification/day23-period03/`는 HTTP/PNG/Pygame 보조 검증 기록이다. 과거 접속기 테스트 57개와 fixture 결과를 공식 3교시 검증이나 실제 학생 창 관찰 결과로 취급하지 않는다. 4교시 이후 현재 저장된 NDJSON·집계·게시·보고서 화면·파일 전달·대조 명령은 [현재 진행 색인](docs/server-routing/current-progress-index.md)의 구현 경로를 따른다.

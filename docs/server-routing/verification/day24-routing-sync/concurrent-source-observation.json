@@ -1,0 +1,38 @@
+{
+  "observed_at": "2026-10-08T16:47:14.358955+09:00",
+  "path": "ads/snapshot_intake.py",
+  "observed_after_task_start": true,
+  "ownership": "작업 중 발견한 기존 사용자 작업으로 취급; 작성자 확인 불가; 부모 및 서브에이전트는 소스 생성/수정하지 않음",
+  "sha256": "02fa6834b3fd64bc69706976851544cf8db41008036feaeba7376258ec80483d",
+  "bytes": 3712,
+  "last_write_at": "2026-10-08T16:44:28.294791+09:00",
+  "functions": [
+    "_read_snapshot",
+    "_check_public_state",
+    "inspect_snapshot"
+  ],
+  "unfilled_placeholder_name_count": 0,
+  "inspect_parse_utc_calls": [],
+  "inspect_bare_parse_utc_expressions": [
+    "parse_utc"
+  ],
+  "status": "24일차 2교시 사용자 작성 진행 중; 필드/상태/중복/수집일치 작성, captured_at parse_utc 호출 미완성; 공식 성공검사 아님",
+  "earlier_observations": [
+    {
+      "observed_at": "2026-10-08T16:42:58.172705+09:00",
+      "path": "ads/snapshot_intake.py",
+      "observed_after_task_start": true,
+      "ownership": "작업 중 발견한 기존 사용자 작업으로 취급; 작성자 확인 불가; 부모 및 서브에이전트는 소스 생성/수정하지 않음",
+      "sha256": "dd09b141e4fcd154ad1931f0cd84357130a26b71956b4e415b1ef4436180e6ad",
+      "bytes": 3526,
+      "last_write_at": "2026-10-08T16:40:37.898516+09:00",
+      "functions": [
+        "_read_snapshot",
+        "_check_public_state",
+        "inspect_snapshot"
+      ],
+      "unfilled_placeholder_name_count": 5,
+      "status": "24일차 2교시 제공부와 문제틀 저장; inspect_snapshot 미완성; 실행 성공 검사 아님"
+    }
+  ]
+}

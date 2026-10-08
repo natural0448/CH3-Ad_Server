@@ -1,0 +1,45 @@
+{
+  "path": "ads/snapshot_intake.py",
+  "observed_during_task": true,
+  "ownership": "new user work or authorship unconfirmed; not agent implementation",
+  "bytes": 3526,
+  "sha256": "dd09b141e4fcd154ad1931f0cd84357130a26b71956b4e415b1ef4436180e6ad",
+  "symbols": [
+    {
+      "kind": "function",
+      "qualified_name": "_read_snapshot",
+      "line": 19,
+      "signature": "_read_snapshot(path)",
+      "signature_core": "_read_snapshot(path)",
+      "return_annotation": null,
+      "decorators": [],
+      "bases": [],
+      "documented": false
+    },
+    {
+      "kind": "function",
+      "qualified_name": "_check_public_state",
+      "line": 33,
+      "signature": "_check_public_state(row)",
+      "signature_core": "_check_public_state(row)",
+      "return_annotation": null,
+      "decorators": [],
+      "bases": [],
+      "documented": false
+    },
+    {
+      "kind": "function",
+      "qualified_name": "inspect_snapshot",
+      "line": 48,
+      "signature": "inspect_snapshot(path)",
+      "signature_core": "inspect_snapshot(path)",
+      "return_annotation": null,
+      "decorators": [],
+      "bases": [],
+      "documented": false
+    }
+  ],
+  "parse_error": null,
+  "document_exists": false,
+  "problem_placeholders_preserved": true
+}

@@ -1,0 +1,51 @@
+{
+  "git_head": "8f541e4 day23 - finish",
+  "status": " M README.md\n M docs/server-routing/day23-period06-index.md\n M docs/server-routing/files/README.md.md\n M docs/server-routing/files/ads/media_auth.py.md\n M docs/server-routing/files/ads/repository.py.md\n M docs/server-routing/files/ads/templates/ads/events.html.md\n M docs/server-routing/files/ads/tests.py.md\n?? ads/snapshot_intake.py\n?? docs/handoffs/2026-10-08-ad-routing-progress-sync.md\n?? docs/handoffs/2026-10-08-day24-data-path-correction.md\n?? docs/handoffs/2026-10-08-day24-period01-review.md\n?? docs/server-routing/current-progress-index.md\n?? docs/server-routing/day24-period01-index.md\n?? docs/server-routing/files/ad_config/ad_config/__init__.py.md\n?? docs/server-routing/files/ad_config/ad_config/asgi.py.md\n?? docs/server-routing/files/ad_config/ad_config/wsgi.py.md\n?? docs/server-routing/files/ads/__init__.py.md\n?? docs/server-routing/files/ads/admin.py.md\n?? docs/server-routing/files/ads/apps.py.md\n?? docs/server-routing/files/ads/delivery.py.md\n?? docs/server-routing/files/ads/exporting.py.md\n?? docs/server-routing/files/ads/management/commands/check_ad_reports.py.md\n?? docs/server-routing/files/ads/management/commands/deliver_ad_events.py.md\n?? docs/server-routing/files/ads/management/commands/export_ad_events.py.md\n?? docs/server-routing/files/ads/migrations/\n?? docs/server-routing/files/ads/models.py.md\n?? docs/server-routing/files/ads/snapshot_intake.py.md\n?? docs/server-routing/files/ads/timestamps.py.md\n?? docs/server-routing/files/config/day23-period-04.py.md\n?? docs/server-routing/files/config/day23-period-05.py.md\n?? docs/server-routing/files/config/day23-period-07.py.md\n?? docs/server-routing/files/tools/check_day24_logic.py.md\n?? docs/server-routing/verification/day24-data-path-correction/\n?? docs/server-routing/verification/day24-period01-review/\n?? docs/server-routing/verification/day24-routing-sync/\n?? tools/check_day24_logic.py\n",
+  "staged": "",
+  "unstaged": "M\tREADME.md\nM\tdocs/server-routing/day23-period06-index.md\nM\tdocs/server-routing/files/README.md.md\nM\tdocs/server-routing/files/ads/media_auth.py.md\nM\tdocs/server-routing/files/ads/repository.py.md\nM\tdocs/server-routing/files/ads/templates/ads/events.html.md\nM\tdocs/server-routing/files/ads/tests.py.md\n",
+  "new_pair_documents": [
+    "ads/timestamps.py",
+    "ads/exporting.py",
+    "ads/delivery.py",
+    "ads/management/commands/export_ad_events.py",
+    "ads/management/commands/deliver_ad_events.py",
+    "ads/management/commands/check_ad_reports.py",
+    "config/day23-period-04.py",
+    "config/day23-period-05.py",
+    "config/day23-period-07.py",
+    "ad_config/ad_config/__init__.py",
+    "ad_config/ad_config/asgi.py",
+    "ad_config/ad_config/wsgi.py",
+    "ads/__init__.py",
+    "ads/admin.py",
+    "ads/apps.py",
+    "ads/models.py",
+    "ads/migrations/__init__.py",
+    "ads/snapshot_intake.py"
+  ],
+  "modified_existing_markdown": [
+    "README.md",
+    "docs/server-routing/files/README.md.md",
+    "docs/server-routing/files/ads/templates/ads/events.html.md",
+    "docs/server-routing/files/ads/repository.py.md",
+    "docs/server-routing/files/ads/tests.py.md",
+    "docs/server-routing/files/ads/media_auth.py.md",
+    "docs/server-routing/day23-period06-index.md",
+    "docs/server-routing/day24-period01-index.md",
+    "docs/server-routing/files/tools/check_day24_logic.py.md"
+  ],
+  "source_hash_preserved": true,
+  "new_user_source": {
+    "path": "ads/snapshot_intake.py",
+    "first_observation_sha256": "dd09b141e4fcd154ad1931f0cd84357130a26b71956b4e415b1ef4436180e6ad",
+    "latest_observation_sha256": "02fa6834b3fd64bc69706976851544cf8db41008036feaeba7376258ec80483d",
+    "current_sha256": "02fa6834b3fd64bc69706976851544cf8db41008036feaeba7376258ec80483d",
+    "preserved_since_latest_observation": true,
+    "user_save_changed_from_first_observation": true,
+    "ownership": "user work/authorship unconfirmed; not agent code",
+    "inspect_placeholder_uses": 0,
+    "inspect_parse_utc_call_count": 0,
+    "inspect_parse_utc_standalone_expression_count": 1,
+    "implementation_status": "period2 being written; captured_at time validation not called; no period2 test execution or consumption success; periods3-8 not applied"
+  }
+}

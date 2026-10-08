@@ -40,9 +40,9 @@ Decorator: `classmethod`.
 |---|---|---|
 | self | 없음 | 해당 인스턴스. 상태 쓰기는 해당 객체가 소유한다. |
 
-반환·실패: None; 테스트 실패 AssertionError.
+반환·실패: 테스트 응답의 CSRF 값을 HTTP_X_CSRFTOKEN 키에 넣은 헤더 사전; 상태 검사 실패 AssertionError. 실제 토큰 값은 문서에 기록하지 않는다.
 
-의사코드: 이름에 해당하는 fixture 준비 → 실제 함수/HTTP 호출 → 반환·상태·저장 불변식 assert → fixture 정리.
+의사코드: 테스트 client로 GET /api/auth/csrf/ → 200 확인 → 응답 JSON의 csrfToken을 헤더 사전으로 반환.
 
 직접 호출: `response.json`, `self.assertEqual`, `self.client.get`.
 

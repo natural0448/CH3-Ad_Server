@@ -1,0 +1,12 @@
+{
+  "path": "ads/snapshot_intake.py",
+  "bytes": 3712,
+  "sha256": "02fa6834b3fd64bc69706976851544cf8db41008036feaeba7376258ec80483d",
+  "ownership": "ongoing user work or authorship unconfirmed; agent did not edit",
+  "placeholder_name_uses": 0,
+  "inspect_parse_utc_call_count": 0,
+  "inspect_parse_utc_standalone_expression_count": 1,
+  "implementation_status": "period2 being written; captured_at time validation not called; no period2 test execution or consumption success; periods3-8 not applied",
+  "earlier_observation": "agent-user-snapshot-observation.json retained as history",
+  "parent_observation": "concurrent-source-observation.json"
+}

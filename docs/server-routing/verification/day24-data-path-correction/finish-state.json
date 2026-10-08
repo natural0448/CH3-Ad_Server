@@ -1,0 +1,77 @@
+{
+  "head": {
+    "exit_code": 0,
+    "output": "8f541e4 day23 - finish"
+  },
+  "status": {
+    "exit_code": 0,
+    "output": "?? docs/handoffs/2026-10-08-day24-data-path-correction.md\n?? docs/handoffs/2026-10-08-day24-period01-review.md\n?? docs/server-routing/day24-period01-index.md\n?? docs/server-routing/files/tools/check_day24_logic.py.md\n?? docs/server-routing/verification/day24-data-path-correction/routing-final-scoped.json\n?? docs/server-routing/verification/day24-data-path-correction/start-state.json\n?? docs/server-routing/verification/day24-period01-review/checker-origin-local.json\n?? docs/server-routing/verification/day24-period01-review/checker-symbols.json\n?? docs/server-routing/verification/day24-period01-review/export_player_snapshot-start.txt\n?? docs/server-routing/verification/day24-period01-review/finish-state.json\n?? docs/server-routing/verification/day24-period01-review/lesson-comparison.json\n?? docs/server-routing/verification/day24-period01-review/pre-development-document-check.json\n?? docs/server-routing/verification/day24-period01-review/routing-before.json\n?? docs/server-routing/verification/day24-period01-review/routing-final-scoped.json\n?? docs/server-routing/verification/day24-period01-review/start-state.json\n?? docs/server-routing/verification/day24-period01-review/user-source-symbols.json\n?? tools/check_day24_logic.py"
+  },
+  "head_changes": {
+    "exit_code": 0,
+    "output": ""
+  },
+  "staged": {
+    "exit_code": 0,
+    "output": ""
+  },
+  "unstaged": {
+    "exit_code": 0,
+    "output": ""
+  },
+  "untracked": {
+    "exit_code": 0,
+    "output": "docs/handoffs/2026-10-08-day24-data-path-correction.md\ndocs/handoffs/2026-10-08-day24-period01-review.md\ndocs/server-routing/day24-period01-index.md\ndocs/server-routing/files/tools/check_day24_logic.py.md\ndocs/server-routing/verification/day24-data-path-correction/routing-final-scoped.json\ndocs/server-routing/verification/day24-data-path-correction/start-state.json\ndocs/server-routing/verification/day24-period01-review/checker-origin-local.json\ndocs/server-routing/verification/day24-period01-review/checker-symbols.json\ndocs/server-routing/verification/day24-period01-review/export_player_snapshot-start.txt\ndocs/server-routing/verification/day24-period01-review/finish-state.json\ndocs/server-routing/verification/day24-period01-review/lesson-comparison.json\ndocs/server-routing/verification/day24-period01-review/pre-development-document-check.json\ndocs/server-routing/verification/day24-period01-review/routing-before.json\ndocs/server-routing/verification/day24-period01-review/routing-final-scoped.json\ndocs/server-routing/verification/day24-period01-review/start-state.json\ndocs/server-routing/verification/day24-period01-review/user-source-symbols.json\ntools/check_day24_logic.py"
+  },
+  "agent_development_modifications": [],
+  "existing_python_source_unchanged": true,
+  "environment_hashes_unchanged": true,
+  "python_edits": false,
+  "db_export_executed": false,
+  "server_lifecycle_actions": false,
+  "routing_summary": {
+    "ok": true,
+    "python_file_count": 1,
+    "symbol_count": 19,
+    "issue_count": 0
+  },
+  "document_links": [
+    {
+      "document": "docs\\server-routing\\day24-period01-index.md",
+      "target": "files/tools/check_day24_logic.py.md",
+      "exists": true
+    },
+    {
+      "document": "docs\\server-routing\\day24-period01-index.md",
+      "target": "../../../Game-server/docs/server-routing/files/server/game/management/commands/export_player_snapshot.py.md",
+      "exists": true
+    },
+    {
+      "document": "docs\\server-routing\\day24-period01-index.md",
+      "target": "../../../Game-server/docs/handoffs/2026-10-08-day24-period01-review.md",
+      "exists": true
+    },
+    {
+      "document": "docs\\server-routing\\day24-period01-index.md",
+      "target": "../handoffs/2026-10-08-day24-period01-review.md",
+      "exists": true
+    },
+    {
+      "document": "docs\\handoffs\\2026-10-08-day24-data-path-correction.md",
+      "target": "../../../Game-server/docs/handoffs/2026-10-08-day24-data-path-correction.md",
+      "exists": true
+    },
+    {
+      "document": "docs\\handoffs\\2026-10-08-day24-period01-review.md",
+      "target": "../../../Game-server/docs/handoffs/2026-10-08-day24-data-path-correction.md",
+      "exists": true
+    },
+    {
+      "document": "docs\\handoffs\\2026-10-08-day24-period01-review.md",
+      "target": "../../../Game-server/docs/handoffs/2026-10-08-day24-period01-review.md",
+      "exists": true
+    }
+  ],
+  "existing_changes": "?? docs/handoffs/2026-10-08-day24-period01-review.md\n?? docs/server-routing/day24-period01-index.md\n?? docs/server-routing/files/ads/management/commands/export_player_snapshot.py.md\n?? docs/server-routing/files/tools/check_day24_logic.py.md\n?? docs/server-routing/verification/day24-period01-review/checker-origin-local.json\n?? docs/server-routing/verification/day24-period01-review/checker-symbols.json\n?? docs/server-routing/verification/day24-period01-review/export_player_snapshot-start.txt\n?? docs/server-routing/verification/day24-period01-review/finish-state.json\n?? docs/server-routing/verification/day24-period01-review/lesson-comparison.json\n?? docs/server-routing/verification/day24-period01-review/pre-development-document-check.json\n?? docs/server-routing/verification/day24-period01-review/routing-before.json\n?? docs/server-routing/verification/day24-period01-review/routing-final-scoped.json\n?? docs/server-routing/verification/day24-period01-review/start-state.json\n?? docs/server-routing/verification/day24-period01-review/user-source-symbols.json\n?? tools/check_day24_logic.py",
+  "note": "User source relocation and corrections existed before this request; this agent relocated only the already-generated data artifact and aligned documents."
+}

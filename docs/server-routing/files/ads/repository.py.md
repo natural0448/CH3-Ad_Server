@@ -46,7 +46,7 @@
 | 파라미터 | 기본값 | 의미·허용 범위 |
 |---|---|---|
 | owner_user_id | 없음 | 광고주 Django User의 정수 pk. |
-| data | 없음 | 캠페인 입력 mapping 또는 HTMLParser 문자 데이터. |
+| data | 없음 | get과 키 포함 검사를 지원하는 캠페인 입력 mapping(Django request.POST 등). |
 
 반환·실패: None 또는 ValueError/PyMongoError.
 

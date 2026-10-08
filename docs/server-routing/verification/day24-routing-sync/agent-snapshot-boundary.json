@@ -1,0 +1,11 @@
+{
+  "path": "C:\\MLO01-01\\Chapter3\\Game-server\\data\\exports\\player-cdc.ndjson",
+  "exists": true,
+  "bytes": 13275,
+  "rows": 56,
+  "sha256": "6ea30948a1c6924b186676511207bd2099683ca00cf1b1582cb595e6437375d0",
+  "game_snapshot_command_exists": true,
+  "old_ads_snapshot_command_exists": false,
+  "ads_snapshot_intake_exists": false,
+  "game_server_data_exists": false
+}

@@ -1,0 +1,44 @@
+{
+  "source": "ads/management/commands/export_player_snapshot.py",
+  "symbols": [
+    {
+      "kind": "class",
+      "qualified_name": "Command",
+      "line": 13,
+      "signature": "class Command(BaseCommand)",
+      "signature_core": "Command",
+      "return_annotation": null,
+      "decorators": [],
+      "bases": [
+        "BaseCommand"
+      ],
+      "documented": false
+    },
+    {
+      "kind": "method",
+      "qualified_name": "Command.add_arguments",
+      "line": 16,
+      "signature": "Command.add_arguments(self, parser)",
+      "signature_core": "Command.add_arguments(self, parser)",
+      "return_annotation": null,
+      "decorators": [],
+      "bases": [],
+      "documented": false
+    },
+    {
+      "kind": "method",
+      "qualified_name": "Command.handle",
+      "line": 19,
+      "signature": "Command.handle(self, *args, **options)",
+      "signature_core": "Command.handle(self, *args, **options)",
+      "return_annotation": null,
+      "decorators": [],
+      "bases": [],
+      "documented": false
+    }
+  ],
+  "parse_error": null,
+  "paired_document_exists": false,
+  "index": "docs/server-routing/day24-period01-index.md",
+  "note": "README remains absent at the user-committed HEAD. Scoped verification uses the same auditor AST API."
+}

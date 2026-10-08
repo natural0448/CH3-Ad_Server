@@ -1,0 +1,2586 @@
+{
+  "repository": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "git_head": "8f541e4 day23 - finish",
+  "scope": "all tracked/untracked Python metadata; current indexes day23-period06 and day24-period01",
+  "python_files": [
+    {
+      "path": "ad_config/ad_config/__init__.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ad_config/ad_config/asgi.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ad_config/ad_config/settings.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ad_config/ad_config/urls.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ad_config/ad_config/wsgi.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ad_config/ads_manage.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ad_config/manage.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "main",
+          "line": 7,
+          "signature": "main()",
+          "signature_core": "main()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/__init__.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/admin.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/apps.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "AdsConfig",
+          "line": 4,
+          "signature": "class AdsConfig(AppConfig)",
+          "signature_core": "AdsConfig",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "AppConfig"
+          ],
+          "documented": false
+        }
+      ],
+      "missing_signatures": [
+        "class AdsConfig(AppConfig)"
+      ],
+      "parse_error": null
+    },
+    {
+      "path": "ads/auth_views.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "csrf_token",
+          "line": 14,
+          "signature": "csrf_token(request)",
+          "signature_core": "csrf_token(request)",
+          "return_annotation": null,
+          "decorators": [
+            "require_GET",
+            "ensure_csrf_cookie"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "read_credentials",
+          "line": 19,
+          "signature": "read_credentials(request)",
+          "signature_core": "read_credentials(request)",
+          "return_annotation": null,
+          "decorators": [
+            "sensitive_variables('body', 'password', 'credentials')"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "login_view",
+          "line": 38,
+          "signature": "login_view(request)",
+          "signature_core": "login_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "require_POST",
+            "sensitive_variables('credentials')"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "logout_view",
+          "line": 51,
+          "signature": "logout_view(request)",
+          "signature_core": "logout_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "require_POST"
+          ],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/creatives.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "validate_creative",
+          "line": 11,
+          "signature": "validate_creative(value)",
+          "signature_core": "validate_creative(value)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/delivery.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "deliver_events",
+          "line": 7,
+          "signature": "deliver_events(output_path, limit=100)",
+          "signature_core": "deliver_events(output_path, limit=100)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "function",
+          "qualified_name": "delivery_summary",
+          "line": 40,
+          "signature": "delivery_summary(events)",
+          "signature_core": "delivery_summary(events)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        }
+      ],
+      "missing_signatures": [
+        "deliver_events(output_path, limit=100)",
+        "delivery_summary(events)"
+      ],
+      "parse_error": null
+    },
+    {
+      "path": "ads/events.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "record_ad_event",
+          "line": 8,
+          "signature": "record_ad_event(subject, decision_id, event_type)",
+          "signature_core": "record_ad_event(subject, decision_id, event_type)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/exporting.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "read_ndjson",
+          "line": 12,
+          "signature": "read_ndjson(path)",
+          "signature_core": "read_ndjson(path)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "function",
+          "qualified_name": "write_ndjson",
+          "line": 24,
+          "signature": "write_ndjson(path, rows)",
+          "signature_core": "write_ndjson(path, rows)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "function",
+          "qualified_name": "export_ad_events",
+          "line": 33,
+          "signature": "export_ad_events(output_path, since=None, until=None)",
+          "signature_core": "export_ad_events(output_path, since=None, until=None)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        }
+      ],
+      "missing_signatures": [
+        "read_ndjson(path)",
+        "write_ndjson(path, rows)",
+        "export_ad_events(output_path, since=None, until=None)"
+      ],
+      "parse_error": null
+    },
+    {
+      "path": "ads/management/__init__.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/management/commands/__init__.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/management/commands/build_ad_reports.py",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 7,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 10,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 14,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/management/commands/check_ad_reports.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 11,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 14,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 18,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        }
+      ],
+      "missing_signatures": [
+        "class Command(BaseCommand)",
+        "Command.add_arguments(self, parser)",
+        "Command.handle(self, *args, **options)"
+      ],
+      "parse_error": null
+    },
+    {
+      "path": "ads/management/commands/compare_ad_decisions.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 9,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 12,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 16,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/management/commands/create_ad_indexes.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 5,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 8,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/management/commands/deliver_ad_events.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 6,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 9,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 13,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        }
+      ],
+      "missing_signatures": [
+        "class Command(BaseCommand)",
+        "Command.add_arguments(self, parser)",
+        "Command.handle(self, *args, **options)"
+      ],
+      "parse_error": null
+    },
+    {
+      "path": "ads/management/commands/ensure_ad_event_indexes.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 7,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 10,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/management/commands/export_ad_events.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 6,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 9,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 14,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        }
+      ],
+      "missing_signatures": [
+        "class Command(BaseCommand)",
+        "Command.add_arguments(self, parser)",
+        "Command.handle(self, *args, **options)"
+      ],
+      "parse_error": null
+    },
+    {
+      "path": "ads/management/commands/load_ad_reports.py",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 6,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 9,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 12,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/media_auth.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "read_media_body",
+          "line": 11,
+          "signature": "read_media_body(request)",
+          "signature_core": "read_media_body(request)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "media_api_methods",
+          "line": 31,
+          "signature": "media_api_methods(*methods)",
+          "signature_core": "media_api_methods(*methods)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/migrations/__init__.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/models.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/mongo.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "get_client",
+          "line": 10,
+          "signature": "get_client()",
+          "signature_core": "get_client()",
+          "return_annotation": null,
+          "decorators": [
+            "lru_cache(maxsize=1)"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "get_db",
+          "line": 19,
+          "signature": "get_db()",
+          "signature_core": "get_db()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "close_client",
+          "line": 23,
+          "signature": "close_client()",
+          "signature_core": "close_client()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/reporting.py",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "build_daily_reports",
+          "line": 8,
+          "signature": "build_daily_reports(events, generated_at=None)",
+          "signature_core": "build_daily_reports(events, generated_at=None)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "publish_reports",
+          "line": 62,
+          "signature": "publish_reports(rows)",
+          "signature_core": "publish_reports(rows)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "list_reports",
+          "line": 76,
+          "signature": "list_reports(owner_user_id)",
+          "signature_core": "list_reports(owner_user_id)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/repository.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "validate_id",
+          "line": 13,
+          "signature": "validate_id(value, label='ID')",
+          "signature_core": "validate_id(value, label='ID')",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "get_campaign",
+          "line": 19,
+          "signature": "get_campaign(campaign_id)",
+          "signature_core": "get_campaign(campaign_id)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "list_campaigns",
+          "line": 23,
+          "signature": "list_campaigns(owner_user_id)",
+          "signature_core": "list_campaigns(owner_user_id)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "save_campaign",
+          "line": 28,
+          "signature": "save_campaign(owner_user_id, data)",
+          "signature_core": "save_campaign(owner_user_id, data)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "list_bids",
+          "line": 57,
+          "signature": "list_bids(owner_user_id)",
+          "signature_core": "list_bids(owner_user_id)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "save_bid",
+          "line": 62,
+          "signature": "save_bid(owner_user_id, campaign_id, bid_amount)",
+          "signature_core": "save_bid(owner_user_id, campaign_id, bid_amount)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/services.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "clean_subject",
+          "line": 8,
+          "signature": "clean_subject(subject)",
+          "signature_core": "clean_subject(subject)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "choose_ad",
+          "line": 16,
+          "signature": "choose_ad(media_id, subject_id, slot_id, context)",
+          "signature_core": "choose_ad(media_id, subject_id, slot_id, context)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/test_events.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "EventAuthTests",
+          "line": 21,
+          "signature": "class EventAuthTests(SimpleTestCase)",
+          "signature_core": "EventAuthTests",
+          "return_annotation": null,
+          "decorators": [
+            "override_settings(MEDIA_KEYS={'village-game': 'test-event-key'})"
+          ],
+          "bases": [
+            "SimpleTestCase"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventAuthTests.test_both_media_headers_must_match_the_authenticated_body",
+          "line": 22,
+          "signature": "EventAuthTests.test_both_media_headers_must_match_the_authenticated_body(self)",
+          "signature_core": "EventAuthTests.test_both_media_headers_must_match_the_authenticated_body(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventAuthTests.test_public_snapshot_error_keeps_only_the_allowed_error_code",
+          "line": 35,
+          "signature": "EventAuthTests.test_public_snapshot_error_keeps_only_the_allowed_error_code(self)",
+          "signature_core": "EventAuthTests.test_public_snapshot_error_keeps_only_the_allowed_error_code(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventAuthTests.test_media_key_json_subject_and_post_are_required",
+          "line": 44,
+          "signature": "EventAuthTests.test_media_key_json_subject_and_post_are_required(self)",
+          "signature_core": "EventAuthTests.test_media_key_json_subject_and_post_are_required(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed",
+          "line": 59,
+          "signature": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed(self)",
+          "signature_core": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "class",
+          "qualified_name": "EventIntegrationTests",
+          "line": 69,
+          "signature": "class EventIntegrationTests(TestCase)",
+          "signature_core": "EventIntegrationTests",
+          "return_annotation": null,
+          "decorators": [
+            "skipUnless(os.environ.get('ADS_TEST_MONGO_URI'), 'Requires isolated ADS_TEST_MONGO_URI')"
+          ],
+          "bases": [
+            "TestCase"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_subject_field_order_does_not_change_recipient_identity",
+          "line": 70,
+          "signature": "EventIntegrationTests.test_subject_field_order_does_not_change_recipient_identity(self)",
+          "signature_core": "EventIntegrationTests.test_subject_field_order_does_not_change_recipient_identity(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_old_incomplete_snapshot_is_rejected_without_backfilling",
+          "line": 76,
+          "signature": "EventIntegrationTests.test_old_incomplete_snapshot_is_rejected_without_backfilling(self)",
+          "signature_core": "EventIntegrationTests.test_old_incomplete_snapshot_is_rejected_without_backfilling(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_index_command_is_repeatable_and_prints_the_lesson_name",
+          "line": 85,
+          "signature": "EventIntegrationTests.test_index_command_is_repeatable_and_prints_the_lesson_name(self)",
+          "signature_core": "EventIntegrationTests.test_index_command_is_repeatable_and_prints_the_lesson_name(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_advertiser_page_lists_only_owner_decisions_latest_first_without_events",
+          "line": 92,
+          "signature": "EventIntegrationTests.test_advertiser_page_lists_only_owner_decisions_latest_first_without_events(self)",
+          "signature_core": "EventIntegrationTests.test_advertiser_page_lists_only_owner_decisions_latest_first_without_events(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.setUpClass",
+          "line": 119,
+          "signature": "EventIntegrationTests.setUpClass(cls)",
+          "signature_core": "EventIntegrationTests.setUpClass(cls)",
+          "return_annotation": null,
+          "decorators": [
+            "classmethod"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.tearDownClass",
+          "line": 125,
+          "signature": "EventIntegrationTests.tearDownClass(cls)",
+          "signature_core": "EventIntegrationTests.tearDownClass(cls)",
+          "return_annotation": null,
+          "decorators": [
+            "classmethod"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.setUp",
+          "line": 130,
+          "signature": "EventIntegrationTests.setUp(self)",
+          "signature_core": "EventIntegrationTests.setUp(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount",
+          "line": 145,
+          "signature": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount(self)",
+          "signature_core": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision",
+          "line": 165,
+          "signature": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision(self)",
+          "signature_core": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write",
+          "line": 176,
+          "signature": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write(self)",
+          "signature_core": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors",
+          "line": 184,
+          "signature": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors(self)",
+          "signature_core": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type",
+          "line": 194,
+          "signature": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type(self)",
+          "signature_core": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type(self)",
+          "return_annotation": null,
+          "decorators": [
+            "override_settings(MEDIA_KEYS={'village-game': 'test-event-key'})"
+          ],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/tests.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "AuthenticationTests",
+          "line": 15,
+          "signature": "class AuthenticationTests(TestCase)",
+          "signature_core": "AuthenticationTests",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "TestCase"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "AuthenticationTests.setUpTestData",
+          "line": 17,
+          "signature": "AuthenticationTests.setUpTestData(cls)",
+          "signature_core": "AuthenticationTests.setUpTestData(cls)",
+          "return_annotation": null,
+          "decorators": [
+            "classmethod"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "AuthenticationTests.setUp",
+          "line": 24,
+          "signature": "AuthenticationTests.setUp(self)",
+          "signature_core": "AuthenticationTests.setUp(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "AuthenticationTests.csrf_headers",
+          "line": 27,
+          "signature": "AuthenticationTests.csrf_headers(self)",
+          "signature_core": "AuthenticationTests.csrf_headers(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "AuthenticationTests.test_csrf_cookie_and_get_only_endpoint",
+          "line": 32,
+          "signature": "AuthenticationTests.test_csrf_cookie_and_get_only_endpoint(self)",
+          "signature_core": "AuthenticationTests.test_csrf_cookie_and_get_only_endpoint(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "AuthenticationTests.test_login_requires_csrf",
+          "line": 38,
+          "signature": "AuthenticationTests.test_login_requires_csrf(self)",
+          "signature_core": "AuthenticationTests.test_login_requires_csrf(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "AuthenticationTests.test_invalid_login_bodies_are_rejected",
+          "line": 46,
+          "signature": "AuthenticationTests.test_invalid_login_bodies_are_rejected(self)",
+          "signature_core": "AuthenticationTests.test_invalid_login_bodies_are_rejected(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "AuthenticationTests.test_incorrect_password_is_rejected",
+          "line": 59,
+          "signature": "AuthenticationTests.test_incorrect_password_is_rejected(self)",
+          "signature_core": "AuthenticationTests.test_incorrect_password_is_rejected(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "AuthenticationTests.test_login_and_logout_use_advertiser_session",
+          "line": 68,
+          "signature": "AuthenticationTests.test_login_and_logout_use_advertiser_session(self)",
+          "signature_core": "AuthenticationTests.test_login_and_logout_use_advertiser_session(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "AuthenticationTests.test_admin_route_is_available",
+          "line": 83,
+          "signature": "AuthenticationTests.test_admin_route_is_available(self)",
+          "signature_core": "AuthenticationTests.test_admin_route_is_available(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "AuthenticationTests.test_browser_login_and_protected_pages",
+          "line": 87,
+          "signature": "AuthenticationTests.test_browser_login_and_protected_pages(self)",
+          "signature_core": "AuthenticationTests.test_browser_login_and_protected_pages(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "AuthenticationTests.test_database_outage_is_a_rendered_503",
+          "line": 99,
+          "signature": "AuthenticationTests.test_database_outage_is_a_rendered_503(self)",
+          "signature_core": "AuthenticationTests.test_database_outage_is_a_rendered_503(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "AuthenticationTests.test_media_authentication_precedes_selection",
+          "line": 106,
+          "signature": "AuthenticationTests.test_media_authentication_precedes_selection(self)",
+          "signature_core": "AuthenticationTests.test_media_authentication_precedes_selection(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "class",
+          "qualified_name": "ServingIntegrationTests",
+          "line": 118,
+          "signature": "class ServingIntegrationTests(TestCase)",
+          "signature_core": "ServingIntegrationTests",
+          "return_annotation": null,
+          "decorators": [
+            "skipUnless(os.environ.get('ADS_TEST_MONGO_URI'), 'Set ADS_TEST_MONGO_URI for isolated MongoDB integration tests')"
+          ],
+          "bases": [
+            "TestCase"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.setUpClass",
+          "line": 120,
+          "signature": "ServingIntegrationTests.setUpClass(cls)",
+          "signature_core": "ServingIntegrationTests.setUpClass(cls)",
+          "return_annotation": null,
+          "decorators": [
+            "classmethod"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.tearDownClass",
+          "line": 127,
+          "signature": "ServingIntegrationTests.tearDownClass(cls)",
+          "signature_core": "ServingIntegrationTests.tearDownClass(cls)",
+          "return_annotation": null,
+          "decorators": [
+            "classmethod"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.setUp",
+          "line": 134,
+          "signature": "ServingIntegrationTests.setUp(self)",
+          "signature_core": "ServingIntegrationTests.setUp(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.campaign",
+          "line": 145,
+          "signature": "ServingIntegrationTests.campaign(self, campaign_id, slot_id='village-board', active='on')",
+          "signature_core": "ServingIntegrationTests.campaign(self, campaign_id, slot_id='village-board', active='on')",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_owner_collision_keeps_original_document",
+          "line": 151,
+          "signature": "ServingIntegrationTests.test_owner_collision_keeps_original_document(self)",
+          "signature_core": "ServingIntegrationTests.test_owner_collision_keeps_original_document(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_invalid_campaign_fields_do_not_write",
+          "line": 161,
+          "signature": "ServingIntegrationTests.test_invalid_campaign_fields_do_not_write(self)",
+          "signature_core": "ServingIntegrationTests.test_invalid_campaign_fields_do_not_write(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_bid_updates_one_document_and_rejects_bad_values",
+          "line": 170,
+          "signature": "ServingIntegrationTests.test_bid_updates_one_document_and_rejects_bad_values(self)",
+          "signature_core": "ServingIntegrationTests.test_bid_updates_one_document_and_rejects_bad_values(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_bid_checks_owner_existence_and_active_status",
+          "line": 182,
+          "signature": "ServingIntegrationTests.test_bid_checks_owner_existence_and_active_status(self)",
+          "signature_core": "ServingIntegrationTests.test_bid_checks_owner_existence_and_active_status(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_bid_owner_collision_is_not_overwritten",
+          "line": 191,
+          "signature": "ServingIntegrationTests.test_bid_owner_collision_is_not_overwritten(self)",
+          "signature_core": "ServingIntegrationTests.test_bid_owner_collision_is_not_overwritten(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_changed_bid_does_not_change_past_decision",
+          "line": 198,
+          "signature": "ServingIntegrationTests.test_changed_bid_does_not_change_past_decision(self)",
+          "signature_core": "ServingIntegrationTests.test_changed_bid_does_not_change_past_decision(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_tie_slot_and_invalid_candidate_filtering",
+          "line": 216,
+          "signature": "ServingIntegrationTests.test_tie_slot_and_invalid_candidate_filtering(self)",
+          "signature_core": "ServingIntegrationTests.test_tie_slot_and_invalid_candidate_filtering(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_empty_selection_and_nested_context_snapshot",
+          "line": 229,
+          "signature": "ServingIntegrationTests.test_empty_selection_and_nested_context_snapshot(self)",
+          "signature_core": "ServingIntegrationTests.test_empty_selection_and_nested_context_snapshot(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_web_forms_render_and_save_with_csrf",
+          "line": 241,
+          "signature": "ServingIntegrationTests.test_web_forms_render_and_save_with_csrf(self)",
+          "signature_core": "ServingIntegrationTests.test_web_forms_render_and_save_with_csrf(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_media_api_subject_validation_and_response",
+          "line": 255,
+          "signature": "ServingIntegrationTests.test_media_api_subject_validation_and_response(self)",
+          "signature_core": "ServingIntegrationTests.test_media_api_subject_validation_and_response(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_media_api_empty_candidate_response",
+          "line": 272,
+          "signature": "ServingIntegrationTests.test_media_api_empty_candidate_response(self)",
+          "signature_core": "ServingIntegrationTests.test_media_api_empty_candidate_response(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_shared_mongo_client_connects_and_closes",
+          "line": 281,
+          "signature": "ServingIntegrationTests.test_shared_mongo_client_connects_and_closes(self)",
+          "signature_core": "ServingIntegrationTests.test_shared_mongo_client_connects_and_closes(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_image_campaign_and_decision_keep_original_creative",
+          "line": 289,
+          "signature": "ServingIntegrationTests.test_image_campaign_and_decision_keep_original_creative(self)",
+          "signature_core": "ServingIntegrationTests.test_image_campaign_and_decision_keep_original_creative(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_image_paths_reject_remote_traversal_and_missing_files",
+          "line": 313,
+          "signature": "ServingIntegrationTests.test_image_paths_reject_remote_traversal_and_missing_files(self)",
+          "signature_core": "ServingIntegrationTests.test_image_paths_reject_remote_traversal_and_missing_files(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "ServingIntegrationTests.test_campaign_edit_form_is_owner_scoped_and_contains_preview",
+          "line": 323,
+          "signature": "ServingIntegrationTests.test_campaign_edit_form_is_owner_scoped_and_contains_preview(self)",
+          "signature_core": "ServingIntegrationTests.test_campaign_edit_form_is_owner_scoped_and_contains_preview(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/timestamps.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "parse_utc",
+          "line": 4,
+          "signature": "parse_utc(value)",
+          "signature_core": "parse_utc(value)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        }
+      ],
+      "missing_signatures": [
+        "parse_utc(value)"
+      ],
+      "parse_error": null
+    },
+    {
+      "path": "ads/urls.py",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "ads/views.py",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "campaign_view",
+          "line": 17,
+          "signature": "campaign_view(request)",
+          "signature_core": "campaign_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "login_required",
+            "require_http_methods(['GET', 'POST'])"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "bid_view",
+          "line": 40,
+          "signature": "bid_view(request)",
+          "signature_core": "bid_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "login_required",
+            "require_http_methods(['GET', 'POST'])"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "decision_view",
+          "line": 57,
+          "signature": "decision_view(request)",
+          "signature_core": "decision_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "media_api_methods('POST')"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "event_view",
+          "line": 83,
+          "signature": "event_view(request)",
+          "signature_core": "event_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "media_api_methods('POST')"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "advertiser_event_view",
+          "line": 96,
+          "signature": "advertiser_event_view(request)",
+          "signature_core": "advertiser_event_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "login_required(login_url='/accounts/login/')",
+            "require_http_methods(['GET'])"
+          ],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "report_view",
+          "line": 121,
+          "signature": "report_view(request)",
+          "signature_core": "report_view(request)",
+          "return_annotation": null,
+          "decorators": [
+            "login_required(login_url='/accounts/login/')",
+            "require_http_methods(['GET'])"
+          ],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "config/day23-period-01.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "config/day23-period-02.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "config/day23-period-03.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "config/day23-period-04.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "config/day23-period-05.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "config/day23-period-06.py",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "config/day23-period-07.py",
+      "document_exists": false,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "config/day23-subject.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "tools/basics/day22_credit_model.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "main",
+          "line": 4,
+          "signature": "main()",
+          "signature_core": "main()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "tools/basics/day22_period01.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "main",
+          "line": 6,
+          "signature": "main()",
+          "signature_core": "main()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "tools/basics/day22_period02.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "main",
+          "line": 6,
+          "signature": "main()",
+          "signature_core": "main()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "tools/basics/day23_record_observed.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "tools/check_day24_logic.py",
+      "document_exists": true,
+      "indexed": true,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "row",
+          "line": 27,
+          "signature": "row(player_id=1, **updates)",
+          "signature_core": "row(player_id=1, **updates)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "public",
+          "line": 35,
+          "signature": "public(value)",
+          "signature_core": "public(value)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "write_rows",
+          "line": 39,
+          "signature": "write_rows(path, values)",
+          "signature_core": "write_rows(path, values)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "equal",
+          "line": 45,
+          "signature": "equal(actual, expected)",
+          "signature_core": "equal(actual, expected)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "rejected",
+          "line": 50,
+          "signature": "rejected(call, exceptions=CAUGHT)",
+          "signature_core": "rejected(call, exceptions=CAUGHT)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "class",
+          "qualified_name": "Checks",
+          "line": 58,
+          "signature": "class Checks",
+          "signature_core": "Checks",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Checks.__init__",
+          "line": 59,
+          "signature": "Checks.__init__(self)",
+          "signature_core": "Checks.__init__(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Checks.run",
+          "line": 62,
+          "signature": "Checks.run(self, name, call)",
+          "signature_core": "Checks.run(self, name, call)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Checks.mutation",
+          "line": 71,
+          "signature": "Checks.mutation(self, name, call)",
+          "signature_core": "Checks.mutation(self, name, call)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "command",
+          "line": 78,
+          "signature": "command(module_name, **options)",
+          "signature_core": "command(module_name, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "test_one",
+          "line": 86,
+          "signature": "test_one(checks, root)",
+          "signature_core": "test_one(checks, root)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "test_two",
+          "line": 132,
+          "signature": "test_two(checks, module, root)",
+          "signature_core": "test_two(checks, module, root)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "test_three",
+          "line": 165,
+          "signature": "test_three(checks, module, root)",
+          "signature_core": "test_three(checks, module, root)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "test_four",
+          "line": 194,
+          "signature": "test_four(checks, module, root)",
+          "signature_core": "test_four(checks, module, root)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "test_five",
+          "line": 229,
+          "signature": "test_five(checks, module, root)",
+          "signature_core": "test_five(checks, module, root)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "test_six",
+          "line": 257,
+          "signature": "test_six(checks, module, root)",
+          "signature_core": "test_six(checks, module, root)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "test_seven",
+          "line": 290,
+          "signature": "test_seven(checks, module, root)",
+          "signature_core": "test_seven(checks, module, root)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "test_eight",
+          "line": 313,
+          "signature": "test_eight(checks, module, root)",
+          "signature_core": "test_eight(checks, module, root)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "main",
+          "line": 367,
+          "signature": "main()",
+          "signature_core": "main()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "tools/day22_connection.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "tools/day22_crud.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "tools/verify_day22.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "main",
+          "line": 15,
+          "signature": "main()",
+          "signature_core": "main()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "tools/verify_day22_images.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "child",
+          "line": 21,
+          "signature": "child(component, owned)",
+          "signature_core": "child(component, owned)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "class",
+          "qualified_name": "Web",
+          "line": 93,
+          "signature": "class Web",
+          "signature_core": "Web",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Web.__init__",
+          "line": 94,
+          "signature": "Web.__init__(self, base, csrf_name='csrftoken')",
+          "signature_core": "Web.__init__(self, base, csrf_name='csrftoken')",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Web.get",
+          "line": 100,
+          "signature": "Web.get(self, path)",
+          "signature_core": "Web.get(self, path)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Web.csrf",
+          "line": 104,
+          "signature": "Web.csrf(self)",
+          "signature_core": "Web.csrf(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Web.post",
+          "line": 107,
+          "signature": "Web.post(self, path, fields, json_body=False)",
+          "signature_core": "Web.post(self, path, fields, json_body=False)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "wait_http",
+          "line": 116,
+          "signature": "wait_http(url, process)",
+          "signature_core": "wait_http(url, process)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "main",
+          "line": 129,
+          "signature": "main()",
+          "signature_core": "main()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "tools/verify_day23.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "async_function",
+          "qualified_name": "render_flow",
+          "line": 18,
+          "signature": "render_flow(owned)",
+          "signature_core": "render_flow(owned)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "main",
+          "line": 121,
+          "signature": "main()",
+          "signature_core": "main()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "path": "tools/verify_lesson_alignment.py",
+      "document_exists": true,
+      "indexed": false,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "CodeBlocks",
+          "line": 15,
+          "signature": "class CodeBlocks(HTMLParser)",
+          "signature_core": "CodeBlocks",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "HTMLParser"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "CodeBlocks.__init__",
+          "line": 16,
+          "signature": "CodeBlocks.__init__(self)",
+          "signature_core": "CodeBlocks.__init__(self)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "CodeBlocks.handle_starttag",
+          "line": 22,
+          "signature": "CodeBlocks.handle_starttag(self, tag, attrs)",
+          "signature_core": "CodeBlocks.handle_starttag(self, tag, attrs)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "CodeBlocks.handle_endtag",
+          "line": 27,
+          "signature": "CodeBlocks.handle_endtag(self, tag)",
+          "signature_core": "CodeBlocks.handle_endtag(self, tag)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "CodeBlocks.handle_data",
+          "line": 32,
+          "signature": "CodeBlocks.handle_data(self, data)",
+          "signature_core": "CodeBlocks.handle_data(self, data)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "read_blocks",
+          "line": 37,
+          "signature": "read_blocks(path)",
+          "signature_core": "read_blocks(path)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "function_ast",
+          "line": 43,
+          "signature": "function_ast(code, name)",
+          "signature_core": "function_ast(code, name)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "main",
+          "line": 49,
+          "signature": "main()",
+          "signature_core": "main()",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    }
+  ],
+  "issues": [
+    {
+      "code": "missing_document",
+      "path": "ad_config/ad_config/__init__.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ad_config/ad_config/__init__.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ad_config/ad_config/asgi.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ad_config/ad_config/asgi.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ad_config/ad_config/settings.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ad_config/ad_config/urls.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ad_config/ad_config/wsgi.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ad_config/ad_config/wsgi.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ad_config/ads_manage.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ad_config/manage.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ads/__init__.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/__init__.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ads/admin.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/admin.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ads/apps.py"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/apps.py",
+      "detail": "class AdsConfig(AppConfig)"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/apps.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/auth_views.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/creatives.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ads/delivery.py"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/delivery.py",
+      "detail": "deliver_events(output_path, limit=100)"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/delivery.py",
+      "detail": "delivery_summary(events)"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/delivery.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/events.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ads/exporting.py"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/exporting.py",
+      "detail": "read_ndjson(path)"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/exporting.py",
+      "detail": "write_ndjson(path, rows)"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/exporting.py",
+      "detail": "export_ad_events(output_path, since=None, until=None)"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/exporting.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/management/__init__.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/management/commands/__init__.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ads/management/commands/check_ad_reports.py"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/management/commands/check_ad_reports.py",
+      "detail": "class Command(BaseCommand)"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/management/commands/check_ad_reports.py",
+      "detail": "Command.add_arguments(self, parser)"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/management/commands/check_ad_reports.py",
+      "detail": "Command.handle(self, *args, **options)"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/management/commands/check_ad_reports.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/management/commands/compare_ad_decisions.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/management/commands/create_ad_indexes.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ads/management/commands/deliver_ad_events.py"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/management/commands/deliver_ad_events.py",
+      "detail": "class Command(BaseCommand)"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/management/commands/deliver_ad_events.py",
+      "detail": "Command.add_arguments(self, parser)"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/management/commands/deliver_ad_events.py",
+      "detail": "Command.handle(self, *args, **options)"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/management/commands/deliver_ad_events.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/management/commands/ensure_ad_event_indexes.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ads/management/commands/export_ad_events.py"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/management/commands/export_ad_events.py",
+      "detail": "class Command(BaseCommand)"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/management/commands/export_ad_events.py",
+      "detail": "Command.add_arguments(self, parser)"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/management/commands/export_ad_events.py",
+      "detail": "Command.handle(self, *args, **options)"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/management/commands/export_ad_events.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/media_auth.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ads/migrations/__init__.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/migrations/__init__.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ads/models.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/models.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/mongo.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/repository.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/services.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/test_events.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/tests.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "ads/timestamps.py"
+    },
+    {
+      "code": "missing_signature",
+      "path": "ads/timestamps.py",
+      "detail": "parse_utc(value)"
+    },
+    {
+      "code": "missing_index",
+      "path": "ads/timestamps.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "config/day23-period-01.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "config/day23-period-02.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "config/day23-period-03.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "config/day23-period-04.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "config/day23-period-04.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "config/day23-period-05.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "config/day23-period-05.py"
+    },
+    {
+      "code": "missing_document",
+      "path": "config/day23-period-07.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "config/day23-period-07.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "config/day23-subject.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "tools/basics/day22_credit_model.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "tools/basics/day22_period01.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "tools/basics/day22_period02.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "tools/basics/day23_record_observed.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "tools/day22_connection.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "tools/day22_crud.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "tools/verify_day22.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "tools/verify_day22_images.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "tools/verify_day23.py"
+    },
+    {
+      "code": "missing_index",
+      "path": "tools/verify_lesson_alignment.py"
+    }
+  ],
+  "summary": {
+    "python_file_count": 56,
+    "symbol_count": 150,
+    "issue_count": 82,
+    "ok": false
+  }
+}

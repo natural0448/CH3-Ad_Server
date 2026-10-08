@@ -1,0 +1,8 @@
+{
+  "exit_code": 2,
+  "stdout": "",
+  "stderr": "",
+  "repo": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "output": "C:\\MLO01-01\\Chapter3\\ad_server\\docs\\server-routing\\verification\\day24-routing-sync\\agent-routing-cli-final.json",
+  "expected_limitation": "existing routing README absent; retained"
+}

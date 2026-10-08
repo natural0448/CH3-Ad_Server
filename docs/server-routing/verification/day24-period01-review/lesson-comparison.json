@@ -1,0 +1,35 @@
+{
+  "lesson": "C:\\Users\\이해나\\Desktop\\실제 Player snapshot을 광고 서버에서 검증하고 인계하기.html",
+  "lesson_sha256": "8792e3c1f5606c5bfa489a22b62cce140a2c8e3812adcf5e77fd7e39d2a617eb",
+  "student_source": "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\management\\commands\\export_player_snapshot.py",
+  "student_sha256": "22820838b99952688325023a5e469dde111c3637d720e992d4c4193c87098d22",
+  "class_count": 1,
+  "unfinished_placeholder_present": false,
+  "add_arguments_matches_lesson": true,
+  "handle_matches_lesson": false,
+  "required_query_fields": [
+    "id",
+    "room_id",
+    "coins",
+    "version",
+    "updated_at"
+  ],
+  "actual_query_fields": [
+    "id",
+    "name",
+    "level",
+    "score",
+    "updated_at"
+  ],
+  "required_metadata": {
+    "schema_version": "player-snapshot/v1",
+    "source_kind": "player-snapshot"
+  },
+  "actual_metadata": {
+    "schema": "player-snapshot/v1",
+    "source": "players"
+  },
+  "structure_preserved": true,
+  "production_fix_applied": false,
+  "official_checker_sha256": "39640dbe2885bda44988fdfe8b2044d0f8f72c48376688e24222550c078d0e2a"
+}
