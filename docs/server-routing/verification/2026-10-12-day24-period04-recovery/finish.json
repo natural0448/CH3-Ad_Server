@@ -1,0 +1,297 @@
+{
+  "root_git": {
+    "exit": 128,
+    "stdout": "",
+    "stderr": "fatal: not a git repository (or any of the parent directories): .git"
+  },
+  "git_final": {
+    "head": {
+      "exit": 0,
+      "stdout": "5d29085 day24 - 2교시",
+      "stderr": ""
+    },
+    "status": {
+      "exit": 0,
+      "stdout": "M README.md\n M ads/snapshot_intake.py\n M docs/server-routing/current-progress-index.md\n M docs/server-routing/day24-period01-index.md\n M docs/server-routing/files/README.md.md\n M docs/server-routing/files/ads/snapshot_intake.py.md\n M docs/server-routing/files/tools/check_day24_logic.py.md\n?? ads/management/commands/write_cdc_readiness.py\n?? ads/management/commands/write_player_change_fixture.py\n?? check_day24_period4.py\n?? docs/handoffs/2026-10-12-day24-period04-recovery.md\n?? docs/handoffs/2026-10-12-mongodb-connection-diagnosis.md\n?? docs/handoffs/2026-10-12-mongodb-connection-recovery.md\n?? docs/server-routing/files/ads/management/commands/inspect_player_snapshot.py.md\n?? docs/server-routing/files/ads/management/commands/write_cdc_readiness.py.md\n?? docs/server-routing/files/ads/management/commands/write_player_change_fixture.py.md\n?? docs/server-routing/files/check_day24_period4.py.md\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/\n?? docs/server-routing/verification/2026-10-12-day24-period04-recovery/\n?? docs/server-routing/verification/mongo-recovery-2026-10-12/",
+      "stderr": ""
+    },
+    "staged": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "unstaged": {
+      "exit": 0,
+      "stdout": "M\tREADME.md\nM\tads/snapshot_intake.py\nM\tdocs/server-routing/current-progress-index.md\nM\tdocs/server-routing/day24-period01-index.md\nM\tdocs/server-routing/files/README.md.md\nM\tdocs/server-routing/files/ads/snapshot_intake.py.md\nM\tdocs/server-routing/files/tools/check_day24_logic.py.md",
+      "stderr": ""
+    }
+  },
+  "game_git_final": {
+    "head": {
+      "exit": 0,
+      "stdout": "864aa96 day24 - 1교시",
+      "stderr": ""
+    },
+    "status": {
+      "exit": 0,
+      "stdout": "M README.md\n M docs/server-routing/day24-progress.md\n M docs/server-routing/files/README.md.md",
+      "stderr": ""
+    },
+    "staged": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "baseline_development_files": 76,
+  "development_changed_since_start": [
+    "ads/management/commands/write_cdc_readiness.py",
+    "ads/snapshot_intake.py"
+  ],
+  "agent_modified_source": [
+    "ads/snapshot_intake.py"
+  ],
+  "concurrent_user_source": [
+    "ads/management/commands/write_cdc_readiness.py"
+  ],
+  "agent_added_source": [
+    "check_day24_period4.py"
+  ],
+  "guide_change": "README.md: Day24 overview only",
+  "other_original_development_files_unchanged": 74,
+  "only_expected_original_source_changes": true,
+  "snapshot_module_exact_one_line_addition": false,
+  "user_readiness_command_sha256": "e18ddd6be63d161f4753e2a943703fefca91f5cd9ad2d5d5c76275de5faa667b",
+  "user_readiness_command_preserved": true,
+  "user_fixture_command_preserved": true,
+  "checker_exact_provided_bytes": true,
+  "game_snapshot_unchanged": true,
+  "game_server_nested_data_absent": true,
+  "routing_scoped": [
+    {
+      "source": "ads/snapshot_intake.py",
+      "document": "docs\\server-routing\\files\\ads\\snapshot_intake.py.md",
+      "error": null,
+      "missing": [],
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "_read_snapshot",
+          "line": 19,
+          "signature": "_read_snapshot(path)",
+          "signature_core": "_read_snapshot(path)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "_check_public_state",
+          "line": 33,
+          "signature": "_check_public_state(row)",
+          "signature_core": "_check_public_state(row)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "inspect_snapshot",
+          "line": 48,
+          "signature": "inspect_snapshot(path)",
+          "signature_core": "inspect_snapshot(path)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "readiness",
+          "line": 73,
+          "signature": "readiness(mysql_config=None, connect_home=None, debezium_dir=None)",
+          "signature_core": "readiness(mysql_config=None, connect_home=None, debezium_dir=None)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "change_player",
+          "line": 87,
+          "signature": "change_player(event)",
+          "signature_core": "change_player(event)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ]
+    },
+    {
+      "source": "ads/management/commands/write_cdc_readiness.py",
+      "document": "docs\\server-routing\\files\\ads\\management\\commands\\write_cdc_readiness.py.md",
+      "error": null,
+      "missing": [],
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 9,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 12,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 18,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ]
+    },
+    {
+      "source": "ads/management/commands/write_player_change_fixture.py",
+      "document": "docs\\server-routing\\files\\ads\\management\\commands\\write_player_change_fixture.py.md",
+      "error": null,
+      "missing": [],
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 9,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 12,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 16,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ]
+    },
+    {
+      "source": "check_day24_period4.py",
+      "document": "docs\\server-routing\\files\\check_day24_period4.py.md",
+      "error": null,
+      "missing": [],
+      "symbols": []
+    }
+  ],
+  "routing_index_matches_sources": true,
+  "routing_symbol_count": 11,
+  "routing_cli": "not rerun: known absent server-routing/README.md; scoped skill AST API used instead",
+  "checked_local_links": 165,
+  "missing_local_links": [],
+  "official_final": [
+    {
+      "period": 2,
+      "passed": 22,
+      "failed": 0,
+      "student_sources_unchanged": true
+    },
+    {
+      "period": 3,
+      "passed": 8,
+      "failed": 0,
+      "student_sources_unchanged": true
+    },
+    {
+      "period": 4,
+      "passed": 17,
+      "failed": 0,
+      "student_sources_unchanged": true
+    }
+  ],
+  "official_total_passed": 47,
+  "screen_exit_code": 0,
+  "artifacts_sha256": {
+    "data/contracts/cdc-readiness.json": "eb7c279ae90d6a00c4ce572cab7f74912c4da73e31e4d790ba61ebd1e1180e94",
+    "data/fixtures/player-change-fixture.ndjson": "91a05801e0bb9c2a2d3ee761c6f2bc86f3433acf481f9496d107c756b0c03646",
+    "data/fixtures/player-change-summary.json": "69140e7394dd1cac7bcd8af9e31bc758963c000ae8aa72bfa8f07bf64a2237fd"
+  },
+  "current_readiness_paths": {
+    "connect_home": {
+      "exists": false,
+      "supplied": true
+    },
+    "debezium_dir": {
+      "exists": false,
+      "supplied": false
+    },
+    "mysql_config": {
+      "exists": false,
+      "supplied": false
+    }
+  },
+  "readiness_valid": true,
+  "fixture_summary_valid": true,
+  "ok": true,
+  "snapshot_module_one_line_addition_and_final_newline": true,
+  "snapshot_module_final_newline_added": true,
+  "snapshot_module_source_sha256": "7ff28a296c90092fb7a83b2d98a41dd2ef6f2a8bda53fb6882f11e916ad60550",
+  "official_sources_match_current": true,
+  "documents_changed_this_task": [
+    "ad_server\\docs\\server-routing\\files\\ads\\snapshot_intake.py.md",
+    "ad_server\\docs\\server-routing\\files\\ads\\management\\commands\\write_cdc_readiness.py.md",
+    "ad_server\\docs\\server-routing\\files\\ads\\management\\commands\\write_player_change_fixture.py.md",
+    "ad_server\\docs\\server-routing\\files\\check_day24_period4.py.md",
+    "ad_server\\docs\\server-routing\\current-progress-index.md",
+    "ad_server\\docs\\server-routing\\day24-period01-index.md",
+    "ad_server\\docs\\server-routing\\files\\README.md.md",
+    "ad_server\\docs\\server-routing\\files\\tools\\check_day24_logic.py.md",
+    "ad_server\\README.md",
+    "docs\\routing\\README.md",
+    "ad_server\\docs\\handoffs\\2026-10-12-day24-period04-recovery.md",
+    "ad_server\\docs\\server-routing\\files\\data\\contracts\\cdc-readiness.json.md",
+    "ad_server\\docs\\server-routing\\files\\data\\fixtures\\player-change-fixture.ndjson.md",
+    "ad_server\\docs\\server-routing\\files\\data\\fixtures\\player-change-summary.json.md"
+  ]
+}

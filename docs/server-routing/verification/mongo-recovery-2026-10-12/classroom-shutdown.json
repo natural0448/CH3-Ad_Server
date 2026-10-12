@@ -1,0 +1,4 @@
+{
+  "action": "graceful restart of existing classroom node after port conflict",
+  "connection_closed": "AutoReconnect"
+}

@@ -1,0 +1,4 @@
+{
+  "action": "graceful shutdown of verified default standalone instance",
+  "connection_closed": "AutoReconnect"
+}

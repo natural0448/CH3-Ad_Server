@@ -1,0 +1,22 @@
+{
+  "Service": {
+    "Name": "MongoDB",
+    "State": "Stopped",
+    "StartMode": "Auto",
+    "ProcessId": 0
+  },
+  "Processes": [
+    {
+      "ProcessId": 12292,
+      "ExecutablePath": "C:\\Program Files\\MongoDB\\Server\\8.3\\bin\\mongod.exe",
+      "CommandLine": "\"C:\\Program Files\\MongoDB\\Server\\8.3\\bin\\mongod.exe\" --config config/mongo-node1.yml"
+    }
+  ],
+  "Listeners": [
+    {
+      "LocalAddress": "127.0.0.1",
+      "LocalPort": 27017,
+      "OwningProcess": 12292
+    }
+  ]
+}

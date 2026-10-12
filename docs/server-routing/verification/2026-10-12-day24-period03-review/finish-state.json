@@ -1,0 +1,38 @@
+{
+  "source_sha256": {
+    "ads/snapshot_intake.py": "7bf1adee8ef18dd53f1e86ae7d7b3d7e59c0c76f1e7f520ac61372ae349f661e",
+    "ads/management/commands/write_cdc_readiness.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/check_day24_logic.py": "39640dbe2885bda44988fdfe8b2044d0f8f72c48376688e24222550c078d0e2a"
+  },
+  "source_unchanged_from_start": true,
+  "snapshot_unchanged": true,
+  "ast_checks": [
+    {
+      "source": "ads/snapshot_intake.py",
+      "symbols": 4,
+      "missing": [],
+      "parse_error": null,
+      "in_index": true
+    },
+    {
+      "source": "ads/management/commands/write_cdc_readiness.py",
+      "symbols": 0,
+      "missing": [],
+      "parse_error": null,
+      "in_index": true
+    }
+  ],
+  "document_count": 4,
+  "local_links": 99,
+  "missing_links": [],
+  "modified_documents": [
+    "C:\\MLO01-01\\Chapter3\\ad_server\\docs\\server-routing\\files\\ads\\snapshot_intake.py.md",
+    "C:\\MLO01-01\\Chapter3\\ad_server\\docs\\server-routing\\files\\ads\\management\\commands\\write_cdc_readiness.py.md",
+    "C:\\MLO01-01\\Chapter3\\ad_server\\docs\\server-routing\\current-progress-index.md",
+    "C:\\MLO01-01\\Chapter3\\docs\\handoffs\\2026-10-12-day24-period03-review.md"
+  ],
+  "agent_source_changes": [],
+  "git_exit": 0,
+  "git_status": "M README.md\n M ads/snapshot_intake.py\n M docs/server-routing/current-progress-index.md\n M docs/server-routing/day24-period01-index.md\n M docs/server-routing/files/README.md.md\n M docs/server-routing/files/ads/snapshot_intake.py.md\n M docs/server-routing/files/tools/check_day24_logic.py.md\n?? ads/management/commands/write_cdc_readiness.py\n?? docs/server-routing/files/ads/management/commands/inspect_player_snapshot.py.md\n?? docs/server-routing/files/ads/management/commands/write_cdc_readiness.py.md\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/actual-snapshot-inspection.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/changed-documents.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/concurrent-user-observation.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/execution-notes.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/finish-state.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/official-period01.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/official-period02.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/routing-before-scoped.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/routing-cli-before.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/start-state.json\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/command-error.txt\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/command-result.json\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/finish-state.json\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/official-period03.json\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/routing-before-scoped.json\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/routing-cli-before.json\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/start-state.json",
+  "ok": true
+}

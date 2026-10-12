@@ -69,3 +69,41 @@ def inspect_snapshot(path):
     return {"rows": len(rows), "public_ids": sorted(seen),
             "source_kind": SOURCE_KIND, "schema_version": SCHEMA_VERSION,
             "captured_at": captured_at, "sha256": checksum}
+
+def readiness(mysql_config=None, connect_home=None, debezium_dir=None):
+    supplied_paths = {
+        "mysql_config": mysql_config,
+        "connect_home": connect_home,
+        "debezium_dir": debezium_dir
+    }
+    paths = {name: {"supplied": bool(value), "exists": Path(value).exists()
+        if value else False} for name, value in supplied_paths.items()}
+    return {"schema_version": "cdc-readiness/v1", "paths": paths,
+            "mysql_binlog": "not-verified", "cdc_reader": "not-configured",
+            "connect_worker": "not-configured", "debezium_connector": "not-configured",
+            "player_change_topic": "not-configured", "common_input": SCHEMA_VERSION,
+            "binlog_cdc_observed": False}
+
+def change_player(event):
+    if event.get("source_kind") != "teaching-fixture":
+        raise ValueError("이 함수에는 teaching-fixture만 넣습니다.")
+    op = event.get("op")
+    before, after = event.get("before"), event.get("after")
+    if op == "r":
+        if before is not None or not isinstance(after, dict):
+            raise ValueError("r은 before=None과 after 공개 상태가 필요합니다.")
+        _check_public_state(after)
+    elif op == "u":
+        _check_public_state(before)
+        _check_public_state(after)
+        if before["id"] != after["id"]:
+            raise ValueError("u의 before와 after id가 다릅니다.")
+    elif op == "d":
+        if not isinstance(before, dict) or after is not None:
+            raise ValueError("d는 before 공개 상태와 after=None이 필요합니다.")
+        _check_public_state(before)
+    else:
+        raise ValueError("op는 r, u, d만 받습니다.")
+    state = before if op == "d" else after
+    return {"op": op, "player_id": state["id"], "coins": state["coins"],
+            "version": state["version"], "deleted": op == "d"}

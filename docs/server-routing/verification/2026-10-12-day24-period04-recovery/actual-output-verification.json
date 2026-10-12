@@ -1,0 +1,39 @@
+{
+  "fixture_rows": 3,
+  "fixture_source_kinds": [
+    "teaching-fixture"
+  ],
+  "interpreted": [
+    {
+      "coins": 0,
+      "deleted": false,
+      "op": "r",
+      "player_id": 1,
+      "version": 0
+    },
+    {
+      "coins": 30,
+      "deleted": false,
+      "op": "u",
+      "player_id": 1,
+      "version": 1
+    },
+    {
+      "coins": 30,
+      "deleted": true,
+      "op": "d",
+      "player_id": 1,
+      "version": 1
+    }
+  ],
+  "interpreted_matches": true,
+  "checksum_matches": true,
+  "summary_rows": 3,
+  "separate_paths": true,
+  "readiness_common_input": "player-snapshot/v1",
+  "readiness_player_change_topic": "not-configured",
+  "binlog_cdc_observed": false,
+  "snapshot_unchanged": true,
+  "fixture_command_user_source_preserved": true,
+  "readiness_command_user_source_preserved": true
+}

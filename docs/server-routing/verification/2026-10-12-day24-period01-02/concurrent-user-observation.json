@@ -1,0 +1,11 @@
+{
+  "scope": "new user period3 changes observed after verified period1/2; not agent edits",
+  "source_sha256": "6ab71cd785a255276037726a05abba5f504aba0c82bbfc1330b6c6f6a4dfe4a6",
+  "new_command_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "new_command_bytes": 0,
+  "period2_functions_ast_unchanged": true,
+  "added_functions": [
+    "readiness"
+  ],
+  "period2_module_core_ast_unchanged": true
+}

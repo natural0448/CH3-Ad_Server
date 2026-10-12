@@ -1,0 +1,48 @@
+{
+  "application_ping": 1.0,
+  "replica": {
+    "setName": "ads-rs",
+    "isWritablePrimary": true,
+    "hosts": [
+      "localhost:27017"
+    ],
+    "primary": "localhost:27017"
+  },
+  "replica_status": {
+    "set": "ads-rs",
+    "state": 1,
+    "members": [
+      {
+        "name": "localhost:27017",
+        "state": "PRIMARY",
+        "health": 1.0
+      }
+    ]
+  },
+  "configuration": {
+    "set_name": "ads-rs",
+    "version": 1,
+    "members": [
+      {
+        "id": 0,
+        "host": "localhost:27017",
+        "arbiterOnly": false
+      }
+    ]
+  },
+  "database": "village_ads",
+  "collections": [
+    "ad_daily_reports",
+    "ad_events",
+    "bids",
+    "campaigns",
+    "decisions"
+  ],
+  "document_counts": {
+    "ad_daily_reports": 3,
+    "ad_events": 26,
+    "bids": 2,
+    "campaigns": 2,
+    "decisions": 30
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "development_files_checked": 75,
+  "changed_development_files": [
+    "ads/snapshot_intake.py"
+  ],
+  "replica_configuration_unchanged": true,
+  "manage_ping_exit": 0,
+  "ast_checks": [
+    {
+      "source": "ads/mongo.py",
+      "symbols": 3,
+      "parse_error": null,
+      "missing_signatures": [],
+      "in_index": true
+    },
+    {
+      "source": "ad_config/ad_config/settings.py",
+      "symbols": 0,
+      "parse_error": null,
+      "missing_signatures": [],
+      "in_index": true
+    }
+  ],
+  "local_links_checked": 95,
+  "missing_links": [],
+  "routing_cli_limitation": "Existing routing README is absent; current-progress-index and AST API were checked. CLI not rerun for unchanged source.",
+  "compass_confirmation": "User confirmed DB is now visible",
+  "modified_documents": [
+    "docs/server-routing/current-progress-index.md",
+    "docs/handoffs/2026-10-12-mongodb-connection-diagnosis.md"
+  ],
+  "new_handoff": "docs/handoffs/2026-10-12-mongodb-connection-recovery.md",
+  "git_status": "M README.md\n M ads/snapshot_intake.py\n M docs/server-routing/current-progress-index.md\n M docs/server-routing/day24-period01-index.md\n M docs/server-routing/files/README.md.md\n M docs/server-routing/files/ads/snapshot_intake.py.md\n M docs/server-routing/files/tools/check_day24_logic.py.md\n?? ads/management/commands/write_cdc_readiness.py\n?? ads/management/commands/write_player_change_fixture.py\n?? docs/handoffs/2026-10-12-mongodb-connection-diagnosis.md\n?? docs/handoffs/2026-10-12-mongodb-connection-recovery.md\n?? docs/server-routing/files/ads/management/commands/inspect_player_snapshot.py.md\n?? docs/server-routing/files/ads/management/commands/write_cdc_readiness.py.md\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/actual-snapshot-inspection.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/changed-documents.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/concurrent-user-observation.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/execution-notes.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/finish-state.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/official-period01.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/official-period02.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/routing-before-scoped.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/routing-cli-before.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/start-state.json\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/command-error.txt\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/command-result.json\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/finish-state.json\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/official-period03.json\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/routing-before-scoped.json\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/routing-cli-before.json\n?? docs/server-routing/verification/2026-10-12-day24-period03-review/start-state.json\n?? docs/server-routing/verification/mongo-recovery-2026-10-12/classroom-replica-before.json\n?? docs/server-routing/verification/mongo-recovery-2026-10-12/classroom-shutdown.json\n?? docs/server-routing/verification/mongo-recovery-2026-10-12/connection-after.json\n?? docs/server-routing/verification/mongo-recovery-2026-10-12/default-shutdown.json\n?? docs/server-routing/verification/mongo-recovery-2026-10-12/finish.json\n?? docs/server-routing/verification/mongo-recovery-2026-10-12/manage-ping.json\n?? docs/server-routing/verification/mongo-recovery-2026-10-12/process-after-default-stop.json\n?? docs/server-routing/verification/mongo-recovery-2026-10-12/process-after.json\n?? docs/server-routing/verification/mongo-recovery-2026-10-12/restart.json\n?? docs/server-routing/verification/mongo-recovery-2026-10-12/start.json",
+  "staged": "",
+  "ok": true,
+  "concurrent_user_changes": [
+    "ads/snapshot_intake.py: change_player added",
+    "ads/management/commands/write_player_change_fixture.py: newly observed user file"
+  ],
+  "agent_changed_development_files": [],
+  "development_files_unchanged": 74,
+  "scope_note": "Mongo recovery changed runtime and documentation only. Concurrent user period4 code was preserved before subsequent recovery work."
+}

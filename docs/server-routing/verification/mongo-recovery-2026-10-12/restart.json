@@ -1,0 +1,7 @@
+{
+  "ProcessId": 9900,
+  "Config": "C:\\MLO01-01\\Chapter3\\ad_server\\config\\mongo-node1.yml",
+  "WorkingDirectory": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "Stdout": "C:\\MLO01-01\\Chapter3\\ad_server\\infra\\runtime\\mongo-recovery-2026-10-12\\stdout.log",
+  "Stderr": "C:\\MLO01-01\\Chapter3\\ad_server\\infra\\runtime\\mongo-recovery-2026-10-12\\stderr.log"
+}

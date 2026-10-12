@@ -1,6 +1,6 @@
 # 광고 서버 현재 진행 라우팅 색인
 
-2026-10-08의 저장된 구현을 기준으로 한다. `docs/server-routing/README.md`는 현재 HEAD `8f541e4 day23 - finish`에도 없으므로 복원하지 않고 이 색인을 사용한다. 1:1 짝 문서는 `files/<소스 상대경로>.md`다. 아래 경로는 현재 존재하는 코드/문서이며 계획 파일을 현재 구조에 넣지 않는다.
+2026-10-12 현재 저장된 구현을 기준으로 한다. docs/server-routing/README.md는 현재 HEAD 5d29085 day24 - 2교시에도 없으므로 복원하지 않고 이 색인을 사용한다. 1:1 짝 문서는 files/<소스 상대경로>.md다. 존재하는 소스와 계획을 구분한다.
 
 22일차 광고주 인증·캠페인 디자인/준비된 PNG·입찰·매체 광고 선택과 23일차 선택 snapshot·노출/클릭·광고주 실적 화면이 구현돼 있다. URL은 루트 `ad_config/ad_config/urls.py`의 include에서 `ads/urls.py`로 연결하고 view는 기존 `ads/views.py`에 통합돼 있다. `ad_config/manage.py` 경로를 유지한다.
 
@@ -8,9 +8,17 @@
 
 7교시 `deliver_ad_events` → `ads.delivery.deliver_events`는 한 writer의 로컬 사건 파일을 완성한 다음 `file_delivered_at` 표식을 저장한다. 8교시 `check_ad_reports`는 전체 보관 사건으로 계산한 후보와 게시된 전체 보고서를 읽어 대조하고 결과 JSON을 저장한다. 해당 소스의 존재와 이번 문서 검증은 실제 전달/게시 재실행 성공을 뜻하지 않는다. Spark 광고 작업은 코드의 결과 메타데이터에서 `not-configured`, GUI 관찰은 `separate-manual-observation`다. `ads.delivery` import 시 모듈 하단 실습 print가 출력되는 현재 부수효과는 짝 문서에 기록했다.
 
-24일차 광고에는 공식 검사기 `tools/check_day24_logic.py`와 작성 중인 2교시 `ads/snapshot_intake.py`가 저장돼 있다. 문서 정합화 도중 관찰한 새 사용자 작업 또는 작성자를 확정할 수 없는 작업이다. 최신 inspect에는 필드/공개 상태/중복/수집값 통일 검사가 있으나 `parse_utc` 이름 식만 있어 captured_at 시각 검사는 호출되지 않는다. snapshot 검증/소비 성공으로 기록하지 않으며 3~8교시 후속 소비 구현과 관리명령은 미적용이다. Player snapshot 명령은 `../Game-server/server/game/management/commands/export_player_snapshot.py`에 있고 광고 입력 경로는 `../Game-server/data/exports/player-cdc.ndjson`이다. 게임 ORM을 광고 앱에 import하지 않는다. 기존 부재/빈칸 근거는 관찰 당시 시점자료로 보존하며 최신 소스 상태는 [사용자 저장 중 관찰](verification/day24-routing-sync/concurrent-source-observation.json)을 따른다. `Game-server/data`가 기존 출력 위치다.
+24일차 2·3·4교시는 완료 검증됐다. ads/snapshot_intake.py의 inspect_snapshot·readiness·change_player와 각 관리명령이 구현돼 있다. 공식 최종 검사는 2교시 22개, 3교시 8개, 4교시 17개가 통과했다. 게임 원본은 ../Game-server/data/exports/player-cdc.ndjson이며 기존 56행과 checksum을 보존했다. 사용자가 입력한 write_cdc_readiness 및 4교시 함수·명령은 그대로 두고 readiness에 교안 필드 common_input·player_change_topic을 보완했다. 준비 JSON과 teaching-fixture 원문·summary를 광고 서버 루트의 data에 저장했고 교안 화면 검사도 통과했다. 5~8교시 후속 함수/명령은 미적용이다. 광고에서 게임 ORM을 import하지 않는다.
 
-2교시 완료 여부의 공식 격리 재검토는 **20 통과·2 실패**다. 수집 시각 검사 미호출과 `inspect_player_snapshot.py` 관리명령 부재가 실패 원인이다. [검사 결과](verification/day24-period02-review/official-period02-final.json), [검토 인수인계](../handoffs/2026-10-08-day24-period02-review.md)를 따른다. 소스를 고치거나 원본 파일을 다시 만들지 않았다.
+2026-10-08의 20 통과·2 실패는 수정 전 역사 기록이다. 현재 검증은 [2교시 공식 결과](verification/2026-10-12-day24-period01-02/official-period02.json), [실제 원본 검사](verification/2026-10-12-day24-period01-02/actual-snapshot-inspection.json), [실행 순서·인수인계](../../../docs/handoffs/2026-10-12-day24-period01-02-review.md)를 따른다.
+
+수정된 3교시의 [이전 공식 결과](verification/2026-10-12-day24-period03-review/official-period03.json)와 [이전 원인·수정 순서](../../../docs/handoffs/2026-10-12-day24-period03-review.md)는 복구 전 3 통과·5 실패 기록이다. 당시 검토에서는 코드를 수정하지 않았다. 현재 상태는 [최종 2교시](verification/2026-10-12-day24-period04-recovery/official-period02-final.json), [최종 3교시](verification/2026-10-12-day24-period04-recovery/official-period03-final.json), [최종 4교시](verification/2026-10-12-day24-period04-recovery/official-period04-final.json), [화면 검사](verification/2026-10-12-day24-period04-recovery/screen-checker-final.json), [4교시까지 복구 인수인계](../handoffs/2026-10-12-day24-period04-recovery.md)를 따른다.
+
+## 현재 MongoDB 실행 상태 · 2026-10-12 복구
+
+사용자의 직접 복구 요청으로 설치 기본 standalone 서비스를 정상 종료하고, 기존 수업용 mongo-node1.yml과 infra/mongo/data/node1을 사용하는 노드를 재시작했다. 현재 PID 9900은 백그라운드 실행 중이며 ads-rs 단일 멤버 localhost:27017이 PRIMARY다. 실제 Django 관리명령의 ping은 exit 0, ok 1.0이다. village_ads의 campaigns/bids/decisions/ad_events/ad_daily_reports 5개 컬렉션을 읽었다. 소스·환경 설정·복제 구성은 수정하지 않았다.
+
+[실제 연결 결과](verification/mongo-recovery-2026-10-12/connection-after.json), [관리명령 ping](verification/mongo-recovery-2026-10-12/manage-ping.json), [복구 인수인계](../handoffs/2026-10-12-mongodb-connection-recovery.md)를 따른다. 사용자가 Compass에서도 DB가 표시됐다고 확인했다. 에이전트가 GUI를 직접 검사한 것은 아니다. 기본 MongoDB 서비스의 시작 유형 Auto는 바꾸지 않았으므로 재부팅 뒤 서버 선택은 다시 확인해야 한다. MongoDB 실행 복구와 이후 3교시 코드 보완은 별도 작업이다.
 
 `config/day23-*.py`와 `tools/basics/*`는 독립 실습/교안 참고 코드다. 서버 runtime 구현과 구분한다. 초기 package/scaffold 문서는 현재 정의가 없음을 명시한다. 검증용 도구의 존재도 최근 기능 테스트 실행을 뜻하지 않는다.
 
@@ -18,6 +26,11 @@
 
 | 현재 소스 | 짝 문서 | 책임/상태 |
 |---|---|---|
+| `check_day24_period4.py` | [문서](files/check_day24_period4.py.md) | 교안 화면 제공 검사; r/u/d·거절·입력 보존 |
+| `ads/management/commands/write_player_change_fixture.py` | [문서](files/ads/management/commands/write_player_change_fixture.py.md) | 4교시 사용자 저장본; r/u/d 원문과 해석 summary 파일 저장 |
+| `ads/management/commands/write_cdc_readiness.py` | [문서](files/ads/management/commands/write_cdc_readiness.py.md) | 사용자 입력 Command 보존; 공식 8개 및 실제 준비 JSON 저장 통과 |
+| `ads/management/commands/inspect_player_snapshot.py` | [문서](files/ads/management/commands/inspect_player_snapshot.py.md) | 2교시 입력 검사 및 공개 JSON 출력 |
+
 | `ad_config/ad_config/__init__.py` | [문서](files/ad_config/ad_config/__init__.py.md) | 현재 Python package 초기화; 짝 문서의 정의 여부 참조 |
 | `ad_config/ad_config/asgi.py` | [문서](files/ad_config/ad_config/asgi.py.md) | 현재 Django 서버 application 진입점 |
 | `ad_config/ad_config/settings.py` | [문서](files/ad_config/ad_config/settings.py.md) | Django/광고/Mongo 환경 설정; 값은 설정 소유 |
@@ -50,7 +63,7 @@
 | `ads/reporting.py` | [문서](files/ads/reporting.py.md) | 노출일 후보 집계·업무 키 게시·소유자 조회 |
 | `ads/repository.py` | [문서](files/ads/repository.py.md) | 소유자 캠페인과 현재 입찰 저장·조회 |
 | `ads/services.py` | [문서](files/ads/services.py.md) | 선택 당시 후보·승자·소재 snapshot |
-| `ads/snapshot_intake.py` | [문서](files/ads/snapshot_intake.py.md) | 24일차 2교시 작성 중; captured_at 시각 검사 미호출·소비 성공 아님 |
+| `ads/snapshot_intake.py` | [문서](files/ads/snapshot_intake.py.md) | 2교시 snapshot·3교시 준비 상태·4교시 r/u/d 해석 검증 완료 |
 | `ads/test_events.py` | [문서](files/ads/test_events.py.md) | 기존 검증/회귀검사 도구; 실행 이력 별도 |
 | `ads/tests.py` | [문서](files/ads/tests.py.md) | 기존 검증/회귀검사 도구; 실행 이력 별도 |
 | `ads/timestamps.py` | [문서](files/ads/timestamps.py.md) | 시간대 포함 ISO 시각의 UTC 정규화 |
@@ -68,7 +81,7 @@
 | `tools/basics/day22_period01.py` | [문서](files/tools/basics/day22_period01.py.md) | 독립 기초 실습/보존 자료; runtime 분리 |
 | `tools/basics/day22_period02.py` | [문서](files/tools/basics/day22_period02.py.md) | 독립 기초 실습/보존 자료; runtime 분리 |
 | `tools/basics/day23_record_observed.py` | [문서](files/tools/basics/day23_record_observed.py.md) | 독립 기초 실습/보존 자료; runtime 분리 |
-| `tools/check_day24_logic.py` | [문서](files/tools/check_day24_logic.py.md) | 24일차 공식 검사기 준비; 소비 구현 없음 |
+| `tools/check_day24_logic.py` | [문서](files/tools/check_day24_logic.py.md) | 공식 검사기; 현재 2~4교시 47개 통과, 5~8교시 미적용 |
 | `tools/day22_connection.py` | [문서](files/tools/day22_connection.py.md) | 22일차 Mongo 연결 실습 |
 | `tools/day22_crud.py` | [문서](files/tools/day22_crud.py.md) | 22일차 캠페인·입찰 CRUD 실습 |
 | `tools/verify_day22.py` | [문서](files/tools/verify_day22.py.md) | 기존 검증/회귀검사 도구; 실행 이력 별도 |
@@ -92,7 +105,17 @@
 | ads/static/ads/creatives/forest-tools.png | [문서](files/ads/static/ads/creatives/forest-tools.png.md) |
 | ads/static/ads/creatives/camp-tea.png | [문서](files/ads/static/ads/creatives/camp-tea.png.md) |
 
-## 검증과 이전 기록
+## 24일차 3·4교시 저장 산출물
+
+| 현재 파일 | 짝 문서 | 책임 |
+|---|---|---|
+| data/contracts/cdc-readiness.json | [문서](files/data/contracts/cdc-readiness.json.md) | 경로 관찰·CDC 미구성 준비 상태 |
+| data/fixtures/player-change-fixture.ndjson | [문서](files/data/fixtures/player-change-fixture.ndjson.md) | 고정 teaching-fixture r/u/d 원문 3행 |
+| data/fixtures/player-change-summary.json | [문서](files/data/fixtures/player-change-summary.json.md) | 원문 checksum·change_player 해석 결과 |
+
+이 파일들은 광고 서버 루트 data 아래의 교안 산출물이다. 기존 게임 snapshot의 경로와 bytes를 유지했고 server/data는 만들지 않았다. [실제 출력 검사](verification/2026-10-12-day24-period04-recovery/actual-output-verification.json)를 따른다.
+
+## 과거 검증과 이전 기록 (2026-10-08)
 
 이번 범위의 스킬 AST API 검사 결과는 [최종 구조 검사](verification/day24-routing-sync/agent-routing-final.json), [문서 경로 검사](verification/day24-routing-sync/agent-document-checks.json), [snapshot 파일 경계의 앞선 관찰](verification/day24-routing-sync/agent-snapshot-boundary.json), [인수인계](../handoffs/2026-10-08-ad-routing-progress-sync.md)를 따른다. 새 사용자 소스를 포함한 전체 Git 추적/미추적 Python 57파일·153심볼을 이 색인과 짝 문서에 대조했다. 표준 CLI는 기존 라우팅 README를 필수로 요구하는 제한으로 종료 코드 2이며 그 사실을 별도 결과에 보존한다. API 성공은 짝 문서/구조의 일치이며 문제틀의 기능 검사 통과를 뜻하지 않는다. API 성공을 CLI 성공으로 기록하지 않는다.
 

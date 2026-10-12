@@ -1,0 +1,29 @@
+[
+  {
+    "source": "ads/snapshot_intake.py",
+    "doc_exists": true,
+    "parse_error": null,
+    "missing": [
+      "change_player(event)"
+    ],
+    "symbols": 5
+  },
+  {
+    "source": "ads/management/commands/write_cdc_readiness.py",
+    "doc_exists": true,
+    "parse_error": null,
+    "missing": [],
+    "symbols": 0
+  },
+  {
+    "source": "ads/management/commands/write_player_change_fixture.py",
+    "doc_exists": false,
+    "parse_error": null,
+    "missing": [
+      "Command",
+      "Command.add_arguments(self, parser)",
+      "Command.handle(self, *args, **options)"
+    ],
+    "symbols": 3
+  }
+]

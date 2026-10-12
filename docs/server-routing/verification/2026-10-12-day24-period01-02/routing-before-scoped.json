@@ -1,0 +1,139 @@
+{
+  "python_files": [
+    {
+      "project": "ad_server",
+      "path": "ads/snapshot_intake.py",
+      "document_exists": true,
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "_read_snapshot",
+          "line": 19,
+          "signature": "_read_snapshot(path)",
+          "signature_core": "_read_snapshot(path)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "_check_public_state",
+          "line": 33,
+          "signature": "_check_public_state(row)",
+          "signature_core": "_check_public_state(row)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "function",
+          "qualified_name": "inspect_snapshot",
+          "line": 48,
+          "signature": "inspect_snapshot(path)",
+          "signature_core": "inspect_snapshot(path)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    },
+    {
+      "project": "ad_server",
+      "path": "ads/management/commands/inspect_player_snapshot.py",
+      "document_exists": false,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 8,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 11,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 14,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        }
+      ],
+      "missing_signatures": [
+        "Command",
+        "Command.add_arguments(self, parser)",
+        "Command.handle(self, *args, **options)"
+      ],
+      "parse_error": null
+    },
+    {
+      "project": "Game-server",
+      "path": "server/game/management/commands/export_player_snapshot.py",
+      "document_exists": true,
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 13,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 16,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 19,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": true
+        }
+      ],
+      "missing_signatures": [],
+      "parse_error": null
+    }
+  ],
+  "scope": "24일차 1/2교시 현재 저장 코드; CLI README 부재 제한과 구분"
+}

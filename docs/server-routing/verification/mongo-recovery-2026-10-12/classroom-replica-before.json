@@ -1,0 +1,11 @@
+{
+  "set_name": "ads-rs",
+  "version": 1,
+  "members": [
+    {
+      "id": 0,
+      "host": "localhost:27017",
+      "arbiterOnly": false
+    }
+  ]
+}

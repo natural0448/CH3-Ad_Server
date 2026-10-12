@@ -1,0 +1,11 @@
+{
+  "exit_code": 0,
+  "rows": 56,
+  "public_id_count": 56,
+  "schema_version": "player-snapshot/v1",
+  "source_kind": "player-snapshot",
+  "captured_at": "2026-10-08T16:09:50.997461+09:00",
+  "sha256": "6ea30948a1c6924b186676511207bd2099683ca00cf1b1582cb595e6437375d0",
+  "checksum_matches_source": true,
+  "command": "python ad_config/manage.py inspect_player_snapshot --source C:/MLO01-01/Chapter3/Game-server/data/exports/player-cdc.ndjson"
+}

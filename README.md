@@ -4,7 +4,7 @@
 
 2026-10-08 현재 광고 사건 NDJSON 내보내기, 고정 파일의 일별 보고서 후보 생성, 업무 키별 게시, 광고주 일별 보고서 화면, 한 writer 파일 전달과 게시 보고서 대조 명령까지 코드가 저장돼 있다. 실제 호출 경로와 전체 1:1 문서는 [현재 진행 라우팅 색인](docs/server-routing/current-progress-index.md)을 따른다. 이 문서 갱신에서는 파일 생성·전달·DB 게시를 재실행하지 않았다.
 
-24일차는 공식 `tools/check_day24_logic.py` 검사기와 2교시 `ads/snapshot_intake.py`가 저장돼 있다. 최신 관찰의 inspect 함수에는 필드·공개 상태·중복·수집값 통일 검사가 작성돼 있으나 `parse_utc`가 이름만 있는 식이라 captured_at 시각 검사는 호출되지 않는다. 2교시는 작성 중이며 snapshot 검사/소비 성공 상태가 아니다. 3~8교시 후속 소비 구현과 관리명령은 아직 없다. Player snapshot 명령은 게임 서버의 `server/game/management/commands/export_player_snapshot.py`에 있으며 광고 입력 경로는 `../Game-server/data/exports/player-cdc.ndjson`이다. 게임 ORM을 광고 앱에 import하지 않는다.
+24일차는 4교시까지 완료 검증됐다. 앞선 1교시 12개 검사에 이어 2026-10-12 최종 2교시 22개·3교시 8개·4교시 17개가 통과했고 교안 화면 검사도 통과했다. 광고 입력은 ../Game-server/data/exports/player-cdc.ndjson이며 기존 56행 원본과 checksum을 보존했다. readiness JSON과 teaching-fixture 원문/summary는 광고 루트 data/contracts 및 data/fixtures에 저장했다. 파일 검사에 MongoDB/runserver를 기동할 필요는 없다. 5~8교시 후속 함수·관리명령은 미적용이다. [현재 검증과 실행 순서](docs/handoffs/2026-10-12-day24-period04-recovery.md)를 따른다.
 
 ## 광고 서버
 

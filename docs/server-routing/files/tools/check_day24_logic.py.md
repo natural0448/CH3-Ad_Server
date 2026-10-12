@@ -64,4 +64,4 @@ CLI의 필수 `--project`는 앱 패키지를 포함한 폴더 Path, 필수 `--p
 
 ## 이 폴더 구조에서 실행
 
-광고 저장소 루트에서 `./.venv/Scripts/python.exe tools/check_day24_logic.py --project . --period 2`를 2교시 구현을 완성한 뒤 사용한다. 현재 `ads/snapshot_intake.py`는 작성 중이고 inspect_snapshot의 captured_at 검사 위치에 `parse_utc` 이름 식만 있어 helper가 호출되지 않는다. 파일 저장을 검사 통과나 snapshot 소비 성공으로 기록하지 않는다. 3~8교시 후속 소비 구현/명령은 미적용이다. 1교시는 게임 저장소의 검사기와 --project server를 사용한다. 이번 문서 작업에서는 2교시 검사를 실행하지 않았다.
+광고 저장소 루트의 가상환경으로 tools/check_day24_logic.py --project C:/MLO01-01/Chapter3/ad_server --period 2/3/4를 각각 실행한다. 2026-10-12 최종 검사는 2교시 22개·3교시 8개·4교시 17개를 통과했다. 1교시는 앞서 Game-server의 검사기와 --project C:/MLO01-01/Chapter3/Game-server/server로 실행해 12개를 통과했다. 실제 Mongo/게임 DB는 사용하지 않고 임시 시험 파일·SQLite 메모리로 검사한다. 5~8교시 구현은 미적용이다. 공식 검사기 소스는 수정하지 않았다.

@@ -1,0 +1,20 @@
+{
+  "scope": "existing user period3 sources",
+  "results": [
+    {
+      "source": "ads/snapshot_intake.py",
+      "symbols": 4,
+      "missing_signatures": [],
+      "parse_error": null,
+      "doc_exists": true
+    },
+    {
+      "source": "ads/management/commands/write_cdc_readiness.py",
+      "symbols": 0,
+      "missing_signatures": [],
+      "parse_error": null,
+      "doc_exists": true
+    }
+  ],
+  "ok": true
+}

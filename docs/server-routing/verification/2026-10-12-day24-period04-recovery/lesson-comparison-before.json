@@ -1,0 +1,8 @@
+{
+  "change_player_matches_lesson_ast": true,
+  "fixture_command_matches_lesson_ast": true,
+  "screen_checker_exists": false,
+  "fixture_exists": false,
+  "summary_exists": false,
+  "checker_lines": 54
+}

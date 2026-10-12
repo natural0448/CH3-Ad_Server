@@ -1,0 +1,44 @@
+{
+  "root_git": {
+    "exit_code": 128,
+    "output": "",
+    "error": "fatal: not a git repository (or any of the parent directories): .git"
+  },
+  "parent_git": {
+    "exit_code": 128,
+    "output": "",
+    "error": "fatal: cannot change to 'C:\\MLO01-01': Permission denied"
+  },
+  "repo_git": {
+    "exit_code": 0,
+    "output": "C:/MLO01-01/Chapter3/ad_server",
+    "error": ""
+  },
+  "head": {
+    "exit_code": 0,
+    "output": "5d29085 day24 - 2교시",
+    "error": ""
+  },
+  "status": {
+    "exit_code": 0,
+    "output": "M README.md\n M ads/snapshot_intake.py\n M docs/server-routing/current-progress-index.md\n M docs/server-routing/day24-period01-index.md\n M docs/server-routing/files/README.md.md\n M docs/server-routing/files/ads/snapshot_intake.py.md\n M docs/server-routing/files/tools/check_day24_logic.py.md\n?? ads/management/commands/write_cdc_readiness.py\n?? docs/server-routing/files/ads/management/commands/inspect_player_snapshot.py.md\n?? docs/server-routing/files/ads/management/commands/write_cdc_readiness.py.md\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/actual-snapshot-inspection.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/changed-documents.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/concurrent-user-observation.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/execution-notes.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/finish-state.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/official-period01.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/official-period02.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/routing-before-scoped.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/routing-cli-before.json\n?? docs/server-routing/verification/2026-10-12-day24-period01-02/start-state.json",
+    "error": ""
+  },
+  "unstaged": {
+    "exit_code": 0,
+    "output": "M\tREADME.md\nM\tads/snapshot_intake.py\nM\tdocs/server-routing/current-progress-index.md\nM\tdocs/server-routing/day24-period01-index.md\nM\tdocs/server-routing/files/README.md.md\nM\tdocs/server-routing/files/ads/snapshot_intake.py.md\nM\tdocs/server-routing/files/tools/check_day24_logic.py.md",
+    "error": ""
+  },
+  "staged": {
+    "exit_code": 0,
+    "output": "",
+    "error": ""
+  },
+  "source_sha256": {
+    "ads/snapshot_intake.py": "7bf1adee8ef18dd53f1e86ae7d7b3d7e59c0c76f1e7f520ac61372ae349f661e",
+    "ads/management/commands/write_cdc_readiness.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tools/check_day24_logic.py": "39640dbe2885bda44988fdfe8b2044d0f8f72c48376688e24222550c078d0e2a"
+  },
+  "lesson_sha256": "98069a64035d36297fc37d719d1549d7349603d7ffbd83af564e8f1f439c4c74",
+  "snapshot_sha256": "6ea30948a1c6924b186676511207bd2099683ca00cf1b1582cb595e6437375d0"
+}

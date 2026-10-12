@@ -1,0 +1,103 @@
+{
+  "period": 2,
+  "project": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "passed": 22,
+  "failed": 0,
+  "database": "sqlite-memory-only",
+  "mongo": "not-connected",
+  "student_sources_unchanged": true,
+  "source_sha256": {
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\snapshot_intake.py": "66e00c1853e01218a1891986a08b1317518221ebfddd8007a66e15539aed5489",
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\management\\commands\\inspect_player_snapshot.py": "c3a1f2d9118f20ab52bee60710b0fb5fa1131408a3d263385bd4f0b6dc2c6bef"
+  },
+  "checks": [
+    {
+      "name": "스키마·정렬 ID·음수 코인·실제 체크섬",
+      "passed": true
+    },
+    {
+      "name": "빈 파일 정상",
+      "passed": true
+    },
+    {
+      "name": "중복 ID 거절",
+      "passed": true
+    },
+    {
+      "name": "bool ID 거절",
+      "passed": true
+    },
+    {
+      "name": "0 ID 거절",
+      "passed": true
+    },
+    {
+      "name": "bool 코인 거절",
+      "passed": true
+    },
+    {
+      "name": "소수 코인 거절",
+      "passed": true
+    },
+    {
+      "name": "음수 버전 거절",
+      "passed": true
+    },
+    {
+      "name": "bool 버전 거절",
+      "passed": true
+    },
+    {
+      "name": "문자열 아닌 방 거절",
+      "passed": true
+    },
+    {
+      "name": "naive updated_at 거절",
+      "passed": true
+    },
+    {
+      "name": "naive captured_at 거절",
+      "passed": true
+    },
+    {
+      "name": "captured_at 서로 다름 거절",
+      "passed": true
+    },
+    {
+      "name": "광고 스키마 혼입 거절",
+      "passed": true
+    },
+    {
+      "name": "fixture 출처 혼입 거절",
+      "passed": true
+    },
+    {
+      "name": "계정 필드 추가 거절",
+      "passed": true
+    },
+    {
+      "name": "필수 필드 누락 거절",
+      "passed": true
+    },
+    {
+      "name": "사전 아닌 행 거절",
+      "passed": true
+    },
+    {
+      "name": "빈 행 거절",
+      "passed": true
+    },
+    {
+      "name": "검사 관리명령",
+      "passed": true
+    },
+    {
+      "name": "오답 감지: 중복 ID를 사전으로 조용히 덮음",
+      "passed": true
+    },
+    {
+      "name": "학생 저장 파일 변경 없음",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "concurrent_user_source": "ads/management/commands/write_cdc_readiness.py",
+  "sha256": "e18ddd6be63d161f4753e2a943703fefca91f5cd9ad2d5d5c76275de5faa667b",
+  "user_confirmation": "User entered provided command directly; preserved without replacing",
+  "snapshot_sha256_before_agent_edit": "4b080961639c45b592a13c34bd46281774098fdbd63b8e4797dacc8675eb0380"
+}

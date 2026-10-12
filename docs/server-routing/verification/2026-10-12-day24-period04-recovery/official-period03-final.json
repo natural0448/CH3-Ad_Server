@@ -1,0 +1,47 @@
+{
+  "period": 3,
+  "project": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "passed": 8,
+  "failed": 0,
+  "database": "sqlite-memory-only",
+  "mongo": "not-connected",
+  "student_sources_unchanged": true,
+  "source_sha256": {
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\snapshot_intake.py": "7ff28a296c90092fb7a83b2d98a41dd2ef6f2a8bda53fb6882f11e916ad60550",
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\management\\commands\\write_cdc_readiness.py": "e18ddd6be63d161f4753e2a943703fefca91f5cd9ad2d5d5c76275de5faa667b"
+  },
+  "checks": [
+    {
+      "name": "입력하지 않은 세 경로",
+      "passed": true
+    },
+    {
+      "name": "기본 스키마·공통 입력",
+      "passed": true
+    },
+    {
+      "name": "공급과 존재 구분",
+      "passed": true
+    },
+    {
+      "name": "경로가 있어도 CDC 미검증·미구성",
+      "passed": true
+    },
+    {
+      "name": "관리명령 저장",
+      "passed": true
+    },
+    {
+      "name": "오답 감지: 경로 존재를 관찰 성공으로 바꿈",
+      "passed": true
+    },
+    {
+      "name": "폴더를 출력 파일로 지정하면 거절",
+      "passed": true
+    },
+    {
+      "name": "학생 저장 파일 변경 없음",
+      "passed": true
+    }
+  ]
+}

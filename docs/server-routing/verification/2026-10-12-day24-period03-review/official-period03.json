@@ -1,0 +1,52 @@
+{
+  "period": 3,
+  "project": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "passed": 3,
+  "failed": 5,
+  "database": "sqlite-memory-only",
+  "mongo": "not-connected",
+  "student_sources_unchanged": true,
+  "source_sha256": {
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\snapshot_intake.py": "7bf1adee8ef18dd53f1e86ae7d7b3d7e59c0c76f1e7f520ac61372ae349f661e",
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\management\\commands\\write_cdc_readiness.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "checks": [
+    {
+      "name": "입력하지 않은 세 경로",
+      "passed": true
+    },
+    {
+      "name": "기본 스키마·공통 입력",
+      "passed": false,
+      "error": "KeyError: 'common_input'"
+    },
+    {
+      "name": "공급과 존재 구분",
+      "passed": true
+    },
+    {
+      "name": "경로가 있어도 CDC 미검증·미구성",
+      "passed": false,
+      "error": "KeyError: 'player_change_topic'"
+    },
+    {
+      "name": "관리명령 저장",
+      "passed": false,
+      "error": "AttributeError: module 'ads.management.commands.write_cdc_readiness' has no attribute 'Command'"
+    },
+    {
+      "name": "오답 감지: 경로 존재를 관찰 성공으로 바꿈",
+      "passed": false,
+      "error": "KeyError: 'player_change_topic'"
+    },
+    {
+      "name": "폴더를 출력 파일로 지정하면 거절",
+      "passed": false,
+      "error": "AttributeError: module 'ads.management.commands.write_cdc_readiness' has no attribute 'Command'"
+    },
+    {
+      "name": "학생 저장 파일 변경 없음",
+      "passed": true
+    }
+  ]
+}

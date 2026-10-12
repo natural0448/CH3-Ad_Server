@@ -4,4 +4,4 @@
 
 2026-10-08 현재 진행 문단은 광고 사건 파일 내보내기·후보 집계·게시·보고서 UI·파일 전달·대조 명령이 소스로 존재함을 설명하고 `docs/server-routing/current-progress-index.md`로 연결한다. 기존 설명의 "4교시 이후 미적용"과 "일별 보고서 링크 없음"을 현재 구현에 맞췄다. 이 문서 갱신에서 해당 기능을 실행했다고 주장하지 않는다.
 
-24일차 검사기 `tools/check_day24_logic.py`와 작성 중인 2교시 `ads/snapshot_intake.py`가 저장돼 있다. 최신 inspect에는 필드/공개 상태/중복/수집값 통일 검사가 있으나 `parse_utc` 이름 식만 있어 captured_at 시각 검사는 호출되지 않는다. 검사/소비 성공을 뜻하지 않으며 3~8교시 후속 소비 구현/명령은 아직 없다. 게임 snapshot 명령 위치와 광고의 입력 경로 `../Game-server/data/exports/player-cdc.ndjson`을 안내한다. 광고에서 게임 ORM을 import하거나 `server/data`를 만들라는 안내는 없다. 루트 README는 사용자 안내 문서이며 실행 가능한 함수·클래스·상수 정의를 갖지 않는다.
+24일차 안내는 앞선 1교시 12개, 최종 2교시 22개·3교시 8개·4교시 17개 통과 및 실제 원본 56행·checksum 보존을 반영한다. snapshot 검사, readiness, change_player 및 관리명령/화면 검사가 구현됐다. 광고 입력은 ../Game-server/data/exports/player-cdc.ndjson이며 readiness/fixture 결과는 광고 루트 data/contracts와 data/fixtures다. 파일 검사는 MongoDB/runserver 기동 없이 실행하고 5~8교시 후속 구현은 미적용이다. 현재 인수인계로 연결한다. README는 설명 문서이며 함수·클래스 정의가 없고 소스/원본을 쓰지 않는다.

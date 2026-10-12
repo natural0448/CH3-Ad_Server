@@ -1,0 +1,16 @@
+{
+  "exit_code": 0,
+  "output": [
+    "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+    "PASS: r/u/d 해석과 원문 보존",
+    "PASS: 다른 출처 거절·원문 보존",
+    "PASS: 다른 op 거절·원문 보존",
+    "PASS: u의 다른 ID 거절·원문 보존",
+    "PASS: d의 after 존재 거절·원문 보존",
+    "PASS: r의 before 존재 거절·원문 보존",
+    "PASS: u의 after 누락 거절·원문 보존",
+    "PASS: 공개 상태의 bool coins 거절·원문 보존",
+    "PASS: 비공개 필드 혼입 거절·원문 보존",
+    "PASS: 4교시 검사 완료 (실제 DB·snapshot 파일 변경 없음)"
+  ]
+}
