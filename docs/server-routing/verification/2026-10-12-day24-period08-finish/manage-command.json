@@ -1,0 +1,5 @@
+{
+  "command": ".\\.venv\\Scripts\\python.exe -X utf8 -B ad_config/manage.py handoff_player_snapshot --source \"../Game-server/data/exports/player-cdc.ndjson\" --contract data/contracts/player-cdc-contract.json --target data/exports/day24-input",
+  "exit_code": 0,
+  "stdout": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n{\r\n  \"rows\": 56,\r\n  \"sha256\": \"6ea30948a1c6924b186676511207bd2099683ca00cf1b1582cb595e6437375d0\",\r\n  \"source_kind\": \"player-snapshot\",\r\n  \"target\": \"data\\\\exports\\\\day24-input\"\r\n}\r\n"
+}

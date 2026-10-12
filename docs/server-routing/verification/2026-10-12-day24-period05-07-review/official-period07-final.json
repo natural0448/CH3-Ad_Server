@@ -1,0 +1,55 @@
+{
+  "period": 7,
+  "project": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "passed": 10,
+  "failed": 0,
+  "database": "sqlite-memory-only",
+  "mongo": "not-connected",
+  "student_sources_unchanged": true,
+  "source_sha256": {
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\snapshot_intake.py": "3c6d2f82fa0a80329592c87f6fb56ad30ece86b3212160829a5f2c4928ae2c19",
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\management\\commands\\read_snapshot_missing.py": "e73c6aeaab59b903517aacf89a47fc3e3cd2030abce0f448c6594c7650669b1b"
+  },
+  "checks": [
+    {
+      "name": "누락 ID 정렬",
+      "passed": true
+    },
+    {
+      "name": "누락 0건",
+      "passed": true
+    },
+    {
+      "name": "빈 입력",
+      "passed": true
+    },
+    {
+      "name": "새 등장 ID는 누락 아님",
+      "passed": true
+    },
+    {
+      "name": "누락 관리명령",
+      "passed": true
+    },
+    {
+      "name": "실제 기록 파일",
+      "passed": true
+    },
+    {
+      "name": "잘못된 스냅샷 거절",
+      "passed": true
+    },
+    {
+      "name": "원본 출력 경로 거절",
+      "passed": true
+    },
+    {
+      "name": "오답 감지: 누락을 삭제 사건으로 생성",
+      "passed": true
+    },
+    {
+      "name": "학생 저장 파일 변경 없음",
+      "passed": true
+    }
+  ]
+}

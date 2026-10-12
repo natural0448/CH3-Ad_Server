@@ -1,0 +1,70 @@
+{
+  "source_owner": "unknown; treated as user work",
+  "canonical_input": "../Game-server/data/exports/player-cdc.ndjson",
+  "nested_files": [
+    {
+      "path": "C:\\MLO01-01\\Chapter3\\Game-server\\server\\data\\exports\\player-cdc.ndjson",
+      "bytes": 13276,
+      "inspection": {
+        "rows": 56,
+        "source_kind": "player-snapshot",
+        "schema_version": "player-snapshot/v1",
+        "captured_at": "2026-10-12T06:50:46.022573+00:00",
+        "sha256": "f6bc5a54c69fe6e5a075c3c54adee028a53a4da1f4024ad9c9b535799a218a44",
+        "public_id_count": 56
+      },
+      "canonical_exists": true,
+      "agent_action": "read_only; existing file preserved",
+      "canonical_sha256": "6ea30948a1c6924b186676511207bd2099683ca00cf1b1582cb595e6437375d0",
+      "same_bytes_as_canonical": false,
+      "state_difference_counts": {
+        "changed": 1,
+        "newly_seen": 0,
+        "missing_unknown": 0
+      }
+    },
+    {
+      "path": "C:\\MLO01-01\\Chapter3\\Game-server\\server\\data\\exports\\player-snapshot-after.ndjson",
+      "bytes": 13276,
+      "inspection": {
+        "rows": 56,
+        "source_kind": "player-snapshot",
+        "schema_version": "player-snapshot/v1",
+        "captured_at": "2026-10-12T06:17:25.324704+00:00",
+        "sha256": "1c00d04b8f22b1c08b81c49edcd248370fc5c9b17a393c52243e6d1286fdf1df",
+        "public_id_count": 56
+      },
+      "canonical_exists": true,
+      "agent_action": "read_only; existing file preserved",
+      "canonical_sha256": "385fcdac70a898c79a05870b3d9eddd1c907187d4b0fc8bad46db3220a2e7e97",
+      "same_bytes_as_canonical": false,
+      "state_difference_counts": {
+        "changed": 0,
+        "newly_seen": 0,
+        "missing_unknown": 0
+      }
+    },
+    {
+      "path": "C:\\MLO01-01\\Chapter3\\Game-server\\server\\data\\exports\\player-snapshot-before.ndjson",
+      "bytes": 13276,
+      "inspection": {
+        "rows": 56,
+        "source_kind": "player-snapshot",
+        "schema_version": "player-snapshot/v1",
+        "captured_at": "2026-10-12T06:17:06.114264+00:00",
+        "sha256": "f51f724dd01030e701d1892ba4a11ee2edd102711744089e27915226c10a5bd8",
+        "public_id_count": 56
+      },
+      "canonical_exists": false,
+      "agent_action": "read_only; existing file preserved"
+    }
+  ],
+  "nested_files_used_for_existing_period05_07_verification": false,
+  "export_target_resolution": "Path(--output) relative to current working directory",
+  "agent_source_or_data_mutation": false,
+  "nested_before_after_counts": {
+    "changed": 1,
+    "newly_seen": 0,
+    "missing_unknown": 0
+  }
+}

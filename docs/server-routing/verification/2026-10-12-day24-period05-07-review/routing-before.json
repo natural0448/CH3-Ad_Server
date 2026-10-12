@@ -1,0 +1,286 @@
+[
+  {
+    "source": "ads/management/commands/compare_player_snapshots.py",
+    "doc": "docs\\server-routing\\files\\ads\\management\\commands\\compare_player_snapshots.py.md",
+    "doc_exists": false,
+    "indexed": false,
+    "parse_error": null,
+    "missing_signatures": [
+      "class Command(BaseCommand)",
+      "Command.add_arguments(self, parser)",
+      "Command.handle(self, *args, **options)"
+    ],
+    "symbols": [
+      {
+        "kind": "class",
+        "qualified_name": "Command",
+        "line": 9,
+        "signature": "class Command(BaseCommand)",
+        "signature_core": "Command",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [
+          "BaseCommand"
+        ],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Command.add_arguments",
+        "line": 12,
+        "signature": "Command.add_arguments(self, parser)",
+        "signature_core": "Command.add_arguments(self, parser)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Command.handle",
+        "line": 17,
+        "signature": "Command.handle(self, *args, **options)",
+        "signature_core": "Command.handle(self, *args, **options)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "source": "ads/management/commands/read_snapshot_missing.py",
+    "doc": "docs\\server-routing\\files\\ads\\management\\commands\\read_snapshot_missing.py.md",
+    "doc_exists": false,
+    "indexed": false,
+    "parse_error": null,
+    "missing_signatures": [
+      "class Command(BaseCommand)",
+      "Command.add_arguments(self, parser)",
+      "Command.handle(self, *args, **options)"
+    ],
+    "symbols": [
+      {
+        "kind": "class",
+        "qualified_name": "Command",
+        "line": 9,
+        "signature": "class Command(BaseCommand)",
+        "signature_core": "Command",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [
+          "BaseCommand"
+        ],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Command.add_arguments",
+        "line": 12,
+        "signature": "Command.add_arguments(self, parser)",
+        "signature_core": "Command.add_arguments(self, parser)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Command.handle",
+        "line": 17,
+        "signature": "Command.handle(self, *args, **options)",
+        "signature_core": "Command.handle(self, *args, **options)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "source": "ads/management/commands/write_snapshot_contract.py",
+    "doc": "docs\\server-routing\\files\\ads\\management\\commands\\write_snapshot_contract.py.md",
+    "doc_exists": false,
+    "indexed": false,
+    "parse_error": null,
+    "missing_signatures": [
+      "class Command(BaseCommand)",
+      "Command.add_arguments(self, parser)",
+      "Command.handle(self, *args, **options)"
+    ],
+    "symbols": [
+      {
+        "kind": "class",
+        "qualified_name": "Command",
+        "line": 9,
+        "signature": "class Command(BaseCommand)",
+        "signature_core": "Command",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [
+          "BaseCommand"
+        ],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Command.add_arguments",
+        "line": 12,
+        "signature": "Command.add_arguments(self, parser)",
+        "signature_core": "Command.add_arguments(self, parser)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Command.handle",
+        "line": 16,
+        "signature": "Command.handle(self, *args, **options)",
+        "signature_core": "Command.handle(self, *args, **options)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "source": "ads/snapshot_intake.py",
+    "doc": "docs\\server-routing\\files\\ads\\snapshot_intake.py.md",
+    "doc_exists": true,
+    "indexed": true,
+    "parse_error": null,
+    "missing_signatures": [
+      "build_snapshot_contract(source)",
+      "load_rows(path)",
+      "compare(before, after)",
+      "missing_summary(before, after)"
+    ],
+    "symbols": [
+      {
+        "kind": "function",
+        "qualified_name": "_read_snapshot",
+        "line": 20,
+        "signature": "_read_snapshot(path)",
+        "signature_core": "_read_snapshot(path)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "_check_public_state",
+        "line": 34,
+        "signature": "_check_public_state(row)",
+        "signature_core": "_check_public_state(row)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "inspect_snapshot",
+        "line": 49,
+        "signature": "inspect_snapshot(path)",
+        "signature_core": "inspect_snapshot(path)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "readiness",
+        "line": 74,
+        "signature": "readiness(mysql_config=None, connect_home=None, debezium_dir=None)",
+        "signature_core": "readiness(mysql_config=None, connect_home=None, debezium_dir=None)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "change_player",
+        "line": 88,
+        "signature": "change_player(event)",
+        "signature_core": "change_player(event)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "build_snapshot_contract",
+        "line": 113,
+        "signature": "build_snapshot_contract(source)",
+        "signature_core": "build_snapshot_contract(source)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "load_rows",
+        "line": 126,
+        "signature": "load_rows(path)",
+        "signature_core": "load_rows(path)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "compare",
+        "line": 131,
+        "signature": "compare(before, after)",
+        "signature_core": "compare(before, after)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "missing_summary",
+        "line": 145,
+        "signature": "missing_summary(before, after)",
+        "signature_core": "missing_summary(before, after)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "source": "tools/check_day24_period5.py",
+    "doc": "docs\\server-routing\\files\\tools\\check_day24_period5.py.md",
+    "doc_exists": false,
+    "indexed": false,
+    "parse_error": null,
+    "missing_signatures": [
+      "write_rows(path, rows)"
+    ],
+    "symbols": [
+      {
+        "kind": "function",
+        "qualified_name": "write_rows",
+        "line": 17,
+        "signature": "write_rows(path, rows)",
+        "signature_core": "write_rows(path, rows)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  }
+]

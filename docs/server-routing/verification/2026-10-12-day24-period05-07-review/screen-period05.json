@@ -1,0 +1,14 @@
+{
+  "invocation": "python -m tools.check_day24_period5; process-local tempfile.tempdir set to verification workspace",
+  "exit_code": 0,
+  "output": [
+    "PASS: 실제 rows·정렬 ID·SHA-256·수집/계약 시각·메타데이터",
+    "PASS: 0행 계약과 빈 bytes의 SHA-256",
+    "PASS: 중복 ID 거절·입력 보존",
+    "PASS: 비공개 필드 혼입 거절·입력 보존",
+    "PASS: 필수 필드 누락 거절·입력 보존",
+    "PASS: 잘못된 출처 거절·입력 보존",
+    "PASS: 시간대 없는 수집 시각 거절·입력 보존",
+    "PASS: 5교시 함수 검사 완료 (실제 DB·export·계약 파일 변경 없음)"
+  ]
+}

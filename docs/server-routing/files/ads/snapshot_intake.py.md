@@ -1,6 +1,6 @@
 # ads/snapshot_intake.py
 
-2026-10-12 현재 24일차 2·3·4교시 구현이 검증됐다. inspect_snapshot 22개, readiness 8개, change_player/fixture 명령 17개 공식 검사가 통과했다. 사용자 4교시 함수·명령과 직접 입력한 3교시 명령은 보존했고 readiness 반환에 교안 필드 두 개를 추가했다. 5~8교시 후속 함수·명령은 아직 없다.
+2026-10-12 현재 24일차 2~8교시 구현을 설명한다. inspect_snapshot 22개, readiness 8개, change_player/fixture 명령 17개 공식 검사는 앞선 검토에서 통과했다. 이번 5교시 13개·6교시 15개·7교시 10개 공식 검사도 통과했고 실제 계약·비교·누락 저장본이 현재 원본과 일치한다. 사용자 소스를 수정하지 않았다. 후속 8교시 검토에서 handoff_snapshot과 명령의 공식 24개 검사 및 실제 56행 파일·계약 인계가 성공했다. 기존 사용자 소스는 유지했다.
 
 ## 책임과 모듈 값
 
@@ -8,7 +8,7 @@
 
 `SCHEMA_VERSION="player-snapshot/v1"`, `SOURCE_KIND="player-snapshot"`, `PUBLIC_FIELDS=("id","room_id","coins","version","updated_at")`, `SNAPSHOT_FIELDS=set(PUBLIC_FIELDS)|{"schema_version","source_kind","captured_at"}`는 모듈이 정의한다. 현재 inspect 본문은 정확한 8필드·스키마·출처를 검사한다.
 
-`hashlib`, `io`, `json`, `Path`, `.timestamps.parse_utc`는 helper와 경로 관찰에서 사용한다. `shutil`, `tempfile`, `datetime`, `timezone`, `.exporting.read_ndjson`, `.exporting.write_ndjson`은 import돼 있지만 현재 모듈 함수 본문에서는 호출하지 않는다. write_player_change_fixture 관리명령은 이 모듈에서 import한 write_ndjson을 사용한다. 앞으로의 구현 계획을 현재 호출 관계로 기록하지 않는다.
+`hashlib`, `io`, `json`, `Path`, `.timestamps.parse_utc`는 helper·경로 관찰·상태 비교에서 사용한다. datetime/timezone은 계약 생성 시각, .exporting.read_ndjson은 load_rows에서 사용한다. 마감 중 추가된 handoff_snapshot 본문은 shutil/tempfile도 호출한다. .exporting.write_ndjson은 현재 이 모듈 함수 본문에서 직접 호출하지 않으며 write_player_change_fixture 관리명령이 이 모듈의 import를 사용한다. 사용자 추가 import `from unittest import result`는 본문에서 사용하지 않는다. missing_summary의 result는 별도 지역 사전이다. 이 import를 정리하거나 바꾸지 않았다. 8교시 저장 코드는 공식 검사와 실제 인계까지 성공했으며 아래 증거를 따른다.
 
 ## _read_snapshot(path)
 
@@ -83,3 +83,49 @@ event는 기본값 없는 teaching-fixture 사전이다. source_kind="teaching-f
 ## 4교시까지 최종 검증
 
 [공식 2교시](../../verification/2026-10-12-day24-period04-recovery/official-period02-final.json) 22/0, [공식 3교시](../../verification/2026-10-12-day24-period04-recovery/official-period03-final.json) 8/0, [공식 4교시](../../verification/2026-10-12-day24-period04-recovery/official-period04-final.json) 17/0다. 교안 화면 검사도 통과했다. 사용자 change_player/fixture 명령의 AST가 교안 원문과 같았고 소스를 수정하지 않았다. 실제 readiness·원문 fixture·summary의 [출력 검증](../../verification/2026-10-12-day24-period04-recovery/actual-output-verification.json)도 통과했다. 게임 snapshot의 bytes 해시는 유지했다.
+
+## build_snapshot_contract(source)
+
+source는 기본값 없는 기존 snapshot 문자열/Path 호환 경로다. inspect_snapshot(source)의 검사 메타데이터를 읽고 새 contract 사전에 합쳐 반환한다. 입력 파일을 쓰지 않는다. 검사 예외와 경로/파싱 오류는 전파한다.
+
+초기 contract는 artifact_id="data/exports/player-cdc.ndjson", artifact_version="v2", source_path=str(source), created_at=현재 aware UTC ISO 문자열, collector="game.export_player_snapshot", binlog_cdc_status="not-configured", position_kind="file-line", kafka_position=None, public_fields=list(PUBLIC_FIELDS)다. contract.update(inspected)로 실제 rows/public_ids/captured_at/sha256/source_kind/schema_version을 더한다. inspected는 입력 검사 결과, contract는 이 함수가 소유한 새 사전이다. created_at과 입력 captured_at을 구별한다.
+
+의사코드: 원본 검사 → 고정 인계 조건·현재 계약 시각·원본 경로 → 검사 결과 update → contract 반환. 직접 호출은 inspect_snapshot, str, datetime.now(timezone.utc).isoformat, list와 dict.update다. 경로 기준은 호출 프로세스 작업 폴더다. 파일 이름의 cdc를 실제 binlog 성공이나 Kafka 위치로 해석하지 않는다.
+
+## load_rows(path)
+
+path는 기본값 없는 동결 snapshot 경로다. 먼저 inspect_snapshot(path)를 호출해 형식·중복 ID 등을 검사한 다음 read_ndjson(path)의 사전 목록을 id→row 사전으로 변환하여 반환한다. 입력을 쓰지 않는다. 읽기/검사 오류는 전파한다.
+
+의사코드: snapshot 검사 → 같은 파일을 NDJSON reader로 다시 읽기 → row["id"]를 키로 등록 → 사전 반환. 직접 호출은 inspect_snapshot와 .exporting.read_ndjson이며 두 번 읽는 사이에 원문을 잠그는 기능은 없다. 같은 동결 파일을 유지하는 호출 계약이다. row는 reader가 반환하는 각 사전이다.
+
+## compare(before, after)
+
+before/after는 기본값 없는 검증된 정수 Player ID→공개 행 사전이다. 함수 자체는 입력 형식 검사·파일 읽기·DB 쓰기를 수행하지 않는다. 반환은 {changed, newly_seen, missing_unknown} 새 사전이다.
+
+의사코드: 공통 ID 오름차순 → old/new 공개 행 → room_id/coins/version/parse_utc(updated_at) 튜플 비교 → 다르면 id·before_version·after_version·before_coins·after_coins 행 추가 → 새 ID와 원인 미상 누락 ID 정렬 반환.
+
+직접 호출은 set/sorted, .timestamps.parse_utc, changed.append다. parse_utc의 반환 UTC datetime으로 같은 순간의 다른 offset 표현을 동일하게 본다. captured_at은 업무 상태 비교에서 제외한다. 입력 사전은 수정하지 않는다. 없는 키/잘못된 수정 시각은 KeyError/시각 파싱 오류 등으로 전파한다.
+
+changed=[]는 함수가 소유하는 결과 목록, player_id는 공통 ID, old/new는 입력 행 참조, old_state/new_state는 비교 튜플이다. changed 행의 키는 id이며 설명용 예시 title/when/old_value/new_value를 사용하지 않는다. newly_seen은 after에만, missing_unknown은 before에만 있는 정수 ID 오름차순이다.
+
+## missing_summary(before, after)
+
+before/after는 기본값 없는 정수 ID→공개 행 사전이다. 이 함수는 행 값을 읽지 않고 키 집합 차이만 관찰한다. 반환은 {missing_unknown: 정렬된 before-only ID 목록, source_kind: "snapshot-comparison", delete_events: [], delete_inference_allowed: False}다.
+
+의사코드: before 키에서 after 키 빼기 → 정렬 → 누락 관찰·고정 출처·빈 삭제 목록·삭제 추론 불가 사전 → 반환. 직접 호출은 set/sorted다. missing은 정렬 ID 목록, result는 이 함수가 작성하는 지역 사전이다. 두 입력을 바꾸지 않으며 파일·게임 ORM·MongoDB·삭제 API를 호출하지 않는다. 누락 이유와 실제 삭제 version/시각을 추론하지 않는다.
+
+## 5~7교시 최종 검증 · 2026-10-12
+
+[5교시 13/0](../../verification/2026-10-12-day24-period05-07-review/official-period05-final.json), [6교시 15/0](../../verification/2026-10-12-day24-period05-07-review/official-period06-final.json), [7교시 10/0](../../verification/2026-10-12-day24-period05-07-review/official-period07-final.json)과 [5교시 화면 검사](../../verification/2026-10-12-day24-period05-07-review/screen-period05.json)가 통과했다. [교안 AST 대조](../../verification/2026-10-12-day24-period05-07-review/lesson-comparison.json)는 네 추가 함수가 docstring을 제외한 제공 함수와 같고 기존 2~4교시 함수가 HEAD와 같음을 확인한다.
+
+[실제 저장본 대조](../../verification/2026-10-12-day24-period05-07-review/actual-file-verification.json)에서 before/after 각 56행, changed 1건·newly_seen 0건·missing_unknown 0건이다. 계약 메타데이터/원본 checksum·비교·누락 JSON이 현재 파일과 일치한다. 실제 게임 행동의 성공 응답은 이 검토에서 직접 관찰하지 않았고 원본·산출물을 다시 쓰지 않았다.
+
+## handoff_snapshot(source, contract_path, target) · 8교시 완료
+
+세 파라미터는 기본값 없는 경로다. source는 기존 snapshot, contract_path는 JSON 계약, target은 아직 없는 최종 수신 폴더다. 사용자가 저장한 함수를 변경하지 않고 공식 24개 검사와 실제 수신 폴더 인계를 확인했다.
+
+현재 의사코드: source/target Path → 계약 JSON 읽기 → source 검사 → expected 메타데이터/검사값을 sort_keys JSON으로 비교 → created_at parse_utc → 기존 target 거절 → 부모 준비/같은 부모 임시 폴더 → 원본 copyfile → 복사 bytes checksum 검사 → 계약 복사/source_path를 최종 경로로 변경 → 임시 계약 JSON 저장 → 임시 폴더 rename → 행 수/checksum/출처/target 반환. 임시 단계 Exception이면 rmtree(ignore_errors=True) 후 재전파한다.
+
+expected의 고정 값은 artifact_id=data/exports/player-cdc.ndjson, artifact_version=v2, public_fields=list(PUBLIC_FIELDS), position_kind=file-line, kafka_position=None, collector=game.export_player_snapshot, binlog_cdc_status=not-configured이며 inspect_snapshot 반환을 합친다. expected에는 source_path를 넣지 않는 현재 구현이다. contract는 읽은 사전, inspected는 원본 검사 결과, field/value는 대조 항목, temporary는 mkdtemp Path, received는 임시 player-cdc.ndjson, received_contract는 복사한 계약 사전이다.
+
+직접 호출은 Path/read_text/exists/parent.mkdir/rename, json.loads/dumps, inspect_snapshot, list, parse_utc, tempfile.mkdtemp, shutil.copyfile/rmtree, hashlib.sha256(...).hexdigest, received.read_bytes 및 계약 Path.write_text다. 반환은 {rows: inspected rows, sha256: inspected checksum, source_kind: SOURCE_KIND, target: str(target)}다. 값 불일치·기존 target·복사 checksum 불일치는 ValueError이고 읽기/JSON/경로 오류 등은 전파한다. 내부에서 폴더/복사 파일을 쓰는 함수다. [공식 24/0](../../verification/2026-10-12-day24-period08-finish/official-period08-before.json), [실제 인계 56행·체크섬/경로 일치](../../verification/2026-10-12-day24-period08-finish/actual-handoff.json)를 따른다. 제공 정답은 사전 값을 직접 비교하고 현재 사용자 코드는 sort_keys JSON으로 비교한다. 오류 문구도 다르지만 교안의 계약 대조·복사·새 대상 보호 동작은 검사에 통과해 사용자 구현을 유지했다.

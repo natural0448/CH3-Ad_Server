@@ -5,6 +5,7 @@ import shutil
 import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest import result
 
 from .exporting import read_ndjson, write_ndjson
 from .timestamps import parse_utc
@@ -107,3 +108,84 @@ def change_player(event):
     state = before if op == "d" else after
     return {"op": op, "player_id": state["id"], "coins": state["coins"],
             "version": state["version"], "deleted": op == "d"}
+
+
+def build_snapshot_contract(source):
+    """검사한 파일의 행 수·ID·체크섬을 인계 계약으로 만든다."""
+    inspected = inspect_snapshot(source)
+
+    contract = {"artifact_id": "data/exports/player-cdc.ndjson", "artifact_version": "v2",
+        "source_path": str(source), "created_at": datetime.now(timezone.utc).isoformat(),
+        "collector": "game.export_player_snapshot", "binlog_cdc_status": "not-configured",
+        "position_kind": "file-line", "kafka_position": None,
+        "public_fields": list(PUBLIC_FIELDS)}
+    contract.update(inspected)
+    return contract
+
+
+def load_rows(path):
+    inspect_snapshot(path)
+    return {row["id"]: row for row in read_ndjson(path)}
+
+
+def compare(before, after):
+    changed = []
+    for player_id in sorted(set(before) & set(after)):
+        old, new = before[player_id], after[player_id]
+        old_state = (old["room_id"], old["coins"], old["version"], parse_utc(old["updated_at"]))
+        new_state = (new["room_id"], new["coins"], new["version"], parse_utc(new["updated_at"]))
+        if old_state != new_state:
+            changed.append({"id": player_id, "before_version": old["version"],
+                            "after_version": new["version"], "before_coins": old["coins"],
+                            "after_coins": new["coins"]})
+    return {"changed": changed, "newly_seen": sorted(set(after) - set(before)),
+            "missing_unknown": sorted(set(before) - set(after))}
+
+
+def missing_summary(before, after):
+
+    missing = sorted(set(before) - set(after))
+    result = {"missing_unknown": missing, "source_kind": "snapshot-comparison",
+            "delete_events": [], "delete_inference_allowed": False}
+    return result
+
+
+def handoff_snapshot(source, contract_path, target):
+    source, target = Path(source), Path(target)
+    contract = json.loads(Path(contract_path).read_text(encoding="utf-8"))
+    inspected = inspect_snapshot(source)
+    expected = {"artifact_id": "data/exports/player-cdc.ndjson", "artifact_version": "v2",
+                "public_fields": list(PUBLIC_FIELDS), "position_kind": "file-line",
+                "kafka_position": None, "collector": "game.export_player_snapshot",
+                "binlog_cdc_status": "not-configured", **inspected}
+
+    for field, value in expected.items():
+        if field not in contract or json.dumps(contract[field], sort_keys=True) != json.dumps(value, sort_keys=True):
+            raise ValueError(f"다른 값: {field}")
+    parse_utc(contract["created_at"])
+
+    if target.exists():
+        raise ValueError("새 출력 경로를 지정하세요.")
+    
+    target.parent.mkdir(parents=True, exist_ok=True)
+    temporary = Path(tempfile.mkdtemp(prefix=f".{target.name}-", dir=target.parent))
+    try:
+        received = temporary / "player-cdc.ndjson"
+
+        shutil.copyfile(source, received)
+        if hashlib.sha256(received.read_bytes()).hexdigest() != inspected["sha256"]:
+            raise ValueError("복사 결과가 다릅니다.")
+        # [문제 4 · 한 줄] 기존 계약을 복사하되 source_path만 최종 수신 파일 경로로 바꾼다.
+        # 예시: copied_metadata = {**metadata, "path": str(output_path)}
+        received_contract = {**contract, "source_path": str(target / "player-cdc.ndjson")}
+        (temporary / "player-cdc-contract.json").write_text(
+            json.dumps(received_contract, ensure_ascii=False, sort_keys=True, indent=2) + "\n",
+            encoding="utf-8")
+        # [문제 5 · 한 줄] 검증된 파일·계약이 모두 준비된 임시 폴더를 최종 target으로 옮긴다.
+        # 예시: staged_folder.rename(final_folder)
+        temporary.rename(target)
+    except Exception:
+        shutil.rmtree(temporary, ignore_errors=True)
+        raise
+    return {"rows": inspected["rows"], "sha256": inspected["sha256"],
+            "source_kind": SOURCE_KIND, "target": str(target)}

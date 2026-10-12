@@ -1,0 +1,105 @@
+{
+  "ad_git_final": {
+    "head": {
+      "exit": 0,
+      "stdout": "5e2712b day24 - chapter4",
+      "stderr": ""
+    },
+    "status": {
+      "exit": 0,
+      "stdout": "M README.md\n M ads/snapshot_intake.py\n M docs/server-routing/current-progress-index.md\n M docs/server-routing/day24-period01-index.md\n M docs/server-routing/files/README.md.md\n M docs/server-routing/files/ads/snapshot_intake.py.md\n M docs/server-routing/files/tools/check_day24_logic.py.md\n?? ads/management/commands/compare_player_snapshots.py\n?? ads/management/commands/handoff_player_snapshot.py\n?? ads/management/commands/read_snapshot_missing.py\n?? ads/management/commands/write_snapshot_contract.py\n?? docs/handoffs/2026-10-12-day24-period08-finish.md\n?? docs/handoffs/2026-10-12-day24-through-period07-review.md\n?? docs/server-routing/files/ads/management/commands/compare_player_snapshots.py.md\n?? docs/server-routing/files/ads/management/commands/handoff_player_snapshot.py.md\n?? docs/server-routing/files/ads/management/commands/read_snapshot_missing.py.md\n?? docs/server-routing/files/ads/management/commands/write_snapshot_contract.py.md\n?? docs/server-routing/files/tools/check_day24_period5.py.md\n?? docs/server-routing/verification/2026-10-12-day24-period05-07-review/\n?? docs/server-routing/verification/2026-10-12-day24-period08-finish/\n?? tools/check_day24_period5.py",
+      "stderr": ""
+    },
+    "staged": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "unstaged": {
+      "exit": 0,
+      "stdout": "M\tREADME.md\nM\tads/snapshot_intake.py\nM\tdocs/server-routing/current-progress-index.md\nM\tdocs/server-routing/day24-period01-index.md\nM\tdocs/server-routing/files/README.md.md\nM\tdocs/server-routing/files/ads/snapshot_intake.py.md\nM\tdocs/server-routing/files/tools/check_day24_logic.py.md",
+      "stderr": ""
+    },
+    "untracked": {
+      "exit": 0,
+      "stdout": "ads/management/commands/compare_player_snapshots.py\nads/management/commands/handoff_player_snapshot.py\nads/management/commands/read_snapshot_missing.py\nads/management/commands/write_snapshot_contract.py\ndocs/handoffs/2026-10-12-day24-period08-finish.md\ndocs/handoffs/2026-10-12-day24-through-period07-review.md\ndocs/server-routing/files/ads/management/commands/compare_player_snapshots.py.md\ndocs/server-routing/files/ads/management/commands/handoff_player_snapshot.py.md\ndocs/server-routing/files/ads/management/commands/read_snapshot_missing.py.md\ndocs/server-routing/files/ads/management/commands/write_snapshot_contract.py.md\ndocs/server-routing/files/tools/check_day24_period5.py.md\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/actual-file-verification.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/actual-inspect-command.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/concurrent-user-period08.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/finish.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/lesson-comparison.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/nested-exports-observation.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/official-period05-final.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/official-period05.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/official-period06-final.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/official-period06.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/official-period07-final.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/official-period07.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/routing-before.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/routing-cli-after.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/routing-cli-before.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/routing-cli-status.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/routing-final.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/screen-period05.json\ndocs/server-routing/verification/2026-10-12-day24-period05-07-review/start.json\ndocs/server-routing/verification/2026-10-12-day24-period08-finish/actual-handoff.json\ndocs/server-routing/verification/2026-10-12-day24-period08-finish/lesson-comparison.json\ndocs/server-routing/verification/2026-10-12-day24-period08-finish/manage-command.json\ndocs/server-routing/verification/2026-10-12-day24-period08-finish/official-period08-before.json\ndocs/server-routing/verification/2026-10-12-day24-period08-finish/preflight.json\ndocs/server-routing/verification/2026-10-12-day24-period08-finish/received-inspect.json\ndocs/server-routing/verification/2026-10-12-day24-period08-finish/routing-before.json\ndocs/server-routing/verification/2026-10-12-day24-period08-finish/routing-cli-after.json\ndocs/server-routing/verification/2026-10-12-day24-period08-finish/routing-cli-before.json\ndocs/server-routing/verification/2026-10-12-day24-period08-finish/routing-cli-status.json\ndocs/server-routing/verification/2026-10-12-day24-period08-finish/routing-final.json\ndocs/server-routing/verification/2026-10-12-day24-period08-finish/start.json\ntools/check_day24_period5.py",
+      "stderr": ""
+    },
+    "diff_check": {
+      "exit": 2,
+      "stdout": "ads/snapshot_intake.py:169: trailing whitespace.\n+",
+      "stderr": ""
+    }
+  },
+  "game_git_final": {
+    "head": {
+      "exit": 0,
+      "stdout": "14f23ae day24 - chapter4",
+      "stderr": ""
+    },
+    "status": {
+      "exit": 0,
+      "stdout": "M docs/server-routing/README.md\n M docs/server-routing/day24-progress.md\n M docs/server-routing/files/README.md.md",
+      "stderr": ""
+    },
+    "staged": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "unstaged": {
+      "exit": 0,
+      "stdout": "M\tdocs/server-routing/README.md\nM\tdocs/server-routing/day24-progress.md\nM\tdocs/server-routing/files/README.md.md",
+      "stderr": ""
+    },
+    "untracked": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "diff_check": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "agent_changed_development_since_start": [
+    "README.md"
+  ],
+  "agent_python_changes": [],
+  "original_artifacts_changed": [],
+  "agent_added_artifacts": [
+    "data/exports/day24-input/player-cdc.ndjson",
+    "data/exports/day24-input/player-cdc-contract.json"
+  ],
+  "related_document_files": [
+    "ad_server/README.md",
+    "ad_server/docs/server-routing/files/README.md.md",
+    "ad_server/docs/server-routing/current-progress-index.md",
+    "ad_server/docs/server-routing/day24-period01-index.md",
+    "ad_server/docs/server-routing/files/tools/check_day24_logic.py.md",
+    "ad_server/docs/server-routing/files/ads/snapshot_intake.py.md",
+    "ad_server/docs/server-routing/files/ads/management/commands/handoff_player_snapshot.py.md",
+    "ad_server/docs/server-routing/files/data/exports/day24-input/player-cdc.ndjson.md",
+    "ad_server/docs/server-routing/files/data/exports/day24-input/player-cdc-contract.json.md",
+    "ad_server/docs/handoffs/2026-10-12-day24-period08-finish.md",
+    "Game-server/docs/server-routing/day24-progress.md",
+    "Game-server/docs/server-routing/README.md",
+    "Game-server/docs/server-routing/files/README.md.md",
+    "docs/routing/README.md"
+  ],
+  "routing_cli_exit": 2,
+  "routing_python_files": 7,
+  "routing_symbols": 42,
+  "routing_ok": true,
+  "data_documents_indexed": true,
+  "local_links_checked": 235,
+  "missing_local_links": [],
+  "official_passed": 24,
+  "official_failed": 0,
+  "official_sources_unchanged": true,
+  "actual_handoff_ok": true,
+  "received_inspect_exit": 0,
+  "received_rows": 56,
+  "ok": true
+}

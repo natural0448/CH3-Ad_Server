@@ -1,0 +1,29 @@
+{
+  "command_exit": 0,
+  "source": "C:\\MLO01-01\\Chapter3\\Game-server\\data\\exports\\player-cdc.ndjson",
+  "received": "C:\\MLO01-01\\Chapter3\\ad_server\\data\\exports\\day24-input\\player-cdc.ndjson",
+  "received_contract": "C:\\MLO01-01\\Chapter3\\ad_server\\data\\exports\\day24-input\\player-cdc-contract.json",
+  "received_rows": 56,
+  "source_received_same_bytes": true,
+  "sha256": "6ea30948a1c6924b186676511207bd2099683ca00cf1b1582cb595e6437375d0",
+  "checksum_matches_contract": true,
+  "only_source_path_changed": true,
+  "source_path_matches_received": true,
+  "original_artifacts_unchanged": {
+    "Game-server/data/exports/player-cdc.ndjson": true,
+    "Game-server/data/exports/player-snapshot-after.ndjson": true,
+    "ad_server/data/contracts/player-cdc-contract.json": true,
+    "ad_server/data/checks/day24-comparison.json": true,
+    "ad_server/data/checks/day24-missing.json": true
+  },
+  "schema_version": "player-snapshot/v1",
+  "source_kind": "player-snapshot",
+  "position_kind": "file-line",
+  "kafka_position": null,
+  "binlog_cdc_status": "not-configured",
+  "temporary_sibling_dirs_left": [],
+  "received_contract_sha256": "2b769d3a017c283617bd86d96245d60870579ee4a8f9aed8bb57193d89e7a153",
+  "received_source_sha256": "6ea30948a1c6924b186676511207bd2099683ca00cf1b1582cb595e6437375d0",
+  "real_database_modified": false,
+  "ok": true
+}

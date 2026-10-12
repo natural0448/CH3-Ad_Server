@@ -1,0 +1,11 @@
+{
+  "source": "..\\Game-server\\data\\exports\\player-cdc.ndjson",
+  "contract": "data\\contracts\\player-cdc-contract.json",
+  "target": "data\\exports\\day24-input",
+  "rows": 56,
+  "sha256": "6ea30948a1c6924b186676511207bd2099683ca00cf1b1582cb595e6437375d0",
+  "mismatches": [],
+  "target_exists": false,
+  "original_contract_sha256": "d4308e2cc0f1c1e4fb2098cab1d4c207aa97f2a542358e5641859200111090aa",
+  "ok": true
+}

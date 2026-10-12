@@ -1,0 +1,9 @@
+{
+  "before_exit": 2,
+  "stdout": "",
+  "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n",
+  "after_exit": 2,
+  "after_stdout": "",
+  "after_stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n",
+  "reason": "Existing server-routing/README.md absent; current-progress-index.md and scoped skill AST API used; source layout preserved"
+}

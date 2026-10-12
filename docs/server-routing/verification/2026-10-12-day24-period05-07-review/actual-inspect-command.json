@@ -1,0 +1,9 @@
+{
+  "exit_code": 0,
+  "source": "../Game-server/data/exports/player-cdc.ndjson",
+  "rows": 56,
+  "public_id_count": 56,
+  "schema_version": "player-snapshot/v1",
+  "source_kind": "player-snapshot",
+  "sha256": "6ea30948a1c6924b186676511207bd2099683ca00cf1b1582cb595e6437375d0"
+}

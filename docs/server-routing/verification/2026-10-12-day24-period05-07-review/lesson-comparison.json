@@ -1,0 +1,42 @@
+{
+  "functions": {
+    "build_snapshot_contract": {
+      "lesson_candidates": 3,
+      "matches_provided_function_ignoring_docstring": true
+    },
+    "load_rows": {
+      "lesson_candidates": 1,
+      "matches_provided_function_ignoring_docstring": true
+    },
+    "compare": {
+      "lesson_candidates": 1,
+      "matches_provided_function_ignoring_docstring": true
+    },
+    "missing_summary": {
+      "lesson_candidates": 2,
+      "matches_provided_function_ignoring_docstring": true
+    }
+  },
+  "commands": {
+    "write_snapshot_contract.py": {
+      "matches_provided_class": true,
+      "known_difference": null
+    },
+    "compare_player_snapshots.py": {
+      "matches_provided_class": false,
+      "known_difference": "stdout JSON indent=2; stored JSON and data contract unchanged"
+    },
+    "read_snapshot_missing.py": {
+      "matches_provided_class": true,
+      "known_difference": null
+    }
+  },
+  "previous_period2_to4_functions_match_head": {
+    "_read_snapshot": true,
+    "_check_public_state": true,
+    "inspect_snapshot": true,
+    "readiness": true,
+    "change_player": true
+  },
+  "extra_unused_import": "from unittest import result; preserved user source"
+}

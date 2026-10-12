@@ -64,4 +64,4 @@ CLI의 필수 `--project`는 앱 패키지를 포함한 폴더 Path, 필수 `--p
 
 ## 이 폴더 구조에서 실행
 
-광고 저장소 루트의 가상환경으로 tools/check_day24_logic.py --project C:/MLO01-01/Chapter3/ad_server --period 2/3/4를 각각 실행한다. 2026-10-12 최종 검사는 2교시 22개·3교시 8개·4교시 17개를 통과했다. 1교시는 앞서 Game-server의 검사기와 --project C:/MLO01-01/Chapter3/Game-server/server로 실행해 12개를 통과했다. 실제 Mongo/게임 DB는 사용하지 않고 임시 시험 파일·SQLite 메모리로 검사한다. 5~8교시 구현은 미적용이다. 공식 검사기 소스는 수정하지 않았다.
+광고 저장소 루트의 가상환경으로 tools/check_day24_logic.py --project C:/MLO01-01/Chapter3/ad_server --period 2/3/4를 앞선 검토에서 실행해 22개·8개·17개를 통과했다. 1교시는 앞서 Game-server의 검사기와 --project C:/MLO01-01/Chapter3/Game-server/server로 실행해 12개를 통과했다. 이번에는 같은 광고 검사기로 --period 5/6/7을 각각 실행해 13개·15개·10개를 통과했다. 실제 Mongo/게임 DB는 사용하지 않고 임시 시험 파일·SQLite 메모리로 검사한다. 8교시는 후속 검토에서 공식 24개 검사가 통과했다. [8교시 근거](../../../handoffs/2026-10-12-day24-period08-finish.md)를 따른다. 공식 검사기 소스는 수정하지 않았다. [이번 근거](../../../handoffs/2026-10-12-day24-through-period07-review.md)를 따른다.

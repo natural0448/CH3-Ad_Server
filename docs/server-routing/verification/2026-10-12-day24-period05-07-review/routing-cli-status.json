@@ -1,0 +1,6 @@
+{
+  "before_exit": 2,
+  "after_exit": 2,
+  "reason": "Existing server-routing/README.md absent; current-progress-index.md and scoped skill AST API used",
+  "source_layout_changed": false
+}

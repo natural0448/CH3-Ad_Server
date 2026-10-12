@@ -4,7 +4,7 @@
 
 2026-10-08 현재 광고 사건 NDJSON 내보내기, 고정 파일의 일별 보고서 후보 생성, 업무 키별 게시, 광고주 일별 보고서 화면, 한 writer 파일 전달과 게시 보고서 대조 명령까지 코드가 저장돼 있다. 실제 호출 경로와 전체 1:1 문서는 [현재 진행 라우팅 색인](docs/server-routing/current-progress-index.md)을 따른다. 이 문서 갱신에서는 파일 생성·전달·DB 게시를 재실행하지 않았다.
 
-24일차는 4교시까지 완료 검증됐다. 앞선 1교시 12개 검사에 이어 2026-10-12 최종 2교시 22개·3교시 8개·4교시 17개가 통과했고 교안 화면 검사도 통과했다. 광고 입력은 ../Game-server/data/exports/player-cdc.ndjson이며 기존 56행 원본과 checksum을 보존했다. readiness JSON과 teaching-fixture 원문/summary는 광고 루트 data/contracts 및 data/fixtures에 저장했다. 파일 검사에 MongoDB/runserver를 기동할 필요는 없다. 5~8교시 후속 함수·관리명령은 미적용이다. [현재 검증과 실행 순서](docs/handoffs/2026-10-12-day24-period04-recovery.md)를 따른다.
+24일차는 7교시까지 구현·저장 결과를 확인했다. 앞선 1교시 12개·2교시 22개·3교시 8개·4교시 17개 검사 이력을 유지하고 이번 5교시 13개·6교시 15개·7교시 10개 공식 검사와 5교시 화면 검사가 통과했다. before는 ../Game-server/data/exports/player-cdc.ndjson, after는 ../Game-server/data/exports/player-snapshot-after.ndjson이며 각 56행이다. 기존 인계 계약과 비교·누락 JSON은 실제 입력과 일치했고 변경 1건·새 ID/누락 각 0건이다. 사용자 코드·기존 원본·산출물을 보존했다. 파일 검사에 MongoDB/runserver를 기동할 필요는 없다. 8교시는 사용자 저장 코드를 보존한 상태로 공식 24개 검사를 통과했고, 원본과 계약을 새 data/exports/day24-input 폴더에 인계했다. 56행·checksum·수신 계약의 source_path를 확인했고 기존 원본·계약은 그대로다. [8교시 완료와 실행 순서](docs/handoffs/2026-10-12-day24-period08-finish.md)를 따른다.
 
 ## 광고 서버
 

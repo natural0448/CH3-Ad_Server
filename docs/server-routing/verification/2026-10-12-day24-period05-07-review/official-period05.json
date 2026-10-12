@@ -1,0 +1,67 @@
+{
+  "period": 5,
+  "project": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "passed": 13,
+  "failed": 0,
+  "database": "sqlite-memory-only",
+  "mongo": "not-connected",
+  "student_sources_unchanged": true,
+  "source_sha256": {
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\snapshot_intake.py": "ac412d7874208608dfbd9f7d6aeb1d415f91b687ba31829ccd6c7ae9a428a9ec",
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\management\\commands\\write_snapshot_contract.py": "c55a67e8993a6fa2292ced7290c6e2bbea6fdde3778c5643c16b2f61e021b16d"
+  },
+  "checks": [
+    {
+      "name": "실제 검사 결과 그대로",
+      "passed": true
+    },
+    {
+      "name": "안정 artifact와 v2",
+      "passed": true
+    },
+    {
+      "name": "실제 source와 collector",
+      "passed": true
+    },
+    {
+      "name": "공개 필드",
+      "passed": true
+    },
+    {
+      "name": "파일 위치와 Kafka 없음",
+      "passed": true
+    },
+    {
+      "name": "생성 시각 UTC aware",
+      "passed": true
+    },
+    {
+      "name": "중복 입력 계약 거절",
+      "passed": true
+    },
+    {
+      "name": "빈 파일 계약",
+      "passed": true
+    },
+    {
+      "name": "관리명령 실제 저장",
+      "passed": true
+    },
+    {
+      "name": "계약이 원본을 덮는 경로 거절",
+      "passed": true
+    },
+    {
+      "name": "원본 bytes 보존",
+      "passed": true
+    },
+    {
+      "name": "오답 감지: 고정 가짜 체크섬",
+      "passed": true
+    },
+    {
+      "name": "학생 저장 파일 변경 없음",
+      "passed": true
+    }
+  ]
+}

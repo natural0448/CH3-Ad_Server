@@ -1,0 +1,111 @@
+{
+  "period": 8,
+  "project": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "passed": 24,
+  "failed": 0,
+  "database": "sqlite-memory-only",
+  "mongo": "not-connected",
+  "student_sources_unchanged": true,
+  "source_sha256": {
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\snapshot_intake.py": "3c6d2f82fa0a80329592c87f6fb56ad30ece86b3212160829a5f2c4928ae2c19",
+    "C:\\MLO01-01\\Chapter3\\ad_server\\ads\\management\\commands\\handoff_player_snapshot.py": "cb27425cbf3e39e236364385f6b74391b4359bed5d58f7cdd34b5fefe965b0b8"
+  },
+  "checks": [
+    {
+      "name": "원본 bytes 그대로 전달",
+      "passed": true
+    },
+    {
+      "name": "원본·계약 보존",
+      "passed": true
+    },
+    {
+      "name": "수신 파일 실제 체크섬",
+      "passed": true
+    },
+    {
+      "name": "source_path만 수신 경로로 변경",
+      "passed": true
+    },
+    {
+      "name": "행·출처·target 반환",
+      "passed": true
+    },
+    {
+      "name": "기존 폴더 거절",
+      "passed": true
+    },
+    {
+      "name": "artifact_id 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "artifact_version 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "schema_version 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "source_kind 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "rows 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "sha256 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "public_ids 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "public_fields 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "captured_at 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "kafka_position 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "position_kind 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "collector 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "binlog_cdc_status 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "created_at 불일치 거절·최종폴더 없음",
+      "passed": true
+    },
+    {
+      "name": "복사 변조 감지·임시폴더 정리",
+      "passed": true
+    },
+    {
+      "name": "인계 관리명령",
+      "passed": true
+    },
+    {
+      "name": "오답 감지: 계약 검사 생략",
+      "passed": true
+    },
+    {
+      "name": "학생 저장 파일 변경 없음",
+      "passed": true
+    }
+  ]
+}

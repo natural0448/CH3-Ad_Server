@@ -1,0 +1,26 @@
+{
+  "before_rows": 56,
+  "after_rows": 56,
+  "changed_count": 1,
+  "newly_seen_count": 0,
+  "missing_unknown_count": 0,
+  "comparison_matches_current_files": true,
+  "missing_summary_matches_current_files": true,
+  "contract_matches_original_inspection": true,
+  "contract_fixed_fields_match": true,
+  "contract_source_path_matches_original": true,
+  "contract_created_at_aware_utc": true,
+  "contract_captured_at_preserved": true,
+  "delete_events_empty": true,
+  "delete_inference_allowed_false": true,
+  "artifact_sha256": {
+    "Game-server\\data\\exports\\player-cdc.ndjson": "6ea30948a1c6924b186676511207bd2099683ca00cf1b1582cb595e6437375d0",
+    "Game-server\\data\\exports\\player-snapshot-after.ndjson": "385fcdac70a898c79a05870b3d9eddd1c907187d4b0fc8bad46db3220a2e7e97",
+    "ad_server\\data\\contracts\\player-cdc-contract.json": "d4308e2cc0f1c1e4fb2098cab1d4c207aa97f2a542358e5641859200111090aa",
+    "ad_server\\data\\checks\\day24-comparison.json": "bc4df83ffb607693514111e095d3ddbf4f49b9119628a8e0ff5369161ffe01c3",
+    "ad_server\\data\\checks\\day24-missing.json": "3ebfea5a64b032e188f304793507c578aa3dba0255136b4082f91d5f76b8eaa4"
+  },
+  "actual_game_action_response_observed": false,
+  "real_database_modified": false,
+  "ok": true
+}
