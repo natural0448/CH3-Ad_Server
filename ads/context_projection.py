@@ -4,6 +4,10 @@ import os
 import tempfile
 from pathlib import Path
 
+from pymongo.errors import DuplicateKeyError
+
+from ads.mongo import get_db
+
 from .exporting import write_ndjson
 from .snapshot_intake import (
     PUBLIC_FIELDS,
@@ -170,3 +174,33 @@ def make_context_document(change):
     document.update({"_id": key, "deleted": change["op"] == "delete",
                      "context": {} if change["op"] == "delete" else dict(change["context"])})
     return document
+
+
+def apply_context(change):
+    document = make_context_document(change)
+    key = document["_id"]
+    collection = get_db().player_context
+    # 먼저 읽은 상태가 여전히 맞을 때만 저장한다. 경쟁하면 다시 읽는다.
+    for attempt in range(3):
+        old = collection.find_one({"_id": key})
+        if old is None:
+            try:
+                collection.insert_one(document)
+                return "applied"
+            except DuplicateKeyError:
+                continue
+        if old["version"] > document["version"]:
+            return "stale"
+        if old["version"] == document["version"]:
+            if old["deleted"] == document["deleted"] and old["context"] == document["context"]:
+                return "duplicate"
+            raise ValueError("version_conflict: 같은 version의 상태가 다릅니다.")
+        result = collection.replace_one({"_id": key, "version": old["version"]}, document)
+        if result.matched_count == 1:
+            return "applied"
+    raise ValueError("concurrent_update: 최신 상태를 다시 읽고 재시도하세요.")
+
+def get_context(media_id, subject_id):
+    key = context_subject_key(media_id, subject_id)
+    row = get_db().player_context.find_one({"_id": key})
+    return dict(row["context"]) if row and not row["deleted"] else {}
