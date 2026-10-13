@@ -99,3 +99,74 @@ def normalize_snapshot_file(source, contract_path, output, media_id="village-gam
             "source_sha256": inspected["sha256"], "media_id": media_id,
             "op_counts": {"upsert": len(changes)}, "unique_change_ids": unique_ids,
             "preview": changes[:1]}
+
+
+def context_subject_key(media_id, subject_id):
+    """매체와 공개 대상을 구분하는 안정 키를 만든다."""
+    for name, value in (("media_id", media_id), ("subject_id", subject_id)):
+        if not isinstance(value, str) or not value.strip() or ":" in value:
+            raise ValueError(f"{name}는 콜론 없는 비어 있지 않은 문자열이어야 합니다.")
+    return media_id + ":" + subject_id
+
+
+def _check_context_change(change):
+    """정규화 계약을 대조한다. 파일이나 MongoDB를 변경하지 않는다."""
+    fields = {"schema_version", "source_kind", "media_id", "subject_id", "op",
+              "version", "event_time", "context", "change_id"}
+    if not isinstance(change, dict) or set(change) != fields:
+        raise ValueError("context 변경은 정해진 9개 필드만 받습니다.")
+    if change["schema_version"] != "player-context-change/v1":
+        raise ValueError("player-context-change/v1 입력이 필요합니다.")
+    if change["source_kind"] not in {"player-snapshot", "teaching-fixture"}:
+        raise ValueError("source_kind는 player-snapshot 또는 teaching-fixture입니다.")
+    if change["op"] not in {"upsert", "delete"}:
+        raise ValueError("op는 upsert 또는 delete입니다.")
+    context_subject_key(change["media_id"], change["subject_id"])
+    subject = change["subject_id"]
+    if change["source_kind"] == "player-snapshot":
+        if not subject.isascii() or not subject.isdecimal() or int(subject) <= 0 or str(int(subject)) != subject:
+            raise ValueError("player-snapshot의 subject_id는 양의 공개 ID를 그대로 바꾼 문자열입니다.")
+        if change["op"] != "upsert":
+            raise ValueError("player-snapshot은 upsert만 허용합니다.")
+    elif not subject.startswith("fixture-") or subject == "fixture-":
+        raise ValueError("teaching-fixture는 fixture-로 시작하는 별도 subject가 필요합니다.")
+    if type(change["version"]) is not int or change["version"] < 0:
+        raise ValueError("version은 0 이상 정수입니다.")
+    instant = parse_utc(change["event_time"])
+    if instant.isoformat() != change["event_time"]:
+        raise ValueError("event_time은 UTC로 정규화한 ISO 시각이어야 합니다.")
+    context = change["context"]
+    if not isinstance(context, dict):
+        raise ValueError("context는 사전이어야 합니다.")
+    if change["op"] == "delete":
+        if context:
+            raise ValueError("delete의 context는 빈 사전이어야 합니다.")
+    else:
+        if set(context) != {"player_id", "room_id", "coins", "version", "updated_at"}:
+            raise ValueError("upsert context는 정해진 5개 공개 필드만 받습니다.")
+        if context["player_id"] != subject:
+            raise ValueError("context.player_id와 subject_id가 다릅니다.")
+        if type(context["version"]) is not int or context["version"] != change["version"]:
+            raise ValueError("context.version과 version이 다릅니다.")
+        if not isinstance(context["room_id"], str) or type(context["coins"]) is not int:
+            raise ValueError("room_id는 문자열, coins는 정수여야 합니다.")
+        parse_utc(context["updated_at"])
+        if context["updated_at"] != change["event_time"]:
+            raise ValueError("context.updated_at과 event_time이 다릅니다.")
+    body = {name: value for name, value in change.items() if name != "change_id"}
+    canonical = json.dumps(body, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    expected_id = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+    if change["change_id"] != expected_id:
+        raise ValueError("change_id와 정규화 내용이 다릅니다.")
+
+
+
+def make_context_document(change):
+    """검증한 변경 한 행을 저장할 문서로 바꾼다. 아직 저장하지 않는다."""
+    _check_context_change(change)
+    key = context_subject_key(change["media_id"], change["subject_id"])
+    document = {name: change[name] for name in
+                ("media_id", "subject_id", "version", "source_kind", "change_id", "event_time")}
+    document.update({"_id": key, "deleted": change["op"] == "delete",
+                     "context": {} if change["op"] == "delete" else dict(change["context"])})
+    return document
