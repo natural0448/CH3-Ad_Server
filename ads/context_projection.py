@@ -204,3 +204,89 @@ def get_context(media_id, subject_id):
     key = context_subject_key(media_id, subject_id)
     row = get_db().player_context.find_one({"_id": key})
     return dict(row["context"]) if row and not row["deleted"] else {}
+
+
+def _read_context_changes(source):
+    """같은 bytes에서 SHA와 검증한 정규화 행을 함께 얻는다."""
+    payload = Path(source).read_bytes()
+    rows = []
+    for number, line in enumerate(payload.splitlines(), 1):
+        if not line.strip():
+            raise ValueError(f"빈 행 {number}")
+        row = json.loads(line.decode("utf-8"))
+        make_context_document(row)
+        rows.append(row)
+    return rows, hashlib.sha256(payload).hexdigest()
+
+
+def _read_context_checkpoint(checkpoint, checksum, row_count):
+    state = json.loads(Path(checkpoint).read_text(encoding="utf-8"))
+    fields = {"schema_version", "source_sha256", "next_line"}
+    if not isinstance(state, dict) or set(state) != fields:
+        raise ValueError("checkpoint는 정해진 3개 필드만 받습니다.")
+    if state["schema_version"] != "context-checkpoint/v1":
+        raise ValueError("checkpoint 버전이 다릅니다.")
+    digest = state["source_sha256"]
+    if (not isinstance(digest, str) or len(digest) != 64
+            or any(char not in "0123456789abcdef" for char in digest)):
+        raise ValueError("checkpoint의 source_sha256이 잘못되었습니다.")
+    if digest != checksum:
+        raise ValueError("입력 파일이 바뀌었습니다. 새 checkpoint를 사용하세요.")
+    position = state["next_line"]
+    if type(position) is not int or not 0 <= position <= row_count:
+        raise ValueError("checkpoint의 다음 행이 잘못되었습니다.")
+    return position
+
+
+def _save_context_checkpoint(checkpoint, checksum, position):
+    """완성된 임시 파일로만 위치 기록을 교체한다."""
+    target = Path(checkpoint)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    state = {"schema_version": "context-checkpoint/v1",
+             "source_sha256": checksum, "next_line": position}
+    with tempfile.TemporaryDirectory(prefix=".checkpoint-", dir=target.parent) as folder:
+        staged = Path(folder) / "state.json"
+        staged.write_text(json.dumps(state, sort_keys=True), encoding="utf-8")
+        os.replace(staged, target)
+    return state
+
+
+def project_context_file(source_path, checkpoint_path=None, limit=None):
+    if limit is not None and (type(limit) is not int or limit < 1):
+        raise ValueError("limit은 양수 정수입니다.")
+    source = Path(source_path)
+    if checkpoint_path is not None and not str(checkpoint_path).strip():
+        raise ValueError("checkpoint 경로는 비어 있지 않아야 합니다.")
+    checkpoint = Path(checkpoint_path) if checkpoint_path is not None else None
+    if checkpoint is not None:
+        if (source.resolve() == checkpoint.resolve()
+                or (source.exists() and checkpoint.exists() and source.samefile(checkpoint))):
+            raise ValueError("checkpoint는 원본 입력과 다른 파일이어야 합니다.")
+    rows, checksum = _read_context_changes(source)
+    position = 0
+    state = None
+    if checkpoint is not None and checkpoint.exists():
+        position = _read_context_checkpoint(checkpoint, checksum, len(rows))
+        state = {"schema_version": "context-checkpoint/v1",
+                 "source_sha256": checksum, "next_line": position}
+    start = position
+    counts = {"applied": 0, "duplicate": 0, "stale": 0}
+    stop = min(len(rows), position + limit) if limit is not None else len(rows)
+    while position < stop:
+        status = apply_context(rows[position])
+        if status not in counts:
+            raise ValueError("알 수 없는 반영 결과입니다.")
+        next_position = position + 1
+        if checkpoint is not None:
+            state = _save_context_checkpoint(checkpoint, checksum, next_position)
+        position = next_position
+        counts[status] += 1
+    # 빈 입력도 next_line=0을 저장한다. 기존 완료 기록은 덮어쓰지 않는다.
+    if checkpoint is not None and state is None:
+        state = _save_context_checkpoint(checkpoint, checksum, position)
+    return {"processed": position - start, "applied": counts["applied"],
+            "skipped": counts["duplicate"] + counts["stale"], "counts": counts,
+            "start_line": start, "next_line": position, "rows": len(rows),
+            "done": position == len(rows), "source_sha256": checksum,
+            "checkpoint_path": str(checkpoint) if checkpoint is not None else None,
+            "checkpoint_state": state}
