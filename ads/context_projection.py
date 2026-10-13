@@ -52,6 +52,31 @@ def read_snapshot_package(source, contract_path):
         raise ValueError("검사 후 원본이 변경됐습니다.")
     return rows, inspected
 
+def normalize_snapshot(row, media_id="village-game"):
+    if not isinstance(row, dict) or set(row) != SNAPSHOT_FIELDS:
+        raise ValueError("공개 snapshot의 정확한 8개 필드가 필요합니다.")
+    if row["schema_version"] != SCHEMA_VERSION or row["source_kind"] != SOURCE_KIND:
+        raise ValueError("player-snapshot/v1 공개 입력이 필요합니다.")
+    if not isinstance(media_id, str) or not media_id.strip():
+        raise ValueError("media_id는 비어 있지 않은 문자열이어야 합니다.")
+
+    _check_public_state({field: row[field] for field in PUBLIC_FIELDS})
+    parse_utc(row["captured_at"])
+
+    subject_id = str(row["id"])
+    updated_at = parse_utc(row["updated_at"]).isoformat()    
+    context = {"player_id": subject_id, "room_id": row["room_id"], "coins": row["coins"],
+               "version": row["version"], "updated_at": updated_at}
+
+    change = {"schema_version": "player-context-change/v1",
+            "source_kind": SOURCE_KIND, "media_id": media_id, 
+            "subject_id" : subject_id, "op": "upsert", "version": row["version"],
+            "event_time" : updated_at, "context": context}
+    canonical = json.dumps(change, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    change["change_id"] = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+    return change
+
+
 def normalize_snapshot_file(source, contract_path, output, media_id="village-game"):
     if not isinstance(media_id, str) or not media_id.strip():
         raise ValueError("media_id는 비어 있지 않은 문자열이어야 합니다.")
