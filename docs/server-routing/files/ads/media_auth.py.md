@@ -1,39 +1,21 @@
 # ads/media_auth.py
 
-기존 read_media_body를 유지하면서 수정 교안의 두 매체 헤더와 공유 decorator를 연결했다. 본문 media_id와 X-Media-ID가 같고 settings.MEDIA_KEYS에서 읽은 서버 키와 X-Media-Key가 compare_digest로 같아야 한다. 키 실제 값은 문서/응답에 기록하지 않는다. subject_id는 비어 있지 않은 문자열이며 subject는 인증한 매체와 같아야 한다. decorator는 media_body·subject를 request에 부착하고 허용한 오류 코드만 공개한다. 인증401, 입력400, 저장소503, 메서드405; 서버간 매체 요청만 csrf_exempt다. 게임과 광고주 웹 CSRF는 유지한다.
+25일차 7교시와 기존 요청을 함께 인증한다. 매체 ID의 출처는 X-Media-ID 헤더이며 settings.MEDIA_KEYS에서 읽은 키를 X-Media-Key와 compare_digest로 대조한다. subject-only 조회를 허용하고, 선택/사건 요청에 기존 top-level media_id가 있으면 같은 인증 매체여야 한다. 본문/subject/헤더만으로 다른 매체의 권한을 만들지 않는다. 실제 키를 문서나 응답에 복사하지 않는다.
 
-직접 호출의 기대 계약: get_db는 기존 Database, find_one은 dict/None, find·sort·limit는 Cursor, update_one은 UpdateResult, insert_one은 InsertOneResult, create_index는 색인 이름이다. Django render/JsonResponse는 HttpResponse, JSON parse는 dict 등 JSON 값, urlopen은 응답 stream, patch/assert는 테스트 fixture/검증을 제공한다. 하위 계층 내부는 해당 짝 문서에 있다.
+## read_media_body(request)
 
-## `read_media_body(request)`
+request는 기본값 없는 Django HttpRequest다. 반환은 `(본문 dict, 정리한 subject dict)`다. 의사코드: application/json·JSON 객체 검사 → 헤더 ID로 기대 키 조회 → 키 비교와 선택적 본문 media_id 대조 → subject 동일 매체·비어 있지 않은 subject_id 문자열 검사 → 반환. 직접 호출은 json.loads, request.headers.get, settings.MEDIA_KEYS.get, secrets.compare_digest다. 키/매체 인증 실패는 PermissionError, 형식/subject 실패는 ValueError 또는 UnicodeDecodeError다. DB·파일을 쓰지 않는다. 기존 본문 media_id가 없으면 인증 헤더가 기준이며, 있으면 불일치를 401로 유지한다.
 
-| 파라미터 | 기본값 | 의미·허용 범위 |
-|---|---|---|
-| request | 없음 | Django HttpRequest; decorator가 로그인/메서드/CSRF 또는 매체 인증을 검사한다. |
+## media_api_methods(*methods)
 
-반환·실패: (dict,subject dict); PermissionError 또는 ValueError/UnicodeDecodeError.
+methods는 허용 메서드 문자열 varargs이고 현재 매체 API는 POST다. 반환은 decorate callable이다. 의사코드: methods closure를 저장 → decorate 반환. 이 계층에서 DB를 조회하지 않는다.
 
-의사코드: content-type/JSON 객체 → media_id와 두 헤더 인증 → 동일 매체 subject 검사 → 본문과 공개 수신자 반환.
+## media_api_methods.decorate(view)
 
-직접 호출: `PermissionError`, `ValueError`, `data.get`, `expected.encode`, `isinstance`, `json.loads`, `request.headers.get`, `secrets.compare_digest`, `settings.MEDIA_KEYS.get`, `subject.get`, `supplied.encode`.
+view는 기본값 없는 Django view callable이며 반환은 csrf_exempt와 wraps(view)가 적용된 wrapped다. 직접 호출은 위 두 decorator다. 서버간 매체 요청만 csrf_exempt이며 게임·광고주 웹의 CSRF는 유지한다.
 
-## `media_api_methods(*methods)`
+## media_api_methods.decorate.wrapped(request, *args, **kwargs)
 
-| 파라미터 | 기본값 | 의미·허용 범위 |
-|---|---|---|
-| methods | 없음 | 허용 HTTP 메서드 문자열 varargs; 매체 API는 POST. |
+request는 HttpRequest, args/kwargs는 원래 view에 전달할 인수다. 정상 반환은 원래 view의 HttpResponse다. 의사코드: 허용 메서드가 아니면 JSON method_not_allowed/405/Allow 헤더 → read_media_body → 검증 본문·subject를 request.media_body/request.subject에 부착 → view 호출 → PermissionError 401, 입력 오류 400, PyMongoError 503. 직접 호출은 read_media_body, view, JsonResponse와 ', '.join(methods)다.
 
-반환·실패: view를 받는 decorate callable.
-
-의사코드: 허용 HTTP 메서드를 closure로 저장 → decorator 반환.
-
-직접 호출: 이 최상위 함수는 decorate를 정의해 반환한다. 실제 인증과 HTTP 제한은 아래 closure가 호출한다.
-
-`decorate(view)`의 필수 인수 view는 Django view callable이며 반환값은 wrapped callable이다. 의사코드: csrf_exempt/require_http_methods(methods)/wraps(view)로 wrapped 구성 → wrapped 반환. 직접 호출은 위 세 decorator이며 메서드 제한과 view 메타데이터 보존을 기대한다.
-
-`wrapped(request, *args, **kwargs)`는 Django HttpRequest와 원래 view에 전달할 인수를 받는다. 의사코드: read_media_body로 검증한 본문/subject를 request에 부착 → 원래 view 호출 → 권한401/입력400/DB503 JSON으로 오류 변환. 정상 반환값은 view의 HttpResponse다. 직접 호출은 read_media_body, view, JsonResponse이며 메서드405는 require_http_methods가 처리한다.
-
-`methods`와 `view`는 closure 인수에서 오고 본문/subject는 검증 함수 반환값이다. 공개 입력 오류 허용 집합은 decision_snapshot_missing, decision_not_found_for_subject, impression_required, decision_id_required, event_type_invalid다. 그 외 입력 오류는 invalid_event로 노출한다. 실제 매체 키는 settings.MEDIA_KEYS와 request 헤더에서 읽지만 문서에 값을 기록하지 않는다.
-
-## 상태·값 출처
-
-지역 변수는 해당 함수가 소유하며 request/입력·서버 설정·DB 조회 또는 위 의사코드의 생성 단계에서 얻는다. 저장 snapshot과 receipt의 쓰기는 서비스/사건 계층이 맡는다. 테스트 연결·patch·가짜 응답은 해당 테스트 클래스만 소유하고 정리한다. 비밀값·쿠키·CSRF 토큰은 문서/증거에 복사하지 않는다.
+입력 허용 오류 집합은 decision_snapshot_missing, decision_not_found_for_subject, impression_required, decision_id_required, event_type_invalid이며 다른 입력 오류는 invalid_event다. 저장소 오류는 ads_unavailable로 내부 문구를 숨긴다. methods/view는 closure, 본문/subject는 read_media_body, 각 응답은 wrapper가 소유한다. GET 405 JSON은 교안 관찰과 같고 키·수신자 검사는 DB 접근 전에 수행한다.

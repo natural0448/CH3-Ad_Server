@@ -10,9 +10,11 @@ from unittest.mock import patch
 from django.core.management import call_command
 from django.contrib.auth import get_user_model
 from django.test import Client, SimpleTestCase, TestCase, override_settings
+from django.urls import resolve
 from pymongo import MongoClient
 from pymongo.errors import PyMongoError
 
+from ads import views
 from ads.events import record_ad_event
 from ads.services import choose_ad
 
@@ -200,3 +202,65 @@ class EventIntegrationTests(TestCase):
         self.assertTrue(first.json()["created"]);self.assertFalse(duplicate.json()["created"])
         invalid = client.post("/api/media/events/", data=json.dumps({**body, "event_type": []}), content_type="application/json", HTTP_X_MEDIA_ID="village-game", HTTP_X_MEDIA_KEY="test-event-key")
         self.assertEqual(invalid.status_code, 400)
+
+
+@override_settings(MEDIA_KEYS={"village-game": "test-only-key"})
+class ContextApiTests(SimpleTestCase):
+    def post_context(self, body=None, **headers):
+        payload = body if body is not None else {
+            "subject": {"media_id": "village-game", "subject_id": "12"}}
+        auth = {"HTTP_X_MEDIA_ID": "village-game", "HTTP_X_MEDIA_KEY": "test-only-key"}
+        auth.update(headers)
+        return self.client.post("/api/media/context/", data=json.dumps(payload),
+                                content_type="application/json", **auth)
+
+    def test_subject_only_payload_and_all_media_routes(self):
+        for path, view in (("context", views.context_view),
+                           ("decision", views.decision_view), ("events", views.event_view)):
+            self.assertIs(resolve(f"/api/media/{path}/").func, view)
+        context = {"player_id": "12", "room_id": "room-01", "coins": 26,
+                   "version": 461, "updated_at": "2026-10-13T06:36:55+00:00"}
+        with patch("ads.views.get_context", return_value=context) as lookup:
+            response = self.post_context()
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["context"], context)
+        self.assertEqual(response.json()["subject"]["subject_id"], "12")
+        self.assertEqual(response["Cache-Control"], "no-store")
+        lookup.assert_called_once_with("village-game", "12")
+
+    def test_invalid_headers_and_cross_media_subject_never_lookup(self):
+        for headers in ({"HTTP_X_MEDIA_KEY": ""}, {"HTTP_X_MEDIA_ID": ""},
+                        {"HTTP_X_MEDIA_ID": "other"}, {"HTTP_X_MEDIA_KEY": "wrong"}):
+            with self.subTest(headers=headers), patch("ads.views.get_context") as lookup:
+                self.assertEqual(self.post_context(**headers).status_code, 401)
+                lookup.assert_not_called()
+        with patch("ads.views.get_context") as lookup:
+            response = self.post_context({"subject": {"media_id": "other", "subject_id": "12"}})
+        self.assertEqual(response.status_code, 400)
+        lookup.assert_not_called()
+
+    def test_legacy_top_level_media_id_remains_checked(self):
+        body = {"media_id": "village-game",
+                "subject": {"media_id": "village-game", "subject_id": "12"}}
+        with patch("ads.views.get_context", return_value={}):
+            self.assertEqual(self.post_context(body).status_code, 200)
+        body["media_id"] = "other"
+        with patch("ads.views.get_context") as lookup:
+            self.assertEqual(self.post_context(body).status_code, 401)
+            lookup.assert_not_called()
+
+    def test_method_rejection_is_json_and_has_allow(self):
+        response = self.client.get("/api/media/context/")
+        self.assertEqual(response.status_code, 405)
+        self.assertEqual(response["Allow"], "POST")
+        self.assertEqual(response.json(), {"error": "method_not_allowed"})
+
+    def test_empty_context_and_store_outage_are_distinct(self):
+        with patch("ads.views.get_context", return_value={}):
+            response = self.post_context()
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["context"], {})
+        with patch("ads.views.get_context", side_effect=PyMongoError("private failure")):
+            response = self.post_context()
+        self.assertEqual(response.status_code, 503)
+        self.assertEqual(response.json(), {"error": "ads_unavailable"})

@@ -1,0 +1,18 @@
+{
+  "before": {
+    "exit": 2,
+    "stdout": "",
+    "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n"
+  },
+  "fallback_reason": "Existing index is current-progress-index.md; README.md absent",
+  "after": {
+    "exit": 2,
+    "stdout": "",
+    "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe"
+  },
+  "followup_fix": {
+    "exit": 2,
+    "stdout": "",
+    "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe"
+  }
+}

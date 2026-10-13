@@ -1,0 +1,503 @@
+[
+  {
+    "source": "ads/context_projection.py",
+    "doc": "docs/server-routing/files/ads/context_projection.py.md",
+    "document_exists": false,
+    "indexed": false,
+    "parse_error": null,
+    "missing_signatures": [
+      "read_snapshot_package(source, contract_path)",
+      "normalize_snapshot(row, media_id='village-game')",
+      "normalize_snapshot_file(source, contract_path, output, media_id='village-game')",
+      "context_subject_key(media_id, subject_id)",
+      "_check_context_change(change)",
+      "make_context_document(change)",
+      "apply_context(change)",
+      "get_context(media_id, subject_id)",
+      "_read_context_changes(source)",
+      "_read_context_checkpoint(checkpoint, checksum, row_count)",
+      "_save_context_checkpoint(checkpoint, checksum, position)",
+      "project_context_file(source_path, checkpoint_path=None, limit=None)",
+      "refresh_snapshot(source, contract_path, media_id='village-game')"
+    ],
+    "symbols": [
+      {
+        "kind": "function",
+        "qualified_name": "read_snapshot_package",
+        "line": 24,
+        "signature": "read_snapshot_package(source, contract_path)",
+        "signature_core": "read_snapshot_package(source, contract_path)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "normalize_snapshot",
+        "line": 59,
+        "signature": "normalize_snapshot(row, media_id='village-game')",
+        "signature_core": "normalize_snapshot(row, media_id='village-game')",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "normalize_snapshot_file",
+        "line": 84,
+        "signature": "normalize_snapshot_file(source, contract_path, output, media_id='village-game')",
+        "signature_core": "normalize_snapshot_file(source, contract_path, output, media_id='village-game')",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "context_subject_key",
+        "line": 108,
+        "signature": "context_subject_key(media_id, subject_id)",
+        "signature_core": "context_subject_key(media_id, subject_id)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "_check_context_change",
+        "line": 116,
+        "signature": "_check_context_change(change)",
+        "signature_core": "_check_context_change(change)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "make_context_document",
+        "line": 168,
+        "signature": "make_context_document(change)",
+        "signature_core": "make_context_document(change)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "apply_context",
+        "line": 179,
+        "signature": "apply_context(change)",
+        "signature_core": "apply_context(change)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "get_context",
+        "line": 203,
+        "signature": "get_context(media_id, subject_id)",
+        "signature_core": "get_context(media_id, subject_id)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "_read_context_changes",
+        "line": 209,
+        "signature": "_read_context_changes(source)",
+        "signature_core": "_read_context_changes(source)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "_read_context_checkpoint",
+        "line": 222,
+        "signature": "_read_context_checkpoint(checkpoint, checksum, row_count)",
+        "signature_core": "_read_context_checkpoint(checkpoint, checksum, row_count)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "_save_context_checkpoint",
+        "line": 241,
+        "signature": "_save_context_checkpoint(checkpoint, checksum, position)",
+        "signature_core": "_save_context_checkpoint(checkpoint, checksum, position)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "project_context_file",
+        "line": 254,
+        "signature": "project_context_file(source_path, checkpoint_path=None, limit=None)",
+        "signature_core": "project_context_file(source_path, checkpoint_path=None, limit=None)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "function",
+        "qualified_name": "refresh_snapshot",
+        "line": 295,
+        "signature": "refresh_snapshot(source, contract_path, media_id='village-game')",
+        "signature_core": "refresh_snapshot(source, contract_path, media_id='village-game')",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "source": "ads/snapshot_intake.py",
+    "doc": "docs/server-routing/files/ads/snapshot_intake.py.md",
+    "document_exists": true,
+    "indexed": true,
+    "parse_error": null,
+    "missing_signatures": [],
+    "symbols": [
+      {
+        "kind": "function",
+        "qualified_name": "_read_snapshot",
+        "line": 20,
+        "signature": "_read_snapshot(path)",
+        "signature_core": "_read_snapshot(path)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "_check_public_state",
+        "line": 34,
+        "signature": "_check_public_state(row)",
+        "signature_core": "_check_public_state(row)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "inspect_snapshot",
+        "line": 49,
+        "signature": "inspect_snapshot(path)",
+        "signature_core": "inspect_snapshot(path)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "readiness",
+        "line": 74,
+        "signature": "readiness(mysql_config=None, connect_home=None, debezium_dir=None)",
+        "signature_core": "readiness(mysql_config=None, connect_home=None, debezium_dir=None)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "change_player",
+        "line": 88,
+        "signature": "change_player(event)",
+        "signature_core": "change_player(event)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "build_snapshot_contract",
+        "line": 125,
+        "signature": "build_snapshot_contract(source)",
+        "signature_core": "build_snapshot_contract(source)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "load_rows",
+        "line": 136,
+        "signature": "load_rows(path)",
+        "signature_core": "load_rows(path)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "compare",
+        "line": 141,
+        "signature": "compare(before, after)",
+        "signature_core": "compare(before, after)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "missing_summary",
+        "line": 155,
+        "signature": "missing_summary(before, after)",
+        "signature_core": "missing_summary(before, after)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "handoff_snapshot",
+        "line": 163,
+        "signature": "handoff_snapshot(source, contract_path, target)",
+        "signature_core": "handoff_snapshot(source, contract_path, target)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      }
+    ]
+  },
+  {
+    "source": "ads/views.py",
+    "doc": "docs/server-routing/files/ads/views.py.md",
+    "document_exists": true,
+    "indexed": true,
+    "parse_error": null,
+    "missing_signatures": [
+      "context_view(request)"
+    ],
+    "symbols": [
+      {
+        "kind": "function",
+        "qualified_name": "campaign_view",
+        "line": 18,
+        "signature": "campaign_view(request)",
+        "signature_core": "campaign_view(request)",
+        "return_annotation": null,
+        "decorators": [
+          "login_required",
+          "require_http_methods(['GET', 'POST'])"
+        ],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "bid_view",
+        "line": 41,
+        "signature": "bid_view(request)",
+        "signature_core": "bid_view(request)",
+        "return_annotation": null,
+        "decorators": [
+          "login_required",
+          "require_http_methods(['GET', 'POST'])"
+        ],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "decision_view",
+        "line": 58,
+        "signature": "decision_view(request)",
+        "signature_core": "decision_view(request)",
+        "return_annotation": null,
+        "decorators": [
+          "media_api_methods('POST')"
+        ],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "event_view",
+        "line": 84,
+        "signature": "event_view(request)",
+        "signature_core": "event_view(request)",
+        "return_annotation": null,
+        "decorators": [
+          "media_api_methods('POST')"
+        ],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "advertiser_event_view",
+        "line": 97,
+        "signature": "advertiser_event_view(request)",
+        "signature_core": "advertiser_event_view(request)",
+        "return_annotation": null,
+        "decorators": [
+          "login_required(login_url='/accounts/login/')",
+          "require_http_methods(['GET'])"
+        ],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "report_view",
+        "line": 122,
+        "signature": "report_view(request)",
+        "signature_core": "report_view(request)",
+        "return_annotation": null,
+        "decorators": [
+          "login_required(login_url='/accounts/login/')",
+          "require_http_methods(['GET'])"
+        ],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "context_view",
+        "line": 132,
+        "signature": "context_view(request)",
+        "signature_core": "context_view(request)",
+        "return_annotation": null,
+        "decorators": [
+          "media_api_methods('POST')"
+        ],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "source": "ads/management/commands/inspect_decision_context.py",
+    "doc": "docs/server-routing/files/ads/management/commands/inspect_decision_context.py.md",
+    "document_exists": false,
+    "indexed": false,
+    "parse_error": null,
+    "missing_signatures": [
+      "Command",
+      "Command.add_arguments(self, parser)",
+      "Command.handle(self, *args, **options)"
+    ],
+    "symbols": [
+      {
+        "kind": "class",
+        "qualified_name": "Command",
+        "line": 11,
+        "signature": "class Command(BaseCommand)",
+        "signature_core": "Command",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [
+          "BaseCommand"
+        ],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Command.add_arguments",
+        "line": 14,
+        "signature": "Command.add_arguments(self, parser)",
+        "signature_core": "Command.add_arguments(self, parser)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Command.handle",
+        "line": 21,
+        "signature": "Command.handle(self, *args, **options)",
+        "signature_core": "Command.handle(self, *args, **options)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "source": "ads/management/commands/refresh_player_context.py",
+    "doc": "docs/server-routing/files/ads/management/commands/refresh_player_context.py.md",
+    "document_exists": false,
+    "indexed": false,
+    "parse_error": null,
+    "missing_signatures": [
+      "Command",
+      "Command.add_arguments(self, parser)",
+      "Command.handle(self, *args, **options)"
+    ],
+    "symbols": [
+      {
+        "kind": "class",
+        "qualified_name": "Command",
+        "line": 10,
+        "signature": "class Command(BaseCommand)",
+        "signature_core": "Command",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [
+          "BaseCommand"
+        ],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Command.add_arguments",
+        "line": 13,
+        "signature": "Command.add_arguments(self, parser)",
+        "signature_core": "Command.add_arguments(self, parser)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      },
+      {
+        "kind": "method",
+        "qualified_name": "Command.handle",
+        "line": 18,
+        "signature": "Command.handle(self, *args, **options)",
+        "signature_core": "Command.handle(self, *args, **options)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": false
+      }
+    ]
+  },
+  {
+    "source": "ads/media_urls.py",
+    "doc": "docs/server-routing/files/ads/media_urls.py.md",
+    "document_exists": false,
+    "indexed": false,
+    "parse_error": null,
+    "missing_signatures": [],
+    "symbols": []
+  }
+]

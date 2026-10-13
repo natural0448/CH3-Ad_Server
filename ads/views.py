@@ -10,6 +10,7 @@ from .creatives import CREATIVES
 from .events import record_ad_event
 from .media_auth import media_api_methods
 from .mongo import get_db
+from .context_projection import get_context
 
 
 @login_required
@@ -125,3 +126,12 @@ def report_view(request):
     except PyMongoError:
         return render(request, "ads/reports.html", {
             "rows": [], "message": "보고서를 읽을 수 없습니다."}, status=503)
+
+
+@media_api_methods("POST")
+def context_view(request):
+    subject = request.subject
+    response = JsonResponse({"subject": subject,
+                             "context": get_context(subject["media_id"], subject["subject_id"])})
+    response["Cache-Control"] = "no-store"
+    return response

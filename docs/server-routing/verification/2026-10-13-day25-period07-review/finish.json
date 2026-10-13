@@ -1,0 +1,145 @@
+{
+  "head": {
+    "exit": 0,
+    "stdout": "09e18c3 day25 - 5교시",
+    "stderr": ""
+  },
+  "baseline_user_changes": [
+    "ads/context_projection.py",
+    "ads/snapshot_intake.py",
+    "ads/views.py",
+    "ads/management/commands/inspect_decision_context.py",
+    "ads/management/commands/refresh_player_context.py",
+    "ads/media_urls.py"
+  ],
+  "source_sha256_matches_start": {
+    "ads/context_projection.py": true,
+    "ads/snapshot_intake.py": true,
+    "ads/views.py": true,
+    "ads/management/commands/inspect_decision_context.py": true,
+    "ads/management/commands/refresh_player_context.py": true,
+    "ads/media_urls.py": true
+  },
+  "agent_source_changes": [],
+  "agent_document_paths": [
+    "docs/server-routing/files/ads/context_projection.py.md",
+    "docs/server-routing/files/ads/snapshot_intake.py.md",
+    "docs/server-routing/files/ads/views.py.md",
+    "docs/server-routing/files/ads/management/commands/inspect_decision_context.py.md",
+    "docs/server-routing/files/ads/management/commands/refresh_player_context.py.md",
+    "docs/server-routing/files/ads/media_urls.py.md",
+    "docs/server-routing/current-progress-index.md",
+    "docs/handoffs/2026-10-13-day25-period07-review.md"
+  ],
+  "status": {
+    "exit": 0,
+    "stdout": "M ads/context_projection.py\n M ads/snapshot_intake.py\n M ads/views.py\n M docs/server-routing/current-progress-index.md\n M docs/server-routing/files/ads/snapshot_intake.py.md\n M docs/server-routing/files/ads/views.py.md\n?? ads/management/commands/inspect_decision_context.py\n?? ads/management/commands/refresh_player_context.py\n?? ads/media_urls.py\n?? docs/handoffs/2026-10-13-day25-period07-review.md\n?? docs/server-routing/files/ads/context_projection.py.md\n?? docs/server-routing/files/ads/management/commands/inspect_decision_context.py.md\n?? docs/server-routing/files/ads/management/commands/refresh_player_context.py.md\n?? docs/server-routing/files/ads/media_urls.py.md\n?? docs/server-routing/verification/2026-10-13-day25-period07-review/",
+    "stderr": ""
+  },
+  "unstaged": {
+    "exit": 0,
+    "stdout": "M\tads/context_projection.py\nM\tads/snapshot_intake.py\nM\tads/views.py\nM\tdocs/server-routing/current-progress-index.md\nM\tdocs/server-routing/files/ads/snapshot_intake.py.md\nM\tdocs/server-routing/files/ads/views.py.md",
+    "stderr": ""
+  },
+  "staged": {
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "untracked": {
+    "exit": 0,
+    "stdout": "ads/management/commands/inspect_decision_context.py\nads/management/commands/refresh_player_context.py\nads/media_urls.py\ndocs/handoffs/2026-10-13-day25-period07-review.md\ndocs/server-routing/files/ads/context_projection.py.md\ndocs/server-routing/files/ads/management/commands/inspect_decision_context.py.md\ndocs/server-routing/files/ads/management/commands/refresh_player_context.py.md\ndocs/server-routing/files/ads/media_urls.py.md\ndocs/server-routing/verification/2026-10-13-day25-period07-review/django-checks.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/lesson-code-blocks.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/lesson-comparison.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/lesson-text.txt\ndocs/server-routing/verification/2026-10-13-day25-period07-review/read-only-checks.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/routing-before.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/routing-cli-after.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/routing-cli-before.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/routing-cli-status.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/routing-final.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/start.json",
+    "stderr": ""
+  },
+  "routing_scope_passed": true,
+  "routing_cli_exit": 2,
+  "full_diff_check": {
+    "exit": 2,
+    "stdout": "ads/snapshot_intake.py:202: new blank line at EOF.",
+    "stderr": ""
+  },
+  "document_diff_check": {
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "functional_state": "7교시 통합 미완료; 소스 수정 미적용",
+  "mongo_process_mutations": false,
+  "business_db_mutations": false,
+  "missing_local_links": [],
+  "followup_fix": {
+    "agent_changed_existing_sources": [
+      "ads/media_urls.py",
+      "ads/media_auth.py",
+      "ads/urls.py",
+      "ad_config/ad_config/urls.py",
+      "ads/test_events.py"
+    ],
+    "expected_changed_existing_sources": [
+      "ads/media_urls.py",
+      "ads/media_auth.py",
+      "ads/urls.py",
+      "ad_config/ad_config/urls.py",
+      "ads/test_events.py"
+    ],
+    "untouched_user_sources_preserved": {
+      "ads/context_projection.py": true,
+      "ads/snapshot_intake.py": true,
+      "ads/views.py": true,
+      "ads/management/commands/inspect_decision_context.py": true,
+      "ads/management/commands/refresh_player_context.py": true
+    },
+    "new_development_files_remaining": false,
+    "temporary_development_files_removed": true,
+    "pending_cleanup_evidence_folder": "docs/server-routing/verification/2026-10-13-day25-period07-fix",
+    "cleanup_status": "complete_after_explicit_user_approval",
+    "routing_scope_count": 10,
+    "routing_scope_passed": true,
+    "routing_cli_exit": 2,
+    "missing_local_links": [],
+    "full_diff_check": {
+      "exit": 2,
+      "stdout": "ads/snapshot_intake.py:202: new blank line at EOF.",
+      "stderr": "warning: in the working copy of 'ad_config/ad_config/urls.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'ads/media_auth.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'ads/urls.py', LF will be replaced by CRLF the next time Git touches it"
+    },
+    "agent_source_document_diff_check": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'ad_config/ad_config/urls.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'ads/media_auth.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'ads/urls.py', LF will be replaced by CRLF the next time Git touches it"
+    },
+    "status": {
+      "exit": 0,
+      "stdout": "M ad_config/ad_config/urls.py\n M ads/context_projection.py\n M ads/media_auth.py\n M ads/snapshot_intake.py\n M ads/test_events.py\n M ads/urls.py\n M ads/views.py\n M docs/server-routing/current-progress-index.md\n M docs/server-routing/files/ad_config/ad_config/urls.py.md\n M docs/server-routing/files/ads/media_auth.py.md\n M docs/server-routing/files/ads/snapshot_intake.py.md\n M docs/server-routing/files/ads/test_events.py.md\n M docs/server-routing/files/ads/urls.py.md\n M docs/server-routing/files/ads/views.py.md\n?? ads/management/commands/inspect_decision_context.py\n?? ads/management/commands/refresh_player_context.py\n?? ads/media_urls.py\n?? docs/handoffs/2026-10-13-day25-period07-review.md\n?? docs/server-routing/files/ads/context_projection.py.md\n?? docs/server-routing/files/ads/management/commands/inspect_decision_context.py.md\n?? docs/server-routing/files/ads/management/commands/refresh_player_context.py.md\n?? docs/server-routing/files/ads/media_urls.py.md\n?? docs/server-routing/verification/2026-10-13-day25-period07-review/",
+      "stderr": ""
+    },
+    "staged": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "unstaged": {
+      "exit": 0,
+      "stdout": "M\tad_config/ad_config/urls.py\nM\tads/context_projection.py\nM\tads/media_auth.py\nM\tads/snapshot_intake.py\nM\tads/test_events.py\nM\tads/urls.py\nM\tads/views.py\nM\tdocs/server-routing/current-progress-index.md\nM\tdocs/server-routing/files/ad_config/ad_config/urls.py.md\nM\tdocs/server-routing/files/ads/media_auth.py.md\nM\tdocs/server-routing/files/ads/snapshot_intake.py.md\nM\tdocs/server-routing/files/ads/test_events.py.md\nM\tdocs/server-routing/files/ads/urls.py.md\nM\tdocs/server-routing/files/ads/views.py.md",
+      "stderr": "warning: in the working copy of 'ad_config/ad_config/urls.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'ads/media_auth.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'ads/urls.py', LF will be replaced by CRLF the next time Git touches it"
+    },
+    "untracked": {
+      "exit": 0,
+      "stdout": "ads/management/commands/inspect_decision_context.py\nads/management/commands/refresh_player_context.py\nads/media_urls.py\ndocs/handoffs/2026-10-13-day25-period07-review.md\ndocs/server-routing/files/ads/context_projection.py.md\ndocs/server-routing/files/ads/management/commands/inspect_decision_context.py.md\ndocs/server-routing/files/ads/management/commands/refresh_player_context.py.md\ndocs/server-routing/files/ads/media_urls.py.md\ndocs/server-routing/verification/2026-10-13-day25-period07-fix/before-source/ad_config/ad_config/urls.py.txt\ndocs/server-routing/verification/2026-10-13-day25-period07-fix/before-source/ads/context_projection.py.txt\ndocs/server-routing/verification/2026-10-13-day25-period07-fix/before-source/ads/management/commands/inspect_decision_context.py.txt\ndocs/server-routing/verification/2026-10-13-day25-period07-fix/before-source/ads/management/commands/refresh_player_context.py.txt\ndocs/server-routing/verification/2026-10-13-day25-period07-fix/before-source/ads/media_auth.py.txt\ndocs/server-routing/verification/2026-10-13-day25-period07-fix/before-source/ads/media_urls.py.txt\ndocs/server-routing/verification/2026-10-13-day25-period07-fix/before-source/ads/snapshot_intake.py.txt\ndocs/server-routing/verification/2026-10-13-day25-period07-fix/before-source/ads/urls.py.txt\ndocs/server-routing/verification/2026-10-13-day25-period07-fix/before-source/ads/views.py.txt\ndocs/server-routing/verification/2026-10-13-day25-period07-fix/routing-user-before.json\ndocs/server-routing/verification/2026-10-13-day25-period07-fix/start.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/django-checks.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/finish.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/lesson-code-blocks.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/lesson-comparison.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/lesson-source.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/lesson-text.txt\ndocs/server-routing/verification/2026-10-13-day25-period07-review/read-only-checks.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/routing-before.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/routing-cli-after.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/routing-cli-before.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/routing-cli-status.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/routing-final.json\ndocs/server-routing/verification/2026-10-13-day25-period07-review/start.json",
+      "stderr": ""
+    },
+    "tests": "ads18/game6 passed; both check passed",
+    "production_mutations": false,
+    "cleanup_user_answer": "새 검증 기록 폴더 두 개 삭제",
+    "new_evidence_folder_exists": false,
+    "auto_review_initial_rejection_preserved": true,
+    "new_untracked_paths_since_fix_start": [],
+    "generated_cleanup_paths_remaining_in_index": [],
+    "index_cleanup_generated_paths_only": true,
+    "concurrent_user_staged_changes_preserved": true,
+    "head": {
+      "exit": 0,
+      "stdout": "09e18c3 day25 - 5교시",
+      "stderr": ""
+    }
+  }
+}

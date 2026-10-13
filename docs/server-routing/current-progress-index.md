@@ -38,6 +38,21 @@
 
 `config/day23-*.py`와 `tools/basics/*`는 독립 실습/교안 참고 코드다. 서버 runtime 구현과 구분한다. 초기 package/scaffold 문서는 현재 정의가 없음을 명시한다. 검증용 도구의 존재도 최근 기능 테스트 실행을 뜻하지 않는다.
 
+## 25일차 7교시 진행 검토 · 2026-10-13
+
+**상태: 7교시 연결 수정 완료, 브라우저의 새 선택 관찰은 사용자 실행 단계.** 1~6교시 사용자 함수·수신 데이터·56행 checkpoint·version 461은 보존했다. 광고 상위 URL에 media_urls를 연결하고 실제 decision_view/event_view 이름으로 맞췄다. ads.urls의 매체 중복 두 항목은 전용 목록으로 일원화했고 공개 주소는 같다. 인증은 헤더 매체/키로 subject-only 조회를 허용하고 기존 top-level media_id 본문도 같은 매체인지 검사한다. GET은 JSON 405/Allow POST다. 게임은 기존 views.py에 제공 ad_context를 추가하고 URL 한 항목을 연결했다. ad_gateway와 기존 선택·사건·미리보기 함수는 그대로다.
+
+두 서버 Django check 성공, 기존 광고 test_events.py·게임 test_ads.py에 추가한 context 검사 및 관련 인증/사건 회귀 검사 총 24개(18+6)가 통과했다. 사용자 지시로 새 예제·별도 테스트 파일 네 개와 빈 examples 폴더를 제거하고 기존 파일만 수정했다. 추가 검증 폴더 두 개는 최초 자동 승인 거절 후 사용자의 명시적 삭제 승인에 따라 경로·파일 목록·해시를 재검증하여 삭제했다. 개발 구조에는 새 파일이 남지 않았다.
+
+[수정 전후 읽기 검사](verification/2026-10-13-day25-period07-review/read-only-checks.json), [교안 대조](verification/2026-10-13-day25-period07-review/lesson-comparison.json), [두 서버 및 테스트 기록](verification/2026-10-13-day25-period07-review/django-checks.json), [기존 인수인계의 후속 수정](../handoffs/2026-10-13-day25-period07-review.md)을 따른다. MongoDB 프로세스·업무 문서·원본·checkpoint를 검토 때문에 변경하지 않았다. 8교시 구현은 범위 밖이다.
+
+| 현재 사용자 파일 | 짝 문서 | 실제 책임·상태 |
+|---|---|---|
+| ads/context_projection.py | [문서](files/ads/context_projection.py.md) | 수신 검증·정규화·버전 반영·재개·갱신 |
+| ads/media_urls.py | [문서](files/ads/media_urls.py.md) | 미연결이며 기존 view 이름과 달라 import 실패 |
+| ads/management/commands/refresh_player_context.py | [문서](files/ads/management/commands/refresh_player_context.py.md) | 새 수신 입력을 공개 복사본 갱신 함수에 전달 |
+| ads/management/commands/inspect_decision_context.py | [문서](files/ads/management/commands/inspect_decision_context.py.md) | 선택 당시와 현재 공개 context 읽기 비교 |
+
 ## Python 파일과 1:1 문서
 
 | 현재 소스 | 짝 문서 | 책임/상태 |

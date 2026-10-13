@@ -213,3 +213,32 @@ Decorator: `override_settings(MEDIA_KEYS={'village-game': 'test-event-key'})`.
 ## 상태·값 출처
 
 지역 변수는 해당 함수가 소유하며 request/입력·서버 설정·DB 조회 또는 위 의사코드의 생성 단계에서 얻는다. 저장 snapshot과 receipt의 쓰기는 서비스/사건 계층이 맡는다. 테스트 연결·patch·가짜 응답은 해당 테스트 클래스만 소유하고 정리한다. 비밀값·쿠키·CSRF 토큰은 문서/증거에 복사하지 않는다.
+
+
+## class ContextApiTests(SimpleTestCase)
+
+25일차 context 회귀 검사를 기존 테스트 파일에 추가했다. 실제 키/업무 DB를 쓰지 않고 override_settings와 get_context patch를 사용한다. 모든 test 메서드의 self는 기본값 없는 테스트 인스턴스, 정상 반환 None, 실패 AssertionError다. 테스트 키·공개 ID·context는 이 클래스의 synthetic fixture이며 기존 EventAuthTests/EventIntegrationTests 본문은 보존했다.
+
+### ContextApiTests.post_context(self, body=None, **headers)
+
+body는 기본 None일 때 공개 subject 사전을 생성하고, 지정 시 JSON 본문으로 보낸다. headers는 기본 인증 fixture의 헤더를 덮어쓸 kwargs다. 반환은 Django Client response다. 의사코드: 본문·인증 fixture 구성 → headers.update → client.post. 직접 호출은 json.dumps, self.client.post이며 /api/media/context/의 실제 resolver를 사용한다.
+
+### ContextApiTests.test_subject_only_payload_and_all_media_routes(self)
+
+의사코드: context/decision/events resolve callable 확인 → 공개 lookup mock → subject-only POST → 200·공개 context·subject·no-store와 lookup 대상 검사. 직접 호출은 resolve, patch, post_context, response.json, lookup.assert_called_once_with와 assert 메서드다.
+
+### ContextApiTests.test_invalid_headers_and_cross_media_subject_never_lookup(self)
+
+의사코드: 누락·틀린 키/헤더 각 401 → 다른 매체 subject 400 → 모든 거절에서 lookup 미호출. 직접 호출은 patch, post_context, subTest, assert_not_called/assertEqual이다.
+
+### ContextApiTests.test_legacy_top_level_media_id_remains_checked(self)
+
+의사코드: 같은 top-level 매체 기존 본문은 200 → 불일치 매체는 401·조회 없음. 직접 호출은 patch, post_context와 assert다. 조회 전 인증 경계를 검증한다.
+
+### ContextApiTests.test_method_rejection_is_json_and_has_allow(self)
+
+의사코드: GET → 405·Allow POST·method_not_allowed JSON 검사. 직접 호출은 self.client.get, response.json와 assert다.
+
+### ContextApiTests.test_empty_context_and_store_outage_are_distinct(self)
+
+의사코드: 빈 조회 200/{} → PyMongoError fixture 503/ads_unavailable, 내부 실패 문자열 비노출. 직접 호출은 patch, post_context, response.json와 assert다. 원본 Mongo 문서를 생성·삭제하지 않는다.

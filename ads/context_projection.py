@@ -290,3 +290,18 @@ def project_context_file(source_path, checkpoint_path=None, limit=None):
             "done": position == len(rows), "source_sha256": checksum,
             "checkpoint_path": str(checkpoint) if checkpoint is not None else None,
             "checkpoint_state": state}
+
+
+def refresh_snapshot(source, contract_path, media_id="village-game"):
+    context_subject_key(media_id, "refresh")
+    rows, inspected = read_snapshot_package(source, contract_path)
+    changes = [normalize_snapshot(row, media_id=media_id) for row in rows]
+    counts = {"applied": 0, "duplicate": 0, "stale": 0}
+    for change in changes:
+        status = apply_context(change)
+        if status not in counts:
+            raise ValueError("알 수 없는 반영 결과입니다.")
+        counts[status] += 1
+    return {"source": str(source), "contract": str(contract_path), "rows": len(rows),
+            "source_sha256": inspected["sha256"], "media_id": media_id,
+            "counts": counts, "preview": changes[:1]}

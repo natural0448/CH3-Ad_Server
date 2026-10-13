@@ -82,6 +82,12 @@ Decorator: `login_required(login_url='/accounts/login/')`, `require_http_methods
 
 직접 호출: `.reporting.list_reports(owner_user_id)`에서 자기 보고서 사전 목록을 기대하고 Django `render(request, template, context, status=...)`로 HttpResponse를 만든다. DB 저장이나 보고서 계산을 직접 호출하지 않는다. `rows`와 `message`는 해당 반환 분기에서 만든 context 값이다. 현재 함수는 교안 6교시 함수 AST와 일치하며 템플릿 디자인 변경과 별도로 기존 사용자 구현을 보존한다.
 
+## context_view(request)
+
+2026-10-13 사용자 추가 함수다. request는 기본값 없는 HttpRequest이며 `media_api_methods('POST')`가 request.subject와 request.media_body를 준비한다. 정상 반환은 subject와 공개 context의 JsonResponse 200, Cache-Control=no-store다. 의사코드: 인증 subject → get_context(media_id, subject_id) → JSON과 no-store 헤더 반환. 직접 호출은 .context_projection.get_context, JsonResponse이며 get_context는 공개 다섯 필드 또는 빈 사전을 반환한다. Player·context·decision을 쓰지 않는다.
+
+25일차 후속 수정에서 매체 인증은 헤더 ID/키 기준으로 subject-only 조회를 허용하도록 연결됐다. 상위 ads.media_urls include와 실제 callable 이름도 맞아 /api/media/context/가 context_view로 resolve된다. 정상 키의 실제 공개 Mongo 조회는 200/no-store, 무키 POST 401, GET 405/Allow POST/JSON method_not_allowed다. 이 함수 본문과 사용자 get_context import는 변경하지 않았다.
+
 ## 상태·값 출처
 
 지역 변수는 해당 함수가 소유하며 request/입력·서버 설정·DB 조회 또는 위 의사코드의 생성 단계에서 얻는다. 저장 snapshot과 receipt의 쓰기는 서비스/사건 계층이 맡는다. 테스트 연결·patch·가짜 응답은 해당 테스트 클래스만 소유하고 정리한다. 비밀값·쿠키·CSRF 토큰은 문서/증거에 복사하지 않는다.

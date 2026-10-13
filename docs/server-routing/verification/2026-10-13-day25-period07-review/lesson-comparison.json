@@ -1,0 +1,184 @@
+[
+  {
+    "file": "ads/context_projection.py",
+    "name": "read_snapshot_package",
+    "lesson_block": 5,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/context_projection.py",
+    "name": "normalize_snapshot",
+    "lesson_block": 11,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/context_projection.py",
+    "name": "normalize_snapshot_file",
+    "lesson_block": 19,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/context_projection.py",
+    "name": "context_subject_key",
+    "lesson_block": 28,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/context_projection.py",
+    "name": "_check_context_change",
+    "lesson_block": 28,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/context_projection.py",
+    "name": "make_context_document",
+    "lesson_block": 32,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/context_projection.py",
+    "name": "get_context",
+    "lesson_block": 59,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/context_projection.py",
+    "name": "_read_context_changes",
+    "lesson_block": 79,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/context_projection.py",
+    "name": "_read_context_checkpoint",
+    "lesson_block": 79,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/context_projection.py",
+    "name": "_save_context_checkpoint",
+    "lesson_block": 79,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/context_projection.py",
+    "name": "project_context_file",
+    "lesson_block": 85,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/context_projection.py",
+    "name": "refresh_snapshot",
+    "lesson_block": 110,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/snapshot_intake.py",
+    "name": "build_snapshot_contract",
+    "lesson_block": 106,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/views.py",
+    "name": "context_view",
+    "lesson_block": 137,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/management/commands/refresh_player_context.py",
+    "name": "Command",
+    "lesson_block": 111,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/management/commands/inspect_decision_context.py",
+    "name": "Command",
+    "lesson_block": 147,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "C:/MLO01-01/Chapter3/Game-server/server/game/ad_gateway.py",
+    "name": "request_context",
+    "lesson_block": 143,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "C:/MLO01-01/Chapter3/Game-server/server/game/ad_gateway.py",
+    "name": "request_decision",
+    "lesson_block": 144,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/context_projection.py",
+    "name": "apply_context",
+    "lesson_block": 58,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/management/commands/preview_player_snapshot.py",
+    "name": "Command",
+    "lesson_block": 12,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/management/commands/normalize_player_snapshot.py",
+    "name": "Command",
+    "lesson_block": 20,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/management/commands/inspect_player_context.py",
+    "name": "Command",
+    "lesson_block": 33,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/management/commands/apply_player_context.py",
+    "name": "Command",
+    "lesson_block": 60,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/management/commands/demo_context_versions.py",
+    "name": "Command",
+    "lesson_block": 61,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "file": "ads/management/commands/project_player_context.py",
+    "name": "Command",
+    "lesson_block": 86,
+    "present": true,
+    "ast_equal_excluding_docstrings": true
+  },
+  {
+    "phase": "followup-fix",
+    "file": "Game-server/server/game/views.py",
+    "name": "ad_context",
+    "lesson_block": 145,
+    "ast_equal": true
+  }
+]

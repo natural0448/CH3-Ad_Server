@@ -1,0 +1,106 @@
+[
+  {
+    "name": "ads-check",
+    "command": [
+      "C:\\MLO01-01\\Chapter3\\ad_server\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "ad_config/manage.py",
+      "check"
+    ],
+    "cwd": "C:\\MLO01-01\\Chapter3\\ad_server",
+    "exit": 0,
+    "stdout": "System check identified no issues (0 silenced).\n",
+    "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n"
+  },
+  {
+    "name": "game-check",
+    "command": [
+      "C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "manage.py",
+      "check"
+    ],
+    "cwd": "C:\\MLO01-01\\Chapter3\\Game-server\\server",
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\manage.py\", line 25, in <module>\n    main()\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\manage.py\", line 21, in main\n    execute_from_command_line(sys.argv)\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Lib\\site-packages\\django\\core\\management\\__init__.py\", line 442, in execute_from_command_line\n    utility.execute()\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Lib\\site-packages\\django\\core\\management\\__init__.py\", line 436, in execute\n    self.fetch_command(subcommand).run_from_argv(self.argv)\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Lib\\site-packages\\django\\core\\management\\base.py\", line 420, in run_from_argv\n    self.execute(*args, **cmd_options)\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Lib\\site-packages\\django\\core\\management\\base.py\", line 464, in execute\n    output = self.handle(*args, **options)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Lib\\site-packages\\django\\core\\management\\commands\\check.py\", line 81, in handle\n    self.check(\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Lib\\site-packages\\django\\core\\management\\base.py\", line 496, in check\n    all_issues = checks.run_checks(\n                 ^^^^^^^^^^^^^^^^^^\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Lib\\site-packages\\django\\core\\checks\\registry.py\", line 89, in run_checks\n    new_errors = check(app_configs=app_configs, databases=databases)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Lib\\site-packages\\django\\core\\checks\\urls.py\", line 136, in check_custom_error_handlers\n    handler = resolver.resolve_error_handler(status_code)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Lib\\site-packages\\django\\urls\\resolvers.py\", line 732, in resolve_error_handler\n    callback = getattr(self.urlconf_module, \"handler%s\" % view_type, None)\n                       ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Lib\\site-packages\\django\\utils\\functional.py\", line 47, in __get__\n    res = instance.__dict__[self.name] = self.func(instance)\n                                         ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Lib\\site-packages\\django\\urls\\resolvers.py\", line 711, in urlconf_module\n    return import_module(self.urlconf_name)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\이해나\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\importlib\\__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 999, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\config\\urls.py\", line 9, in <module>\n    path(\"\", include(\"game.urls\")),\n             ^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Lib\\site-packages\\django\\urls\\conf.py\", line 39, in include\n    urlconf_module = import_module(urlconf_module)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\이해나\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\importlib\\__init__.py\", line 90, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 999, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"C:\\MLO01-01\\Chapter3\\Game-server\\server\\game\\urls.py\", line 25, in <module>\n    path(\"api/ads/context/\", ad_views.ad_context, name=\"ad-context\"),\n                             ^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'game.ad_views' has no attribute 'ad_context'\n"
+  },
+  {
+    "phase": "followup-fix-existing-files-only",
+    "name": "ads-check",
+    "command": [
+      "C:\\MLO01-01\\Chapter3\\ad_server\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "ad_config/manage.py",
+      "check"
+    ],
+    "cwd": "C:\\MLO01-01\\Chapter3\\ad_server",
+    "exit": 0,
+    "stdout": "System check identified no issues (0 silenced).\n",
+    "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n"
+  },
+  {
+    "phase": "followup-fix-existing-files-only",
+    "name": "ads-tests",
+    "command": [
+      "C:\\MLO01-01\\Chapter3\\ad_server\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "ad_config/manage.py",
+      "test",
+      "ads.test_events.ContextApiTests",
+      "ads.test_events.EventAuthTests",
+      "ads.tests.AuthenticationTests",
+      "--verbosity",
+      "1"
+    ],
+    "cwd": "C:\\MLO01-01\\Chapter3\\ad_server",
+    "exit": 0,
+    "stdout": "Found 18 test(s).\nSystem check identified no issues (0 silenced).\n",
+    "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\nCreating test database for alias 'default'...\n\n..................\n----------------------------------------------------------------------\nRan 18 tests in 0.907s\n\nOK\nDestroying test database for alias 'default'...\n\n"
+  },
+  {
+    "phase": "followup-fix-existing-files-only",
+    "name": "game-check",
+    "command": [
+      "C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "manage.py",
+      "check"
+    ],
+    "cwd": "C:\\MLO01-01\\Chapter3\\Game-server\\server",
+    "exit": 0,
+    "stdout": "System check identified no issues (0 silenced).\n",
+    "stderr": ""
+  },
+  {
+    "phase": "followup-fix-existing-files-only",
+    "name": "game-tests",
+    "command": [
+      "C:\\MLO01-01\\Chapter3\\Game-server\\server\\.venv\\Scripts\\python.exe",
+      "-X",
+      "utf8",
+      "-B",
+      "manage.py",
+      "test",
+      "game.test_ads.PlayerContextTests",
+      "game.test_ads.GatewayTests.test_event_error_codes_are_preserved_without_private_details",
+      "game.test_ads.GatewayTests.test_event_public_receipt_duplicate_and_recipient",
+      "--verbosity",
+      "1"
+    ],
+    "cwd": "C:\\MLO01-01\\Chapter3\\Game-server\\server",
+    "exit": 0,
+    "stdout": "Found 6 test(s).\nSystem check identified no issues (0 silenced).\n",
+    "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.010s\n\nOK\n"
+  }
+]

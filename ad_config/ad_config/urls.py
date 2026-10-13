@@ -12,5 +12,6 @@ urlpatterns = [
     path("api/auth/logout/", auth_views.logout_view, name="api-logout"),
     path("accounts/login/", django_auth_views.LoginView.as_view(), name="login"),
     path("accounts/logout/", django_auth_views.LogoutView.as_view(), name="logout"),
+    path("api/media/", include("ads.media_urls")),
     path("", include("ads.urls")),
 ]

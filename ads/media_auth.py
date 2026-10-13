@@ -4,7 +4,6 @@ from functools import wraps
 from django.conf import settings
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
 from pymongo.errors import PyMongoError
 
 
@@ -14,10 +13,10 @@ def read_media_body(request):
     data = json.loads(request.body)
     if not isinstance(data, dict):
         raise ValueError("JSON 객체가 필요합니다.")
-    media_id = data.get("media_id")
+    media_id = request.headers.get("X-Media-ID")
     expected = settings.MEDIA_KEYS.get(media_id, "") if isinstance(media_id, str) else ""
     supplied = request.headers.get("X-Media-Key", "")
-    if request.headers.get("X-Media-ID") != media_id or not expected or not secrets.compare_digest(
+    if ("media_id" in data and data["media_id"] != media_id) or not expected or not secrets.compare_digest(
             expected.encode("utf-8"), supplied.encode("utf-8")):
         raise PermissionError("매체 인증 실패")
     subject = data.get("subject")
@@ -31,9 +30,12 @@ def read_media_body(request):
 def media_api_methods(*methods):
     def decorate(view):
         @csrf_exempt
-        @require_http_methods(methods)
         @wraps(view)
         def wrapped(request, *args, **kwargs):
+            if request.method not in methods:
+                response = JsonResponse({"error": "method_not_allowed"}, status=405)
+                response["Allow"] = ", ".join(methods)
+                return response
             try:
                 request.media_body, request.subject = read_media_body(request)
                 return view(request, *args, **kwargs)

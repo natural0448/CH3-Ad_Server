@@ -1,0 +1,191 @@
+{
+  "routes": {
+    "/api/media/context/": {
+      "error": "404: route missing"
+    },
+    "/api/media/decision/": {
+      "view": "ads.views.decision_view",
+      "url_name": "decision"
+    },
+    "/api/media/events/": {
+      "view": "ads.views.event_view",
+      "url_name": "events"
+    }
+  },
+  "files": {
+    "data/exports/day24-input/player-cdc.ndjson": {
+      "package_valid": true,
+      "rows": 56,
+      "sha256": "6ea30948a1c6924b186676511207bd2099683ca00cf1b1582cb595e6437375d0",
+      "first_id": 1,
+      "first_version": 460,
+      "unique_change_ids": 56
+    },
+    "data/exports/day25-refresh-input/player-cdc.ndjson": {
+      "package_valid": true,
+      "rows": 56,
+      "sha256": "8f431f53f61d04f4b9921c3c6df39af1f3076f2dc4f5644f038fbee58fbe2901",
+      "first_id": 1,
+      "first_version": 461,
+      "unique_change_ids": 56
+    },
+    "data/exports/player-context-changes.ndjson": {
+      "valid": true,
+      "rows": 56,
+      "sha256": "d5b74b40eee7021af2c77f763f7a1fc4ed34cdb16c0199c13aa764c8b045e20f",
+      "data/checkpoints/player-context.json": {
+        "next_line": 56,
+        "done": true
+      },
+      "data/checkpoints/player-context-replay.json": {
+        "next_line": 1,
+        "done": false
+      }
+    },
+    "data/exports/player-context-changes-day25-after.ndjson": {
+      "valid": true,
+      "rows": 56,
+      "sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+      "matches_received_snapshot": true
+    }
+  },
+  "mongo": {
+    "ping": 1.0,
+    "database": "village_ads",
+    "context_count": 57,
+    "unique_index": {
+      "v": 2,
+      "key": [
+        [
+          "media_id",
+          1
+        ],
+        [
+          "subject_id",
+          1
+        ]
+      ],
+      "unique": true
+    },
+    "subject_1_current": [
+      {
+        "version": 461,
+        "context": {
+          "player_id": "1",
+          "room_id": "room-01",
+          "coins": 26,
+          "version": 461,
+          "updated_at": "2026-10-13T06:36:55.250374+00:00"
+        },
+        "deleted": false,
+        "source_kind": "player-snapshot"
+      }
+    ],
+    "subject_1_latest_decisions": [
+      {
+        "decision_id": "9b2a4770-2e59-4ff5-9f20-4deb6e0ea143",
+        "context": {},
+        "selected_at": "2026-10-13T06:33:12.548000"
+      },
+      {
+        "decision_id": "b09e2897-e1e9-4317-95f2-8340434bb1ed",
+        "context": {},
+        "selected_at": "2026-10-13T06:33:12.547000"
+      }
+    ],
+    "after_snapshot_projection": {
+      "input_rows": 56,
+      "missing_subjects": [],
+      "mismatched_same_version_subjects": [],
+      "older_current_subjects": []
+    }
+  },
+  "media_urls_import": {
+    "type": "AttributeError",
+    "message": "module 'ads.views' has no attribute 'decision'"
+  },
+  "context_view_direct_probes": [
+    {
+      "case": "without_key",
+      "status": 401,
+      "error": "media_auth_required",
+      "context_fields": [],
+      "cache_control": null,
+      "allow": null
+    },
+    {
+      "case": "lesson_payload_with_valid_headers",
+      "status": 401,
+      "error": "media_auth_required",
+      "context_fields": [],
+      "cache_control": null,
+      "allow": null
+    },
+    {
+      "case": "existing_auth_compatible_payload",
+      "status": 200,
+      "error": null,
+      "context_fields": [
+        "coins",
+        "player_id",
+        "room_id",
+        "updated_at",
+        "version"
+      ],
+      "cache_control": "no-store",
+      "allow": null
+    },
+    {
+      "case": "method_get",
+      "status": 405,
+      "error": null,
+      "context_fields": [],
+      "cache_control": null,
+      "allow": "POST"
+    }
+  ],
+  "followup_fix": {
+    "mongo_ping": 1.0,
+    "authenticated_context_status": 200,
+    "subject": {
+      "media_id": "village-game",
+      "subject_id": "1"
+    },
+    "context": {
+      "player_id": "1",
+      "room_id": "room-01",
+      "coins": 26,
+      "version": 461,
+      "updated_at": "2026-10-13T06:36:55.250374+00:00"
+    },
+    "cache_control": "no-store",
+    "without_key_status": 401,
+    "get_status": 405,
+    "get_body": {
+      "error": "method_not_allowed"
+    },
+    "get_allow": "POST",
+    "media_routes": {
+      "context": "context_view",
+      "decision": "decision_view",
+      "events": "event_view"
+    },
+    "collections_before": {
+      "campaigns": 2,
+      "bids": 2,
+      "decisions": 42,
+      "ad_events": 40,
+      "player_context": 57
+    },
+    "collections_after": {
+      "campaigns": 2,
+      "bids": 2,
+      "decisions": 42,
+      "ad_events": 40,
+      "player_context": 57
+    },
+    "counts_unchanged": true,
+    "server_processes_mutated": false,
+    "probe": "Django Client with allowed localhost Host and real MongoDB; no new ad decisions"
+  }
+}

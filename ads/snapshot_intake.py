@@ -110,15 +110,25 @@ def change_player(event):
             "version": state["version"], "deleted": op == "d"}
 
 
-def build_snapshot_contract(source):
-    """검사한 파일의 행 수·ID·체크섬을 인계 계약으로 만든다."""
-    inspected = inspect_snapshot(source)
+# def build_snapshot_contract(source):
+#     """검사한 파일의 행 수·ID·체크섬을 인계 계약으로 만든다."""
+#     inspected = inspect_snapshot(source)
 
+#     contract = {"artifact_id": "data/exports/player-cdc.ndjson", "artifact_version": "v2",
+#         "source_path": str(source), "created_at": datetime.now(timezone.utc).isoformat(),
+#         "collector": "game.export_player_snapshot", "binlog_cdc_status": "not-configured",
+#         "position_kind": "file-line", "kafka_position": None,
+#         "public_fields": list(PUBLIC_FIELDS)}
+#     contract.update(inspected)
+#     return contract
+
+def build_snapshot_contract(source):
+    inspected = inspect_snapshot(source)
     contract = {"artifact_id": "data/exports/player-cdc.ndjson", "artifact_version": "v2",
-        "source_path": str(source), "created_at": datetime.now(timezone.utc).isoformat(),
-        "collector": "game.export_player_snapshot", "binlog_cdc_status": "not-configured",
-        "position_kind": "file-line", "kafka_position": None,
-        "public_fields": list(PUBLIC_FIELDS)}
+                "source_path": str(source), "created_at": datetime.now(timezone.utc).isoformat(),
+                "collector": "game.export_player_snapshot", "binlog_cdc_status": "not-configured",
+                "position_kind": "file-line", "kafka_position": None,
+                "public_fields": list(PUBLIC_FIELDS)}
     contract.update(inspected)
     return contract
 
@@ -189,3 +199,5 @@ def handoff_snapshot(source, contract_path, target):
         raise
     return {"rows": inspected["rows"], "sha256": inspected["sha256"],
             "source_kind": SOURCE_KIND, "target": str(target)}
+
+

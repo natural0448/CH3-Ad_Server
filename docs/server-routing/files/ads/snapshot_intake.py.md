@@ -86,6 +86,8 @@ event는 기본값 없는 teaching-fixture 사전이다. source_kind="teaching-f
 
 ## build_snapshot_contract(source)
 
+2026-10-13 25일차 6교시 사용자 저장본을 다시 대조했다. 아래 계약 값·직접 호출·반환은 유지되며 제공 완성 함수 AST와 같다. 주석으로 보존한 이전 정의는 실행 함수가 아니다. 이번 검토에서 Python 소스를 수정하지 않았다.
+
 source는 기본값 없는 기존 snapshot 문자열/Path 호환 경로다. inspect_snapshot(source)의 검사 메타데이터를 읽고 새 contract 사전에 합쳐 반환한다. 입력 파일을 쓰지 않는다. 검사 예외와 경로/파싱 오류는 전파한다.
 
 초기 contract는 artifact_id="data/exports/player-cdc.ndjson", artifact_version="v2", source_path=str(source), created_at=현재 aware UTC ISO 문자열, collector="game.export_player_snapshot", binlog_cdc_status="not-configured", position_kind="file-line", kafka_position=None, public_fields=list(PUBLIC_FIELDS)다. contract.update(inspected)로 실제 rows/public_ids/captured_at/sha256/source_kind/schema_version을 더한다. inspected는 입력 검사 결과, contract는 이 함수가 소유한 새 사전이다. created_at과 입력 captured_at을 구별한다.
