@@ -24,11 +24,17 @@
 
 [공식 24 통과·0 실패](verification/2026-10-12-day24-period08-finish/official-period08-before.json), [실제 인계](verification/2026-10-12-day24-period08-finish/actual-handoff.json), [8교시 인수인계와 입력 명령](../handoffs/2026-10-12-day24-period08-finish.md)을 따른다. 사용자 Python 구현은 변경하지 않았고 새 수신 NDJSON·계약만 만들었다. 기존 target은 덮어쓰지 않으며 재인계는 다른 새 target을 사용한다. 25일차 소비 입력은 data/exports/day24-input/player-cdc.ndjson이다. 파일 인계는 MongoDB/runserver 기동 없이 끝났으며 CDC 실행·실시간 광고 선택 완료로 기록하지 않는다.
 
-## 현재 MongoDB 실행 상태 · 2026-10-12 복구
+## 현재 MongoDB 실행 상태 · 2026-10-13 사용자 터미널 인계
 
-사용자의 직접 복구 요청으로 설치 기본 standalone 서비스를 정상 종료하고, 기존 수업용 mongo-node1.yml과 infra/mongo/data/node1을 사용하는 노드를 재시작했다. 현재 PID 9900은 백그라운드 실행 중이며 ads-rs 단일 멤버 localhost:27017이 PRIMARY다. 실제 Django 관리명령의 ping은 exit 0, ok 1.0이다. village_ads의 campaigns/bids/decisions/ad_events/ad_daily_reports 5개 컬렉션을 읽었다. 소스·환경 설정·복제 구성은 수정하지 않았다.
+재부팅 후 Auto인 설치 기본 MongoDB 서비스가 복제 설정 없는 서버로 응답해 광고의 ads-rs 연결이 실패했다. 기본 서버를 정상 종료하고 기존 수업 DB·복제 구성(version 1/단일 localhost:27017)을 유지해 재기동했다. 복구 당시 PID 27664는 PRIMARY, Django get_db의 ping은 exit 0/1.0이었고 기존 village_ads 5개 컬렉션을 읽었다.
 
-[실제 연결 결과](verification/mongo-recovery-2026-10-12/connection-after.json), [관리명령 ping](verification/mongo-recovery-2026-10-12/manage-ping.json), [복구 인수인계](../handoffs/2026-10-12-mongodb-connection-recovery.md)를 따른다. 사용자가 Compass에서도 DB가 표시됐다고 확인했다. 에이전트가 GUI를 직접 검사한 것은 아니다. 기본 MongoDB 서비스의 시작 유형 Auto는 바꾸지 않았으므로 재부팅 뒤 서버 선택은 다시 확인해야 한다. MongoDB 실행 복구와 이후 3교시 코드 보완은 별도 작업이다.
+후속 사용자가 VS Code에서 직접 실행하겠다고 요청해 에이전트가 기동한 PID 27664를 정상 종료했다. [종료 확인](verification/mongo-recovery-2026-10-13/stop-confirmed.json) 당시 mongod와 27017 listener는 없었다. 에이전트는 추가 기동하지 않으며 사용자가 광고 작업 폴더에서 기존 명령으로 서버를 실행하고 그 터미널을 유지한다. 복구 검증 성공과 현재 사용자 요청에 따른 중지 상태를 구별한다.
+
+[복구 시 연결 결과](verification/mongo-recovery-2026-10-13/connection-after.json), [Django ping](verification/mongo-recovery-2026-10-13/manage-ping.json), [사용자 요청 종료](verification/mongo-recovery-2026-10-13/user-requested-stop.json), [이번 인수인계](../handoffs/2026-10-13-mongodb-connection-recovery.md)를 따른다. 실제 설정은 [config/mongo-node1.yml](files/config/mongo-node1.yml.md)이며 기존 infra/mongo/data/node1을 사용한다. 코드·환경·YAML·복제 구성·업무 문서는 변경하지 않았다.
+
+기본 서비스는 현재 Stopped지만 StartMode=Auto가 남아 있다. Set-Service Manual 시도는 Windows 관리자 권한 부족으로 거부돼 미적용이며, 자동 승인 심사 거절은 없었다. 재발 방지는 관리자 PowerShell의 Set-Service -Name MongoDB -StartupType Manual 한 번으로 적용한다. Compass는 mongodb://localhost:27017/?replicaSet=ads-rs로 수업 서버 기동 후 재연결한다. GUI는 직접 관찰하지 않았다.
+
+[2026-10-12 복구 이력](../handoffs/2026-10-12-mongodb-connection-recovery.md)과 당시 사용자 Compass 확인은 과거 기록이다. 당시 PID 9900을 현재 실행 프로세스로 해석하지 않는다.
 
 `config/day23-*.py`와 `tools/basics/*`는 독립 실습/교안 참고 코드다. 서버 runtime 구현과 구분한다. 초기 package/scaffold 문서는 현재 정의가 없음을 명시한다. 검증용 도구의 존재도 최근 기능 테스트 실행을 뜻하지 않는다.
 

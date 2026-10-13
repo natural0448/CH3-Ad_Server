@@ -1,0 +1,62 @@
+[
+  {
+    "source": "ads/mongo.py",
+    "doc": "docs\\server-routing\\files\\ads\\mongo.py.md",
+    "parse_error": null,
+    "missing_signatures": [],
+    "indexed": true,
+    "symbols": [
+      {
+        "kind": "function",
+        "qualified_name": "get_client",
+        "line": 10,
+        "signature": "get_client()",
+        "signature_core": "get_client()",
+        "return_annotation": null,
+        "decorators": [
+          "lru_cache(maxsize=1)"
+        ],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "get_db",
+        "line": 19,
+        "signature": "get_db()",
+        "signature_core": "get_db()",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "function",
+        "qualified_name": "close_client",
+        "line": 23,
+        "signature": "close_client()",
+        "signature_core": "close_client()",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      }
+    ]
+  },
+  {
+    "source": "ad_config/ad_config/settings.py",
+    "doc": "docs\\server-routing\\files\\ad_config\\ad_config\\settings.py.md",
+    "parse_error": null,
+    "missing_signatures": [],
+    "indexed": true,
+    "symbols": []
+  },
+  {
+    "source": "config/mongo-node1.yml",
+    "doc": "docs\\server-routing\\files\\config\\mongo-node1.yml.md",
+    "parse_error": null,
+    "missing_signatures": [],
+    "indexed": true,
+    "symbols": []
+  }
+]

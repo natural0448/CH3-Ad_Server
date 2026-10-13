@@ -1,0 +1,32 @@
+{
+  "ping": 1.0,
+  "set_name": "ads-rs",
+  "is_writable_primary": true,
+  "my_state": 1,
+  "members": [
+    {
+      "name": "localhost:27017",
+      "state": "PRIMARY",
+      "health": 1.0
+    }
+  ],
+  "replica_version": 1,
+  "member_config": [
+    {
+      "_id": 0,
+      "host": "localhost:27017"
+    }
+  ],
+  "server_config": "C:\\MLO01-01\\Chapter3\\ad_server\\config\\mongo-node1.yml",
+  "server_dbpath": "infra/mongo/data/node1",
+  "database": "village_ads",
+  "collection_counts": {
+    "ad_daily_reports": 3,
+    "ad_events": 38,
+    "bids": 2,
+    "campaigns": 2,
+    "decisions": 40
+  },
+  "compass_uri": "mongodb://localhost:27017/?replicaSet=ads-rs",
+  "gui_directly_checked": false
+}

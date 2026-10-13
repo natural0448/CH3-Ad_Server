@@ -1,0 +1,8 @@
+{
+  "guard": true,
+  "config": "C:\\Program Files\\MongoDB\\Server\\8.3\\bin\\mongod.cfg",
+  "data_path": "C:\\Program Files\\MongoDB\\Server\\8.3\\data",
+  "replication_enabled": false,
+  "force": false,
+  "result": "expected disconnect after graceful shutdown request"
+}

@@ -1,0 +1,11 @@
+{
+  "exit": 2,
+  "stdout": "",
+  "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n",
+  "reason": "Existing server-routing README absent; current-progress-index retained",
+  "final_run": {
+    "exit": 2,
+    "stdout": "",
+    "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n"
+  }
+}

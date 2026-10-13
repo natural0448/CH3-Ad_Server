@@ -1,0 +1,8 @@
+{
+  "pid": 20636,
+  "working_directory": "C:\\MLO01-01\\Chapter3\\ad_server",
+  "config": "C:\\MLO01-01\\Chapter3\\ad_server\\config\\mongo-node1.yml",
+  "log_directory": "C:\\MLO01-01\\Chapter3\\ad_server\\infra\\runtime\\mongo-recovery-2026-10-13",
+  "mode": "background-hidden",
+  "existing_data_reused": true
+}

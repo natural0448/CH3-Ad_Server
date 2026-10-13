@@ -1,0 +1,9 @@
+{
+  "user_requested_stop": true,
+  "agent_started_pid": 27664,
+  "config": "C:\\MLO01-01\\Chapter3\\ad_server\\config\\mongo-node1.yml",
+  "force": false,
+  "timeout_seconds": 5,
+  "recovery_verified_before_stop": true,
+  "result": "expected disconnect after graceful shutdown"
+}

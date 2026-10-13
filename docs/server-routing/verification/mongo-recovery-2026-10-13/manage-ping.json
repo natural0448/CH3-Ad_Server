@@ -1,0 +1,7 @@
+{
+  "command": ".\\.venv\\Scripts\\python.exe -X utf8 -B ad_config/manage.py shell -c \"from ads.mongo import get_db; db=get_db(); print({'ping': db.command('ping')['ok'], 'database': db.name, 'collections': sorted(db.list_collection_names())})\"",
+  "exit_code": 0,
+  "ping": 1.0,
+  "database": "village_ads",
+  "collections": ["ad_daily_reports", "ad_events", "bids", "campaigns", "decisions"]
+}

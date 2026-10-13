@@ -1,0 +1,61 @@
+{
+  "root_git": "Git 상태 확인 불가: 저장소 아님",
+  "baseline_head": {
+    "exit": 0,
+    "stdout": "4e896c7 day25 - chapter1",
+    "stderr": ""
+  },
+  "baseline_clean": true,
+  "development_files_hashed": 85,
+  "development_changed_since_start": [
+    "ads/context_projection.py"
+  ],
+  "agent_development_changes": [],
+  "concurrent_user_changes_preserved": [
+    "ads/context_projection.py"
+  ],
+  "connection_verified_before_user_stop": true,
+  "agent_server_stopped_at_user_request": true,
+  "stop_evidence": "stop-confirmed.json",
+  "port_free_at_shutdown_check": true,
+  "server_not_restarted_after_user_stop": true,
+  "existing_replica_configuration_preserved": true,
+  "manual_service_startup_applied": false,
+  "windows_administrator_required_for_manual_startup": true,
+  "routing_scope_passed": true,
+  "routing_cli_exit": 2,
+  "functional_tests_not_repeated_reason": "No agent source changes; Mongo ping and replica PRIMARY verified before requested shutdown",
+  "git": {
+    "head": {
+      "exit": 0,
+      "stdout": "4e896c7 day25 - chapter1",
+      "stderr": ""
+    },
+    "status": {
+      "exit": 0,
+      "stdout": "M ads/context_projection.py\n M docs/server-routing/current-progress-index.md\n?? docs/handoffs/2026-10-13-mongodb-connection-recovery.md\n?? docs/server-routing/verification/mongo-recovery-2026-10-13/",
+      "stderr": ""
+    },
+    "unstaged": {
+      "exit": 0,
+      "stdout": "M\tads/context_projection.py\nM\tdocs/server-routing/current-progress-index.md",
+      "stderr": ""
+    },
+    "staged": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "untracked": {
+      "exit": 0,
+      "stdout": "docs/handoffs/2026-10-13-mongodb-connection-recovery.md\ndocs/server-routing/verification/mongo-recovery-2026-10-13/classroom-shutdown.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/connection-after.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/default-shutdown.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/manage-ping.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/persistent-restart.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/process-after.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/restart.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/routing-before.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/routing-cli-status.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/routing-cli.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/routing-final.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/start.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/stop-confirmed.json\ndocs/server-routing/verification/mongo-recovery-2026-10-13/user-requested-stop.json",
+      "stderr": ""
+    },
+    "diff_check": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "scoped_missing_local_links": []
+}

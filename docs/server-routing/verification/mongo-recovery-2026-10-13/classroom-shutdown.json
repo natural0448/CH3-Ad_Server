@@ -1,0 +1,17 @@
+{
+  "guard": true,
+  "old_process_pid_observed": 22344,
+  "config": "config/mongo-node1.yml",
+  "data": "infra/mongo/data/node1",
+  "replica_set": "ads-rs",
+  "replica_version": 1,
+  "members": [
+    {
+      "_id": 0,
+      "host": "localhost:27017"
+    }
+  ],
+  "status_before_code": 93,
+  "force": false,
+  "shutdown": "expected disconnect after normal shutdown"
+}

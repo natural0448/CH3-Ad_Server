@@ -1,0 +1,11 @@
+{
+  "agent_process_running": false,
+  "processes": [],
+  "listeners": [],
+  "service": {
+    "Name": "MongoDB",
+    "State": "Stopped",
+    "StartMode": "Auto"
+  },
+  "user_to_run_vscode_command": true
+}
