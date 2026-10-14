@@ -145,5 +145,47 @@
       }
     },
     "empty_folder": "C:\\MLO01-01\\Chapter3\\ad_server\\examples"
+  },
+  "day25_period08": {
+    "date": "2026-10-14",
+    "root_git": "Git 상태 확인 불가: 저장소 아님",
+    "head": {
+      "exit": 0,
+      "stdout": "724ac87 day25 - 7교시",
+      "stderr": ""
+    },
+    "status": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "staged": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "unstaged": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "untracked": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "existing_development_sha256": {
+      "ads/context_projection.py": "7fa1709693e1690d5ef5ab4a9694457d6368821ad29f857fb984c148dd9b74f9",
+      "ads/test_events.py": "846fc361d1959eca91f8e9066c567e60874106a4d7912099dcd9278b925e875f"
+    },
+    "protected_data_sha256": {
+      "data/exports/player-context-changes.ndjson": "d5b74b40eee7021af2c77f763f7a1fc4ed34cdb16c0199c13aa764c8b045e20f",
+      "data/exports/player-context-changes-day25-after.ndjson": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+      "data/checkpoints/player-context.json": "fefdcb7564497b4b71c58e02609ae1ca2ee6aba2ba98b3c029956d881a469ef9",
+      "data/checkpoints/player-context-replay.json": "20ed129ec50bcfc1cbbb3d6a1cf4eca7784911ea2564571e16e6f036662f272a",
+      "data/exports/day24-input/player-cdc.ndjson": "6ea30948a1c6924b186676511207bd2099683ca00cf1b1582cb595e6437375d0",
+      "data/exports/day25-refresh-input/player-cdc.ndjson": "8f431f53f61d04f4b9921c3c6df39af1f3076f2dc4f5644f038fbee58fbe2901"
+    },
+    "user_authorization": "폴더 구조를 유지한 채 새로 파일을 환경에 맞춰서 제작"
   }
 }

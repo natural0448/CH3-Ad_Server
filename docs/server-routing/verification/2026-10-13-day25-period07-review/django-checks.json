@@ -102,5 +102,17 @@
     "exit": 0,
     "stdout": "Found 6 test(s).\nSystem check identified no issues (0 silenced).\n",
     "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.010s\n\nOK\n"
+  },
+  {
+    "phase": "2026-10-14-day25-period08",
+    "check_exit": 0,
+    "tests_command": "python ad_config/manage.py test ads.test_events.ContextHandoffTests ads.test_events.ContextApiTests ads.test_events.EventAuthTests ads.tests.AuthenticationTests --verbosity 1",
+    "sandbox_initial_exit": 1,
+    "sandbox_initial_errors": 14,
+    "sandbox_initial_reason": "Windows sandbox temp-directory ACL denied setup and cleanup",
+    "final_test_exit": 0,
+    "final_test_count": 25,
+    "final_test_sandbox": "require_escalated; isolated test files and mock MongoDB",
+    "unused_test_import_removed": true
   }
 ]

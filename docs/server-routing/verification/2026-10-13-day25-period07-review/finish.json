@@ -141,5 +141,72 @@
       "stdout": "09e18c3 day25 - 5교시",
       "stderr": ""
     }
+  },
+  "day25_period08": {
+    "date": "2026-10-14",
+    "head": {
+      "exit": 0,
+      "stdout": "724ac87 day25 - 7교시",
+      "stderr": ""
+    },
+    "start_clean": true,
+    "status": {
+      "exit": 0,
+      "stdout": "M ads/context_projection.py\n M ads/test_events.py\n M docs/server-routing/current-progress-index.md\n M docs/server-routing/files/ads/context_projection.py.md\n M docs/server-routing/files/ads/test_events.py.md\n M docs/server-routing/verification/2026-10-13-day25-period07-review/django-checks.json\n M docs/server-routing/verification/2026-10-13-day25-period07-review/finish.json\n M docs/server-routing/verification/2026-10-13-day25-period07-review/lesson-comparison.json\n M docs/server-routing/verification/2026-10-13-day25-period07-review/read-only-checks.json\n M docs/server-routing/verification/2026-10-13-day25-period07-review/routing-cli-status.json\n M docs/server-routing/verification/2026-10-13-day25-period07-review/routing-final.json\n M docs/server-routing/verification/2026-10-13-day25-period07-review/start.json\n?? ads/management/commands/export_context_handoff.py\n?? docs/handoffs/2026-10-14-day25-period08-finish.md\n?? docs/server-routing/files/ads/management/commands/export_context_handoff.py.md",
+      "stderr": ""
+    },
+    "staged": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "unstaged": {
+      "exit": 0,
+      "stdout": "M\tads/context_projection.py\nM\tads/test_events.py\nM\tdocs/server-routing/current-progress-index.md\nM\tdocs/server-routing/files/ads/context_projection.py.md\nM\tdocs/server-routing/files/ads/test_events.py.md\nM\tdocs/server-routing/verification/2026-10-13-day25-period07-review/django-checks.json\nM\tdocs/server-routing/verification/2026-10-13-day25-period07-review/lesson-comparison.json\nM\tdocs/server-routing/verification/2026-10-13-day25-period07-review/read-only-checks.json\nM\tdocs/server-routing/verification/2026-10-13-day25-period07-review/routing-cli-status.json\nM\tdocs/server-routing/verification/2026-10-13-day25-period07-review/routing-final.json\nM\tdocs/server-routing/verification/2026-10-13-day25-period07-review/start.json",
+      "stderr": "warning: in the working copy of 'ads/context_projection.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'ads/test_events.py', LF will be replaced by CRLF the next time Git touches it"
+    },
+    "untracked": {
+      "exit": 0,
+      "stdout": "ads/management/commands/export_context_handoff.py\ndocs/handoffs/2026-10-14-day25-period08-finish.md\ndocs/server-routing/files/ads/management/commands/export_context_handoff.py.md",
+      "stderr": ""
+    },
+    "agent_development_modified": [
+      "ads/context_projection.py",
+      "ads/test_events.py"
+    ],
+    "agent_development_added": [
+      "ads/management/commands/export_context_handoff.py",
+      "data/checkpoints/player-context-day25-after.json",
+      "data/checkpoints/player-context-day25-incomplete.json",
+      "data/handoff/day25-run1/player-context-changes.ndjson",
+      "data/handoff/day25-run1/checkpoint.json",
+      "data/handoff/day25-run1/player-context.ndjson",
+      "data/handoff/day25-run1/manifest.json"
+    ],
+    "routing_scope_count": 9,
+    "routing_scope_passed": true,
+    "routing_cli_exit": 2,
+    "missing_local_links": [],
+    "protected_data_preserved": {
+      "data/exports/player-context-changes.ndjson": true,
+      "data/exports/player-context-changes-day25-after.ndjson": true,
+      "data/checkpoints/player-context.json": true,
+      "data/checkpoints/player-context-replay.json": true,
+      "data/exports/day24-input/player-cdc.ndjson": true,
+      "data/exports/day25-refresh-input/player-cdc.ndjson": true
+    },
+    "previous_test_classes_preserved": true,
+    "diff_check": {
+      "exit": 0,
+      "stdout": "",
+      "stderr": "warning: in the working copy of 'ads/context_projection.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'ads/test_events.py', LF will be replaced by CRLF the next time Git touches it"
+    },
+    "tests_passed": 25,
+    "handoff": "data/handoff/day25-run1",
+    "handoff_four_files_verified": true,
+    "mongo_documents_preserved": true,
+    "server_processes_not_managed": true,
+    "gitignored_artifacts_and_pairs": "Existing .gitignore **/data/ rule; actual files and paired docs exist locally; no force add or ignore change",
+    "tests_assertions_complete": true
   }
 }

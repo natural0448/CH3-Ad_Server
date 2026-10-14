@@ -1,13 +1,13 @@
 import hashlib
 import json
 import os
+import shutil
+from datetime import datetime, timezone
 import tempfile
 from pathlib import Path
 
 from pymongo.errors import DuplicateKeyError
-
 from ads.mongo import get_db
-
 from .exporting import write_ndjson
 from .snapshot_intake import (
     PUBLIC_FIELDS,
@@ -305,3 +305,66 @@ def refresh_snapshot(source, contract_path, media_id="village-game"):
     return {"source": str(source), "contract": str(contract_path), "rows": len(rows),
             "source_sha256": inspected["sha256"], "media_id": media_id,
             "counts": counts, "preview": changes[:1]}
+
+
+def _read_handoff_context(media_id):
+    rows = list(get_db().player_context.find({"media_id": media_id}).sort("_id", 1))
+    fields = {"_id", "media_id", "subject_id", "version", "deleted", "context",
+              "source_kind", "change_id", "event_time"}
+    for row in rows:
+        if set(row) != fields or type(row["deleted"]) is not bool:
+            raise ValueError("저장 context의 공개 문서 계약이 다릅니다.")
+        change = {"schema_version": "player-context-change/v1",
+                  "op": "delete" if row["deleted"] else "upsert",
+                  **{name: row[name] for name in fields - {"_id", "deleted"}}}
+        if make_context_document(change) != row:
+            raise ValueError("저장 context의 대상 키와 내용이 다릅니다.")
+    return rows
+
+
+def export_context_handoff(source_path, checkpoint_path, output_dir, media_id="village-game"):
+    context_subject_key(media_id, "handoff")
+    source, checkpoint, target = Path(source_path), Path(checkpoint_path), Path(output_dir)
+    if target.exists():
+        raise ValueError("새 인계 폴더를 지정하세요.")
+    rows, checksum = _read_context_changes(source)
+    position = _read_context_checkpoint(checkpoint, checksum, len(rows))
+    if position != len(rows):
+        raise ValueError("동일 파일의 끝까지 반영한 checkpoint가 필요합니다.")
+    if any(row["source_kind"] != SOURCE_KIND or row["media_id"] != media_id for row in rows):
+        raise ValueError("지정 매체의 player-snapshot 입력만 인계합니다.")
+    state = {"schema_version": "context-checkpoint/v1",
+             "source_sha256": checksum, "next_line": position}
+    context = _read_handoff_context(media_id)
+    target.parent.mkdir(parents=True, exist_ok=True)
+    # 인계 파일을 모두 준비한 뒤에만 새 최종 폴더로 공개한다.
+    with tempfile.TemporaryDirectory(prefix=".handoff-", dir=target.parent) as folder:
+        staged = Path(folder) / "package"
+        staged.mkdir()
+        shutil.copyfile(source, staged / "player-context-changes.ndjson")
+        copied_hash = hashlib.sha256((staged / "player-context-changes.ndjson").read_bytes()).hexdigest()
+        if copied_hash != checksum:
+            raise ValueError("복사 중 정규화 입력이 바뀌었습니다.")
+        context_hash = write_ndjson(staged / "player-context.ndjson", context)
+        (staged / "checkpoint.json").write_text(json.dumps(state, sort_keys=True), encoding="utf-8")
+        manifest = {
+            "artifact_id": "MongoDB village_ads.player_context", "artifact_version": "v2",
+            "original_input_path": str(source),
+            "input_path": str(target / "player-context-changes.ndjson"), "input_sha256": checksum,
+            "input_schema_version": "player-context-change/v1", "source_kind": SOURCE_KIND,
+            "input_rows": len(rows), "media_id": media_id,
+            "checkpoint": state, "checkpoint_path": str(target / "checkpoint.json"),
+            "context_path": str(target / "player-context.ndjson"), "context_sha256": context_hash,
+            "context_rows": len(context),
+            "context_fields": ["_id", "media_id", "subject_id", "version", "deleted", "context",
+                               "source_kind", "change_id", "event_time"],
+            "context_source_kind_counts": {kind: sum(row["source_kind"] == kind for row in context)
+                                           for kind in (SOURCE_KIND, "teaching-fixture")},
+            "created_at": datetime.now(timezone.utc).isoformat(),
+            "binlog_cdc_status": "not-configured",
+            "context_route": "/api/ads/context/", "advertiser_report_route": "/advertiser/reports/",
+        }
+        (staged / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2),
+                                             encoding="utf-8")
+        staged.rename(target)
+    return manifest

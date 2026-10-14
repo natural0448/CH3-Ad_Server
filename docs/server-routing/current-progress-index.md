@@ -53,6 +53,24 @@
 | ads/management/commands/refresh_player_context.py | [문서](files/ads/management/commands/refresh_player_context.py.md) | 새 수신 입력을 공개 복사본 갱신 함수에 전달 |
 | ads/management/commands/inspect_decision_context.py | [문서](files/ads/management/commands/inspect_decision_context.py.md) | 선택 당시와 현재 공개 context 읽기 비교 |
 
+## 25일차 8교시 완료 · 2026-10-14
+
+교안 제공 _read_handoff_context·export_context_handoff와 export_context_handoff Command를 현재 ads/context_projection.py 및 기존 ads/management/commands 폴더에 적용했다. 세 코드 AST가 원문과 같고 기존13개 함수는 그대로다. 최신 56행 입력에 새 완료 기록을 만들어 counts.duplicate=56/applied=0, next_line=rows=56/done=true를 확인했다. 반복 실행과 실제 인계 사본 소비는 processed=0이었다. 인계 폴더 재사용·미완료 위치는 거절했고 기존 원본/5교시 기록/Mongo 공개 문서 SHA를 보존했다.
+
+기존 data 루트 아래 data/handoff/day25-run1에 정확한 네 파일을 작성했다. 현재 공개 복사본57행은 player-snapshot56+teaching-fixture1이며 입력 행 수와 같아야 하는 값이 아니다. 두 파일 지문과 manifest 최종 경로를 대조했다. 테스트25개와 Django check가 통과했다. Windows sandbox 임시 폴더 권한 실패 뒤 실제 사용자 환경의 격리 테스트로 검증했으며 서버 프로세스는 켜거나 끄지 않았다.
+
+[8교시 인수인계](../handoffs/2026-10-14-day25-period08-finish.md), [실제 실행 기록의 day25_period08](verification/2026-10-13-day25-period07-review/read-only-checks.json), [코드 대조](verification/2026-10-13-day25-period07-review/lesson-comparison.json)를 따른다.
+
+| 추가된 개발 파일·결과물 | 짝 문서 | 역할 |
+|---|---|---|
+| ads/management/commands/export_context_handoff.py | [문서](files/ads/management/commands/export_context_handoff.py.md) | 교안 관리명령 |
+| data/checkpoints/player-context-day25-after.json | [문서](files/data/checkpoints/player-context-day25-after.json.md) | 실제 8교시 결과물 |
+| data/checkpoints/player-context-day25-incomplete.json | [문서](files/data/checkpoints/player-context-day25-incomplete.json.md) | 실제 8교시 결과물 |
+| data/handoff/day25-run1/player-context-changes.ndjson | [문서](files/data/handoff/day25-run1/player-context-changes.ndjson.md) | 실제 8교시 결과물 |
+| data/handoff/day25-run1/checkpoint.json | [문서](files/data/handoff/day25-run1/checkpoint.json.md) | 실제 8교시 결과물 |
+| data/handoff/day25-run1/player-context.ndjson | [문서](files/data/handoff/day25-run1/player-context.ndjson.md) | 실제 8교시 결과물 |
+| data/handoff/day25-run1/manifest.json | [문서](files/data/handoff/day25-run1/manifest.json.md) | 실제 8교시 결과물 |
+
 ## Python 파일과 1:1 문서
 
 | 현재 소스 | 짝 문서 | 책임/상태 |
@@ -163,3 +181,20 @@
 이번 범위의 스킬 AST API 검사 결과는 [최종 구조 검사](verification/day24-routing-sync/agent-routing-final.json), [문서 경로 검사](verification/day24-routing-sync/agent-document-checks.json), [snapshot 파일 경계의 앞선 관찰](verification/day24-routing-sync/agent-snapshot-boundary.json), [인수인계](../handoffs/2026-10-08-ad-routing-progress-sync.md)를 따른다. 새 사용자 소스를 포함한 전체 Git 추적/미추적 Python 57파일·153심볼을 이 색인과 짝 문서에 대조했다. 표준 CLI는 기존 라우팅 README를 필수로 요구하는 제한으로 종료 코드 2이며 그 사실을 별도 결과에 보존한다. API 성공은 짝 문서/구조의 일치이며 문제틀의 기능 검사 통과를 뜻하지 않는다. API 성공을 CLI 성공으로 기록하지 않는다.
 
 이전 작업의 [23일차 6교시 색인](day23-period06-index.md), [24일차 1교시 색인](day24-period01-index.md), [보고서 UI 인수인계](../handoffs/2026-10-08-day23-period06-report-template.md), [snapshot 검토 인수인계](../handoffs/2026-10-08-day24-period01-review.md), [출력 경로 정정 인수인계](../handoffs/2026-10-08-day24-data-path-correction.md)는 당시 근거다. 과거 실패/검토/제안을 현재 구현 상태로 바꾸지 않고 원래 기록을 보존한다.
+
+
+## 26일차 1·2교시 완료 · 2026-10-14
+
+사용자가 먼저 작성한 lake_files.py stable_json/build_history를 문서로 맞춘 뒤, history 오류문자열을 교안대로 보정하고 current 함수를 추가했다. 두 함수/JSON helper와 inspect_player_lake·demo_player_lake 두 명령이 제공 완성코드 AST와 같다. 인계 source/manifest/checkpoint와SHA를같이검사하고 결과목록을 메모리에서만 계산한다. 3교시의 Lake저장 함수/출력폴더는 아직 구현하지 않았다.
+
+실제 25일차 인계56행에서 history56/current56, 반복112행/역순에도 단계별목록SHA가 같다. history 첫대상3/version1과 current 첫대상1/version461은 서로다른정렬기준에 따른 결과다. fixture최신4/coins40, 삭제4유지, 내용SHA·동일version충돌거절, 빈목록을 확인했다. 실제 명령의 get_db호출0·writtenFalse·원본/인계/기록bytes보존을 확인했으며 관련33개 검사와Django check가통과했다.
+
+[1·2교시 인수인계](../handoffs/2026-10-14-day26-period01-02-finish.md), [시작/교안/실행/마감증거](verification/day26-period01-02.json)를 따른다. 기존25일차 미커밋 변경은 보존했다. 초급코드는 새examples 폴더 대신 기존tools/basics 위치에저장했고 코드내용/출력은같다.
+
+| 현재 개발파일 | 짝 문서 | 책임 |
+|---|---|---|
+| ads/lake_files.py | [문서](files/ads/lake_files.py.md) | 검증·중복제거·최신후보 메모리계산 |
+| ads/management/commands/inspect_player_lake.py | [문서](files/ads/management/commands/inspect_player_lake.py.md) | 같은인계검사·history/current 미리보기 |
+| ads/management/commands/demo_player_lake.py | [문서](files/ads/management/commands/demo_player_lake.py.md) | DB없는fixture관찰 |
+| tools/basics/day26_period01.py | [문서](files/tools/basics/day26_period01.py.md) | 1교시두초급예제 |
+| tools/basics/day26_period02.py | [문서](files/tools/basics/day26_period02.py.md) | 2교시두초급예제 |

@@ -1,11 +1,15 @@
 """Real isolated MongoDB event uniqueness, snapshot and media-auth tests."""
 import json
+import hashlib
+import copy
 import os
+import tempfile
 import uuid
+from pathlib import Path
 from io import StringIO
 from concurrent.futures import ThreadPoolExecutor
 from unittest import skipUnless
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from django.core.management import call_command
 from django.contrib.auth import get_user_model
@@ -17,6 +21,13 @@ from pymongo.errors import PyMongoError
 from ads import views
 from ads.events import record_ad_event
 from ads.services import choose_ad
+from ads.context_projection import (
+    _read_handoff_context, _save_context_checkpoint, export_context_handoff,
+    make_context_document, normalize_snapshot, project_context_file,
+)
+from ads.exporting import write_ndjson
+from ads.lake_files import build_current, build_history, stable_json
+from ads.management.commands.demo_player_lake import fixture_change
 
 
 @override_settings(MEDIA_KEYS={"village-game": "test-event-key"})
@@ -264,3 +275,239 @@ class ContextApiTests(SimpleTestCase):
             response = self.post_context()
         self.assertEqual(response.status_code, 503)
         self.assertEqual(response.json(), {"error": "ads_unavailable"})
+
+
+class ContextHandoffTests(SimpleTestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.folder = Path(temporary.name)
+        self.source = self.folder / "input.ndjson"
+        self.checkpoint = self.folder / "checkpoint.json"
+        self.target = self.folder / "bundle"
+        self.public_rows = [
+            {"schema_version": "player-snapshot/v1", "source_kind": "player-snapshot",
+             "captured_at": "2026-10-14T00:00:00+00:00", "id": player_id,
+             "room_id": "room-01", "coins": 26, "version": 461,
+             "updated_at": "2026-10-13T06:36:55+00:00"}
+            for player_id in (1, 2)
+        ]
+        self.changes = [normalize_snapshot(row) for row in self.public_rows]
+        self.checksum = write_ndjson(self.source, self.changes)
+        self.state = _save_context_checkpoint(self.checkpoint, self.checksum, len(self.changes))
+        self.fixture = {"schema_version": "player-context-change/v1",
+                        "source_kind": "teaching-fixture", "media_id": "village-game",
+                        "subject_id": "fixture-handoff", "op": "delete", "version": 3,
+                        "event_time": "2026-10-14T00:00:00+00:00", "context": {}}
+        canonical = json.dumps(self.fixture, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        self.fixture["change_id"] = hashlib.sha256(canonical.encode()).hexdigest()
+        self.documents = [make_context_document(row) for row in self.changes + [self.fixture]]
+        self.database = Mock()
+        self.database.player_context.find.return_value.sort.return_value = self.documents
+
+    def test_four_files_preserve_input_and_replay_has_no_writes(self):
+        original_source, original_checkpoint = self.source.read_bytes(), self.checkpoint.read_bytes()
+        with patch("ads.context_projection.get_db", return_value=self.database):
+            manifest = export_context_handoff(self.source, self.checkpoint, self.target)
+        self.assertEqual({p.name for p in self.target.iterdir()}, {
+            "player-context-changes.ndjson", "checkpoint.json", "player-context.ndjson", "manifest.json"})
+        self.assertEqual(self.source.read_bytes(), original_source)
+        self.assertEqual(self.checkpoint.read_bytes(), original_checkpoint)
+        self.assertEqual(Path(manifest["input_path"]).read_bytes(), original_source)
+        self.assertEqual(manifest["input_sha256"], self.checksum)
+        self.assertEqual(manifest["context_sha256"], hashlib.sha256(
+            Path(manifest["context_path"]).read_bytes()).hexdigest())
+        self.assertEqual(json.loads((self.target / "manifest.json").read_text()), manifest)
+        self.assertEqual(manifest["input_rows"], 2)
+        self.assertEqual(manifest["context_rows"], 3)
+        self.assertEqual(manifest["context_source_kind_counts"], {
+            "player-snapshot": 2, "teaching-fixture": 1})
+        self.database.player_context.find.assert_called_once_with({"media_id": "village-game"})
+        with patch("ads.context_projection.apply_context") as apply:
+            replay = project_context_file(manifest["input_path"], manifest["checkpoint_path"])
+        self.assertEqual(replay["processed"], 0)
+        self.assertTrue(replay["done"])
+        apply.assert_not_called()
+
+    def test_existing_destination_is_not_overwritten(self):
+        self.target.mkdir()
+        sentinel = self.target / "existing.txt"
+        sentinel.write_text("keep")
+        with patch("ads.context_projection.get_db") as database, self.assertRaisesRegex(ValueError, "새 인계"):
+            export_context_handoff(self.source, self.checkpoint, self.target)
+        database.assert_not_called()
+        self.assertEqual(sentinel.read_text(), "keep")
+        self.assertEqual(list(self.target.iterdir()), [sentinel])
+
+    def test_wrong_or_incomplete_checkpoint_never_creates_output(self):
+        for state in ({**self.state, "next_line": 1},
+                      {**self.state, "source_sha256": "0" * 64},
+                      {**self.state, "next_line": True}):
+            self.checkpoint.write_text(json.dumps(state))
+            with self.subTest(state=state), patch("ads.context_projection.get_db") as database:
+                with self.assertRaises(ValueError):
+                    export_context_handoff(self.source, self.checkpoint, self.target)
+                database.assert_not_called()
+                self.assertFalse(self.target.exists())
+
+    def test_only_selected_media_player_snapshot_input_is_exported(self):
+        other = normalize_snapshot(self.public_rows[0], media_id="other-media")
+        for changes in ([other], [self.fixture]):
+            checksum = write_ndjson(self.source, changes)
+            _save_context_checkpoint(self.checkpoint, checksum, len(changes))
+            with self.subTest(changes=changes), patch("ads.context_projection.get_db") as database:
+                with self.assertRaisesRegex(ValueError, "지정 매체"):
+                    export_context_handoff(self.source, self.checkpoint, self.target)
+                database.assert_not_called()
+                self.assertFalse(self.target.exists())
+
+    def test_public_document_key_type_and_digest_are_checked(self):
+        original = self.documents[0]
+        for row in ({**original, "_id": "wrong"}, {**original, "deleted": 1},
+                    {**original, "change_id": "0" * 64}, {**original, "private": "excluded"}):
+            self.database.player_context.find.return_value.sort.return_value = [row]
+            with self.subTest(row=row), patch("ads.context_projection.get_db", return_value=self.database):
+                with self.assertRaises(ValueError):
+                    _read_handoff_context("village-game")
+
+    def test_changed_copy_is_rejected_without_publishing_partial_bundle(self):
+        def changed_copy(source, destination):
+            Path(destination).write_bytes(b"changed\n")
+        before = self.source.read_bytes(), self.checkpoint.read_bytes()
+        with patch("ads.context_projection.get_db", return_value=self.database), \
+                patch("ads.context_projection.shutil.copyfile", side_effect=changed_copy):
+            with self.assertRaisesRegex(ValueError, "복사 중"):
+                export_context_handoff(self.source, self.checkpoint, self.target)
+        self.assertFalse(self.target.exists())
+        self.assertEqual(before, (self.source.read_bytes(), self.checkpoint.read_bytes()))
+        self.assertFalse(list(self.folder.glob(".handoff-*")))
+
+    def test_command_exports_and_reports_existing_target_as_command_error(self):
+        output = StringIO()
+        with patch("ads.context_projection.get_db", return_value=self.database):
+            call_command("export_context_handoff", source=str(self.source), checkpoint=str(self.checkpoint),
+                         output_dir=str(self.target), media_id="village-game", stdout=output)
+        self.assertEqual(json.loads(output.getvalue())["checkpoint"]["next_line"], 2)
+        from django.core.management.base import CommandError
+        with self.assertRaises(CommandError):
+            call_command("export_context_handoff", source=str(self.source), checkpoint=str(self.checkpoint),
+                         output_dir=str(self.target), media_id="village-game", stdout=StringIO())
+
+
+class PlayerLakeTests(SimpleTestCase):
+    def test_history_repeated_reversed_and_equal_time_rows_are_deterministic(self):
+        rows = [fixture_change(4, 40), fixture_change(1), fixture_change(2, 20), fixture_change(2, 21)]
+        before = copy.deepcopy(rows)
+        history = build_history(rows)
+        self.assertEqual(len(history), 4)
+        self.assertEqual(history, build_history(list(reversed(rows)) * 2))
+        self.assertEqual([row["version"] for row in history], [1, 2, 2, 4])
+        self.assertEqual([row["change_id"] for row in history[1:3]],
+                         sorted(row["change_id"] for row in history[1:3]))
+        self.assertEqual(rows, before)
+        self.assertEqual(stable_json({"b": "숲", "a": 1}), stable_json({"a": 1, "b": "숲"}))
+
+    def test_schema_and_content_hash_are_validated_before_results(self):
+        original = fixture_change(1)
+        wrong_schema = {**original, "schema_version": "ad-event/v1"}
+        wrong_hash = fixture_change(1, 99)
+        wrong_hash["change_id"] = original["change_id"]
+        for row in (wrong_schema, wrong_hash):
+            with self.subTest(row=row), self.assertRaises(ValueError):
+                build_history([original, row])
+
+    def test_current_chooses_highest_version_and_preserves_input(self):
+        rows = [fixture_change(1), fixture_change(4, 40), fixture_change(2, 20)]
+        before = copy.deepcopy(rows)
+        current = build_current(rows)
+        self.assertEqual(len(current), 1)
+        self.assertEqual(current[0]["schema_version"], "player-current/v1")
+        self.assertEqual(len(current[0]), 10)
+        self.assertEqual(current[0]["_id"], "village-game:fixture-lake")
+        self.assertEqual(current[0]["version"], 4)
+        self.assertEqual(current[0]["context"]["coins"], 40)
+        self.assertEqual(current, build_current(list(reversed(rows)) * 2))
+        self.assertEqual(rows, before)
+
+    def test_latest_tombstone_cannot_be_revived_by_old_upsert(self):
+        current = build_current([fixture_change(4, op="delete"), fixture_change(2, 20)])
+        self.assertEqual(current[0]["version"], 4)
+        self.assertTrue(current[0]["deleted"])
+        self.assertEqual(current[0]["context"], {})
+
+    def test_same_version_conflict_and_next_call_are_isolated(self):
+        with self.assertRaisesRegex(ValueError, "same subject/version"):
+            build_current([fixture_change(4, 40), fixture_change(4, 99)])
+        self.assertEqual(build_current([fixture_change(4, 40)])[0]["context"]["coins"], 40)
+        self.assertEqual(build_history([]), [])
+        self.assertEqual(build_current([]), [])
+
+    def test_media_are_distinct_and_provenance_ties_are_stable(self):
+        first = fixture_change(4, op="delete")
+        other = copy.deepcopy(first)
+        other["media_id"] = "other-media"
+        body = {key: value for key, value in other.items() if key != "change_id"}
+        other["change_id"] = hashlib.sha256(stable_json(body).encode()).hexdigest()
+        current = build_current([first, other])
+        self.assertEqual([row["_id"] for row in current],
+                         ["other-media:fixture-lake", "village-game:fixture-lake"])
+        later = copy.deepcopy(first)
+        later["event_time"] = "2026-10-14T00:01:04+00:00"
+        body = {key: value for key, value in later.items() if key != "change_id"}
+        later["change_id"] = hashlib.sha256(stable_json(body).encode()).hexdigest()
+        self.assertEqual(build_current([first, later]), build_current([later, first]))
+        self.assertEqual(build_current([first, later])[0]["change_id"],
+                         min(first["change_id"], later["change_id"]))
+
+    def test_preview_command_checks_manifest_checkpoint_and_preserves_files(self):
+        from django.core.management.base import CommandError
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source, checkpoint, manifest_path = root / "input.ndjson", root / "checkpoint.json", root / "manifest.json"
+            row = normalize_snapshot({"schema_version": "player-snapshot/v1", "source_kind": "player-snapshot",
+                                      "captured_at": "2026-10-14T00:00:00+00:00", "id": 1,
+                                      "room_id": "room-01", "coins": 26, "version": 461,
+                                      "updated_at": "2026-10-13T06:36:55+00:00"})
+            checksum = write_ndjson(source, [row])
+            _save_context_checkpoint(checkpoint, checksum, 1)
+            manifest = {"input_sha256": checksum, "input_rows": 1,
+                        "input_schema_version": "player-context-change/v1", "source_kind": "player-snapshot",
+                        "media_id": "village-game", "checkpoint_path": str(checkpoint)}
+            manifest_path.write_text(json.dumps(manifest))
+            before = [path.read_bytes() for path in (source, checkpoint, manifest_path)]
+            output = StringIO()
+            with patch("ads.context_projection.get_db") as database:
+                call_command("inspect_player_lake", source=str(source), manifest=str(manifest_path),
+                             stage="current", repeat=2, reverse=True, stdout=output)
+                database.assert_not_called()
+            result = json.loads(output.getvalue())
+            self.assertEqual([result[key] for key in ("input_rows", "supplied_rows", "history_rows", "result_rows")],
+                             [1, 2, 1, 1])
+            self.assertFalse(result["written"])
+            self.assertEqual(before, [path.read_bytes() for path in (source, checkpoint, manifest_path)])
+            _save_context_checkpoint(checkpoint, checksum, 0)
+            with self.assertRaisesRegex(CommandError, "완료되지"):
+                call_command("inspect_player_lake", source=str(source), manifest=str(manifest_path), stdout=StringIO())
+            _save_context_checkpoint(checkpoint, checksum, 1)
+            manifest["input_sha256"] = "0" * 64
+            manifest_path.write_text(json.dumps(manifest))
+            with self.assertRaisesRegex(CommandError, "manifest"):
+                call_command("inspect_player_lake", source=str(source), manifest=str(manifest_path), stdout=StringIO())
+
+    def test_demo_observes_duplicates_delete_conflict_and_empty_without_db(self):
+        from django.core.management.base import CommandError
+        for case, expected_history, expected_current in (("duplicates", 2, 0), ("versions", 3, 1),
+                                                        ("delete", 2, 1), ("empty", 0, 0)):
+            output = StringIO()
+            with self.subTest(case=case), patch("ads.context_projection.get_db") as database:
+                call_command("demo_player_lake", case=case, stdout=output)
+                database.assert_not_called()
+            result = json.loads(output.getvalue())
+            self.assertEqual((result["history_rows"], result["current_rows"]), (expected_history, expected_current))
+            self.assertFalse(result["written"])
+            self.assertFalse(result["database_changed"])
+        for case in ("invalid-schema", "change-id-conflict", "version-conflict"):
+            output = StringIO()
+            with self.subTest(case=case), self.assertRaises(CommandError):
+                call_command("demo_player_lake", case=case, stdout=output)
+            self.assertEqual(output.getvalue(), "")

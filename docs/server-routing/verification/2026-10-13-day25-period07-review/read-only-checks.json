@@ -187,5 +187,209 @@
     "counts_unchanged": true,
     "server_processes_mutated": false,
     "probe": "Django Client with allowed localhost Host and real MongoDB; no new ad decisions"
+  },
+  "day25_period08": {
+    "date": "2026-10-14",
+    "source": "data/exports/player-context-changes-day25-after.ndjson",
+    "input_rows": 56,
+    "input_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+    "database": "village_ads",
+    "mongo_ping": 1.0,
+    "mongo_context_before_sha256": "55762fbfc87d8111a336362ec9cc2fc48a4214b4f0dadce78f07b2fdee8c293d",
+    "steps": [
+      {
+        "step": "inspect_latest_input",
+        "input_rows": 56,
+        "context_rows": 57,
+        "first_version": 461
+      },
+      {
+        "step": "complete_new_input",
+        "processed": 56,
+        "applied": 0,
+        "skipped": 56,
+        "counts": {
+          "applied": 0,
+          "duplicate": 56,
+          "stale": 0
+        },
+        "start_line": 0,
+        "next_line": 56,
+        "rows": 56,
+        "done": true,
+        "source_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+        "checkpoint_path": "data\\checkpoints\\player-context-day25-after.json",
+        "checkpoint_state": {
+          "schema_version": "context-checkpoint/v1",
+          "source_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+          "next_line": 56
+        }
+      },
+      {
+        "step": "repeat_completion",
+        "processed": 0,
+        "applied": 0,
+        "skipped": 0,
+        "counts": {
+          "applied": 0,
+          "duplicate": 0,
+          "stale": 0
+        },
+        "start_line": 56,
+        "next_line": 56,
+        "rows": 56,
+        "done": true,
+        "source_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+        "checkpoint_path": "data\\checkpoints\\player-context-day25-after.json",
+        "checkpoint_state": {
+          "schema_version": "context-checkpoint/v1",
+          "source_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+          "next_line": 56
+        }
+      },
+      {
+        "step": "handoff_four_files",
+        "input_rows": 56,
+        "context_rows": 57,
+        "counts": {
+          "player-snapshot": 56,
+          "teaching-fixture": 1
+        }
+      },
+      {
+        "step": "existing_target_rejected",
+        "error": "새 인계 폴더를 지정하세요.",
+        "files_unchanged": true
+      },
+      {
+        "step": "consume_handoff_copy",
+        "processed": 0,
+        "applied": 0,
+        "skipped": 0,
+        "counts": {
+          "applied": 0,
+          "duplicate": 0,
+          "stale": 0
+        },
+        "start_line": 56,
+        "next_line": 56,
+        "rows": 56,
+        "done": true,
+        "source_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+        "checkpoint_path": "data\\handoff\\day25-run1\\checkpoint.json",
+        "checkpoint_state": {
+          "schema_version": "context-checkpoint/v1",
+          "source_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+          "next_line": 56
+        }
+      },
+      {
+        "step": "one_row_incomplete_marker",
+        "processed": 1,
+        "applied": 0,
+        "skipped": 1,
+        "counts": {
+          "applied": 0,
+          "duplicate": 1,
+          "stale": 0
+        },
+        "start_line": 0,
+        "next_line": 1,
+        "rows": 56,
+        "done": false,
+        "source_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+        "checkpoint_path": "data\\checkpoints\\player-context-day25-incomplete.json",
+        "checkpoint_state": {
+          "schema_version": "context-checkpoint/v1",
+          "source_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+          "next_line": 1
+        }
+      },
+      {
+        "step": "incomplete_marker_rejected",
+        "error": "동일 파일의 끝까지 반영한 checkpoint가 필요합니다.",
+        "target_not_created": true
+      },
+      {
+        "step": "final_completion_preserved",
+        "processed": 0,
+        "applied": 0,
+        "skipped": 0,
+        "counts": {
+          "applied": 0,
+          "duplicate": 0,
+          "stale": 0
+        },
+        "start_line": 56,
+        "next_line": 56,
+        "rows": 56,
+        "done": true,
+        "source_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+        "checkpoint_path": "data\\checkpoints\\player-context-day25-after.json",
+        "checkpoint_state": {
+          "schema_version": "context-checkpoint/v1",
+          "source_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+          "next_line": 56
+        }
+      }
+    ],
+    "manifest": {
+      "artifact_id": "MongoDB village_ads.player_context",
+      "artifact_version": "v2",
+      "original_input_path": "data\\exports\\player-context-changes-day25-after.ndjson",
+      "input_path": "data\\handoff\\day25-run1\\player-context-changes.ndjson",
+      "input_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+      "input_schema_version": "player-context-change/v1",
+      "source_kind": "player-snapshot",
+      "input_rows": 56,
+      "media_id": "village-game",
+      "checkpoint": {
+        "schema_version": "context-checkpoint/v1",
+        "source_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+        "next_line": 56
+      },
+      "checkpoint_path": "data\\handoff\\day25-run1\\checkpoint.json",
+      "context_path": "data\\handoff\\day25-run1\\player-context.ndjson",
+      "context_sha256": "4b781d243ffd3331a5e446c821a8699e4d8524be6a3b740937fd278cabcd2ffc",
+      "context_rows": 57,
+      "context_fields": [
+        "_id",
+        "media_id",
+        "subject_id",
+        "version",
+        "deleted",
+        "context",
+        "source_kind",
+        "change_id",
+        "event_time"
+      ],
+      "context_source_kind_counts": {
+        "player-snapshot": 56,
+        "teaching-fixture": 1
+      },
+      "created_at": "2026-10-14T00:44:14.417895+00:00",
+      "binlog_cdc_status": "not-configured",
+      "context_route": "/api/ads/context/",
+      "advertiser_report_route": "/advertiser/reports/"
+    },
+    "package_sha256": {
+      "data\\handoff\\day25-run1\\checkpoint.json": "1d7ddcbaf3924f16743276fab86afd014dacdef3781d6bcfa7556f2e9e167f90",
+      "data\\handoff\\day25-run1\\manifest.json": "b8ebc03e50748be6b390fb3a36f0b3870b323d8b882dbec833081a1095731bd3",
+      "data\\handoff\\day25-run1\\player-context-changes.ndjson": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+      "data\\handoff\\day25-run1\\player-context.ndjson": "4b781d243ffd3331a5e446c821a8699e4d8524be6a3b740937fd278cabcd2ffc"
+    },
+    "mongo_context_after_sha256": "55762fbfc87d8111a336362ec9cc2fc48a4214b4f0dadce78f07b2fdee8c293d",
+    "mongo_public_documents_unchanged": true,
+    "protected_data_unchanged": {
+      "data/exports/player-context-changes.ndjson": true,
+      "data/exports/player-context-changes-day25-after.ndjson": true,
+      "data/checkpoints/player-context.json": true,
+      "data/checkpoints/player-context-replay.json": true,
+      "data/exports/day24-input/player-cdc.ndjson": true,
+      "data/exports/day25-refresh-input/player-cdc.ndjson": true
+    },
+    "manifest_input_copy_sha256_valid": true,
+    "manifest_context_file_sha256_valid": true,
+    "handoff_contains_exactly_four_files": true
   }
 }

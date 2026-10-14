@@ -14,5 +14,10 @@
     "exit": 2,
     "stdout": "",
     "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe"
+  },
+  "day25_period08": {
+    "exit": 2,
+    "stdout": "",
+    "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n{\n  \"schema_version\": 1,\n  \"error\": \"routing directory is incomplete: C:\\\\MLO01-01\\\\Chapter3\\\\ad_server\\\\docs\\\\server-routing\",\n  \"summary\": {\n    \"ok\": false\n  }\n}\n"
   }
 }

@@ -1,6 +1,6 @@
 # ads/context_projection.py
 
-2026-10-13 사용자 저장본을 설명한다. 공개 snapshot과 수신 계약을 검증하고 정규화 변경을 `player_context`에 반영한다. HTTP 인증·게임 ORM·광고 선택을 맡지 않는다. 아래 13개 함수는 25일차 1~6교시 제공 완성 코드와 AST가 같다. 실제 HTTP 연결 완료 여부는 별도다.
+2026-10-13 사용자 저장본을 설명한다. 공개 snapshot과 수신 계약을 검증하고 정규화 변경을 `player_context`에 반영한다. HTTP 인증·게임 ORM·광고 선택을 맡지 않는다. 기존 13개 함수는 25일차 1~6교시 제공 완성 코드와 AST가 같고 보존했다. 2026-10-14 추가한 두 인계 함수도 8교시 제공 완성 코드와 AST가 같다. 실제 HTTP 연결 완료 여부는 별도다.
 
 ## 값과 책임 경계
 
@@ -59,3 +59,16 @@ source_path는 변경 NDJSON 경로다. checkpoint_path 기본 None은 기록 �
 ## refresh_snapshot(source, contract_path, media_id='village-game')
 
 source와 contract_path는 새로운 동결 수신 파일 쌍이다. media_id는 기본 village-game, context_subject_key의 매체 계약을 만족해야 한다. 반환은 source/contract/rows/source_sha256/media_id/counts/preview 요약이다. 의사코드: 매체 검사 → read_snapshot_package → 모든 normalize_snapshot 선변환 → 각각 apply_context와 상태 집계 → 요약. 직접 호출은 세 helper와 context_subject_key다. 파일 출력이나 checkpoint를 만들지 않고 5교시 기존 기록을 재사용하지 않는다. 전체 선변환 뒤에 Mongo 쓰기를 시작하되 HTTP·전체 파일 단일 트랜잭션은 제공하지 않는다.
+
+
+## _read_handoff_context(media_id)
+
+media_id는 기본값 없는 지정 매체 식별자다. 반환은 해당 매체의 공개 저장 문서 list다. 의사코드: get_db().player_context.find(media_id).sort(_id,1) → 각 문서가 정확한 아홉 필드·deleted bool인지 검사 → 삭제 표시에서 op 복원 → make_context_document로 키·출처·공개 상태·change_id 재대조 → 반환. 직접 호출은 get_db, collection.find/sort, make_context_document다. 잘못된 문서는 ValueError, 저장소 오류는 PyMongoError로 전파한다. 문서와 DB를 변경하지 않고 다른 매체는 query에서 제외한다. fixture는 source_kind로 구별한다.
+
+## export_context_handoff(source_path, checkpoint_path, output_dir, media_id='village-game')
+
+source_path는 최신 정규화 NDJSON, checkpoint_path는 같은 SHA의 완료 JSON, output_dir는 기존에 없는 인계 폴더 문자열/Path 호환 경로다. 세 인수는 기본값 없다. media_id 기본 village-game이며 context_subject_key가 받는 콜론 없는 비어 있지 않은 문자열이다. 반환은 manifest 사전이다. 같은 출력 경로, 다른 SHA/미완료 위치, 다른 매체/fixture 입력, 잘못된 공개 문서, 복사 중 입력 변경은 거절한다.
+
+의사코드: 매체·새 출력 검사 → _read_context_changes → _read_context_checkpoint와 next_line=rows → 지정 매체의 player-snapshot 입력 검사 → _read_handoff_context → 같은 부모 임시 package → 원본 bytes copy와 SHA 대조 → 공개 복사본 NDJSON과 별도 SHA → checkpoint/manifest JSON → staged.rename(target) → manifest 반환. 직접 호출은 context_subject_key, _read_context_changes, _read_context_checkpoint, _read_handoff_context, Path, tempfile.TemporaryDirectory, shutil.copyfile, hashlib.sha256, write_ndjson, json.dumps, datetime.now(timezone.utc), Path.rename다. write_ndjson은 쓴 파일 SHA를 반환하고 rename은 완성된 새 폴더를 공개한다. 원본·기존 기록·기존 인계·Mongo 문서를 쓰지 않는다.
+
+manifest의 artifact_id는 MongoDB village_ads.player_context, artifact_version은 v2, input_schema_version은 player-context-change/v1, source_kind는 player-snapshot, binlog_cdc_status는 not-configured다. input_path/checkpoint_path/context_path는 최종 폴더의 세 파일을 가리키며 original_input_path는 소비한 원문이다. 입력 SHA와 context SHA는 서로 다른 파일 지문이다. context_fields는 아홉 저장 필드이며 context_source_kind_counts는 player-snapshot/teaching-fixture 건수를 구별한다. created_at은 함수가 만든 aware UTC 시각, context_route는 /api/ads/context/, advertiser_report_route는 /advertiser/reports/다. 단일 작성자·동결 입력 모델이며 여러 Mongo 문서를 동일 시점 트랜잭션으로 읽는다고 주장하지 않는다.

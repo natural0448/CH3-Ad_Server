@@ -180,5 +180,29 @@
     "name": "ad_context",
     "lesson_block": 145,
     "ast_equal": true
+  },
+  {
+    "phase": "2026-10-14-day25-period08",
+    "reference": [
+      {
+        "source": "ads/context_projection.py",
+        "name": "_read_handoff_context",
+        "block": 170,
+        "ast_equal": true
+      },
+      {
+        "source": "ads/context_projection.py",
+        "name": "export_context_handoff",
+        "block": 175,
+        "ast_equal": true
+      },
+      {
+        "source": "ads/management/commands/export_context_handoff.py",
+        "block": 176,
+        "ast_equal": true
+      }
+    ],
+    "prior_functions_preserved": true,
+    "prior_function_count": 13
   }
 ]

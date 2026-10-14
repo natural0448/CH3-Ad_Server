@@ -10,7 +10,7 @@
       {
         "kind": "function",
         "qualified_name": "read_snapshot_package",
-        "line": 24,
+        "line": 26,
         "signature": "read_snapshot_package(source, contract_path)",
         "signature_core": "read_snapshot_package(source, contract_path)",
         "return_annotation": null,
@@ -21,7 +21,7 @@
       {
         "kind": "function",
         "qualified_name": "normalize_snapshot",
-        "line": 59,
+        "line": 61,
         "signature": "normalize_snapshot(row, media_id='village-game')",
         "signature_core": "normalize_snapshot(row, media_id='village-game')",
         "return_annotation": null,
@@ -32,7 +32,7 @@
       {
         "kind": "function",
         "qualified_name": "normalize_snapshot_file",
-        "line": 84,
+        "line": 86,
         "signature": "normalize_snapshot_file(source, contract_path, output, media_id='village-game')",
         "signature_core": "normalize_snapshot_file(source, contract_path, output, media_id='village-game')",
         "return_annotation": null,
@@ -43,7 +43,7 @@
       {
         "kind": "function",
         "qualified_name": "context_subject_key",
-        "line": 108,
+        "line": 110,
         "signature": "context_subject_key(media_id, subject_id)",
         "signature_core": "context_subject_key(media_id, subject_id)",
         "return_annotation": null,
@@ -54,7 +54,7 @@
       {
         "kind": "function",
         "qualified_name": "_check_context_change",
-        "line": 116,
+        "line": 118,
         "signature": "_check_context_change(change)",
         "signature_core": "_check_context_change(change)",
         "return_annotation": null,
@@ -65,7 +65,7 @@
       {
         "kind": "function",
         "qualified_name": "make_context_document",
-        "line": 168,
+        "line": 170,
         "signature": "make_context_document(change)",
         "signature_core": "make_context_document(change)",
         "return_annotation": null,
@@ -76,7 +76,7 @@
       {
         "kind": "function",
         "qualified_name": "apply_context",
-        "line": 179,
+        "line": 181,
         "signature": "apply_context(change)",
         "signature_core": "apply_context(change)",
         "return_annotation": null,
@@ -87,7 +87,7 @@
       {
         "kind": "function",
         "qualified_name": "get_context",
-        "line": 203,
+        "line": 205,
         "signature": "get_context(media_id, subject_id)",
         "signature_core": "get_context(media_id, subject_id)",
         "return_annotation": null,
@@ -98,7 +98,7 @@
       {
         "kind": "function",
         "qualified_name": "_read_context_changes",
-        "line": 209,
+        "line": 211,
         "signature": "_read_context_changes(source)",
         "signature_core": "_read_context_changes(source)",
         "return_annotation": null,
@@ -109,7 +109,7 @@
       {
         "kind": "function",
         "qualified_name": "_read_context_checkpoint",
-        "line": 222,
+        "line": 224,
         "signature": "_read_context_checkpoint(checkpoint, checksum, row_count)",
         "signature_core": "_read_context_checkpoint(checkpoint, checksum, row_count)",
         "return_annotation": null,
@@ -120,7 +120,7 @@
       {
         "kind": "function",
         "qualified_name": "_save_context_checkpoint",
-        "line": 241,
+        "line": 243,
         "signature": "_save_context_checkpoint(checkpoint, checksum, position)",
         "signature_core": "_save_context_checkpoint(checkpoint, checksum, position)",
         "return_annotation": null,
@@ -131,7 +131,7 @@
       {
         "kind": "function",
         "qualified_name": "project_context_file",
-        "line": 254,
+        "line": 256,
         "signature": "project_context_file(source_path, checkpoint_path=None, limit=None)",
         "signature_core": "project_context_file(source_path, checkpoint_path=None, limit=None)",
         "return_annotation": null,
@@ -142,30 +142,20 @@
       {
         "kind": "function",
         "qualified_name": "refresh_snapshot",
-        "line": 295,
+        "line": 297,
         "signature": "refresh_snapshot(source, contract_path, media_id='village-game')",
         "signature_core": "refresh_snapshot(source, contract_path, media_id='village-game')",
         "return_annotation": null,
         "decorators": [],
         "bases": [],
         "documented": true
-      }
-    ]
-  },
-  {
-    "source": "ads/snapshot_intake.py",
-    "document": "docs/server-routing/files/ads/snapshot_intake.py.md",
-    "document_exists": true,
-    "indexed": true,
-    "parse_error": null,
-    "missing_signatures": [],
-    "symbols": [
+      },
       {
         "kind": "function",
-        "qualified_name": "_read_snapshot",
-        "line": 20,
-        "signature": "_read_snapshot(path)",
-        "signature_core": "_read_snapshot(path)",
+        "qualified_name": "_read_handoff_context",
+        "line": 312,
+        "signature": "_read_handoff_context(media_id)",
+        "signature_core": "_read_handoff_context(media_id)",
         "return_annotation": null,
         "decorators": [],
         "bases": [],
@@ -173,98 +163,10 @@
       },
       {
         "kind": "function",
-        "qualified_name": "_check_public_state",
-        "line": 34,
-        "signature": "_check_public_state(row)",
-        "signature_core": "_check_public_state(row)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "inspect_snapshot",
-        "line": 49,
-        "signature": "inspect_snapshot(path)",
-        "signature_core": "inspect_snapshot(path)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "readiness",
-        "line": 74,
-        "signature": "readiness(mysql_config=None, connect_home=None, debezium_dir=None)",
-        "signature_core": "readiness(mysql_config=None, connect_home=None, debezium_dir=None)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "change_player",
-        "line": 88,
-        "signature": "change_player(event)",
-        "signature_core": "change_player(event)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "build_snapshot_contract",
-        "line": 125,
-        "signature": "build_snapshot_contract(source)",
-        "signature_core": "build_snapshot_contract(source)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "load_rows",
-        "line": 136,
-        "signature": "load_rows(path)",
-        "signature_core": "load_rows(path)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "compare",
-        "line": 141,
-        "signature": "compare(before, after)",
-        "signature_core": "compare(before, after)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "missing_summary",
-        "line": 155,
-        "signature": "missing_summary(before, after)",
-        "signature_core": "missing_summary(before, after)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "handoff_snapshot",
-        "line": 163,
-        "signature": "handoff_snapshot(source, contract_path, target)",
-        "signature_core": "handoff_snapshot(source, contract_path, target)",
+        "qualified_name": "export_context_handoff",
+        "line": 327,
+        "signature": "export_context_handoff(source_path, checkpoint_path, output_dir, media_id='village-game')",
+        "signature_core": "export_context_handoff(source_path, checkpoint_path, output_dir, media_id='village-game')",
         "return_annotation": null,
         "decorators": [],
         "bases": [],
@@ -273,113 +175,8 @@
     ]
   },
   {
-    "source": "ads/views.py",
-    "document": "docs/server-routing/files/ads/views.py.md",
-    "document_exists": true,
-    "indexed": true,
-    "parse_error": null,
-    "missing_signatures": [],
-    "symbols": [
-      {
-        "kind": "function",
-        "qualified_name": "campaign_view",
-        "line": 18,
-        "signature": "campaign_view(request)",
-        "signature_core": "campaign_view(request)",
-        "return_annotation": null,
-        "decorators": [
-          "login_required",
-          "require_http_methods(['GET', 'POST'])"
-        ],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "bid_view",
-        "line": 41,
-        "signature": "bid_view(request)",
-        "signature_core": "bid_view(request)",
-        "return_annotation": null,
-        "decorators": [
-          "login_required",
-          "require_http_methods(['GET', 'POST'])"
-        ],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "decision_view",
-        "line": 58,
-        "signature": "decision_view(request)",
-        "signature_core": "decision_view(request)",
-        "return_annotation": null,
-        "decorators": [
-          "media_api_methods('POST')"
-        ],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "event_view",
-        "line": 84,
-        "signature": "event_view(request)",
-        "signature_core": "event_view(request)",
-        "return_annotation": null,
-        "decorators": [
-          "media_api_methods('POST')"
-        ],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "advertiser_event_view",
-        "line": 97,
-        "signature": "advertiser_event_view(request)",
-        "signature_core": "advertiser_event_view(request)",
-        "return_annotation": null,
-        "decorators": [
-          "login_required(login_url='/accounts/login/')",
-          "require_http_methods(['GET'])"
-        ],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "report_view",
-        "line": 122,
-        "signature": "report_view(request)",
-        "signature_core": "report_view(request)",
-        "return_annotation": null,
-        "decorators": [
-          "login_required(login_url='/accounts/login/')",
-          "require_http_methods(['GET'])"
-        ],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "context_view",
-        "line": 132,
-        "signature": "context_view(request)",
-        "signature_core": "context_view(request)",
-        "return_annotation": null,
-        "decorators": [
-          "media_api_methods('POST')"
-        ],
-        "bases": [],
-        "documented": true
-      }
-    ]
-  },
-  {
-    "source": "ads/management/commands/inspect_decision_context.py",
-    "document": "docs/server-routing/files/ads/management/commands/inspect_decision_context.py.md",
+    "source": "ads/test_events.py",
+    "document": "docs/server-routing/files/ads/test_events.py.md",
     "document_exists": true,
     "indexed": true,
     "parse_error": null,
@@ -387,23 +184,25 @@
     "symbols": [
       {
         "kind": "class",
-        "qualified_name": "Command",
-        "line": 11,
-        "signature": "class Command(BaseCommand)",
-        "signature_core": "Command",
+        "qualified_name": "EventAuthTests",
+        "line": 31,
+        "signature": "class EventAuthTests(SimpleTestCase)",
+        "signature_core": "EventAuthTests",
         "return_annotation": null,
-        "decorators": [],
+        "decorators": [
+          "override_settings(MEDIA_KEYS={'village-game': 'test-event-key'})"
+        ],
         "bases": [
-          "BaseCommand"
+          "SimpleTestCase"
         ],
         "documented": true
       },
       {
         "kind": "method",
-        "qualified_name": "Command.add_arguments",
-        "line": 14,
-        "signature": "Command.add_arguments(self, parser)",
-        "signature_core": "Command.add_arguments(self, parser)",
+        "qualified_name": "EventAuthTests.test_both_media_headers_must_match_the_authenticated_body",
+        "line": 32,
+        "signature": "EventAuthTests.test_both_media_headers_must_match_the_authenticated_body(self)",
+        "signature_core": "EventAuthTests.test_both_media_headers_must_match_the_authenticated_body(self)",
         "return_annotation": null,
         "decorators": [],
         "bases": [],
@@ -411,10 +210,367 @@
       },
       {
         "kind": "method",
-        "qualified_name": "Command.handle",
-        "line": 21,
-        "signature": "Command.handle(self, *args, **options)",
-        "signature_core": "Command.handle(self, *args, **options)",
+        "qualified_name": "EventAuthTests.test_public_snapshot_error_keeps_only_the_allowed_error_code",
+        "line": 45,
+        "signature": "EventAuthTests.test_public_snapshot_error_keeps_only_the_allowed_error_code(self)",
+        "signature_core": "EventAuthTests.test_public_snapshot_error_keeps_only_the_allowed_error_code(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventAuthTests.test_media_key_json_subject_and_post_are_required",
+        "line": 54,
+        "signature": "EventAuthTests.test_media_key_json_subject_and_post_are_required(self)",
+        "signature_core": "EventAuthTests.test_media_key_json_subject_and_post_are_required(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed",
+        "line": 69,
+        "signature": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed(self)",
+        "signature_core": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "class",
+        "qualified_name": "EventIntegrationTests",
+        "line": 79,
+        "signature": "class EventIntegrationTests(TestCase)",
+        "signature_core": "EventIntegrationTests",
+        "return_annotation": null,
+        "decorators": [
+          "skipUnless(os.environ.get('ADS_TEST_MONGO_URI'), 'Requires isolated ADS_TEST_MONGO_URI')"
+        ],
+        "bases": [
+          "TestCase"
+        ],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventIntegrationTests.test_subject_field_order_does_not_change_recipient_identity",
+        "line": 80,
+        "signature": "EventIntegrationTests.test_subject_field_order_does_not_change_recipient_identity(self)",
+        "signature_core": "EventIntegrationTests.test_subject_field_order_does_not_change_recipient_identity(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventIntegrationTests.test_old_incomplete_snapshot_is_rejected_without_backfilling",
+        "line": 86,
+        "signature": "EventIntegrationTests.test_old_incomplete_snapshot_is_rejected_without_backfilling(self)",
+        "signature_core": "EventIntegrationTests.test_old_incomplete_snapshot_is_rejected_without_backfilling(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventIntegrationTests.test_index_command_is_repeatable_and_prints_the_lesson_name",
+        "line": 95,
+        "signature": "EventIntegrationTests.test_index_command_is_repeatable_and_prints_the_lesson_name(self)",
+        "signature_core": "EventIntegrationTests.test_index_command_is_repeatable_and_prints_the_lesson_name(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventIntegrationTests.test_advertiser_page_lists_only_owner_decisions_latest_first_without_events",
+        "line": 102,
+        "signature": "EventIntegrationTests.test_advertiser_page_lists_only_owner_decisions_latest_first_without_events(self)",
+        "signature_core": "EventIntegrationTests.test_advertiser_page_lists_only_owner_decisions_latest_first_without_events(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventIntegrationTests.setUpClass",
+        "line": 129,
+        "signature": "EventIntegrationTests.setUpClass(cls)",
+        "signature_core": "EventIntegrationTests.setUpClass(cls)",
+        "return_annotation": null,
+        "decorators": [
+          "classmethod"
+        ],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventIntegrationTests.tearDownClass",
+        "line": 135,
+        "signature": "EventIntegrationTests.tearDownClass(cls)",
+        "signature_core": "EventIntegrationTests.tearDownClass(cls)",
+        "return_annotation": null,
+        "decorators": [
+          "classmethod"
+        ],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventIntegrationTests.setUp",
+        "line": 140,
+        "signature": "EventIntegrationTests.setUp(self)",
+        "signature_core": "EventIntegrationTests.setUp(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount",
+        "line": 155,
+        "signature": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount(self)",
+        "signature_core": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision",
+        "line": 175,
+        "signature": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision(self)",
+        "signature_core": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write",
+        "line": 186,
+        "signature": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write(self)",
+        "signature_core": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors",
+        "line": 194,
+        "signature": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors(self)",
+        "signature_core": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type",
+        "line": 204,
+        "signature": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type(self)",
+        "signature_core": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type(self)",
+        "return_annotation": null,
+        "decorators": [
+          "override_settings(MEDIA_KEYS={'village-game': 'test-event-key'})"
+        ],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "class",
+        "qualified_name": "ContextApiTests",
+        "line": 216,
+        "signature": "class ContextApiTests(SimpleTestCase)",
+        "signature_core": "ContextApiTests",
+        "return_annotation": null,
+        "decorators": [
+          "override_settings(MEDIA_KEYS={'village-game': 'test-only-key'})"
+        ],
+        "bases": [
+          "SimpleTestCase"
+        ],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextApiTests.post_context",
+        "line": 217,
+        "signature": "ContextApiTests.post_context(self, body=None, **headers)",
+        "signature_core": "ContextApiTests.post_context(self, body=None, **headers)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextApiTests.test_subject_only_payload_and_all_media_routes",
+        "line": 225,
+        "signature": "ContextApiTests.test_subject_only_payload_and_all_media_routes(self)",
+        "signature_core": "ContextApiTests.test_subject_only_payload_and_all_media_routes(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextApiTests.test_invalid_headers_and_cross_media_subject_never_lookup",
+        "line": 239,
+        "signature": "ContextApiTests.test_invalid_headers_and_cross_media_subject_never_lookup(self)",
+        "signature_core": "ContextApiTests.test_invalid_headers_and_cross_media_subject_never_lookup(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextApiTests.test_legacy_top_level_media_id_remains_checked",
+        "line": 250,
+        "signature": "ContextApiTests.test_legacy_top_level_media_id_remains_checked(self)",
+        "signature_core": "ContextApiTests.test_legacy_top_level_media_id_remains_checked(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextApiTests.test_method_rejection_is_json_and_has_allow",
+        "line": 260,
+        "signature": "ContextApiTests.test_method_rejection_is_json_and_has_allow(self)",
+        "signature_core": "ContextApiTests.test_method_rejection_is_json_and_has_allow(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextApiTests.test_empty_context_and_store_outage_are_distinct",
+        "line": 266,
+        "signature": "ContextApiTests.test_empty_context_and_store_outage_are_distinct(self)",
+        "signature_core": "ContextApiTests.test_empty_context_and_store_outage_are_distinct(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "class",
+        "qualified_name": "ContextHandoffTests",
+        "line": 277,
+        "signature": "class ContextHandoffTests(SimpleTestCase)",
+        "signature_core": "ContextHandoffTests",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [
+          "SimpleTestCase"
+        ],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextHandoffTests.setUp",
+        "line": 278,
+        "signature": "ContextHandoffTests.setUp(self)",
+        "signature_core": "ContextHandoffTests.setUp(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextHandoffTests.test_four_files_preserve_input_and_replay_has_no_writes",
+        "line": 305,
+        "signature": "ContextHandoffTests.test_four_files_preserve_input_and_replay_has_no_writes(self)",
+        "signature_core": "ContextHandoffTests.test_four_files_preserve_input_and_replay_has_no_writes(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextHandoffTests.test_existing_destination_is_not_overwritten",
+        "line": 329,
+        "signature": "ContextHandoffTests.test_existing_destination_is_not_overwritten(self)",
+        "signature_core": "ContextHandoffTests.test_existing_destination_is_not_overwritten(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextHandoffTests.test_wrong_or_incomplete_checkpoint_never_creates_output",
+        "line": 339,
+        "signature": "ContextHandoffTests.test_wrong_or_incomplete_checkpoint_never_creates_output(self)",
+        "signature_core": "ContextHandoffTests.test_wrong_or_incomplete_checkpoint_never_creates_output(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextHandoffTests.test_only_selected_media_player_snapshot_input_is_exported",
+        "line": 350,
+        "signature": "ContextHandoffTests.test_only_selected_media_player_snapshot_input_is_exported(self)",
+        "signature_core": "ContextHandoffTests.test_only_selected_media_player_snapshot_input_is_exported(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextHandoffTests.test_public_document_key_type_and_digest_are_checked",
+        "line": 361,
+        "signature": "ContextHandoffTests.test_public_document_key_type_and_digest_are_checked(self)",
+        "signature_core": "ContextHandoffTests.test_public_document_key_type_and_digest_are_checked(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextHandoffTests.test_changed_copy_is_rejected_without_publishing_partial_bundle",
+        "line": 370,
+        "signature": "ContextHandoffTests.test_changed_copy_is_rejected_without_publishing_partial_bundle(self)",
+        "signature_core": "ContextHandoffTests.test_changed_copy_is_rejected_without_publishing_partial_bundle(self)",
+        "return_annotation": null,
+        "decorators": [],
+        "bases": [],
+        "documented": true
+      },
+      {
+        "kind": "method",
+        "qualified_name": "ContextHandoffTests.test_command_exports_and_reports_existing_target_as_command_error",
+        "line": 382,
+        "signature": "ContextHandoffTests.test_command_exports_and_reports_existing_target_as_command_error(self)",
+        "signature_core": "ContextHandoffTests.test_command_exports_and_reports_existing_target_as_command_error(self)",
         "return_annotation": null,
         "decorators": [],
         "bases": [],
@@ -423,8 +579,8 @@
     ]
   },
   {
-    "source": "ads/management/commands/refresh_player_context.py",
-    "document": "docs/server-routing/files/ads/management/commands/refresh_player_context.py.md",
+    "source": "ads/management/commands/export_context_handoff.py",
+    "document": "docs/server-routing/files/ads/management/commands/export_context_handoff.py.md",
     "document_exists": true,
     "indexed": true,
     "parse_error": null,
@@ -457,7 +613,7 @@
       {
         "kind": "method",
         "qualified_name": "Command.handle",
-        "line": 18,
+        "line": 19,
         "signature": "Command.handle(self, *args, **options)",
         "signature_core": "Command.handle(self, *args, **options)",
         "return_annotation": null,
@@ -468,8 +624,8 @@
     ]
   },
   {
-    "source": "ads/media_urls.py",
-    "document": "docs/server-routing/files/ads/media_urls.py.md",
+    "source": "data/checkpoints/player-context-day25-after.json",
+    "document": "docs/server-routing/files/data/checkpoints/player-context-day25-after.json.md",
     "document_exists": true,
     "indexed": true,
     "parse_error": null,
@@ -477,40 +633,8 @@
     "symbols": []
   },
   {
-    "source": "ads/media_auth.py",
-    "document": "docs/server-routing/files/ads/media_auth.py.md",
-    "document_exists": true,
-    "indexed": true,
-    "parse_error": null,
-    "missing_signatures": [],
-    "symbols": [
-      {
-        "kind": "function",
-        "qualified_name": "read_media_body",
-        "line": 10,
-        "signature": "read_media_body(request)",
-        "signature_core": "read_media_body(request)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "function",
-        "qualified_name": "media_api_methods",
-        "line": 30,
-        "signature": "media_api_methods(*methods)",
-        "signature_core": "media_api_methods(*methods)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      }
-    ]
-  },
-  {
-    "source": "ads/urls.py",
-    "document": "docs/server-routing/files/ads/urls.py.md",
+    "source": "data/checkpoints/player-context-day25-incomplete.json",
+    "document": "docs/server-routing/files/data/checkpoints/player-context-day25-incomplete.json.md",
     "document_exists": true,
     "indexed": true,
     "parse_error": null,
@@ -518,8 +642,8 @@
     "symbols": []
   },
   {
-    "source": "ad_config/ad_config/urls.py",
-    "document": "docs/server-routing/files/ad_config/ad_config/urls.py.md",
+    "source": "data/handoff/day25-run1/player-context-changes.ndjson",
+    "document": "docs/server-routing/files/data/handoff/day25-run1/player-context-changes.ndjson.md",
     "document_exists": true,
     "indexed": true,
     "parse_error": null,
@@ -527,306 +651,30 @@
     "symbols": []
   },
   {
-    "source": "ads/test_events.py",
-    "document": "docs/server-routing/files/ads/test_events.py.md",
+    "source": "data/handoff/day25-run1/checkpoint.json",
+    "document": "docs/server-routing/files/data/handoff/day25-run1/checkpoint.json.md",
     "document_exists": true,
     "indexed": true,
     "parse_error": null,
     "missing_signatures": [],
-    "symbols": [
-      {
-        "kind": "class",
-        "qualified_name": "EventAuthTests",
-        "line": 23,
-        "signature": "class EventAuthTests(SimpleTestCase)",
-        "signature_core": "EventAuthTests",
-        "return_annotation": null,
-        "decorators": [
-          "override_settings(MEDIA_KEYS={'village-game': 'test-event-key'})"
-        ],
-        "bases": [
-          "SimpleTestCase"
-        ],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventAuthTests.test_both_media_headers_must_match_the_authenticated_body",
-        "line": 24,
-        "signature": "EventAuthTests.test_both_media_headers_must_match_the_authenticated_body(self)",
-        "signature_core": "EventAuthTests.test_both_media_headers_must_match_the_authenticated_body(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventAuthTests.test_public_snapshot_error_keeps_only_the_allowed_error_code",
-        "line": 37,
-        "signature": "EventAuthTests.test_public_snapshot_error_keeps_only_the_allowed_error_code(self)",
-        "signature_core": "EventAuthTests.test_public_snapshot_error_keeps_only_the_allowed_error_code(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventAuthTests.test_media_key_json_subject_and_post_are_required",
-        "line": 46,
-        "signature": "EventAuthTests.test_media_key_json_subject_and_post_are_required(self)",
-        "signature_core": "EventAuthTests.test_media_key_json_subject_and_post_are_required(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed",
-        "line": 61,
-        "signature": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed(self)",
-        "signature_core": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "class",
-        "qualified_name": "EventIntegrationTests",
-        "line": 71,
-        "signature": "class EventIntegrationTests(TestCase)",
-        "signature_core": "EventIntegrationTests",
-        "return_annotation": null,
-        "decorators": [
-          "skipUnless(os.environ.get('ADS_TEST_MONGO_URI'), 'Requires isolated ADS_TEST_MONGO_URI')"
-        ],
-        "bases": [
-          "TestCase"
-        ],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventIntegrationTests.test_subject_field_order_does_not_change_recipient_identity",
-        "line": 72,
-        "signature": "EventIntegrationTests.test_subject_field_order_does_not_change_recipient_identity(self)",
-        "signature_core": "EventIntegrationTests.test_subject_field_order_does_not_change_recipient_identity(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventIntegrationTests.test_old_incomplete_snapshot_is_rejected_without_backfilling",
-        "line": 78,
-        "signature": "EventIntegrationTests.test_old_incomplete_snapshot_is_rejected_without_backfilling(self)",
-        "signature_core": "EventIntegrationTests.test_old_incomplete_snapshot_is_rejected_without_backfilling(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventIntegrationTests.test_index_command_is_repeatable_and_prints_the_lesson_name",
-        "line": 87,
-        "signature": "EventIntegrationTests.test_index_command_is_repeatable_and_prints_the_lesson_name(self)",
-        "signature_core": "EventIntegrationTests.test_index_command_is_repeatable_and_prints_the_lesson_name(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventIntegrationTests.test_advertiser_page_lists_only_owner_decisions_latest_first_without_events",
-        "line": 94,
-        "signature": "EventIntegrationTests.test_advertiser_page_lists_only_owner_decisions_latest_first_without_events(self)",
-        "signature_core": "EventIntegrationTests.test_advertiser_page_lists_only_owner_decisions_latest_first_without_events(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventIntegrationTests.setUpClass",
-        "line": 121,
-        "signature": "EventIntegrationTests.setUpClass(cls)",
-        "signature_core": "EventIntegrationTests.setUpClass(cls)",
-        "return_annotation": null,
-        "decorators": [
-          "classmethod"
-        ],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventIntegrationTests.tearDownClass",
-        "line": 127,
-        "signature": "EventIntegrationTests.tearDownClass(cls)",
-        "signature_core": "EventIntegrationTests.tearDownClass(cls)",
-        "return_annotation": null,
-        "decorators": [
-          "classmethod"
-        ],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventIntegrationTests.setUp",
-        "line": 132,
-        "signature": "EventIntegrationTests.setUp(self)",
-        "signature_core": "EventIntegrationTests.setUp(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount",
-        "line": 147,
-        "signature": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount(self)",
-        "signature_core": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision",
-        "line": 167,
-        "signature": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision(self)",
-        "signature_core": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write",
-        "line": 178,
-        "signature": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write(self)",
-        "signature_core": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors",
-        "line": 186,
-        "signature": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors(self)",
-        "signature_core": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type",
-        "line": 196,
-        "signature": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type(self)",
-        "signature_core": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type(self)",
-        "return_annotation": null,
-        "decorators": [
-          "override_settings(MEDIA_KEYS={'village-game': 'test-event-key'})"
-        ],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "class",
-        "qualified_name": "ContextApiTests",
-        "line": 208,
-        "signature": "class ContextApiTests(SimpleTestCase)",
-        "signature_core": "ContextApiTests",
-        "return_annotation": null,
-        "decorators": [
-          "override_settings(MEDIA_KEYS={'village-game': 'test-only-key'})"
-        ],
-        "bases": [
-          "SimpleTestCase"
-        ],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "ContextApiTests.post_context",
-        "line": 209,
-        "signature": "ContextApiTests.post_context(self, body=None, **headers)",
-        "signature_core": "ContextApiTests.post_context(self, body=None, **headers)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "ContextApiTests.test_subject_only_payload_and_all_media_routes",
-        "line": 217,
-        "signature": "ContextApiTests.test_subject_only_payload_and_all_media_routes(self)",
-        "signature_core": "ContextApiTests.test_subject_only_payload_and_all_media_routes(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "ContextApiTests.test_invalid_headers_and_cross_media_subject_never_lookup",
-        "line": 231,
-        "signature": "ContextApiTests.test_invalid_headers_and_cross_media_subject_never_lookup(self)",
-        "signature_core": "ContextApiTests.test_invalid_headers_and_cross_media_subject_never_lookup(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "ContextApiTests.test_legacy_top_level_media_id_remains_checked",
-        "line": 242,
-        "signature": "ContextApiTests.test_legacy_top_level_media_id_remains_checked(self)",
-        "signature_core": "ContextApiTests.test_legacy_top_level_media_id_remains_checked(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "ContextApiTests.test_method_rejection_is_json_and_has_allow",
-        "line": 252,
-        "signature": "ContextApiTests.test_method_rejection_is_json_and_has_allow(self)",
-        "signature_core": "ContextApiTests.test_method_rejection_is_json_and_has_allow(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      },
-      {
-        "kind": "method",
-        "qualified_name": "ContextApiTests.test_empty_context_and_store_outage_are_distinct",
-        "line": 258,
-        "signature": "ContextApiTests.test_empty_context_and_store_outage_are_distinct(self)",
-        "signature_core": "ContextApiTests.test_empty_context_and_store_outage_are_distinct(self)",
-        "return_annotation": null,
-        "decorators": [],
-        "bases": [],
-        "documented": true
-      }
-    ]
+    "symbols": []
+  },
+  {
+    "source": "data/handoff/day25-run1/player-context.ndjson",
+    "document": "docs/server-routing/files/data/handoff/day25-run1/player-context.ndjson.md",
+    "document_exists": true,
+    "indexed": true,
+    "parse_error": null,
+    "missing_signatures": [],
+    "symbols": []
+  },
+  {
+    "source": "data/handoff/day25-run1/manifest.json",
+    "document": "docs/server-routing/files/data/handoff/day25-run1/manifest.json.md",
+    "document_exists": true,
+    "indexed": true,
+    "parse_error": null,
+    "missing_signatures": [],
+    "symbols": []
   }
 ]
