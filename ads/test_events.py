@@ -26,7 +26,8 @@ from ads.context_projection import (
     make_context_document, normalize_snapshot, project_context_file,
 )
 from ads.exporting import write_ndjson
-from ads.lake_files import build_current, build_history, stable_json
+from ads.lake_files import build_current, build_history, build_lake_version, stable_json
+from ads.management.commands.compare_player_lake_versions import read_lake_manifest
 from ads.management.commands.demo_player_lake import fixture_change
 
 
@@ -511,3 +512,130 @@ class PlayerLakeTests(SimpleTestCase):
             with self.subTest(case=case), self.assertRaises(CommandError):
                 call_command("demo_player_lake", case=case, stdout=output)
             self.assertEqual(output.getvalue(), "")
+
+    def test_saved_runs_have_verified_files_and_same_input_results(self):
+        rows = [fixture_change(1), fixture_change(4, op="delete"), fixture_change(1)]
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / "input.ndjson"
+            checksum = write_ndjson(source, rows)
+            original = source.read_bytes()
+            with patch("ads.context_projection.get_db") as database:
+                first = build_lake_version(source, root / "first")
+                second = build_lake_version(source, root / "second")
+                database.assert_not_called()
+            self.assertEqual(set(p.name for p in (root / "first").iterdir()),
+                             {"history.ndjson", "current.ndjson", "manifest.json"})
+            self.assertEqual(first, read_lake_manifest(root / "first"))
+            self.assertEqual((first["input_rows"], first["history_rows"], first["current_rows"]), (3, 2, 1))
+            self.assertEqual(first["source_sha256"], checksum)
+            self.assertEqual(first["files"], second["files"])
+            self.assertNotEqual(first["output_dir"], second["output_dir"])
+            current = json.loads((root / "first/current.ndjson").read_text(encoding="utf-8"))
+            self.assertTrue(current["deleted"])
+            self.assertEqual(current["version"], 4)
+            self.assertEqual(current["context"], {})
+            self.assertEqual(source.read_bytes(), original)
+
+    def test_existing_run_and_invalid_input_preserve_files(self):
+        from django.core.management.base import CommandError
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source, target = root / "input.ndjson", root / "run"
+            write_ndjson(source, [fixture_change(1)])
+            build_lake_version(source, target)
+            before = {p.name: p.read_bytes() for p in target.iterdir()}
+            output = StringIO()
+            with self.assertRaises(CommandError):
+                call_command("build_player_lake", source=str(source), output=str(target), stdout=output)
+            self.assertEqual(output.getvalue(), "")
+            self.assertEqual({p.name: p.read_bytes() for p in target.iterdir()}, before)
+            write_ndjson(source, [fixture_change(4, 40), fixture_change(4, 99)])
+            with self.assertRaisesRegex(ValueError, "same subject/version"):
+                build_lake_version(source, root / "invalid")
+            self.assertFalse((root / "invalid").exists())
+
+    def test_empty_run_and_failed_write_completion_marker(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / "input.ndjson"
+            source.write_bytes(b"")
+            manifest = build_lake_version(source, root / "empty")
+            self.assertEqual([manifest[k] for k in ("input_rows", "history_rows", "current_rows")], [0, 0, 0])
+            self.assertIsNone(manifest["source_max_event_time"])
+            self.assertEqual(read_lake_manifest(root / "empty"), manifest)
+            self.assertEqual((root / "empty/current.ndjson").read_bytes(), b"")
+            with patch("ads.lake_files.write_ndjson", side_effect=OSError("write failed")):
+                with self.assertRaises(OSError):
+                    build_lake_version(source, root / "partial")
+            self.assertTrue((root / "partial").is_dir())
+            self.assertFalse((root / "partial/manifest.json").exists())
+            with self.assertRaises(OSError):
+                read_lake_manifest(root / "partial")
+
+    def test_manifest_reader_rejects_bad_files_counts_paths_and_schema(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source, target = root / "input.ndjson", root / "run"
+            write_ndjson(source, [fixture_change(1)])
+            original = build_lake_version(source, target)
+            manifest_path = target / "manifest.json"
+            for field, value in (("sha256", "0" * 64), ("rows", 2), ("path", "../input.ndjson")):
+                bad = copy.deepcopy(original)
+                bad["files"]["history"][field] = value
+                manifest_path.write_text(json.dumps(bad), encoding="utf-8")
+                with self.subTest(field=field), self.assertRaises(ValueError):
+                    read_lake_manifest(target)
+            manifest_path.write_text(json.dumps({**original, "schema_version": "wrong"}), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                read_lake_manifest(target)
+            manifest_path.write_text(json.dumps(original), encoding="utf-8")
+            with (target / "history.ndjson").open("ab") as stream:
+                stream.write(b"changed\n")
+            with self.assertRaisesRegex(ValueError, "SHA"):
+                read_lake_manifest(target)
+
+    def test_compare_command_distinguishes_same_and_changed_inputs(self):
+        from django.core.management.base import CommandError
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            source = root / "input.ndjson"
+            write_ndjson(source, [fixture_change(1)])
+            call_command("build_player_lake", source=str(source), output=str(root / "first"), stdout=StringIO())
+            build_lake_version(source, root / "second")
+            write_ndjson(source, [fixture_change(4, 40)])
+            build_lake_version(source, root / "changed")
+            for after, matches in (("second", True), ("changed", False)):
+                output = StringIO()
+                call_command("compare_player_lake_versions", before=str(root / "first"),
+                             after=str(root / after), stdout=output)
+                result = json.loads(output.getvalue())
+                self.assertEqual([result[k] for k in ("source_matches", "history_matches", "current_matches")],
+                                 [matches] * 3)
+            with self.assertRaises(CommandError):
+                call_command("compare_player_lake_versions", before=str(root / "missing"),
+                             after=str(root / "first"), stdout=StringIO())
+
+    def test_snapshot_compare_command_keeps_output_and_original_inputs(self):
+        from django.core.management.base import CommandError
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            before, after, result_path = root / "before.ndjson", root / "after.ndjson", root / "result.json"
+            row = {"schema_version": "player-snapshot/v1", "source_kind": "player-snapshot",
+                   "captured_at": "2026-10-14T00:00:00+00:00", "id": 1,
+                   "room_id": "room-01", "coins": 26, "version": 461,
+                   "updated_at": "2026-10-13T06:36:55+00:00"}
+            write_ndjson(before, [row])
+            write_ndjson(after, [{**row, "coins": 30, "version": 462}])
+            original = before.read_bytes(), after.read_bytes()
+            output = StringIO()
+            call_command("compare_player_snapshots", before=str(before), after=str(after),
+                         output=str(result_path), stdout=output)
+            result = json.loads(result_path.read_text(encoding="utf-8"))
+            self.assertEqual(result, json.loads(output.getvalue()))
+            self.assertEqual(len(result["changed"]), 1)
+            self.assertEqual(original, (before.read_bytes(), after.read_bytes()))
+            with self.assertRaises(CommandError):
+                call_command("compare_player_snapshots", before=str(before), after=str(after),
+                             output=str(before), stdout=StringIO())
+            self.assertEqual(original, (before.read_bytes(), after.read_bytes()))

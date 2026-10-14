@@ -185,7 +185,7 @@
 
 ## 26일차 1·2교시 완료 · 2026-10-14
 
-사용자가 먼저 작성한 lake_files.py stable_json/build_history를 문서로 맞춘 뒤, history 오류문자열을 교안대로 보정하고 current 함수를 추가했다. 두 함수/JSON helper와 inspect_player_lake·demo_player_lake 두 명령이 제공 완성코드 AST와 같다. 인계 source/manifest/checkpoint와SHA를같이검사하고 결과목록을 메모리에서만 계산한다. 3교시의 Lake저장 함수/출력폴더는 아직 구현하지 않았다.
+사용자가 먼저 작성한 lake_files.py stable_json/build_history를 문서로 맞춘 뒤, history 오류문자열을 교안대로 보정하고 current 함수를 추가했다. 두 함수/JSON helper와 inspect_player_lake·demo_player_lake 두 명령이 제공 완성코드 AST와 같다. 인계 source/manifest/checkpoint와SHA를같이검사하고 결과목록을 메모리에서만 계산한다. 이 기록은1·2교시 완료 시점이며3교시 저장 구현은 아래 별도 검토 기록을 따른다.
 
 실제 25일차 인계56행에서 history56/current56, 반복112행/역순에도 단계별목록SHA가 같다. history 첫대상3/version1과 current 첫대상1/version461은 서로다른정렬기준에 따른 결과다. fixture최신4/coins40, 삭제4유지, 내용SHA·동일version충돌거절, 빈목록을 확인했다. 실제 명령의 get_db호출0·writtenFalse·원본/인계/기록bytes보존을 확인했으며 관련33개 검사와Django check가통과했다.
 
@@ -198,3 +198,39 @@
 | ads/management/commands/demo_player_lake.py | [문서](files/ads/management/commands/demo_player_lake.py.md) | DB없는fixture관찰 |
 | tools/basics/day26_period01.py | [문서](files/tools/basics/day26_period01.py.md) | 1교시두초급예제 |
 | tools/basics/day26_period02.py | [문서](files/tools/basics/day26_period02.py.md) | 2교시두초급예제 |
+
+## 26일차3교시 완료 검증 · 2026-10-14
+
+사용자가 저장한 변경4개를 먼저 짝 문서에 정합화했다. 발견한3개 문제는 build_lake_version의 summary.json 저장명, 빈 compare_player_lake_versions 파일, compare_player_snapshots에 잘못 중복 저장된 Lake 비교 코드다. 저장명은manifest.json으로 수정하고 Lake 명령에 교안 전체를 적용했으며 snapshot 명령은 d68b511의 기존 기능으로 복구했다. 사용자의1·2교시 함수와 build_player_lake는 유지했다.
+
+교안의 불완전 run 복구 절차대로 기존 run-001/002는 수정하지 않고 새 run-003/004를 만들었다. 둘의 source/history/current_matches는 모두true, N=H=K=56이다. input SHA=18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154이며1교시 선택 인계와 같다. history 파일SHA=ad682d307f0508b2cbffbd48beece93ad974cb03e7cc9161b3b725d64e4d3a98, current 파일SHA=2814cd044e44ebe3f92e63c3e53631aa04a41a87c34cae0b948829c458df60ac다. 같은run 재작성은CommandError, 기존14개 원본/완료기록/인계/사용자run 파일의SHA는보존됐다. 네 번째 교시에는 완성된run-003/current.ndjson과 동일 인계 source를 연결한다. 기존run-001/002는manifest가 없으므로 현재도불완전하며 소비하지 않는다.
+
+관련39개 테스트·Django check·초급64/True가통과했다. 표준 라우팅CLI는 기존README.md 부재로실패해 기존current-progress-index와 AST API로변경범위를검사한다. [실행·시작코드·검증](verification/day26-period03.json)과 [인수인계](../handoffs/2026-10-14-day26-period03-fix.md)를 따른다. MongoDB·게임·웹서버는변경하지 않았다.
+
+| 현재 소스 | 짝 문서 | 현재 책임 |
+|---|---|---|
+| ads/management/commands/build_player_lake.py | [문서](files/ads/management/commands/build_player_lake.py.md) | 선택 입력에서 새 run 저장 |
+| ads/management/commands/compare_player_lake_versions.py | [문서](files/ads/management/commands/compare_player_lake_versions.py.md) | 실제 파일 지문·행 수 검증 및 비교 |
+| tools/basics/day26_period03.py | [문서](files/tools/basics/day26_period03.py.md) | bytes와SHA 초급 예제 |
+
+
+| 생성 결과물 | 짝 문서 | 상태 |
+|---|---|---|
+| data/lake/gold/player_current/run-003/history.ndjson | [문서](files/data/lake/gold/player_current/run-003/history.ndjson.md) | 완성run3교시결과물 |
+| data/lake/gold/player_current/run-003/current.ndjson | [문서](files/data/lake/gold/player_current/run-003/current.ndjson.md) | 완성run3교시결과물 |
+| data/lake/gold/player_current/run-003/manifest.json | [문서](files/data/lake/gold/player_current/run-003/manifest.json.md) | 완성run3교시결과물 |
+| data/lake/gold/player_current/run-004/history.ndjson | [문서](files/data/lake/gold/player_current/run-004/history.ndjson.md) | 완성run3교시결과물 |
+| data/lake/gold/player_current/run-004/current.ndjson | [문서](files/data/lake/gold/player_current/run-004/current.ndjson.md) | 완성run3교시결과물 |
+| data/lake/gold/player_current/run-004/manifest.json | [문서](files/data/lake/gold/player_current/run-004/manifest.json.md) | 완성run3교시결과물 |
+
+## 26일차 4교시 진행 중 · Lake 비교 경로 확인
+
+사용자의 run-001/002 비교 명령은 run-001/manifest.json 부재로 CommandError였다. 기존 summary.json만 있는 두 run은 보존한다. 완성된 run-003/004 비교를 재실행해 source/history/current_matches 모두 true와 N=H=K=56을 확인했다. 4교시에서도 lake-dir 또는 shell current 입력을 run-003으로 지정한다. 소비 검사를 summary.json으로 완화하거나 이전 결과를 덮어쓰지 않았다.
+
+사용자가 새로 저장한 아래3개 파일은 현재 코드 그대로 문서에 등록했고 수정하지 않았다. 실제 Mongo 대조 및 4교시 완료 판정은 이번 요청 범위에서 실행하지 않았다. [실행·Git 상태](verification/day26-period04-lake-path.json), [인수인계·정확한 명령](../handoffs/2026-10-14-day26-period04-lake-path.md)를 따른다.
+
+| 현재 소스 | 짝 문서 | 현재 책임 |
+|---|---|---|
+| ads/sink_evidence.py | [문서](files/ads/sink_evidence.py.md) | 공개 문서 검증·다섯 필드 대조·지정 매체 읽기 |
+| ads/management/commands/compare_player_sinks.py | [문서](files/ads/management/commands/compare_player_sinks.py.md) | 같은 원본/완성 Lake 검증 후 공개 Mongo 대조 JSON 저장 |
+| ads/management/commands/demo_player_sink_comparison.py | [문서](files/ads/management/commands/demo_player_sink_comparison.py.md) | 메모리 fixture 사례 대조 |

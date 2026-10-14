@@ -1,0 +1,1294 @@
+{
+  "date": "2026-10-14",
+  "git_start": {
+    "head": "d68b511 day25 - 챕터2",
+    "status": " M ads/lake_files.py\n M ads/management/commands/compare_player_snapshots.py\n?? ads/management/commands/build_player_lake.py\n?? ads/management/commands/compare_player_lake_versions.py\n",
+    "staged": "",
+    "unstaged": "M\tads/lake_files.py\nM\tads/management/commands/compare_player_snapshots.py\n"
+  },
+  "root_git": "Git 상태 확인 불가: 저장소 아님",
+  "source_before": {
+    "ads/lake_files.py": {
+      "sha256": "e1a1a8960d6f8f2356cd16fe14eb348533b9e42fe7d2257004cdff7feab43e06",
+      "text": "import hashlib\nimport json\nfrom datetime import datetime, timezone\nfrom pathlib import Path\n\nfrom .context_projection import make_context_document\nfrom .exporting import read_ndjson\nfrom .timestamps import parse_utc\n\n\ndef stable_json(row):\n    return json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(\",\", \":\"))\n\n\ndef build_history(rows):\n    \"\"\"검증한 고유 변경을 시각·ID 순서로 반환한다. 입력·DB를 수정하지 않는다.\"\"\"\n    unique = {}\n    for row in rows:\n        # 25일차의 필드·공개 상태·출처·change_id 검사를 그대로 재사용한다.\n        make_context_document(row)\n        old = unique.get(row[\"change_id\"])\n        if old is not None and stable_json(old) != stable_json(row):\n            raise ValueError(\"same change_id has conflicting content\")\n        unique[row[\"change_id\"]] = row\n    return sorted(unique.values(), key=lambda row: (\n        parse_utc(row[\"event_time\"]), row[\"change_id\"]))\n\n\ndef build_current(history):\n    \"\"\"수신자별 최대 version을 고른다. 삭제 상태도 최신 후보에 남긴다.\"\"\"\n    current = {}\n    ordered = sorted(build_history(history), key=lambda row: (\n        row[\"media_id\"], row[\"subject_id\"], row[\"version\"], row[\"change_id\"]))\n    for row in ordered:\n        document = make_context_document(row)\n        key = document[\"_id\"]\n        candidate = {\"schema_version\": \"player-current/v1\", **document}\n        old = current.get(key)\n        if old is None or candidate[\"version\"] > old[\"version\"]:\n            current[key] = candidate\n        elif candidate[\"version\"] == old[\"version\"] and (\n                candidate[\"deleted\"] != old[\"deleted\"] or candidate[\"context\"] != old[\"context\"]):\n            raise ValueError(\"same subject/version has conflicting content\")\n    return [current[key] for key in sorted(current)]\n\n\ndef write_ndjson(path, rows):\n    path = Path(path)\n    path.parent.mkdir(parents=True, exist_ok=True)\n    with path.open(\"w\", encoding=\"utf-8\", newline=\"\\n\") as stream:\n        for row in rows:\n            stream.write(stable_json(row) + \"\\n\")\n\n\ndef build_lake_version(source_path, output_dir):\n    source = Path(source_path)\n    output = Path(output_dir)\n\n    source_bytes = source.read_bytes()\n    source_rows = read_ndjson(source)\n    history = build_history(source_rows)\n    current = build_current(history)\n    # 이전 버전을 덮어쓰지 않고 새 디렉터리에 결과를 쓴다.\n    # [문제 2 · 한 줄] 기존 경로를 거절하는 새 출력 폴더를 만든다.\n    # 예시: folder.mkdir(parents=True, exist_ok=False)\n    output.mkdir(parents=True, exist_ok=False)\n    files = {}\n    for name, rows in ((\"history\", history), (\"current\", current)):\n        # [문제 3 · 여러 줄] 결과 파일을 쓰고 파일명·행 수·실제 bytes SHA를 기록한다. (4줄)\n        # 예시: saved = folder / (label + \".ndjson\")\n        #       save_records(saved, entries)\n        #       evidence[label] = {\"path\": saved.name, \"rows\": len(entries),\n        #                          \"sha256\": hashlib.sha256(saved.read_bytes()).hexdigest()}\n        pthh = output / (name + \".ndjson\")\n        write_ndjson(pthh, rows)\n        files[name] = {\n            \"path\": pthh.name, \"rows\": len(rows),\n            \"sha256\": hashlib.sha256(pthh.read_bytes()).hexdigest()\n        }\n    # [문제 4 · 한 단어] 입력 SHA를 16진수 문자열로 바꾸는 메서드다.\n    manifest = {\n        \"schema_version\": \"player-lake/v1\", \"source_kind\": \"player-context-change\",\n        \"source_path\": str(source), \"source_sha256\": hashlib.sha256(source_bytes).hexdigest(),\n        \"input_rows\": len(source_rows), \"history_rows\": len(history), \"current_rows\": len(current),\n        \"source_max_event_time\": history[-1][\"event_time\"] if history else None,\n        \"output_dir\": str(output), \"files\": files,\n        \"created_at\": datetime.now(timezone.utc).isoformat(),\n    }\n    # manifest가 없는 디렉터리는 완성 버전으로 소비하지 않는다.\n    # [문제 5 · 여러 줄] manifest JSON을 UTF-8로 마지막에 저장한다. (2줄)\n    # 예시: (folder / \"summary.json\").write_text(\n    #           json.dumps(summary, ensure_ascii=False, indent=2), encoding=\"utf-8\")\n    (output / \"summary.json\").write_text(\n        json.dumps(manifest, ensure_ascii=False, indent=2), encoding=\"utf-8\")\n    return manifest"
+    },
+    "ads/management/commands/compare_player_snapshots.py": {
+      "sha256": "4805d049f0deceba1b8d0660f0f624ba13f6fec94a5a97837b767b70e4c51155",
+      "text": "import hashlib\nimport json\nfrom pathlib import Path\n\nfrom django.core.management.base import BaseCommand, CommandError\n\nfrom ads.snapshot_intake import compare, load_rows\n\n\ndef read_lake_manifest(folder):\n    root = Path(folder)\n    manifest = json.loads((root / \"manifest.json\").read_text(encoding=\"utf-8\"))\n    if manifest[\"schema_version\"] != \"player-lake/v1\":\n        raise ValueError(\"player-lake/v1 manifest가 필요합니다.\")\n    for name in (\"history\", \"current\"):\n        record = manifest[\"files\"][name]\n        if record[\"path\"] != name + \".ndjson\":\n            raise ValueError(\"결과 파일명이 다릅니다.\")\n        payload = (root / record[\"path\"]).read_bytes()\n        if hashlib.sha256(payload).hexdigest() != record[\"sha256\"]:\n            raise ValueError(\"저장 파일과 manifest의 SHA가 다릅니다.\")\n        if len(payload.splitlines()) != record[\"rows\"]:\n            raise ValueError(\"저장 파일과 manifest의 행 수가 다릅니다.\")\n    return manifest\n\n\nclass Command(BaseCommand):\n    help = \"보존한 두 Lake 버전의 입력·결과 파일 지문을 대조합니다.\"\n\n    def add_arguments(self, parser):\n        parser.add_argument(\"--before\", required=True)\n        parser.add_argument(\"--after\", required=True)\n\n    def handle(self, *args, **options):\n        try:\n            before = read_lake_manifest(options[\"before\"])\n            after = read_lake_manifest(options[\"after\"])\n            result = {\"before\": options[\"before\"], \"after\": options[\"after\"],\n                      \"source_matches\": before[\"source_sha256\"] == after[\"source_sha256\"],\n                      \"history_matches\": before[\"files\"][\"history\"] == after[\"files\"][\"history\"],\n                      \"current_matches\": before[\"files\"][\"current\"] == after[\"files\"][\"current\"],\n                      \"before_counts\": {name: before[name] for name in (\"input_rows\", \"history_rows\", \"current_rows\")},\n                      \"after_counts\": {name: after[name] for name in (\"input_rows\", \"history_rows\", \"current_rows\")}}\n        except (OSError, ValueError, KeyError, TypeError) as error:\n            raise CommandError(str(error)) from error\n        self.stdout.write(json.dumps(result, ensure_ascii=False))\n\n        \n    def read_lake_manifest(folder):\n        root = Path(folder)\n        manifest = json.loads((root / \"manifest.json\").read_text(encoding=\"utf-8\"))\n        if manifest[\"schema_version\"] != \"player-lake/v1\":\n            raise ValueError(\"player-lake/v1 manifest가 필요합니다.\")\n        for name in (\"history\", \"current\"):\n            record = manifest[\"files\"][name]\n            if record[\"path\"] != name + \".ndjson\":\n                raise ValueError(\"결과 파일명이 다릅니다.\")\n            payload = (root / record[\"path\"]).read_bytes()\n            if hashlib.sha256(payload).hexdigest() != record[\"sha256\"]:\n                raise ValueError(\"저장 파일과 manifest의 SHA가 다릅니다.\")\n            if len(payload.splitlines()) != record[\"rows\"]:\n                raise ValueError(\"저장 파일과 manifest의 행 수가 다릅니다.\")\n        return manifest\n\n\nclass Command(BaseCommand):\n    help = \"보존한 두 Lake 버전의 입력·결과 파일 지문을 대조합니다.\"\n\n    def add_arguments(self, parser):\n        parser.add_argument(\"--before\", required=True)\n        parser.add_argument(\"--after\", required=True)\n\n    def handle(self, *args, **options):\n        try:\n            before = read_lake_manifest(options[\"before\"])\n            after = read_lake_manifest(options[\"after\"])\n            result = {\"before\": options[\"before\"], \"after\": options[\"after\"],\n                      \"source_matches\": before[\"source_sha256\"] == after[\"source_sha256\"],\n                      \"history_matches\": before[\"files\"][\"history\"] == after[\"files\"][\"history\"],\n                      \"current_matches\": before[\"files\"][\"current\"] == after[\"files\"][\"current\"],\n                      \"before_counts\": {name: before[name] for name in (\"input_rows\", \"history_rows\", \"current_rows\")},\n                      \"after_counts\": {name: after[name] for name in (\"input_rows\", \"history_rows\", \"current_rows\")}}\n        except (OSError, ValueError, KeyError, TypeError) as error:\n            raise CommandError(str(error)) from error\n        self.stdout.write(json.dumps(result, ensure_ascii=False))"
+    },
+    "ads/management/commands/build_player_lake.py": {
+      "sha256": "843c29fe3b15528f4dfbb5472a0c06033116816b31cb75cacaee0c8b14327667",
+      "text": "import json\n\nfrom django.core.management.base import BaseCommand, CommandError\nfrom ads.lake_files import build_lake_version\n\n\nclass Command(BaseCommand):\n    help = \"고정 입력에서 새 NDJSON Player Lake 버전을 만듭니다.\"\n\n    def add_arguments(self, parser):\n        parser.add_argument(\"--source\", required=True)\n        parser.add_argument(\"--output\", required=True)\n\n    def handle(self, *args, **options):\n        try:\n            result = build_lake_version(options[\"source\"], options[\"output\"])\n        except (OSError, ValueError, KeyError, TypeError) as error:\n            raise CommandError(str(error)) from error\n        self.stdout.write(json.dumps(result, ensure_ascii=False))"
+    },
+    "ads/management/commands/compare_player_lake_versions.py": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": ""
+    }
+  },
+  "routing_before": [
+    {
+      "file": "ads/lake_files.py",
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "stable_json",
+          "line": 11,
+          "signature": "stable_json(row)",
+          "signature_core": "stable_json(row)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "function",
+          "qualified_name": "build_history",
+          "line": 15,
+          "signature": "build_history(rows)",
+          "signature_core": "build_history(rows)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "function",
+          "qualified_name": "build_current",
+          "line": 29,
+          "signature": "build_current(history)",
+          "signature_core": "build_current(history)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "function",
+          "qualified_name": "write_ndjson",
+          "line": 47,
+          "signature": "write_ndjson(path, rows)",
+          "signature_core": "write_ndjson(path, rows)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "function",
+          "qualified_name": "build_lake_version",
+          "line": 55,
+          "signature": "build_lake_version(source_path, output_dir)",
+          "signature_core": "build_lake_version(source_path, output_dir)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        }
+      ],
+      "error": null,
+      "document_exists": true,
+      "missing": [
+        "write_ndjson(path, rows)",
+        "build_lake_version(source_path, output_dir)"
+      ]
+    },
+    {
+      "file": "ads/management/commands/compare_player_snapshots.py",
+      "symbols": [
+        {
+          "kind": "function",
+          "qualified_name": "read_lake_manifest",
+          "line": 10,
+          "signature": "read_lake_manifest(folder)",
+          "signature_core": "read_lake_manifest(folder)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 27,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 30,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 34,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.read_lake_manifest",
+          "line": 49,
+          "signature": "Command.read_lake_manifest(folder)",
+          "signature_core": "Command.read_lake_manifest(folder)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 66,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 69,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 73,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        }
+      ],
+      "error": null,
+      "document_exists": true,
+      "missing": [
+        "read_lake_manifest(folder)",
+        "Command.read_lake_manifest(folder)"
+      ]
+    },
+    {
+      "file": "ads/management/commands/build_player_lake.py",
+      "symbols": [
+        {
+          "kind": "class",
+          "qualified_name": "Command",
+          "line": 7,
+          "signature": "class Command(BaseCommand)",
+          "signature_core": "Command",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [
+            "BaseCommand"
+          ],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.add_arguments",
+          "line": 10,
+          "signature": "Command.add_arguments(self, parser)",
+          "signature_core": "Command.add_arguments(self, parser)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        },
+        {
+          "kind": "method",
+          "qualified_name": "Command.handle",
+          "line": 14,
+          "signature": "Command.handle(self, *args, **options)",
+          "signature_core": "Command.handle(self, *args, **options)",
+          "return_annotation": null,
+          "decorators": [],
+          "bases": [],
+          "documented": false
+        }
+      ],
+      "error": null,
+      "document_exists": false,
+      "missing": [
+        "Command",
+        "Command.add_arguments(self, parser)",
+        "Command.handle(self, *args, **options)"
+      ]
+    },
+    {
+      "file": "ads/management/commands/compare_player_lake_versions.py",
+      "symbols": [],
+      "error": null,
+      "document_exists": false,
+      "missing": []
+    }
+  ],
+  "preserved_files_before": {
+    "data\\handoff\\day25-run1\\checkpoint.json": "1d7ddcbaf3924f16743276fab86afd014dacdef3781d6bcfa7556f2e9e167f90",
+    "data\\handoff\\day25-run1\\manifest.json": "b8ebc03e50748be6b390fb3a36f0b3870b323d8b882dbec833081a1095731bd3",
+    "data\\handoff\\day25-run1\\player-context-changes.ndjson": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+    "data\\handoff\\day25-run1\\player-context.ndjson": "4b781d243ffd3331a5e446c821a8699e4d8524be6a3b740937fd278cabcd2ffc",
+    "data\\lake\\gold\\player_current\\run-001\\current.ndjson": "2814cd044e44ebe3f92e63c3e53631aa04a41a87c34cae0b948829c458df60ac",
+    "data\\lake\\gold\\player_current\\run-001\\history.ndjson": "ad682d307f0508b2cbffbd48beece93ad974cb03e7cc9161b3b725d64e4d3a98",
+    "data\\lake\\gold\\player_current\\run-001\\summary.json": "3eb530ea387a029fc80fe95dc6db97a61618144141ac8212d5fe52219ed92d66",
+    "data\\lake\\gold\\player_current\\run-002\\current.ndjson": "2814cd044e44ebe3f92e63c3e53631aa04a41a87c34cae0b948829c458df60ac",
+    "data\\lake\\gold\\player_current\\run-002\\history.ndjson": "ad682d307f0508b2cbffbd48beece93ad974cb03e7cc9161b3b725d64e4d3a98",
+    "data\\lake\\gold\\player_current\\run-002\\summary.json": "af56f5918d137b17406b003fafb978213d60231f8d373855bcbb180800f6e886",
+    "data\\checkpoints\\player-context-day25-after.json": "1d7ddcbaf3924f16743276fab86afd014dacdef3781d6bcfa7556f2e9e167f90",
+    "data\\checkpoints\\player-context-day25-incomplete.json": "1fcf468b62054161ed6fa9915bea22620ec4ab67ef6346f88916d62dd296ec4e",
+    "data\\checkpoints\\player-context-replay.json": "20ed129ec50bcfc1cbbb3d6a1cf4eca7784911ea2564571e16e6f036662f272a",
+    "data\\checkpoints\\player-context.json": "fefdcb7564497b4b71c58e02609ae1ca2ee6aba2ba98b3c029956d881a469ef9"
+  },
+  "routing_cli_before": {
+    "exit_code": 1,
+    "error": "routing directory is incomplete: 기존 README.md 없음; current-progress-index.md를 별도 대조"
+  },
+  "snapshot_document_before": "# ads/management/commands/compare_player_snapshots.py\n\n24일차 6교시의 사용자 작성 Command다. 검증한 동결 파일 두 개의 공개 상태를 ID 기준으로 비교해 JSON에 저장한다. [공식 15/0](../../../../verification/2026-10-12-day24-period05-07-review/official-period06-final.json) 및 [실제 비교 대조](../../../../verification/2026-10-12-day24-period05-07-review/actual-file-verification.json)가 통과했다. 각 56행의 입력에서 changed 1건·newly_seen/missing_unknown 각 0건이 저장 결과와 일치한다. 원본과 기존 결과를 다시 쓰지 않았다.\n\n## class Command(BaseCommand)\n\nhelp는 \"동결된 두 파일의 공개 상태를 ID 기준으로 비교합니다.\"다. 이름은 compare_player_snapshots, 실행 진입점은 ad_config/manage.py다. 직접 DB·게임 ORM 호출은 없다.\n\n## Command.add_arguments(self, parser)\n\nparser는 Django/argparse 파서이며 필수 --before·--after·--output 문자열 인수를 등록한다. 반환값은 None이다. before/after는 수집 시점이 다른 기존 snapshot 경로, output은 별도 결과 JSON 경로다. 상대경로는 실행 폴더 기준이다. 직접 호출은 parser.add_argument 세 번이다.\n\n## Command.handle(self, *args, **options)\n\nargs는 사용하지 않는 Django 위치 인수다. options의 before·after·output은 파서가 제공하는 필수 값이다. 반환값은 None이며 결과 파일과 stdout을 쓴다.\n\n의사코드: load_rows(before)/load_rows(after) → compare 두 ID 사전 → output이 두 입력 resolve 중 하나면 거절 → 부모 폴더 준비 → UTF-8/sort_keys/indent=2/newline 저장 → stdout에도 indent=2 JSON 출력.\n\n직접 호출은 ads.snapshot_intake.load_rows(검증된 ID→행 사전), compare(변경·새 ID·원인 미상 누락 사전), Path.resolve/parent.mkdir/write_text, json.dumps, self.stdout.write다. OSError·ValueError·TypeError·KeyError를 CommandError로 연결한다. 출력이 입력과 같은 경로면 ValueError다. 기존 output은 재실행 시 다시 쓴다. 원본을 수정하거나 사라진 Player를 삭제하지 않는다.\n\nresult는 compare 반환 사전, target은 출력 Path다. 상태 비교의 세부 구현은 하위 함수가 맡는다. 교안 제공 Command의 stdout은 compact JSON이지만 현재 사용자 파일은 indent=2로 여러 줄 출력한다. 키·값·파일 JSON은 같은 계약이며 이 차이를 보존했다.\n",
+  "user_documents_aligned_before_development": [
+    {
+      "file": "ads/lake_files.py",
+      "missing": [],
+      "parse_error": null,
+      "indexed": true
+    },
+    {
+      "file": "ads/management/commands/compare_player_snapshots.py",
+      "missing": [],
+      "parse_error": null,
+      "indexed": true
+    },
+    {
+      "file": "ads/management/commands/build_player_lake.py",
+      "missing": [],
+      "parse_error": null,
+      "indexed": true
+    },
+    {
+      "file": "ads/management/commands/compare_player_lake_versions.py",
+      "missing": [],
+      "parse_error": null,
+      "indexed": true
+    }
+  ],
+  "tests": [
+    {
+      "chunk_id": "ac6601",
+      "wall_time_seconds": 3.2818284,
+      "exit_code": 0,
+      "original_token_count": 78,
+      "output": "Creating test database for alias 'default'...\r\r\n.......................................\r\n----------------------------------------------------------------------\r\nRan 39 tests in 1.547s\r\n\r\nOK\r\nDestroying test database for alias 'default'...\r\r\nFound 39 test(s).\r\nSystem check identified no issues (0 silenced).\r\n"
+    },
+    {
+      "chunk_id": "6f26b8",
+      "wall_time_seconds": 2.7700943000000002,
+      "exit_code": 0,
+      "original_token_count": 38,
+      "output": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\nSystem check identified no issues (0 silenced).\r\n"
+    },
+    {
+      "chunk_id": "80d433",
+      "wall_time_seconds": 0.9286633,
+      "exit_code": 0,
+      "original_token_count": 28,
+      "output": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n64\r\nTrue\r\n"
+    }
+  ],
+  "actual_execution": [
+    {
+      "args": [
+        "inspect_player_lake",
+        "--source",
+        "data/handoff/day25-run1/player-context-changes.ndjson",
+        "--manifest",
+        "data/handoff/day25-run1/manifest.json",
+        "--stage",
+        "history"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"stage\": \"history\", \"source\": \"data/handoff/day25-run1/player-context-changes.ndjson\", \"source_sha256\": \"18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154\", \"input_rows\": 56, \"supplied_rows\": 56, \"history_rows\": 56, \"result_rows\": 56, \"result_sha256\": \"2d9523e069398c701fd562d1f36909eb47c96b35775318bd5cac063b616afd77\", \"preview\": [{\"change_id\": \"7a940edb7abb2f974bf2b5dff5d3f5cb104d9c88bccf3e18e4b0e86c5bcb27d6\", \"context\": {\"coins\": 0, \"player_id\": \"3\", \"room_id\": \"room-01\", \"updated_at\": \"2026-09-15T08:41:38.825904+00:00\", \"version\": 1}, \"event_time\": \"2026-09-15T08:41:38.825904+00:00\", \"media_id\": \"village-game\", \"op\": \"upsert\", \"schema_version\": \"player-context-change/v1\", \"source_kind\": \"player-snapshot\", \"subject_id\": \"3\", \"version\": 1}], \"written\": false}\n",
+      "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n"
+    },
+    {
+      "args": [
+        "build_player_lake",
+        "--source",
+        "data/handoff/day25-run1/player-context-changes.ndjson",
+        "--output",
+        "data/lake/gold/player_current/run-003"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"schema_version\": \"player-lake/v1\", \"source_kind\": \"player-context-change\", \"source_path\": \"data\\\\handoff\\\\day25-run1\\\\player-context-changes.ndjson\", \"source_sha256\": \"18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154\", \"input_rows\": 56, \"history_rows\": 56, \"current_rows\": 56, \"source_max_event_time\": \"2026-10-13T06:36:55.250374+00:00\", \"output_dir\": \"data\\\\lake\\\\gold\\\\player_current\\\\run-003\", \"files\": {\"history\": {\"path\": \"history.ndjson\", \"rows\": 56, \"sha256\": \"ad682d307f0508b2cbffbd48beece93ad974cb03e7cc9161b3b725d64e4d3a98\"}, \"current\": {\"path\": \"current.ndjson\", \"rows\": 56, \"sha256\": \"2814cd044e44ebe3f92e63c3e53631aa04a41a87c34cae0b948829c458df60ac\"}}, \"created_at\": \"2026-10-14T05:55:19.457053+00:00\"}\n",
+      "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n"
+    },
+    {
+      "args": [
+        "build_player_lake",
+        "--source",
+        "data/handoff/day25-run1/player-context-changes.ndjson",
+        "--output",
+        "data/lake/gold/player_current/run-003"
+      ],
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\nCommandError: [WinError 183] 파일이 이미 있으므로 만들 수 없습니다: 'data\\\\lake\\\\gold\\\\player_current\\\\run-003'\n"
+    },
+    {
+      "args": [
+        "build_player_lake",
+        "--source",
+        "data/handoff/day25-run1/player-context-changes.ndjson",
+        "--output",
+        "data/lake/gold/player_current/run-004"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"schema_version\": \"player-lake/v1\", \"source_kind\": \"player-context-change\", \"source_path\": \"data\\\\handoff\\\\day25-run1\\\\player-context-changes.ndjson\", \"source_sha256\": \"18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154\", \"input_rows\": 56, \"history_rows\": 56, \"current_rows\": 56, \"source_max_event_time\": \"2026-10-13T06:36:55.250374+00:00\", \"output_dir\": \"data\\\\lake\\\\gold\\\\player_current\\\\run-004\", \"files\": {\"history\": {\"path\": \"history.ndjson\", \"rows\": 56, \"sha256\": \"ad682d307f0508b2cbffbd48beece93ad974cb03e7cc9161b3b725d64e4d3a98\"}, \"current\": {\"path\": \"current.ndjson\", \"rows\": 56, \"sha256\": \"2814cd044e44ebe3f92e63c3e53631aa04a41a87c34cae0b948829c458df60ac\"}}, \"created_at\": \"2026-10-14T05:55:22.156089+00:00\"}\n",
+      "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n"
+    },
+    {
+      "args": [
+        "compare_player_lake_versions",
+        "--before",
+        "data/lake/gold/player_current/run-003",
+        "--after",
+        "data/lake/gold/player_current/run-004"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"before\": \"data/lake/gold/player_current/run-003\", \"after\": \"data/lake/gold/player_current/run-004\", \"source_matches\": true, \"history_matches\": true, \"current_matches\": true, \"before_counts\": {\"input_rows\": 56, \"history_rows\": 56, \"current_rows\": 56}, \"after_counts\": {\"input_rows\": 56, \"history_rows\": 56, \"current_rows\": 56}}\n",
+      "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n"
+    },
+    {
+      "args": [
+        "inspect_player_lake",
+        "--source",
+        "data/handoff/day25-run1/player-context-changes.ndjson",
+        "--manifest",
+        "data/handoff/day25-run1/manifest.json",
+        "--stage",
+        "current"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"stage\": \"current\", \"source\": \"data/handoff/day25-run1/player-context-changes.ndjson\", \"source_sha256\": \"18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154\", \"input_rows\": 56, \"supplied_rows\": 56, \"history_rows\": 56, \"result_rows\": 56, \"result_sha256\": \"fa547973889369783752a5f575caba092817791b32853ad5793c8277290e0c23\", \"preview\": [{\"schema_version\": \"player-current/v1\", \"media_id\": \"village-game\", \"subject_id\": \"1\", \"version\": 461, \"source_kind\": \"player-snapshot\", \"change_id\": \"2f62d26e38175a63ff2277cc169fe0c4308c81972bab29cf929212319b1bc870\", \"event_time\": \"2026-10-13T06:36:55.250374+00:00\", \"_id\": \"village-game:1\", \"deleted\": false, \"context\": {\"coins\": 26, \"player_id\": \"1\", \"room_id\": \"room-01\", \"updated_at\": \"2026-10-13T06:36:55.250374+00:00\", \"version\": 461}}], \"written\": false}\n",
+      "stderr": "Failed to find real location of C:\\Users\\이해나\\AppData\\Local\\Programs\\Python\\Python314\\python.exe\n"
+    }
+  ],
+  "preserved_files_after": {
+    "checked": 14,
+    "changed": []
+  },
+  "runs_created": [
+    "data/lake/gold/player_current/run-003",
+    "data/lake/gold/player_current/run-004"
+  ],
+  "result": {
+    "source_sha256": "18dbb0bd715f69a4bfde646623cd3d39932f9c147fdf7858f6276732bb51e154",
+    "N": 56,
+    "H": 56,
+    "K": 56,
+    "comparison": {
+      "before": "data/lake/gold/player_current/run-003",
+      "after": "data/lake/gold/player_current/run-004",
+      "source_matches": true,
+      "history_matches": true,
+      "current_matches": true,
+      "before_counts": {
+        "input_rows": 56,
+        "history_rows": 56,
+        "current_rows": 56
+      },
+      "after_counts": {
+        "input_rows": 56,
+        "history_rows": 56,
+        "current_rows": 56
+      }
+    },
+    "files": {
+      "history": {
+        "path": "history.ndjson",
+        "rows": 56,
+        "sha256": "ad682d307f0508b2cbffbd48beece93ad974cb03e7cc9161b3b725d64e4d3a98"
+      },
+      "current": {
+        "path": "current.ndjson",
+        "rows": 56,
+        "sha256": "2814cd044e44ebe3f92e63c3e53631aa04a41a87c34cae0b948829c458df60ac"
+      }
+    },
+    "current_preview": [
+      {
+        "schema_version": "player-current/v1",
+        "media_id": "village-game",
+        "subject_id": "1",
+        "version": 461,
+        "source_kind": "player-snapshot",
+        "change_id": "2f62d26e38175a63ff2277cc169fe0c4308c81972bab29cf929212319b1bc870",
+        "event_time": "2026-10-13T06:36:55.250374+00:00",
+        "_id": "village-game:1",
+        "deleted": false,
+        "context": {
+          "coins": 26,
+          "player_id": "1",
+          "room_id": "room-01",
+          "updated_at": "2026-10-13T06:36:55.250374+00:00",
+          "version": 461
+        }
+      }
+    ]
+  },
+  "lesson_code_comparison": {
+    "build_lake_version_ast_except_user_local_name": true,
+    "write_ndjson_ast": true,
+    "build_player_lake_ast": true,
+    "compare_player_lake_versions_ast": true
+  },
+  "routing_final": {
+    "ok": true,
+    "python_files": [
+      {
+        "source": "ads/lake_files.py",
+        "parse_error": null,
+        "doc_exists": true,
+        "missing": [],
+        "indexed": true,
+        "symbols": [
+          {
+            "kind": "function",
+            "qualified_name": "stable_json",
+            "line": 11,
+            "signature": "stable_json(row)",
+            "signature_core": "stable_json(row)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "function",
+            "qualified_name": "build_history",
+            "line": 15,
+            "signature": "build_history(rows)",
+            "signature_core": "build_history(rows)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "function",
+            "qualified_name": "build_current",
+            "line": 29,
+            "signature": "build_current(history)",
+            "signature_core": "build_current(history)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "function",
+            "qualified_name": "write_ndjson",
+            "line": 47,
+            "signature": "write_ndjson(path, rows)",
+            "signature_core": "write_ndjson(path, rows)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "function",
+            "qualified_name": "build_lake_version",
+            "line": 55,
+            "signature": "build_lake_version(source_path, output_dir)",
+            "signature_core": "build_lake_version(source_path, output_dir)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          }
+        ]
+      },
+      {
+        "source": "ads/management/commands/compare_player_snapshots.py",
+        "parse_error": null,
+        "doc_exists": true,
+        "missing": [],
+        "indexed": true,
+        "symbols": [
+          {
+            "kind": "class",
+            "qualified_name": "Command",
+            "line": 9,
+            "signature": "class Command(BaseCommand)",
+            "signature_core": "Command",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [
+              "BaseCommand"
+            ],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "Command.add_arguments",
+            "line": 12,
+            "signature": "Command.add_arguments(self, parser)",
+            "signature_core": "Command.add_arguments(self, parser)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "Command.handle",
+            "line": 17,
+            "signature": "Command.handle(self, *args, **options)",
+            "signature_core": "Command.handle(self, *args, **options)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          }
+        ]
+      },
+      {
+        "source": "ads/management/commands/build_player_lake.py",
+        "parse_error": null,
+        "doc_exists": true,
+        "missing": [],
+        "indexed": true,
+        "symbols": [
+          {
+            "kind": "class",
+            "qualified_name": "Command",
+            "line": 7,
+            "signature": "class Command(BaseCommand)",
+            "signature_core": "Command",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [
+              "BaseCommand"
+            ],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "Command.add_arguments",
+            "line": 10,
+            "signature": "Command.add_arguments(self, parser)",
+            "signature_core": "Command.add_arguments(self, parser)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "Command.handle",
+            "line": 14,
+            "signature": "Command.handle(self, *args, **options)",
+            "signature_core": "Command.handle(self, *args, **options)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          }
+        ]
+      },
+      {
+        "source": "ads/management/commands/compare_player_lake_versions.py",
+        "parse_error": null,
+        "doc_exists": true,
+        "missing": [],
+        "indexed": true,
+        "symbols": [
+          {
+            "kind": "function",
+            "qualified_name": "read_lake_manifest",
+            "line": 8,
+            "signature": "read_lake_manifest(folder)",
+            "signature_core": "read_lake_manifest(folder)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "class",
+            "qualified_name": "Command",
+            "line": 25,
+            "signature": "class Command(BaseCommand)",
+            "signature_core": "Command",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [
+              "BaseCommand"
+            ],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "Command.add_arguments",
+            "line": 28,
+            "signature": "Command.add_arguments(self, parser)",
+            "signature_core": "Command.add_arguments(self, parser)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "Command.handle",
+            "line": 32,
+            "signature": "Command.handle(self, *args, **options)",
+            "signature_core": "Command.handle(self, *args, **options)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          }
+        ]
+      },
+      {
+        "source": "ads/test_events.py",
+        "parse_error": null,
+        "doc_exists": true,
+        "missing": [],
+        "indexed": true,
+        "symbols": [
+          {
+            "kind": "class",
+            "qualified_name": "EventAuthTests",
+            "line": 35,
+            "signature": "class EventAuthTests(SimpleTestCase)",
+            "signature_core": "EventAuthTests",
+            "return_annotation": null,
+            "decorators": [
+              "override_settings(MEDIA_KEYS={'village-game': 'test-event-key'})"
+            ],
+            "bases": [
+              "SimpleTestCase"
+            ],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventAuthTests.test_both_media_headers_must_match_the_authenticated_body",
+            "line": 36,
+            "signature": "EventAuthTests.test_both_media_headers_must_match_the_authenticated_body(self)",
+            "signature_core": "EventAuthTests.test_both_media_headers_must_match_the_authenticated_body(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventAuthTests.test_public_snapshot_error_keeps_only_the_allowed_error_code",
+            "line": 49,
+            "signature": "EventAuthTests.test_public_snapshot_error_keeps_only_the_allowed_error_code(self)",
+            "signature_core": "EventAuthTests.test_public_snapshot_error_keeps_only_the_allowed_error_code(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventAuthTests.test_media_key_json_subject_and_post_are_required",
+            "line": 58,
+            "signature": "EventAuthTests.test_media_key_json_subject_and_post_are_required(self)",
+            "signature_core": "EventAuthTests.test_media_key_json_subject_and_post_are_required(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed",
+            "line": 73,
+            "signature": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed(self)",
+            "signature_core": "EventAuthTests.test_store_outage_is_503_and_no_private_exception_is_exposed(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "class",
+            "qualified_name": "EventIntegrationTests",
+            "line": 83,
+            "signature": "class EventIntegrationTests(TestCase)",
+            "signature_core": "EventIntegrationTests",
+            "return_annotation": null,
+            "decorators": [
+              "skipUnless(os.environ.get('ADS_TEST_MONGO_URI'), 'Requires isolated ADS_TEST_MONGO_URI')"
+            ],
+            "bases": [
+              "TestCase"
+            ],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventIntegrationTests.test_subject_field_order_does_not_change_recipient_identity",
+            "line": 84,
+            "signature": "EventIntegrationTests.test_subject_field_order_does_not_change_recipient_identity(self)",
+            "signature_core": "EventIntegrationTests.test_subject_field_order_does_not_change_recipient_identity(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventIntegrationTests.test_old_incomplete_snapshot_is_rejected_without_backfilling",
+            "line": 90,
+            "signature": "EventIntegrationTests.test_old_incomplete_snapshot_is_rejected_without_backfilling(self)",
+            "signature_core": "EventIntegrationTests.test_old_incomplete_snapshot_is_rejected_without_backfilling(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventIntegrationTests.test_index_command_is_repeatable_and_prints_the_lesson_name",
+            "line": 99,
+            "signature": "EventIntegrationTests.test_index_command_is_repeatable_and_prints_the_lesson_name(self)",
+            "signature_core": "EventIntegrationTests.test_index_command_is_repeatable_and_prints_the_lesson_name(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventIntegrationTests.test_advertiser_page_lists_only_owner_decisions_latest_first_without_events",
+            "line": 106,
+            "signature": "EventIntegrationTests.test_advertiser_page_lists_only_owner_decisions_latest_first_without_events(self)",
+            "signature_core": "EventIntegrationTests.test_advertiser_page_lists_only_owner_decisions_latest_first_without_events(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventIntegrationTests.setUpClass",
+            "line": 133,
+            "signature": "EventIntegrationTests.setUpClass(cls)",
+            "signature_core": "EventIntegrationTests.setUpClass(cls)",
+            "return_annotation": null,
+            "decorators": [
+              "classmethod"
+            ],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventIntegrationTests.tearDownClass",
+            "line": 139,
+            "signature": "EventIntegrationTests.tearDownClass(cls)",
+            "signature_core": "EventIntegrationTests.tearDownClass(cls)",
+            "return_annotation": null,
+            "decorators": [
+              "classmethod"
+            ],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventIntegrationTests.setUp",
+            "line": 144,
+            "signature": "EventIntegrationTests.setUp(self)",
+            "signature_core": "EventIntegrationTests.setUp(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount",
+            "line": 159,
+            "signature": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount(self)",
+            "signature_core": "EventIntegrationTests.test_first_duplicate_click_and_snapshot_amount(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision",
+            "line": 179,
+            "signature": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision(self)",
+            "signature_core": "EventIntegrationTests.test_click_before_impression_wrong_subject_and_empty_decision(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write",
+            "line": 190,
+            "signature": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write(self)",
+            "signature_core": "EventIntegrationTests.test_concurrent_duplicates_have_one_first_write(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors",
+            "line": 198,
+            "signature": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors(self)",
+            "signature_core": "EventIntegrationTests.test_invalid_types_and_missing_candidate_are_input_errors(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type",
+            "line": 208,
+            "signature": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type(self)",
+            "signature_core": "EventIntegrationTests.test_real_media_event_endpoint_duplicate_and_nonhashable_type(self)",
+            "return_annotation": null,
+            "decorators": [
+              "override_settings(MEDIA_KEYS={'village-game': 'test-event-key'})"
+            ],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "class",
+            "qualified_name": "ContextApiTests",
+            "line": 220,
+            "signature": "class ContextApiTests(SimpleTestCase)",
+            "signature_core": "ContextApiTests",
+            "return_annotation": null,
+            "decorators": [
+              "override_settings(MEDIA_KEYS={'village-game': 'test-only-key'})"
+            ],
+            "bases": [
+              "SimpleTestCase"
+            ],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextApiTests.post_context",
+            "line": 221,
+            "signature": "ContextApiTests.post_context(self, body=None, **headers)",
+            "signature_core": "ContextApiTests.post_context(self, body=None, **headers)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextApiTests.test_subject_only_payload_and_all_media_routes",
+            "line": 229,
+            "signature": "ContextApiTests.test_subject_only_payload_and_all_media_routes(self)",
+            "signature_core": "ContextApiTests.test_subject_only_payload_and_all_media_routes(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextApiTests.test_invalid_headers_and_cross_media_subject_never_lookup",
+            "line": 243,
+            "signature": "ContextApiTests.test_invalid_headers_and_cross_media_subject_never_lookup(self)",
+            "signature_core": "ContextApiTests.test_invalid_headers_and_cross_media_subject_never_lookup(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextApiTests.test_legacy_top_level_media_id_remains_checked",
+            "line": 254,
+            "signature": "ContextApiTests.test_legacy_top_level_media_id_remains_checked(self)",
+            "signature_core": "ContextApiTests.test_legacy_top_level_media_id_remains_checked(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextApiTests.test_method_rejection_is_json_and_has_allow",
+            "line": 264,
+            "signature": "ContextApiTests.test_method_rejection_is_json_and_has_allow(self)",
+            "signature_core": "ContextApiTests.test_method_rejection_is_json_and_has_allow(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextApiTests.test_empty_context_and_store_outage_are_distinct",
+            "line": 270,
+            "signature": "ContextApiTests.test_empty_context_and_store_outage_are_distinct(self)",
+            "signature_core": "ContextApiTests.test_empty_context_and_store_outage_are_distinct(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "class",
+            "qualified_name": "ContextHandoffTests",
+            "line": 281,
+            "signature": "class ContextHandoffTests(SimpleTestCase)",
+            "signature_core": "ContextHandoffTests",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [
+              "SimpleTestCase"
+            ],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextHandoffTests.setUp",
+            "line": 282,
+            "signature": "ContextHandoffTests.setUp(self)",
+            "signature_core": "ContextHandoffTests.setUp(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextHandoffTests.test_four_files_preserve_input_and_replay_has_no_writes",
+            "line": 309,
+            "signature": "ContextHandoffTests.test_four_files_preserve_input_and_replay_has_no_writes(self)",
+            "signature_core": "ContextHandoffTests.test_four_files_preserve_input_and_replay_has_no_writes(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextHandoffTests.test_existing_destination_is_not_overwritten",
+            "line": 333,
+            "signature": "ContextHandoffTests.test_existing_destination_is_not_overwritten(self)",
+            "signature_core": "ContextHandoffTests.test_existing_destination_is_not_overwritten(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextHandoffTests.test_wrong_or_incomplete_checkpoint_never_creates_output",
+            "line": 343,
+            "signature": "ContextHandoffTests.test_wrong_or_incomplete_checkpoint_never_creates_output(self)",
+            "signature_core": "ContextHandoffTests.test_wrong_or_incomplete_checkpoint_never_creates_output(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextHandoffTests.test_only_selected_media_player_snapshot_input_is_exported",
+            "line": 354,
+            "signature": "ContextHandoffTests.test_only_selected_media_player_snapshot_input_is_exported(self)",
+            "signature_core": "ContextHandoffTests.test_only_selected_media_player_snapshot_input_is_exported(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextHandoffTests.test_public_document_key_type_and_digest_are_checked",
+            "line": 365,
+            "signature": "ContextHandoffTests.test_public_document_key_type_and_digest_are_checked(self)",
+            "signature_core": "ContextHandoffTests.test_public_document_key_type_and_digest_are_checked(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextHandoffTests.test_changed_copy_is_rejected_without_publishing_partial_bundle",
+            "line": 374,
+            "signature": "ContextHandoffTests.test_changed_copy_is_rejected_without_publishing_partial_bundle(self)",
+            "signature_core": "ContextHandoffTests.test_changed_copy_is_rejected_without_publishing_partial_bundle(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "ContextHandoffTests.test_command_exports_and_reports_existing_target_as_command_error",
+            "line": 386,
+            "signature": "ContextHandoffTests.test_command_exports_and_reports_existing_target_as_command_error(self)",
+            "signature_core": "ContextHandoffTests.test_command_exports_and_reports_existing_target_as_command_error(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "class",
+            "qualified_name": "PlayerLakeTests",
+            "line": 398,
+            "signature": "class PlayerLakeTests(SimpleTestCase)",
+            "signature_core": "PlayerLakeTests",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [
+              "SimpleTestCase"
+            ],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_history_repeated_reversed_and_equal_time_rows_are_deterministic",
+            "line": 399,
+            "signature": "PlayerLakeTests.test_history_repeated_reversed_and_equal_time_rows_are_deterministic(self)",
+            "signature_core": "PlayerLakeTests.test_history_repeated_reversed_and_equal_time_rows_are_deterministic(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_schema_and_content_hash_are_validated_before_results",
+            "line": 411,
+            "signature": "PlayerLakeTests.test_schema_and_content_hash_are_validated_before_results(self)",
+            "signature_core": "PlayerLakeTests.test_schema_and_content_hash_are_validated_before_results(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_current_chooses_highest_version_and_preserves_input",
+            "line": 420,
+            "signature": "PlayerLakeTests.test_current_chooses_highest_version_and_preserves_input(self)",
+            "signature_core": "PlayerLakeTests.test_current_chooses_highest_version_and_preserves_input(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_latest_tombstone_cannot_be_revived_by_old_upsert",
+            "line": 433,
+            "signature": "PlayerLakeTests.test_latest_tombstone_cannot_be_revived_by_old_upsert(self)",
+            "signature_core": "PlayerLakeTests.test_latest_tombstone_cannot_be_revived_by_old_upsert(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_same_version_conflict_and_next_call_are_isolated",
+            "line": 439,
+            "signature": "PlayerLakeTests.test_same_version_conflict_and_next_call_are_isolated(self)",
+            "signature_core": "PlayerLakeTests.test_same_version_conflict_and_next_call_are_isolated(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_media_are_distinct_and_provenance_ties_are_stable",
+            "line": 446,
+            "signature": "PlayerLakeTests.test_media_are_distinct_and_provenance_ties_are_stable(self)",
+            "signature_core": "PlayerLakeTests.test_media_are_distinct_and_provenance_ties_are_stable(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_preview_command_checks_manifest_checkpoint_and_preserves_files",
+            "line": 463,
+            "signature": "PlayerLakeTests.test_preview_command_checks_manifest_checkpoint_and_preserves_files(self)",
+            "signature_core": "PlayerLakeTests.test_preview_command_checks_manifest_checkpoint_and_preserves_files(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_demo_observes_duplicates_delete_conflict_and_empty_without_db",
+            "line": 498,
+            "signature": "PlayerLakeTests.test_demo_observes_duplicates_delete_conflict_and_empty_without_db(self)",
+            "signature_core": "PlayerLakeTests.test_demo_observes_duplicates_delete_conflict_and_empty_without_db(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_saved_runs_have_verified_files_and_same_input_results",
+            "line": 516,
+            "signature": "PlayerLakeTests.test_saved_runs_have_verified_files_and_same_input_results(self)",
+            "signature_core": "PlayerLakeTests.test_saved_runs_have_verified_files_and_same_input_results(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_existing_run_and_invalid_input_preserve_files",
+            "line": 540,
+            "signature": "PlayerLakeTests.test_existing_run_and_invalid_input_preserve_files(self)",
+            "signature_core": "PlayerLakeTests.test_existing_run_and_invalid_input_preserve_files(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_empty_run_and_failed_write_completion_marker",
+            "line": 558,
+            "signature": "PlayerLakeTests.test_empty_run_and_failed_write_completion_marker(self)",
+            "signature_core": "PlayerLakeTests.test_empty_run_and_failed_write_completion_marker(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_manifest_reader_rejects_bad_files_counts_paths_and_schema",
+            "line": 576,
+            "signature": "PlayerLakeTests.test_manifest_reader_rejects_bad_files_counts_paths_and_schema(self)",
+            "signature_core": "PlayerLakeTests.test_manifest_reader_rejects_bad_files_counts_paths_and_schema(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_compare_command_distinguishes_same_and_changed_inputs",
+            "line": 598,
+            "signature": "PlayerLakeTests.test_compare_command_distinguishes_same_and_changed_inputs(self)",
+            "signature_core": "PlayerLakeTests.test_compare_command_distinguishes_same_and_changed_inputs(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          },
+          {
+            "kind": "method",
+            "qualified_name": "PlayerLakeTests.test_snapshot_compare_command_keeps_output_and_original_inputs",
+            "line": 619,
+            "signature": "PlayerLakeTests.test_snapshot_compare_command_keeps_output_and_original_inputs(self)",
+            "signature_core": "PlayerLakeTests.test_snapshot_compare_command_keeps_output_and_original_inputs(self)",
+            "return_annotation": null,
+            "decorators": [],
+            "bases": [],
+            "documented": true
+          }
+        ]
+      },
+      {
+        "source": "tools/basics/day26_period03.py",
+        "parse_error": null,
+        "doc_exists": true,
+        "missing": [],
+        "indexed": true,
+        "symbols": []
+      }
+    ],
+    "artifact_pairs": 6,
+    "index": "docs/server-routing/current-progress-index.md"
+  },
+  "user_code_preservation": {
+    "stable_json_build_history_build_current_write_ndjson_unchanged": true,
+    "build_player_lake_unchanged": true,
+    "compare_player_snapshots_restored_head": true
+  },
+  "git_after_verification": {
+    "status": " M ads/lake_files.py\n M ads/test_events.py\n M docs/server-routing/current-progress-index.md\n M docs/server-routing/files/ads/lake_files.py.md\n M docs/server-routing/files/ads/management/commands/compare_player_snapshots.py.md\n M docs/server-routing/files/ads/test_events.py.md\n?? ads/management/commands/build_player_lake.py\n?? ads/management/commands/compare_player_lake_versions.py\n?? docs/server-routing/files/ads/management/commands/build_player_lake.py.md\n?? docs/server-routing/files/ads/management/commands/compare_player_lake_versions.py.md\n?? docs/server-routing/files/tools/basics/day26_period03.py.md\n?? docs/server-routing/verification/day26-period03.json\n?? tools/basics/day26_period03.py\n",
+    "staged": "",
+    "diff": "M\tads/lake_files.py\nM\tads/test_events.py\nM\tdocs/server-routing/current-progress-index.md\nM\tdocs/server-routing/files/ads/lake_files.py.md\nM\tdocs/server-routing/files/ads/management/commands/compare_player_snapshots.py.md\nM\tdocs/server-routing/files/ads/test_events.py.md\n"
+  },
+  "routing_cli_after": {
+    "exit_code": 1,
+    "error": "routing directory is incomplete: 기존 README.md 없음"
+  },
+  "handoff": "docs/handoffs/2026-10-14-day26-period03-fix.md",
+  "finish": {
+    "head": "d68b511 day25 - 챕터2",
+    "status": " M ads/lake_files.py\n M ads/test_events.py\n M docs/server-routing/current-progress-index.md\n M docs/server-routing/files/ads/lake_files.py.md\n M docs/server-routing/files/ads/management/commands/compare_player_snapshots.py.md\n M docs/server-routing/files/ads/test_events.py.md\n?? ads/management/commands/build_player_lake.py\n?? ads/management/commands/compare_player_lake_versions.py\n?? docs/handoffs/2026-10-14-day26-period03-fix.md\n?? docs/server-routing/files/ads/management/commands/build_player_lake.py.md\n?? docs/server-routing/files/ads/management/commands/compare_player_lake_versions.py.md\n?? docs/server-routing/files/tools/basics/day26_period03.py.md\n?? docs/server-routing/verification/day26-period03.json\n?? tools/basics/day26_period03.py\n",
+    "staged": "",
+    "diff": "M\tads/lake_files.py\nM\tads/test_events.py\nM\tdocs/server-routing/current-progress-index.md\nM\tdocs/server-routing/files/ads/lake_files.py.md\nM\tdocs/server-routing/files/ads/management/commands/compare_player_snapshots.py.md\nM\tdocs/server-routing/files/ads/test_events.py.md\n",
+    "source_final_sha256": {
+      "ads/lake_files.py": "83fbb3a1c3159795c65f41d11efe80fba41177000121f9bd4b7c884d21dfe2d5",
+      "ads/management/commands/compare_player_snapshots.py": "cd69113eeb36b168047bcdfd9aaadb18d049962d6b1de89d9db519c0fed8eae1",
+      "ads/management/commands/build_player_lake.py": "843c29fe3b15528f4dfbb5472a0c06033116816b31cb75cacaee0c8b14327667",
+      "ads/management/commands/compare_player_lake_versions.py": "3b5662842ef58966fd9166bad21ba85c6a69f26095589a88cb5848b83911199d",
+      "ads/test_events.py": "5f572f12514608dc0c98df65707608f94b8efd0616f8325e01f215a712b0dbf1",
+      "tools/basics/day26_period03.py": "e60964efdd63233b9e874d68c724b02e3660be357d5e107d38d63c9297bc3fa5"
+    },
+    "tests_passed": 39,
+    "django_check": "passed",
+    "git_diff_check": "passed"
+  }
+}

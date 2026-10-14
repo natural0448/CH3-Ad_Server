@@ -1,6 +1,6 @@
 # ads/lake_files.py
 
-26일차1·2교시의 메모리 history/current 계산이다. 기존 사용자 stable_json·build_history를 보존하는 범위에서 history 오류 문자열을 교안의 change_id로 바로잡고 build_current를 추가했다. 세 함수 AST가 제공 완성 코드와 같다. DB 조회·쓰기와 Lake 파일 저장은 하지 않는다.
+26일차1·2교시의 메모리 history/current 계산과3교시 새 Lake 버전 저장 함수다. 사용자의 계산 함수와 저장 함수의 로컬명 pthh를 유지하고 완료 파일 이름만 교안의 manifest.json으로 고쳤다. writer와 저장 함수는 이 로컬명 차이를 제외하면 제공 완성 코드 AST와 같다. DB 조회·쓰기는 하지 않는다. [3교시 검증](../../verification/day26-period03.json)을 따른다.
 
 ## stable_json(row)
 
@@ -16,4 +16,12 @@ history는 기본값 없는 정규화 행 iterable다. 반환은 player-current/
 
 ## 값·책임 경계
 
-unique/current/old/candidate/document/ordered는 각 호출 로컬값이다. _id는 기존 make_context_document/context_subject_key의 media_id:subject_id에서 오고 change_id는 검증한 정규화 내용의 SHA다. make_context_document는 저장하지 않는 helper, parse_utc는 timestamps다. 제공 import의 datetime/timezone/Path/hashlib/read_ndjson은3교시 준비로 유지하되 현재 함수에서 저장을 실행하지 않는다. current는 이번 입력 대상만 다루며 Mongo 전체 문서 수나 게임 전체 인원으로 해석하지 않는다.
+unique/current/old/candidate/document/ordered는 각 호출 로컬값이다. _id는 기존 make_context_document/context_subject_key의 media_id:subject_id에서 오고 change_id는 검증한 정규화 내용의 SHA다. make_context_document는 저장하지 않는 helper, parse_utc는 timestamps다. datetime/timezone/Path/hashlib/read_ndjson은3교시 저장 함수에서 사용한다. current는 이번 입력 대상만 다루며 Mongo 전체 문서 수나 게임 전체 인원으로 해석하지 않는다.
+
+## write_ndjson(path, rows)
+
+path는 기본값 없는 출력 경로(str/Path), rows는 JSON 직렬화 가능한 행 iterable다. 반환 None. 의사코드: Path 변환 → 부모 mkdir(exist_ok=True) → UTF-8/w/newline=LF로 열기 → stable_json(row)+LF를 각 행에 쓰기. 직접 호출 Path.mkdir/open, stable_json, stream.write. 이 helper 자체는 같은 파일을 덮어쓸 수 있다. 호출자인 build_lake_version이 새 run 정책을 맡는다. ads.exporting.write_ndjson과 별개다.
+
+## build_lake_version(source_path, output_dir)
+
+두 인수는 기본값 없는 입력 NDJSON 경로와 아직 없는 출력 run 경로(str/Path)다. 반환 player-lake/v1 manifest 사전. 의사코드: source.read_bytes/read_ndjson → build_history/build_current → output.mkdir(parents=True, exist_ok=False) → history/current 각각 write_ndjson → pthh.read_bytes의 SHA·행 수·파일명 기록 → manifest.json에 manifest 마지막 저장 → manifest 반환. 직접 호출 위 helper와 Path.read_bytes/mkdir/write_text, hashlib.sha256/hexdigest, datetime.now(timezone.utc).isoformat, json.dumps다. 이미 존재하는 run은 FileExistsError, 검증 오류는 ValueError, 파일 I/O 오류는 OSError다. 빈 입력은 N=H=K=0, source_max_event_time=None이다. source_bytes/source_rows/history/current/files/manifest/pthh는 호출 로컬값이다. schema_version=player-lake/v1, source_kind=player-context-change, files 키=history/current, created_at은 현재 UTC다. 동결 입력과 단일 작성자를 전제로 하며 파일시스템 전체 트랜잭션은 아니다. 저장 중 실패하면 manifest 없는 run이 남을 수 있으므로 새 이름으로 재실행한다.

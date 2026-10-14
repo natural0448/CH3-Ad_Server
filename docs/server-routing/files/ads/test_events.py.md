@@ -283,7 +283,7 @@ body는 기본 None일 때 공개 subject 사전을 생성하고, 지정 시 JSO
 
 ## class PlayerLakeTests(SimpleTestCase)
 
-26일차1·2교시 회귀검사를 기존 테스트 파일에 추가했다. self는 각 메서드의 기본값 없는 테스트인스턴스, 정상 반환None, 실패AssertionError다. 기존 테스트 클래스 본문은 보존했다. fixture는 demo의 고정 teaching-fixture이고 파일검사만 테스트 소유TemporaryDirectory를 사용한다. 실제 Mongo는 mock이며 이번 관련 검사33개가 통과했다.
+26일차1~3교시 회귀검사를 기존 테스트 파일에 추가했다. self는 각 메서드의 기본값 없는 테스트인스턴스, 정상 반환None, 실패AssertionError다. 기존 테스트 클래스 본문은 보존했다. fixture는 demo의 고정 teaching-fixture이고 파일검사만 테스트 소유TemporaryDirectory를 사용한다. 실제 Mongo는 mock이며 이번 관련 검사39개가 통과했다. Lake 파일 저장·비교 및 snapshot 명령 복구 검사6개를 기존 클래스에 추가했다.
 
 ### PlayerLakeTests.test_history_repeated_reversed_and_equal_time_rows_are_deterministic(self)
 
@@ -316,3 +316,28 @@ body는 기본 None일 때 공개 subject 사전을 생성하고, 지정 시 JSO
 ### PlayerLakeTests.test_demo_observes_duplicates_delete_conflict_and_empty_without_db(self)
 
 의사코드: 정상4fixture사례의행수/미작성/DB미호출 → 잘못된schema·change ID·같은version충돌은 성공stdout 없이CommandError. 직접 호출 call_command/StringIO/patch/JSON/subTest/assertRaises와assert다.
+
+
+### PlayerLakeTests.test_saved_runs_have_verified_files_and_same_input_results(self)
+
+self는 기본값 없는 테스트 인스턴스이며 정상 반환None, 실패AssertionError다. 의사코드: 중복·최신삭제 fixture 입력 → 별도 두 run 생성 → 세 파일/실제 지문/3·2·1행/삭제 상태/같은 파일 record/원본 bytes/DB미호출 검사. 직접 호출 fixture_change/write_ndjson/build_lake_version/read_lake_manifest/Path/JSON/patch/assert다. 결과와 입력은 테스트 소유TemporaryDirectory에만 저장한다.
+
+### PlayerLakeTests.test_existing_run_and_invalid_input_preserve_files(self)
+
+self·반환 계약은 위와 같다. 의사코드: 정상 run 저장 → 같은 경로 명령 실패·성공 stdout 없음·기존 파일 bytes 보존 → 동일 version 충돌 입력은 새 출력 생성 전에 거절. 직접 호출 TemporaryDirectory/Path/write_ndjson/build_lake_version/call_command/StringIO/assert다.
+
+### PlayerLakeTests.test_empty_run_and_failed_write_completion_marker(self)
+
+self·반환 계약은 위와 같다. 의사코드: 빈입력은0·0·0/null/빈파일의 완성 manifest → writer OSError 주입 → partial 폴더는 남아도 manifest 없음 → reader 거절. 직접 호출 TemporaryDirectory/Path/build_lake_version/read_lake_manifest/patch/assert다. 부분 결과를 정상 완료로 취급하지 않는 경계를 검사한다.
+
+### PlayerLakeTests.test_manifest_reader_rejects_bad_files_counts_paths_and_schema(self)
+
+self·반환 계약은 위와 같다. 의사코드: 정상manifest 사본 → history SHA/rows/상대파일명 오류 각각거절 → schema오류 거절 → 파일 bytes변경 실제 SHA오류. 직접 호출 TemporaryDirectory/Path/write_ndjson/build_lake_version/read_lake_manifest/copy.deepcopy/JSON/assert다. 변경은 임시 검증 파일에만 한다.
+
+### PlayerLakeTests.test_compare_command_distinguishes_same_and_changed_inputs(self)
+
+self·반환 계약은 위와 같다. 의사코드: 같은입력 두run·다른 version 입력 run → 비교 명령 세matches 각각true/false → 없는manifest CommandError. 직접 호출 TemporaryDirectory/Path/write_ndjson/call_command/build_lake_version/StringIO/JSON/assert다. false 결과가 정상 비교라는 계약도 검사한다.
+
+### PlayerLakeTests.test_snapshot_compare_command_keeps_output_and_original_inputs(self)
+
+self·반환 계약은 위와 같다. 의사코드: 두공개snapshot fixture → 기존 --output 명령 → 파일/stdout JSON 일치·changed1·입력보존 → output=before 거절·원본보존. 직접 호출 TemporaryDirectory/Path/write_ndjson/call_command/StringIO/JSON/assert다. 복구한24일차 명령의 실제 파서·실행 경계를 검사한다.

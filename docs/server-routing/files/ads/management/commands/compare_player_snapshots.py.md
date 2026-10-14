@@ -19,3 +19,7 @@ args는 사용하지 않는 Django 위치 인수다. options의 before·after·o
 직접 호출은 ads.snapshot_intake.load_rows(검증된 ID→행 사전), compare(변경·새 ID·원인 미상 누락 사전), Path.resolve/parent.mkdir/write_text, json.dumps, self.stdout.write다. OSError·ValueError·TypeError·KeyError를 CommandError로 연결한다. 출력이 입력과 같은 경로면 ValueError다. 기존 output은 재실행 시 다시 쓴다. 원본을 수정하거나 사라진 Player를 삭제하지 않는다.
 
 result는 compare 반환 사전, target은 출력 Path다. 상태 비교의 세부 구현은 하위 함수가 맡는다. 교안 제공 Command의 stdout은 compact JSON이지만 현재 사용자 파일은 indent=2로 여러 줄 출력한다. 키·값·파일 JSON은 같은 계약이며 이 차이를 보존했다.
+
+## 2026-10-14 복구 검증
+
+26일차3교시 검토 시작 시 Lake 비교 코드가 잘못 붙여져 --output 및 snapshot 비교가 사라져 있었다. 시작 소스는 verification/day26-period03.json의 source_before에 보존했고, 현재 코드는 직전 커밋 d68b511의 기존 snapshot 비교와 같다. 복구 회귀검사는 두 입력 보존·changed1·JSON 결과 저장·출력 경로가 입력이면 거절을 확인했다. Lake 비교는 별도 compare_player_lake_versions 명령이 맡는다.
