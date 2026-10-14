@@ -49,3 +49,4 @@ def export_ad_events(output_path, since=None, until=None):
             "schema_version": "ad-event/v1", "source_kind": "ad-events",
             "since": start.isoformat() if start else None,
             "until": end.isoformat() if end else None}
+
